@@ -1,9 +1,12 @@
+import {ToggleTheme} from "./components/ToggleTheme";
+
 function App() {
-  return (
-    <div className="App">
-      Botoholt v3
-    </div>
-  );
+    return (
+        <div>
+            <ToggleTheme/>
+            <p className="title">Bold</p>
+        </div>
+    );
 }
 
 export default App;
