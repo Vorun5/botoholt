@@ -1,17 +1,19 @@
-import  { useEffect, useState, ChangeEvent } from 'react';
+import {useEffect, useState} from 'react';
 
 type Theme = 'dark' | 'light'
+const themes = ['dark', 'light'];
 
-type useThemeReturn = [ Theme, (e: ChangeEvent<HTMLInputElement>) => void ];
+type useThemeReturn = [Theme, (theme: Theme) => void];
 
-export const useTheme = (initialTheme:Theme): useThemeReturn => {
+export const useTheme = (): useThemeReturn => {
+    const localTheme = localStorage.getItem('theme') ?? 'dark';
+    const [theme, setTheme] = useState<Theme>(themes.includes(localTheme) ? localTheme as Theme : 'dark')
 
-    const [theme, setTheme] = useState<Theme>(initialTheme)
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => setTheme(e.target.checked ? 'dark' : 'light')
+    const handleChange = (theme: Theme) => setTheme(theme)
 
     useEffect(() => {
         document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
     }, [theme])
 
     return [theme, handleChange]

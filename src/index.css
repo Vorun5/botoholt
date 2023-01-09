@@ -12,6 +12,41 @@
     src: local('HelveticaNeueCyr'), url('../static/fonts/helveticaneuecyr-bold.woff') format('woff')
 }
 
+body[data-theme="light"] {
+    --app-background-color: #EAEAEA;
+    --background-color: #FFFFFF;
+    --accent-background-color: #EDF2FF;
+    --theme-switcher-color: #8A8A8A;
+    --text-color: #000000;
+    --neutral-text-color: #A0A0A0;
+}
+
+body[data-theme="dark"] {
+    --app-background-color: #0F0F10;
+    --background-color: #1F1F23;
+    --accent-background-color: #18181B;
+    --theme-switcher-color: #FFFFFF;
+    --text-color: #FFFFFF;
+    --neutral-text-color: #6F6F75;
+}
+
+body {
+    --online-status-color: #EB0400;
+    --offline-status-color: #444444;
+    --primary-text-color: #4C8CFF;
+    --secondary-text-color: #FF810D;
+    --hover-bth-text-color: #FFFFFF;
+    --primary-bth-color: #4C8CFF;
+    --neutral-bth-color: #323237;
+    --secondary-bth-color: #273C61;
+    --tertiary-bth-color: #57340D;
+    --secondary-hover-bth-color: #4C8CFF;
+    --tertiary-hover-bth-color: #F58307;
+
+    --primary-text-size: 14px;
+    --secondary-text-size: 20px;
+}
+
 * {
     font-family: 'HelveticaNeueCyr', sans-serif;
     margin: 0;
@@ -21,17 +56,29 @@
     transition: all 0.3s;
 }
 
-body[data-theme="light"] {
-    --background-color: #ec1818;
+body {
+    background-color: var(--app-background-color);
 }
 
-body[data-theme="dark"] {
-    --background-color: #2b3e51;
+.app-container {
+    padding: 30px 15px 57px 15px;
 }
 
-.title {
-    font-size: 60px;
-    background-color: var(--background-color);
-    color: aqua;
-    font-weight: bold;
+
+@media (min-width: 1200px) {
+    .app-container {
+        padding: 30px 40px;
+    }
 }
+
+@media (min-width: 1700px) {
+    .app-container {
+        padding: 35px 80px 60px 80px;
+    }
+
+    body {
+        --primary-text-size: 16px;
+        --secondary-text-size: 24px;
+    }
+}
+

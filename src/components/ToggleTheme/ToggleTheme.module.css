@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.label {
+    color: var(--theme-switcher-color);
+    font-size: var(--primary-text-size);
+    font-weight: bold;
+    padding: 0 15px 0 0 ;
+}
