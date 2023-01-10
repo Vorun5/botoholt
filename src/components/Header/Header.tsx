@@ -1,34 +1,54 @@
-import {FC} from "react";
-import styles from "./Header.module.css";
+import {useMediaQuery} from "react-responsive";
+import HeaderDesktop from "./HeaderDesktop";
+import HeaderMobile from "./HeaderMobile";
 import {Streamer} from "../../models/Streamer";
-import StreamerAvatar from "../StreamerAvatar/StreamerAvatar";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
-import {Link} from "react-router-dom";
 
-const STREAMERS_SHOWING_COUNT = 4;
+const streamers: Streamer[] = [
+    {
+        broadcaster_type: "partner",
+        display_name: "Smurf_tv",
+        login: "smurf_tv",
+        profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/309c7c07-6269-479d-8239-71a31ed35807-profile_image-300x300.png",
+    },
+    {
+        broadcaster_type: "affiliate",
+        display_name: "Urbinholt",
+        login: "urbinholt",
+        profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/28f54f8f7e5e4d4e-profile_image-300x300.png",
+    },
+    {
+        broadcaster_type: "",
+        display_name: "Vorun5",
+        login: "vorun5",
+        profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/81e238c5-c782-4180-84cc-48975a3472d6-profile_image-300x300.png",
+        stream_info: {
+            title: "INSANECAT",
+            game_name: "INSANECAT",
+        }
+    },
+    {
+        broadcaster_type: "",
+        display_name: "montag_r",
+        login: "montag_r",
+        profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/3103dbcb-4f09-45be-b77c-a1792d9d0391-profile_image-300x300.png",
+    },
+    {
+        broadcaster_type: "partner",
+        display_name: "GeneraL_HS_",
+        login: "general_hs_",
+        profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/76442814-883b-490e-a2d2-04b277b04d67-profile_image-300x300.png",
+    }
+];
 
-interface HeaderProps {
-    streamers: Streamer[],
-}
 
-const Header: FC<HeaderProps> = ({streamers}) => {
-    const count = streamers.length - STREAMERS_SHOWING_COUNT;
-    const viewSteamers = streamers.length > STREAMERS_SHOWING_COUNT ? streamers.slice(0, STREAMERS_SHOWING_COUNT) : streamers;
+const Header = (): JSX.Element => {
+    const isDesktop = useMediaQuery({
+        query: "(min-width: 992px)"
+    });
 
-    return <div className={styles.container}>
-        <Link className={styles.logo} to="/">
-            <img src="images/Logo.svg" alt="logo"/>
-        </Link>
-        <div className={styles.streamers}>
-            {viewSteamers.map((streamer) => <div className={styles.streamers__streamer} key={streamer.login}>
-                <Link to={"/" + streamer.login}><StreamerAvatar streamer={streamer}/></Link>
-            </div>)}
-            {(count > 0) ? <div className={styles.streamers__count}>+{count}</div> : <></>}
-        </div>
-        <div className={styles.settings}>
-            <ToggleTheme/>
-        </div>
-    </div>
+    if (isDesktop) return  <HeaderDesktop streamers={streamers}/>;
+
+    return <HeaderMobile/>;
 }
 
 export default Header;

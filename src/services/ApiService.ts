@@ -25,7 +25,6 @@ const getStreamerTopSongs = (login: string, period: Period) =>
 const getStreamerTopDjs = (login: string, period: Period) =>
     http.get<Array<Streamer>>(`/v1/${login}/songs/top/djs/${period}`);
 
-
 const ApiService = {
     getAllStreamers,
     getStreamer,

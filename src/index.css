@@ -54,6 +54,7 @@ body {
     text-decoration: none;
     outline: none;
     transition: all 0.3s;
+    line-height: 1.5;
 }
 
 body {
