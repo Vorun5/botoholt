@@ -1,8 +1,8 @@
 import {Streamer} from "./models/Streamer";
-import HomePage from "./pages/HomePage/HomePage";
 import {Routes, Route} from "react-router-dom";
 import StreamerPage from "./pages/StreamerPage/StreamerPage";
 import Header from "./components/Header/Header";
+import HomePage from "./pages/HomePage/HomePage";
 
 const streamer: Streamer = {
     broadcaster_type: "partner",
@@ -49,6 +49,7 @@ const streamers: Streamer[] = [
 ];
 
 function App() {
+
     return (
         <div className="app-container">
             <Header/>

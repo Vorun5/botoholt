@@ -11,6 +11,7 @@
     justify-content: space-around;
     width: 28px;
     height: 28px;
+    cursor: pointer;
 }
 
 .burger div {
@@ -101,4 +102,9 @@
     width: 60px;
     outline: 1px solid var(--offline-status-color);
     outline-offset: -1px;
+}
+
+.settings {
+    display: flex;
+    align-items: center;
 }

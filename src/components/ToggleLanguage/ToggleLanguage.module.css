@@ -1,0 +1,12 @@
+.container {
+    color: var(--primary-text-color);
+    font-size: var(--secondary-text-size);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .container {
+        font-size: var(--primary-text-size);
+    }
+}

@@ -1,9 +1,12 @@
-import {FC} from "react";
 import styles from "./Header.module.css";
+import {FC} from "react";
+import {Link} from "react-router-dom";
 import {Streamer} from "../../models/Streamer";
+import ToggleLanguage from "../ToggleLanguage/ToggleLanguage";
 import StreamerAvatar from "../StreamerAvatar/StreamerAvatar";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
-import {Link} from "react-router-dom";
+import Bloc from "../Bloc/Bloc";
+
 
 const STREAMERS_SHOWING_COUNT = 4;
 
@@ -26,6 +29,8 @@ const HeaderDesktop: FC<HeaderProps> = ({streamers}) => {
             {(count > 0) ? <div className={styles.streamers__count}>+{count}</div> : <></>}
         </div>
         <div className={styles.settings}>
+            <ToggleLanguage/>
+            <Bloc width="60px" height="10px"></Bloc>
             <ToggleTheme/>
         </div>
     </div>
