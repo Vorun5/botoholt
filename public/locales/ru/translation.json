@@ -5,5 +5,7 @@
   "creators": {
       "create-with-love-by": "Сделано с 💖 от "
   },
-  "and": " и "
+  "and": " и ",
+  "streamer-not-found": "{{login}} не подключен к Botoholt",
+  "page-not-found": "Страница не найдена"
 }

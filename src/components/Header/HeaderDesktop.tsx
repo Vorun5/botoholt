@@ -26,7 +26,7 @@ const HeaderDesktop: FC<HeaderProps> = ({streamers}) => {
             {viewSteamers.map((streamer) => <div className={styles.streamers__streamer} key={streamer.login}>
                 <Link to={"/" + streamer.login}><StreamerAvatar streamer={streamer}/></Link>
             </div>)}
-            {(count > 0) ? <div className={styles.streamers__count}>+{count}</div> : <></>}
+            {(count > 0) ? <Link to="/" className={styles.streamers__count}>+{count}</Link> : <></>}
         </div>
         <div className={styles.settings}>
             <ToggleLanguage/>
