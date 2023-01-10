@@ -1,0 +1,6 @@
+.container {
+    font-size: var(--secondary-text-size);
+    color: var(--primary-text-color);
+    text-align: center;
+    padding: 150px 0 0 0;
+}

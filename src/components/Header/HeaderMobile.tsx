@@ -18,7 +18,7 @@ const HeaderMobile = () => {
                 <div/>
             </div>
             <Link className={styles.logo} to="/">
-                <img src="images/Logo.svg" alt="logo"/>
+                <img src="../images/Logo.svg" alt="logo"/>
             </Link>
             <div className={styles.empty}></div>
         </div>
