@@ -1,3 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
 @font-face {
     font-family: helveticaneuecyr;
     font-style: normal;

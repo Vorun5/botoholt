@@ -1,0 +1,24 @@
+.container {
+    background-color: var(--background-color);
+    border-radius: 5px;
+    padding: 40px 80px;
+    /*height: min(calc(100vh - 60px));*/
+}
+
+.top {
+}
+
+.top_title {
+    text-align: center;
+    font-size: var(--secondary-text-size);
+    color: var(--text-color);
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 40px 80px;
+}
+

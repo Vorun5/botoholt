@@ -86,7 +86,7 @@
 .streamers__streamer {
     height: 60px;
     width: 60px;
-    padding-right: 24px;
+    margin-right: 24px;
 }
 
 .streamers__count {
