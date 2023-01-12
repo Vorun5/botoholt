@@ -67,9 +67,30 @@ body {
     padding: 0;
     text-decoration: none;
     outline: none;
-    /*transition: background-color 0.3s;*/
     line-height: 1.5;
 }
+
+
+*::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: none;
+    border-radius: 5px;
+    background-color: var(--app-background-color);
+}
+
+*::-webkit-scrollbar
+{
+    width: 8px;
+    background-color: var(--app-background-color);
+}
+
+*::-webkit-scrollbar-thumb
+{
+    border-radius: 5px;
+    -webkit-box-shadow: none;
+    background-color: var(--neutral-text-color);
+}
+
 
 body {
     background-color: var(--app-background-color);
