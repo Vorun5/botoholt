@@ -67,7 +67,7 @@ body {
     padding: 0;
     text-decoration: none;
     outline: none;
-    transition: all 0.3s;
+    /*transition: background-color 0.3s;*/
     line-height: 1.5;
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .app-container {
-    padding: 30px 15px 57px 15px;
+    padding: 30px 15px;
 }
 
 

@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {StreamerCard} from "../../components/StreamerCard/StreamerCard";
 import {Streamer} from "../../models/Streamer";
 import ApiService from "../../services/ApiService";
+import {Link} from "react-router-dom";
+import CreateWith from "../../components/CreateWith/CreateWith";
 
 
 const fakeStreamers: Streamer[] = [
@@ -23,7 +25,7 @@ const fakeStreamers: Streamer[] = [
         description: "Разнообразный и богатый опыт консультация с профессионалами из IT обеспечивает широкому кругу специалистов участие в формировании существующих финансовых и административных условий! Дорогие друзья, постоянное информационно-техническое обеспечение нашей деятельности обеспечивает актуальность всесторонне сбалансированных нововведений?"
     },
     {
-        broadcaster_type: "",
+        broadcaster_type: "partner",
         display_name: "Vorun5WWWWWWWWWWWWWWWWWWWWW",
         login: "vorun5",
         profile_image_url: "https://static-cdn.jtvnw.net/jtv_user_pictures/81e238c5-c782-4180-84cc-48975a3472d6-profile_image-300x300.png",
@@ -70,20 +72,23 @@ const HomePage = () => {
             })
     }
 
-    return <div className={styles.container}>
-        {streamers.length === 0
-            ? <div>Загрузка...</div>
-            : <div className={styles.top}>
-                <div className={styles.top_title}>Топ стримеров</div>
-                <div className={styles.wrapper}>{streamers.map(
-                    (streamer) =>
-                        <div key={streamer.login} className={styles.wrapper_item}>
-                            <StreamerCard streamer={streamer}/>
-                        </div>)}
+    return <>
+        <div className={styles.container}>
+            {streamers.length === 0
+                ? <div>Загрузка...</div>
+                : <div className={styles.top}>
+                    <div className={styles.top_title}>Топ стримеров</div>
+                    <div className={styles.wrapper}>{streamers.map(
+                        (streamer) =>
+                            <Link key={streamer.login} to={`/${streamer.login}`} className={styles.wrapper_item}>
+                                <StreamerCard title={null} streamer={streamer}/>
+                            </Link>)}
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+        <CreateWith/>
+    </>
 }
 
 export default HomePage;

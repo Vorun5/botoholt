@@ -17,7 +17,7 @@ const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     return [result, degree];
 }
 
-const StreamerCard = ({streamer}: { streamer: Streamer }) => {
+const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | null }) => {
     const [followers, degree] = getNumberFollowersAndDegree(streamer.view_count);
 
     return (
@@ -27,25 +27,33 @@ const StreamerCard = ({streamer}: { streamer: Streamer }) => {
 
                 <div className={styles.streamer}>
                     <div>
-                        <div className={styles.title}>Информация о канале</div>
+                        {title != null ? <div className={styles.title}>Информация о канале</div> : <></>}
+
                         <div className={styles.info}>
                             <div className={styles.info_avatar}>
                                 <StreamerAvatar streamer={streamer}/>
                             </div>
 
                             <div className={styles.main_info}>
-                        <span className={styles.login}>
-                            {streamer.display_name}
-                            {/*{streamer.broadcaster_type === "partner" ?*/}
-                            {/*    <HandySvg className={styles.approval} src="../icons/approval.svg" width="18"*/}
-                            {/*              height="18"/> : ""}*/}
-                        </span>
-                                <span >
-                            {followers}{degree === "thousands" ? " тыс. " : ""}
+                                <span className={styles.login}>
+                                    {streamer.display_name}
+                                    {streamer.broadcaster_type === "partner"
+                                        ? <HandySvg
+                                            className={styles.approval}
+                                            src="../icons/approval.svg"
+                                            width="18px"
+                                            height="18px"
+                                        />
+                                        : <></>}
+                                </span>
+
+                                <p>{followers}{degree === "thousands" ? " тыс. " : ""}
                                     <span className={styles.followers}> фолловеров</span>
-                        </span>
+                                </p>
                             </div>
+
                         </div>
+
                         <div
                             className={styles.description}
                         >{streamer.stream_info == null
