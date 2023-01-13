@@ -6,6 +6,41 @@
     "create-with-love-by": "Create with 💖 by "
   },
   "and": " and ",
+  "thousands": "K ",
+  "minutes": "m",
+  "seconds": "s",
   "streamer-not-found": "{{login}} is not connected to Botoholt",
-  "page-not-found": "Page not found"
+  "page-not-found": "Page not found",
+  "streamer-card": {
+    "title": "Channel Information",
+    "online": "Online now",
+    "offline": "Streamer offline",
+    "followers": "followers"
+  },
+  "support-streamer": "Want to order a song or support a streamer?",
+  "connect-bot": "Want to add a bot to your stream?",
+  "support-streamer-bth": "Donate",
+  "connect-bot-bth": "Connect the bot",
+  "support": "Support",
+  "search": "Search",
+  "streamer-page": {
+    "filter": "Filter",
+    "tab-titles": {
+      "top-songs": "List of frequently ordered songs",
+      "top-djs": "List of DJs",
+      "queue": "Song queue",
+      "History": "Song history"
+    },
+    "tabs": {
+      "queue": "Queue",
+      "history": "History",
+      "top-djs": "Top DJs",
+      "top-songs": "Top songs",
+      "filters": {
+        "week": "Week",
+        "month": "Month",
+        "all-time": "All time"
+      }
+    }
+  }
 }

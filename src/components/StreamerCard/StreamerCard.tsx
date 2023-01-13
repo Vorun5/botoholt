@@ -2,8 +2,9 @@ import {Streamer} from "../../models/Streamer";
 import styles from "./StreamerCard.module.css";
 import StreamerAvatar from "../StreamerAvatar/StreamerAvatar";
 import {HandySvg} from "handy-svg";
+import {useTranslation} from "react-i18next";
 
-type Degree = 'thousands' | 'none';
+type Degree = "thousands" | "none";
 
 const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     let result = followers.toString();
@@ -11,14 +12,16 @@ const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     const thousands = Math.floor(followers / 1000);
     if (thousands >= 1) {
         result = thousands.toString();
-        degree = 'thousands';
+        degree = "thousands";
     }
 
     return [result, degree];
 }
 
 const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | null }) => {
+    const {t} = useTranslation();
     const [followers, degree] = getNumberFollowersAndDegree(streamer.view_count);
+    const isOnline = streamer.stream_info != null;
 
     return (
         <div className={styles.container}>
@@ -27,7 +30,7 @@ const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | n
 
                 <div className={styles.streamer}>
                     <div>
-                        {title != null ? <div className={styles.title}>Информация о канале</div> : <></>}
+                        {title != null ? <div className={styles.title}>{title}</div> : <></>}
 
                         <div className={styles.info}>
                             <div className={styles.info_avatar}>
@@ -47,8 +50,8 @@ const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | n
                                         : <></>}
                                 </span>
 
-                                <p>{followers}{degree === "thousands" ? " тыс. " : ""}
-                                    <span className={styles.followers}> фолловеров</span>
+                                <p>{followers}{degree === "thousands" ? t("thousands") : ""}
+                                    <span className={styles.followers}> {t("streamer-card.followers")}</span>
                                 </p>
                             </div>
 
@@ -56,9 +59,9 @@ const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | n
 
                         <div
                             className={styles.description}
-                        >{streamer.stream_info == null
-                            ? streamer.description
-                            : streamer.stream_info?.title}
+                        >{isOnline == null
+                            ? streamer.stream_info?.title
+                            : streamer.description}
                         </div>
                     </div>
 
@@ -67,17 +70,17 @@ const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | n
 
                         <div className={styles.status}>
                             <div className={styles.status_indicator + " " +
-                                (streamer.stream_info == null
-                                    ? styles.status_indicator__offline
-                                    : styles.status_indicator__online)}
+                                (isOnline ? styles.status_indicator__online : styles.status_indicator__offline)}
                             />
-                            <span
-                                className={styles.status_text}>
-                            {streamer.stream_info == null
-                                ? "Стример оффлайн"
-                                : "Сейчас онлайн!"}
-                        </span>
+                            <span className={styles.status_text}>
+                            {isOnline == null
+                                ? t("streamer-card.online")
+                                : t("streamer-card.offline")}
+                            </span>
                         </div>
+                        {isOnline
+                            ? <div className={styles.category}>{streamer.stream_info?.game_name}</div>
+                            : <></>}
                     </div>
 
                 </div>

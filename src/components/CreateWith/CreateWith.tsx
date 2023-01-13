@@ -13,7 +13,7 @@ const CreateWith = () => {
             {t("and")}
             <a href="https://www.twitch.tv/montag_r">@montag_r</a>
         </p>
-        <a href="https://fantalks.io/r/botoholt" className={styles.support}>Поддержать</a>
+        <a href="https://fantalks.io/r/botoholt" className={styles.support}>{t("support")}</a>
     </div>
 }
 
