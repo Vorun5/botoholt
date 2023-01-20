@@ -1,7 +1,14 @@
-const Bloc = ({width, height}: { width: string, height: string }) =>
-    <div style={{
-        width: width,
-        height: height,
-    }}/>
+interface BlocProps {
+    width?: string;
+    height?: string;
+}
+
+const Bloc = ({width = "1px", height = "1px"}: BlocProps) =>
+    <div
+        style={{
+            width: width,
+            height: height,
+        }}
+    />;
 
 export default Bloc;

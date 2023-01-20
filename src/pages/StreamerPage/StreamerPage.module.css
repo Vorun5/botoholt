@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+}
+
+.info {
+    width: 423px;
+}
+
+.content {
+    border-radius: 5px;
+    background-color: var(--background-color);
+    padding: 30px 70px;
+    flex-grow: 1;
+}
+
+.content__navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content__song {
+
+}
+
+.content__main {
+    display: flex;
+}
+
+.navigation__tabs {
+
+}
+
+.navigation__filters {
+
+}
+
+.main__board {
+
+}
+
+.main__divider {
+    margin: 0 35px;
+    height: 100%;
+    width: 1px;
+}
+.main__list {
+
+}
+
+.list__title {
+
+}

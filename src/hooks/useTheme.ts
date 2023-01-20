@@ -14,7 +14,7 @@ export const useTheme = (): useThemeReturn => {
     useEffect(() => {
         document.body.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-    }, [theme])
+    }, [theme]);
 
-    return [theme, handleChange]
+    return [theme, handleChange];
 }

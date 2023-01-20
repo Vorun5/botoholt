@@ -29,7 +29,7 @@
     height: 100%;
 }
 
-.stream_status {
+.stream__status {
     align-items: flex-end;
 }
 
@@ -39,13 +39,13 @@
     margin-bottom: 34px;
 }
 
-.info_avatar {
+.info__avatar {
     width: 109px;
     height: 109px;
     margin-right: 24px;
 }
 
-.main_info {
+.main__info {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -91,18 +91,18 @@
     align-items: center;
 }
 
-.status_indicator {
+.status__indicator {
     width: 12px;
     height: 12px;
     margin-right: 8px;
     border-radius: 50%;
 }
 
-.status_indicator__online {
+.status__indicator_online {
     background-color: var(--online-status-color);
 }
 
-.status_indicator__offline {
+.status__indicator_offline {
     background-color: var(--offline-status-color);
 }
 

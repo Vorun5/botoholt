@@ -1,5 +1,5 @@
-import {Streamer} from "../../models/Streamer";
 import styles from "./StreamerCard.module.css";
+import {Streamer} from "../../models/Streamer";
 import StreamerAvatar from "../StreamerAvatar/StreamerAvatar";
 import {HandySvg} from "handy-svg";
 import {useTranslation} from "react-i18next";
@@ -18,26 +18,27 @@ const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     return [result, degree];
 }
 
-const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | null }) => {
+interface StreamerCardProps {
+    streamer: Streamer,
+    title: string | null;
+}
+
+const StreamerCard = ({streamer, title}: StreamerCardProps) => {
     const {t} = useTranslation();
     const [followers, degree] = getNumberFollowersAndDegree(streamer.view_count);
-    const isOnline = streamer.stream_info != null;
+    const isOnline = streamer.streamInfo != null;
 
     return (
         <div className={styles.container}>
-
             <div className={styles.content}>
-
                 <div className={styles.streamer}>
                     <div>
                         {title != null ? <div className={styles.title}>{title}</div> : <></>}
-
                         <div className={styles.info}>
-                            <div className={styles.info_avatar}>
+                            <div className={styles.info__avatar}>
                                 <StreamerAvatar streamer={streamer}/>
                             </div>
-
-                            <div className={styles.main_info}>
+                            <div className={styles.main__info}>
                                 <span className={styles.login}>
                                     {streamer.display_name}
                                     {streamer.broadcaster_type === "partner"
@@ -49,45 +50,32 @@ const StreamerCard = ({streamer, title}: { streamer: Streamer, title: string | n
                                         />
                                         : <></>}
                                 </span>
-
                                 <p>{followers}{degree === "thousands" ? t("thousands") : ""}
                                     <span className={styles.followers}> {t("streamer-card.followers")}</span>
                                 </p>
                             </div>
-
                         </div>
-
-                        <div
-                            className={styles.description}
-                        >{isOnline == null
-                            ? streamer.stream_info?.title
-                            : streamer.description}
+                        <div className={styles.description}>
+                            {isOnline ? streamer.streamInfo?.title : streamer.description}
                         </div>
                     </div>
-
-                    <div className={styles.stream_status}>
+                    <div className={styles.stream__status}>
                         <div className={styles.divider}/>
 
                         <div className={styles.status}>
-                            <div className={styles.status_indicator + " " +
-                                (isOnline ? styles.status_indicator__online : styles.status_indicator__offline)}
+                            <div
+                                className={`${styles.status__indicator} ${isOnline ? styles.status__indicator_online : styles.status__indicator_offline}`}
                             />
-                            <span className={styles.status_text}>
-                            {isOnline == null
-                                ? t("streamer-card.online")
-                                : t("streamer-card.offline")}
+                            <span className={styles.status__text}>
+                            {isOnline ? t("streamer-card.online") : t("streamer-card.offline")}
                             </span>
                         </div>
-                        {isOnline
-                            ? <div className={styles.category}>{streamer.stream_info?.game_name}</div>
-                            : <></>}
+                        {isOnline ? <div className={styles.category}>{streamer.streamInfo?.game_name}</div> : <></>}
                     </div>
-
                 </div>
-
             </div>
         </div>
-    )
+    );
 }
 
 export {StreamerCard}
