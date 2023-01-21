@@ -6,6 +6,7 @@ import ApiService from "../../services/ApiService";
 import {Link} from "react-router-dom";
 import CreateWith from "../../components/CreateWith/CreateWith";
 import {useTranslation} from "react-i18next";
+import Loading from "../../components/Loading/Loading";
 
 
 const HomePage = () => {
@@ -24,7 +25,7 @@ const HomePage = () => {
         <>
             <div className={styles.container}>
                 {streamers.length === 0
-                    ? <div>Загрузка...</div>
+                    ? <Loading/>
                     : <div className={styles.top}>
                         <div className={styles.top_title}>{t("top-streamers")}</div>
                         <div className={styles.wrapper}>{streamers.map(

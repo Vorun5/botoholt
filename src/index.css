@@ -34,9 +34,13 @@ body[data-theme="light"] {
     --theme-switcher-color: #8A8A8A;
     --text-color: #000000;
     --neutral-text-color: #A0A0A0;
+    --primary-add-background-color: #EDF2FF;
+    --secondary-add-background-color: #FFEFE5;
 }
 
 body[data-theme="dark"] {
+    --primary-add-background-color: #172132;
+    --secondary-add-background-color: #322117;
     --bth-color: #323237;
     --app-background-color: #0F0F10;
     --background-color: #1F1F23;
@@ -68,7 +72,7 @@ body {
     padding: 0;
     text-decoration: none;
     outline: none;
-    line-height: 1.5;
+    line-height: 1.1;
 }
 
 *::-webkit-scrollbar-track

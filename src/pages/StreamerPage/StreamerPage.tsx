@@ -7,10 +7,11 @@ import {useMediaQuery} from "react-responsive";
 import StreamerPageDesktop from "./StreamerPageDesktop";
 import StreamerPageTable from "./StreamerPageTable";
 import StreamerPageMobile from "./StreamerPageMobile";
+import Loading from "../../components/Loading/Loading";
 
 const StreamerPage = () => {
     const isDesktop = useMediaQuery({
-        query: "(min-width: 1200px)"
+        query: "(min-width: 1400px)"
     });
     const isTable = useMediaQuery({
         query: "(min-width: 900px)"
@@ -33,7 +34,7 @@ const StreamerPage = () => {
     };
 
     if (error) return <StreamerNotFoundPage login={streamerLogin as string}/>;
-    if (!streamer) return <div>Загрузка...</div>;
+    if (!streamer) return <Loading/>;
     if (isDesktop) return <StreamerPageDesktop streamer={streamer}/>;
     if (isTable) return <StreamerPageTable/>;
 

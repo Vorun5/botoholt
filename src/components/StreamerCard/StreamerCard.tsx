@@ -23,7 +23,7 @@ interface StreamerCardProps {
     title: string | null;
 }
 
-const StreamerCard = ({streamer, title}: StreamerCardProps) => {
+const StreamerCard = ({streamer, title = null}: StreamerCardProps) => {
     const {t} = useTranslation();
     const [followers, degree] = getNumberFollowersAndDegree(streamer.view_count);
     const isOnline = streamer.streamInfo != null;
@@ -33,7 +33,7 @@ const StreamerCard = ({streamer, title}: StreamerCardProps) => {
             <div className={styles.content}>
                 <div className={styles.streamer}>
                     <div>
-                        {title != null ? <div className={styles.title}>{title}</div> : <></>}
+                        {title != null  ? <div className={styles.title}>{title}</div> : <></>}
                         <div className={styles.info}>
                             <div className={styles.info__avatar}>
                                 <StreamerAvatar streamer={streamer}/>

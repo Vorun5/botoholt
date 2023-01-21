@@ -1,0 +1,58 @@
+.container {
+    padding: 16px 24px;
+    background-color: var(--accent-background-color);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    color: var(--text-color);
+}
+
+.emote {
+
+}
+
+.song__status {
+
+}
+
+.song__name {
+    font-weight: bold;
+    font-size: var(--secondary-text-size);
+    color: var(--primary-text-color);
+}
+
+.song__name:hover {
+    text-decoration-line: underline;
+}
+
+.song__by {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.by__label {
+    display: flex;
+    align-items: center;
+}
+
+.by__name {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.by__icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.song__duration {
+
+}
+
+@media (min-width: 1400px) {
+    .container {
+        padding: 25px 60px;
+    }
+}

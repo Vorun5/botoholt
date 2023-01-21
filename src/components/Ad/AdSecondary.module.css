@@ -1,0 +1,20 @@
+.container {
+    border: 2px solid var(--secondary-text-color);
+    background-color: var(--secondary-add-background-color);
+}
+
+.text {
+    color: var(--secondary-text-color);
+}
+
+.bth__text {
+    color: var(--secondary-text-color);
+}
+
+.bth {
+    background-color: var(--tertiary-bth-color);
+}
+
+.bth:hover {
+    background-color: var(--tertiary-hover-bth-color);
+}

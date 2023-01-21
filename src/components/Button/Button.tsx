@@ -2,11 +2,11 @@ import styles from "./Button.module.css";
 
 interface ButtonProps {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
     isActive: boolean;
 }
 
-const Button = ({text, onClick, isActive}: ButtonProps) =>
+const Button = ({text, onClick = () => {}, isActive}: ButtonProps) =>
     <div
         className={`${styles.button} ${isActive ? styles.button_active : ""}`}
         onClick={onClick}
