@@ -4,15 +4,15 @@ import SongListItem from "../models/SongListItem";
 
 const useSongListItemSearch = (items: SongListItem[]) => {
     const [search, setSearch] = useState("");
-    const [songs, setItems] = useState(items);
+    const [songs, setSongs] = useState(items);
 
     useEffect(() => {
-        setItems(items.filter(item =>
+        setSongs(items.filter(item =>
             item.mediaName.toLowerCase().includes(search.toLowerCase())
             ||
             item.requestedBy.toLowerCase().includes(search.toLowerCase()))
         );
-    }, [search]);
+    }, [search, items]);
 
     return {search, setSearch, songs};
 }

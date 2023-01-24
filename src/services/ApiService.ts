@@ -1,6 +1,7 @@
 import http from "../http-common";
 import {Streamer} from "../models/Streamer";
 import {StreamerQueue} from "../models/StreamerQueue";
+import {HistorySong} from "../models/HistorySong";
 
 type Period = "month" | "week" | "alltime";
 
@@ -13,9 +14,9 @@ const getStreamer = (login: string) =>
 const getStreamerQueue = (login: string) =>
     http.get<StreamerQueue>(`https://bho.lt/api/${login}/`);
 
-// TODO: type
+
 const getStreamerHistory = (login: string) =>
-    http.get<Array<Streamer>>(`https://bho.lt/api/v1/${login}/songs/`);
+    http.get<Array<HistorySong>>(`https://bho.lt/api/v1/${login}/songs/`);
 
 // TODO: type
 const getStreamerTopSongs = (login: string, period: Period) =>

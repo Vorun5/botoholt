@@ -13,16 +13,23 @@
 .info__links {
     border-radius: 5px;
     margin: 24px 0;
-    width: 100%;
+    width: 400px;
     height: 120px;
     background-color: var(--accent-background-color);
 }
 
+.info__card {
+    width: 400px;
+}
+
+/* TODO: поправить дёрганье */
+
 .content {
+    flex: auto;
     border-radius: 5px;
     background-color: var(--background-color);
     padding: 30px 40px;
-    flex-grow: 1;
+    /*flex-grow: 1;*/
 }
 
 .content__navigation {
@@ -68,6 +75,8 @@
     display: flex;
 }
 
+
+
 .main__board {
 
 }
@@ -75,7 +84,7 @@
 .main__divider {
     margin: 0 25px;
     background-color: var(--neutral-text-color);
-    border-radius: 3px;
+    border-radius: 0.2rem;
     width: 0.1rem;
 }
 

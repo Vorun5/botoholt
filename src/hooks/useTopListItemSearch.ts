@@ -2,15 +2,15 @@ import {useEffect, useState} from "react";
 import TopListItem from "../models/TopListItem";
 
 
-const useTopListItemSearch = (listItems: TopListItem[]) => {
+const useTopListItemSearch = (items: TopListItem[]) => {
     const [search, setSearch] = useState("");
-    const [items, setItems] = useState(listItems);
+    const [songs, setSongs] = useState(items);
 
     useEffect(() => {
-        setItems(listItems.filter(item => item.text.includes(search)));
-    }, [search]);
+        setSongs(items.filter(item => item.text.includes(search)));
+    }, [search, items]);
 
-    return {search, setSearch, items};
+    return {search, setSearch, songs};
 }
 
 export default useTopListItemSearch;

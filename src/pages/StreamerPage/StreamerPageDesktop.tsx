@@ -13,7 +13,8 @@ import ApiService from "../../services/ApiService";
 import {StreamerQueue} from "../../models/StreamerQueue";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../NotFoundPage/ErrorPage";
-import QueueList from "../../components/QueueList/QueueList";
+import QueueList from "../../components/StreamerLists/QueueList";
+import HistoryList from "../../components/StreamerLists/HistoryList";
 
 interface StreamerPageDesktopProps {
     streamer: Streamer;
@@ -60,7 +61,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
         <div className={styles.container}>
             <div className={styles.info}>
                 <div>
-                    <div>
+                    <div className={styles.info__card}>
                         <StreamerCard streamer={streamer} title={t("streamer-card.title")}/>
                     </div>
                     <div className={styles.info__links}></div>
@@ -185,11 +186,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                     <div className={styles.main__list}>
                         <Routes>
                             <Route path="/" element={<QueueList items={queue.queueList}/>}/>
-                            <Route path="/h" element={
-                                <div className={styles.list__title}>
-                                    история
-                                </div>
-                            }/>
+                            <Route path="/h" element={<HistoryList streamerLogin={streamer.login}/>}/>
                             <Route path="/top" element={
                                 <div className={styles.list__title}>
                                     {location.pathname}

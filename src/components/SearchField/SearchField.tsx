@@ -1,5 +1,6 @@
 import styles from "./SearchField.module.css";
 import {Dispatch, SetStateAction} from "react";
+import {useTranslation} from "react-i18next";
 
 interface SearchFieldProps {
     value: string;
@@ -7,13 +8,15 @@ interface SearchFieldProps {
 }
 
 const SearchField = ({value, setValue}: SearchFieldProps) => {
+    const {t} = useTranslation();
+
     return (
         <div className={styles.container}>
             <input
                 className={styles.field}
                 type="search"
                 name="search"
-                placeholder="Search"
+                placeholder={t("search")!}
                 value={value}
                 onChange={(event) => setValue(event.target.value)}
             />

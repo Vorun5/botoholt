@@ -37,7 +37,7 @@
       "top-songs": "List of frequently ordered songs",
       "top-djs": "List of DJs",
       "queue": "Song queue",
-      "History": "Song history"
+      "history": "Song history"
     },
     "tabs": {
       "queue": "Queue",
