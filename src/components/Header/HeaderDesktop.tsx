@@ -1,25 +1,15 @@
 import styles from "./Header.module.css";
-import {useEffect, useState} from "react";
-import {Streamer} from "../../models/Streamer";
 import ToggleLanguage from "../ToggleLanguage/ToggleLanguage";
 import StreamerAvatar from "../StreamerAvatar/StreamerAvatar";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import Bloc from "../Bloc/Bloc";
-import ApiService from "../../services/ApiService";
 import {Link} from "react-router-dom";
+import useStreamers from "../../hooks/useStreamers";
 
 const STREAMERS_SHOWING_COUNT = 4;
 
 const HeaderDesktop = () => {
-    const [streamers, setStreamers] = useState<Array<Streamer>>([]);
-
-    useEffect(() => getSteamers(), []);
-
-    const getSteamers = () => {
-        ApiService.getAllStreamers()
-            .then((response) => setStreamers(response.data))
-            .catch((e) => console.log(e))
-    }
+    const {streamers} = useStreamers();
 
     const count = streamers.length - STREAMERS_SHOWING_COUNT;
     const viewSteamers = streamers.length > STREAMERS_SHOWING_COUNT ? streamers.slice(0, STREAMERS_SHOWING_COUNT) : streamers;

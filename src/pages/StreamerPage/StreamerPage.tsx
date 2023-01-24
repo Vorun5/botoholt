@@ -2,14 +2,18 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Streamer} from "../../models/Streamer";
 import ApiService from "../../services/ApiService";
-import StreamerNotFoundPage from "../StreamerNotFoundPage/StreamerNotFoundPage";
 import {useMediaQuery} from "react-responsive";
 import StreamerPageDesktop from "./StreamerPageDesktop";
 import StreamerPageTable from "./StreamerPageTable";
 import StreamerPageMobile from "./StreamerPageMobile";
 import Loading from "../../components/Loading/Loading";
+import ErrorPage from "../NotFoundPage/ErrorPage";
+import {capitalize} from "../../utils";
+import {useTranslation} from "react-i18next";
 
 const StreamerPage = () => {
+    const {t} = useTranslation();
+
     const isDesktop = useMediaQuery({
         query: "(min-width: 1400px)"
     });
@@ -33,7 +37,7 @@ const StreamerPage = () => {
             .catch((_) => setError(true));
     };
 
-    if (error) return <StreamerNotFoundPage login={streamerLogin as string}/>;
+    if (error) return <ErrorPage text={t("streamer-not-found", {login: capitalize(streamerLogin)})}/>;
     if (!streamer) return <Loading/>;
     if (isDesktop) return <StreamerPageDesktop streamer={streamer}/>;
     if (isTable) return <StreamerPageTable/>;

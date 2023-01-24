@@ -12,6 +12,12 @@
   "seconds": "s",
   "streamer-not-found": "{{login}} is not connected to Botoholt",
   "page-not-found": "Page not found",
+  "song-card": {
+    "playing": "Now playing:",
+    "not-playing": "Songs on pause. Last song:",
+    "by": "Order from: ",
+    "empty": "Songs on pause!"
+  },
   "streamer-card": {
     "title": "Channel Information",
     "online": "Online now",
@@ -25,6 +31,7 @@
   "support": "Support",
   "search": "Search",
   "streamer-page": {
+    "not-have-songs": "{{login}} has no ordered songs yet. But he has everything ahead!",
     "filter": "Filter",
     "tab-titles": {
       "top-songs": "List of frequently ordered songs",

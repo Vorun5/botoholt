@@ -37,7 +37,7 @@
 }
 
 .by__name {
-    margin: 0 10px;
+    margin: 0 20px 0 10px;
     font-weight: bold;
 }
 
@@ -49,6 +49,11 @@
 
 .song__duration {
 
+}
+
+.empty {
+    font-size: var(--secondary-text-size);
+    font-weight: bold;
 }
 
 @media (min-width: 1400px) {

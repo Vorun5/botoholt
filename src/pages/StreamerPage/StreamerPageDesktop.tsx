@@ -3,18 +3,58 @@ import {useTranslation} from "react-i18next";
 import Bloc from "../../components/Bloc/Bloc";
 import {StreamerCard} from "../../components/StreamerCard/StreamerCard";
 import {Streamer} from "../../models/Streamer";
-import Button from "../../components/Button/Button";
-import {Route, Routes} from "react-router-dom";
+import LinkButton from "../../components/LinkButton/LinkButton";
+import {Route, Routes, useLocation} from "react-router-dom";
 import SongCard from "../../components/SongCard/SongCard";
 import CreateWith from "../../components/CreateWith/CreateWith";
 import Ad from "../../components/Ad/Ad";
+import {useEffect, useState} from "react";
+import ApiService from "../../services/ApiService";
+import {StreamerQueue} from "../../models/StreamerQueue";
+import Loading from "../../components/Loading/Loading";
+import ErrorPage from "../NotFoundPage/ErrorPage";
+import {capitalize} from "../../utils";
 
 interface StreamerPageDesktopProps {
     streamer: Streamer;
 }
 
+type Period = "week" | "month" | "alltime";
+
 const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     const {t} = useTranslation();
+    const location = useLocation();
+    const [error, setError] = useState(false);
+    const [queue, setQueue] = useState<StreamerQueue | null>(null);
+    const [period, setPeriod] = useState<Period>("week");
+    useEffect(() => {
+        setPeriod("week");
+        getQueue();
+        setError(false);
+    }, [streamer]);
+
+    const getQueue = () => {
+        ApiService.getStreamerQueue(streamer.login)
+            .then((response) => {
+                setQueue(response.data);
+                setError(false);
+            })
+            .catch((e) => {
+                console.log(e);
+                setError(true);
+            })
+    }
+
+    const checkLocation = (path: string): boolean =>
+        location.pathname.toLowerCase().includes(`/${streamer.login.toLowerCase()}${path}`);
+
+    const changeLocation = (path: string): string =>
+        `/${streamer.login.toLowerCase()}${path}`;
+
+
+    if (error) return <ErrorPage text={t("streamer-page.not-have-songs", {login: streamer.display_name})}/>;
+
+    if (queue == null) return <Loading/>;
 
     return (
         <div className={styles.container}>
@@ -32,25 +72,82 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
 
                 <div className={styles.content__navigation}>
                     <div className={styles.navigation__tabs}>
-                        <div><Button isActive={false} text="Очередь"/></div>
-                        <div><Button isActive={false} text="История"/></div>
-                        <div><Button isActive={false} text="Топ Диджеев"/></div>
-                        <div><Button isActive={false} text="Топ песен"/></div>
+                        <div>
+                            <LinkButton
+                                url={changeLocation("")}
+                                isActive={
+                                    location.pathname.toLowerCase() === "/" + streamer.login.toLowerCase()
+                                    ||
+                                    location.pathname.toLowerCase()  === "/" + streamer.login.toLowerCase() + "/"
+                                }
+                                text={t("streamer-page.tabs.queue")}
+                            />
+                        </div>
+                        <div>
+                            <LinkButton
+                                url={changeLocation("/h")}
+                                isActive={checkLocation("/h")}
+                                text={t("streamer-page.tabs.history")}
+                            />
+                        </div>
+                        <div>
+                            <LinkButton
+                                url={changeLocation(`/top/djs/${period}`)}
+                                isActive={checkLocation("/top/djs")}
+                                text={t("streamer-page.tabs.top-djs")}
+                            />
+                        </div>
+                        <div>
+                            <LinkButton
+                                url={changeLocation(`/top/songs/${period}`)}
+                                isActive={checkLocation("/top/songs")}
+                                text={t("streamer-page.tabs.top-songs")}
+                            />
+                        </div>
                     </div>
                     <div className={styles.navigation__filters}>
-                        <span className={styles.filters__title}>Фильтр</span>
+                        <span className={styles.filters__title}>
+                            {t("streamer-page.filter")}
+                        </span>
                         <Bloc width="20px"/>
                         <div className={styles.filters__buttons}>
-                            <div><Button isActive={false} text="Неделя"/></div>
-                            <div><Button isActive={true} text="Месяц"/></div>
-                            <div><Button isActive={false} text="Всё время"/></div>
+                            <div>
+                                <LinkButton
+                                    url={changeLocation(`/top/djs/${period}`)}
+                                    isActive={period === "week"}
+                                    text={t("streamer-page.tabs.filters.week")}
+                                />
+                            </div>
+                            <div>
+                                <LinkButton
+                                    url={changeLocation(`/top/djs/${period}`)}
+                                    isActive={period === "month"}
+                                    text={t("streamer-page.tabs.filters.month")}
+                                />
+                            </div>
+                            <div>
+                                <LinkButton
+                                    url={changeLocation(`/top/djs/${period}`)}
+                                    isActive={period === "alltime"}
+                                    text={t("streamer-page.tabs.filters.all-time")}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
                 <div className={styles.content__song}>
-                    <SongCard/>
+                    <SongCard
+                        song={{
+                            isPlaying: queue.isPlaying,
+                            nowPlayingName: queue.nowPlayingName,
+                            nowPlayingLink: queue.nowPlayingLink,
+                            nowPlayingStartsFrom: queue.nowPlayingStartsFrom,
+                            nowPlayingDuration: queue.nowPlayingDuration,
+                            nowPlayingOwner: queue.nowPlayingOwner,
+                        }}
+                    />
                 </div>
 
                 <div className={styles.content__main}>
@@ -58,23 +155,27 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                     <div className={styles.main__board}>
                         <div className={styles.board__item}>
                             <Ad
-                                text="Хочешь заказать трек или поддержать стримера?"
+                                text={t("support-streamer")}
                                 bthIcon="../icons/da-hover.svg"
-                                bthHoverIcon="../icons/da-hover.svg"
                                 icon="../emotes/money.gif"
-                                bthText="Поддержать денюжкой"
+                                bthText={t("support-streamer-bth")}
                                 style="secondary"
+                                bthOnClick={() => {
+                                    window.open(streamer.daLink)
+                                }}
                             />
                         </div>
                         <Bloc height="30px"/>
                         <div className={styles.board__item}>
                             <Ad
-                                text="Хочешь добавть бота к себе на стрим?"
+                                text={t("connect-bot")}
                                 bthIcon="../icons/star-hover.svg"
-                                bthHoverIcon="../icons/star-hover.svg"
                                 icon="../emotes/EZ.png"
-                                bthText="Купить подписку бота"
+                                bthText={t("connect-bot-bth")}
                                 style="primary"
+                                bthOnClick={() => {
+                                    window.open("google.com")
+                                }}
                             />
                         </div>
                     </div>
@@ -84,9 +185,13 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                     <div className={styles.main__list}>
                         <Routes>
                             <Route path="/" element={
-                                <div className={styles.list__title}>
-                                    Очередь песен
-                                </div>
+                                <>
+                                    <div className={styles.list__title}>
+                                        {location.pathname.toLowerCase()}
+                                    </div>
+                                    {queue.queueList.map((song) => <div
+                                        key={song.mediaId}>{song.mediaName}</div>)}
+                                </>
                             }/>
                             <Route path="/h" element={
                                 <div className={styles.list__title}>
@@ -95,7 +200,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                             }/>
                             <Route path="/top" element={
                                 <div className={styles.list__title}>
-                                    топ
+                                    {location.pathname}
                                 </div>
                             }/>
                         </Routes>

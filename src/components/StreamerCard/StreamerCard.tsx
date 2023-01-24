@@ -25,7 +25,7 @@ interface StreamerCardProps {
 
 const StreamerCard = ({streamer, title = null}: StreamerCardProps) => {
     const {t} = useTranslation();
-    const [followers, degree] = getNumberFollowersAndDegree(streamer.view_count);
+    const [followers, degree] = getNumberFollowersAndDegree(streamer.followersCount);
     const isOnline = streamer.streamInfo != null;
 
     return (

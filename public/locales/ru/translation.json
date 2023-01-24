@@ -12,6 +12,12 @@
   "seconds": "с",
   "streamer-not-found": "{{login}} не подключен к Botoholt",
   "page-not-found": "Страница не найдена",
+  "song-card": {
+    "playing": "Сейчас играет:",
+    "not-playing": "Песни на паузе. Последняя песня:",
+    "by": "Заказ от: ",
+    "empty": "Песни на паузе!"
+  },
   "streamer-card": {
     "title": "Информация о канале",
     "online": "Сейчас онлайн",
@@ -20,11 +26,12 @@
   },
   "support-streamer": "Хочешь заказать трек или поддержать стримера?",
   "connect-bot": "Хочешь добавить бота к себе на стрим?",
-  "support-streamer-bth": "Поддержать",
+  "support-streamer-bth": "Поддержать денюжкой",
   "connect-bot-bth": "Подключить бота",
   "support": "Поддержать",
   "search": "Поиск",
   "streamer-page": {
+    "not-have-songs": "У {{login}} ещё не было заказных песен. Но у него все впереди!",
     "filter": "Фильтр",
     "tab-titles": {
       "top-songs": "Список часто заказываймых песен",

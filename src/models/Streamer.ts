@@ -10,5 +10,7 @@ export interface Streamer {
     view_count: number;
     streamInfo?: StreamInfo;
     description: string;
+    daLink: string;
+    followersCount: number;
 }
 

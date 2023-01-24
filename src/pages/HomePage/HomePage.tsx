@@ -1,25 +1,15 @@
 import styles from "./HomePage.module.css";
-import {useEffect, useState} from "react";
 import {StreamerCard} from "../../components/StreamerCard/StreamerCard";
-import {Streamer} from "../../models/Streamer";
-import ApiService from "../../services/ApiService";
 import {Link} from "react-router-dom";
 import CreateWith from "../../components/CreateWith/CreateWith";
 import {useTranslation} from "react-i18next";
 import Loading from "../../components/Loading/Loading";
+import useStreamers from "../../hooks/useStreamers";
 
 
 const HomePage = () => {
     const {t} = useTranslation();
-    const [streamers, setStreamers] = useState<Array<Streamer>>([]);
-
-    useEffect(() => getSteamers(), []);
-
-    const getSteamers = () => {
-        ApiService.getAllStreamers()
-            .then((response) => setStreamers(response.data))
-            .catch((e) => console.log(e));
-    };
+    const {streamers} = useStreamers();
 
     return (
         <>

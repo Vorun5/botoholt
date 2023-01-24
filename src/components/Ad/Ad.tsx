@@ -10,8 +10,8 @@ interface AddProps {
     icon: string;
     text: string;
     bthText: string;
-    bthHoverIcon: string;
     bthIcon: string;
+    bthOnClick: () => void;
 }
 
 const getDynamicStyles = (style: AddStyle) => {
@@ -25,14 +25,14 @@ const getDynamicStyles = (style: AddStyle) => {
     }
 }
 
-const Ad = ({style, icon, text, bthText, bthIcon, bthHoverIcon}: AddProps) => {
+const Ad = ({style, icon, text, bthText, bthIcon, bthOnClick}: AddProps) => {
     const dynamicStyles = getDynamicStyles(style);
 
     return (
         <div className={`${styles.container} ${dynamicStyles.container}`}>
             <img className={styles.icon} src={icon} alt="ad img"/>
             <div className={`${styles.text} ${dynamicStyles.text}`}>{text}</div>
-            <div className={`${styles.bth} ${dynamicStyles.bth}`}>
+            <div className={`${styles.bth} ${dynamicStyles.bth}`} onClick={bthOnClick}>
                 <HandySvg
                     className={styles.bth__icon}
                     src={bthIcon}
