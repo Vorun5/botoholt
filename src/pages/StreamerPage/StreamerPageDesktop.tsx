@@ -184,16 +184,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
 
                     <div className={styles.main__list}>
                         <Routes>
-                            <Route path="/" element={
-                                <>
-                                    <div className={styles.list__title}>
-                                        {location.pathname.toLowerCase()}
-                                    </div>
-                                    <QueueList items={queue.queueList}/>
-                                    {/*{queue.queueList.map((song) => <div*/}
-                                    {/*    key={song.mediaId}>{song.mediaName}</div>)}*/}
-                                </>
-                            }/>
+                            <Route path="/" element={<QueueList items={queue.queueList}/>}/>
                             <Route path="/h" element={
                                 <div className={styles.list__title}>
                                     история

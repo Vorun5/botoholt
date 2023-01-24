@@ -1,3 +1,5 @@
+import {TFunction} from "i18next";
+
 const capitalize = (str: string | undefined | null): string => {
     if (!str || str.length === 0) return "";
 
@@ -6,4 +8,8 @@ const capitalize = (str: string | undefined | null): string => {
     return trimStr.charAt(0).toUpperCase() + trimStr.slice(1);
 }
 
-export {capitalize};
+const formatTime = (time: number, translation: TFunction<"translation", undefined, "translation">) =>
+    `${Math.floor(time! / 60)}${translation("minutes")} ${time! % 60}${translation("seconds")}`;
+
+
+export {capitalize, formatTime};

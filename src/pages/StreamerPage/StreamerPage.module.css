@@ -35,10 +35,6 @@
     margin: 20px 0;
 }
 
-.content__main {
-    display: flex;
-}
-
 .navigation__tabs {
     margin-bottom: 20px;
 }
@@ -63,24 +59,28 @@
     margin-left: 16px;
 }
 
-.main__board {
-
-}
 
 .board__item {
     width: 250px;
 }
 
+.content__main {
+    display: flex;
+}
+
+.main__board {
+
+}
+
 .main__divider {
     margin: 0 25px;
-    height: 300px;
     background-color: var(--neutral-text-color);
     border-radius: 3px;
-    width: 2px;
+    width: 0.1rem;
 }
 
 .main__list {
-
+    flex: auto;
 }
 
 .list__title {

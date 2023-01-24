@@ -1,0 +1,9 @@
+.title {
+    font-weight: bold;
+    font-size: var(--secondary-text-size);
+    color: var(--text-color);
+}
+
+.search {
+    margin: 16px 0;
+}

@@ -1,0 +1,52 @@
+.container {
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.container:hover {
+    background-color: var(--accent-background-color);
+}
+
+.number {
+    color: var(--neutral-text-color);
+    margin-right: 30px;
+}
+
+
+.info {
+
+}
+
+.name {
+    overflow-wrap: anywhere;
+    color: var(--secondary-text-color);
+}
+
+.name:hover {
+    text-decoration: underline;
+}
+
+.by {
+    line-height: 1.5;
+    display: block;
+    margin-top: 10px;
+    color: var(--text-color);
+}
+
+.by span {
+    overflow-wrap: anywhere;
+    font-weight: bold;
+}
+
+.extra {
+    white-space: nowrap;
+    text-align: right;
+    flex: auto;
+    display: block;
+    margin-left: 30px;
+    color: var(--neutral-text-color);
+}

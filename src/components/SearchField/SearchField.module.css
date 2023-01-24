@@ -1,7 +1,5 @@
 .container {
-    /*width: 100%;*/
     position: relative;
-    margin-bottom: 1rem;
 }
 
 .field {
@@ -35,7 +33,7 @@
 .field:focus {
     color: var(--text-color);
     background-color: var(--accent-background-color);
-    box-shadow: 0 0 0 0.1rem var(--secondary-text-color);
+    box-shadow: 0 0 0 0.1rem var(--primary-text-color);
 }
 
 .field:disabled,
