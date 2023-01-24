@@ -13,7 +13,7 @@ import ApiService from "../../services/ApiService";
 import {StreamerQueue} from "../../models/StreamerQueue";
 import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../NotFoundPage/ErrorPage";
-import {capitalize} from "../../utils";
+import QueueList from "../../components/QueueList/QueueList";
 
 interface StreamerPageDesktopProps {
     streamer: Streamer;
@@ -78,7 +78,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                                 isActive={
                                     location.pathname.toLowerCase() === "/" + streamer.login.toLowerCase()
                                     ||
-                                    location.pathname.toLowerCase()  === "/" + streamer.login.toLowerCase() + "/"
+                                    location.pathname.toLowerCase() === "/" + streamer.login.toLowerCase() + "/"
                                 }
                                 text={t("streamer-page.tabs.queue")}
                             />
@@ -189,8 +189,9 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                                     <div className={styles.list__title}>
                                         {location.pathname.toLowerCase()}
                                     </div>
-                                    {queue.queueList.map((song) => <div
-                                        key={song.mediaId}>{song.mediaName}</div>)}
+                                    <QueueList items={queue.queueList}/>
+                                    {/*{queue.queueList.map((song) => <div*/}
+                                    {/*    key={song.mediaId}>{song.mediaName}</div>)}*/}
                                 </>
                             }/>
                             <Route path="/h" element={

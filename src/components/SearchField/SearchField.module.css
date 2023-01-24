@@ -1,0 +1,54 @@
+.container {
+    /*width: 100%;*/
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.field {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 10px 40px;
+    color: var(--neutral-text-color);
+    background-color: var(--accent-background-color);
+    border: none;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+}
+
+.field[type="search"]::-webkit-search-decoration,
+.field[type="search"]::-webkit-search-cancel-button,
+.field[type="search"]::-webkit-search-results-button,
+.field[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+.field::placeholder {
+    color: var(--neutral-text-color);
+    font-weight: bold;
+}
+
+.field:focus {
+    color: var(--text-color);
+    background-color: var(--accent-background-color);
+    box-shadow: 0 0 0 0.1rem var(--secondary-text-color);
+}
+
+.field:disabled,
+.field[readonly] {
+    background-color: var(--neutral-text-color);
+    opacity: 1;
+}
+
+.field__icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0.875rem;
+}
