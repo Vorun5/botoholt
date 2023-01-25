@@ -16,9 +16,9 @@ import ErrorPage from "../NotFoundPage/ErrorPage";
 import QueueList from "../../components/StreamerLists/QueueList";
 import HistoryList from "../../components/StreamerLists/HistoryList";
 import {ALL_AVAILABLE_PERIODS, Period} from "../../types";
-import Button from "../../components/Buttons/Button";
 import TopSongList from "../../components/StreamerLists/TopSongs";
 import TopDJs from "../../components/StreamerLists/TopDJs";
+import Button from "../../components/Buttons/Button";
 
 interface StreamerPageDesktopProps {
     streamer: Streamer;
@@ -74,6 +74,9 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
 
     if (queue == null) return <Loading/>;
 
+    const isTopDJsTab = checkLocation("/top/djs");
+    const isTopSongsTab = checkLocation("/top/songs");
+
     return (
         <div className={styles.container}>
             <div className={styles.info}>
@@ -109,47 +112,46 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         <div>
                             <LinkButton
                                 url={changeLocation(`/top/djs`)}
-                                isActive={checkLocation("/top/djs")}
+                                isActive={isTopDJsTab}
                                 text={t("streamer-page.tabs.top-djs")}
                             />
                         </div>
                         <div>
                             <LinkButton
                                 url={changeLocation(`/top/songs`)}
-                                isActive={checkLocation("/top/songs")}
+                                isActive={isTopSongsTab}
                                 text={t("streamer-page.tabs.top-songs")}
                             />
                         </div>
                     </div>
-                    <div className={styles.navigation__filters}>
-                        <span className={styles.filters__title}>
-                            {t("streamer-page.filter")}
-                        </span>
-                        <Bloc width="20px"/>
-                        <div className={styles.filters__buttons}>
-                            <div>
-                                <Button
-                                    isActive={period === "week"}
-                                    text={t("streamer-page.tabs.filters.week")}
-                                    onClick={() => setSearchParams({period: "week"})}
-                                />
+                    {(isTopSongsTab || isTopDJsTab) ?
+                        <div className={styles.navigation__filters}>
+                            <span className={styles.filters__title}>{t("streamer-page.filter")}</span>
+                            <Bloc width="20px"/>
+                            <div className={styles.filters__buttons}>
+                                <div>
+                                    <Button
+                                        isActive={period === "week"}
+                                        text={t("streamer-page.tabs.filters.week")}
+                                        onClick={() => setSearchParams({period: "week"})}
+                                    />
+                                </div>
+                                <div>
+                                    <Button
+                                        isActive={period === "month"}
+                                        text={t("streamer-page.tabs.filters.month")}
+                                        onClick={() => setSearchParams({period: "month"})}
+                                    />
+                                </div>
+                                <div>
+                                    <Button
+                                        isActive={period === "alltime"}
+                                        text={t("streamer-page.tabs.filters.all-time")}
+                                        onClick={() => setSearchParams({period: "alltime"})}
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <Button
-                                    isActive={period === "month"}
-                                    text={t("streamer-page.tabs.filters.month")}
-                                    onClick={() => setSearchParams({period: "month"})}
-                                />
-                            </div>
-                            <div>
-                                <Button
-                                    isActive={period === "alltime"}
-                                    text={t("streamer-page.tabs.filters.all-time")}
-                                    onClick={() => setSearchParams({period: "alltime"})}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                        </div> : <></>}
                 </div>
                 <div className={styles.content__song}>
                     <SongCard

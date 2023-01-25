@@ -36,6 +36,7 @@
 }
 
 .content__navigation {
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -46,7 +47,6 @@
 }
 
 .navigation__tabs {
-    margin-bottom: 20px;
 }
 
 .navigation__tabs > div {
@@ -55,6 +55,7 @@
 }
 
 .navigation__filters {
+    margin-top: 20px;
     display: flex;
     align-items: center;
 }
@@ -110,8 +111,8 @@
         flex-direction: row;
     }
 
-    .navigation__tabs {
-        margin-bottom: 0;
+    .navigation__filters {
+        margin-top: 0;
     }
 
     .content__song {

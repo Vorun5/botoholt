@@ -3,6 +3,7 @@ import useSongListItemSearch from "../../hooks/useSongListItemSearch";
 import SearchField from "../SearchField/SearchField";
 import SongItem from "../StreamerListItems/SongItem";
 import SongListItem from "../../models/SongListItem";
+import Bloc from "../Bloc/Bloc";
 
 interface SongListProps {
     title: string;
@@ -14,8 +15,9 @@ const SongList = ({items, title}: SongListProps) => {
 
     return (
         <>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.search}>
+            <div className={styles.header}>
+                <div className={styles.header__title}>{title}</div>
+                <Bloc height="16px"/>
                 <SearchField value={search} setValue={setSearch}/>
             </div>
             {songs.map((song) => <SongItem key={song.number} song={song}/>)}
