@@ -3,6 +3,7 @@ import SearchField from "../SearchField/SearchField";
 import TopListItem from "../../models/TopListItem";
 import useTopListItemSearch from "../../hooks/useTopListItemSearch";
 import TopItem from "../StreamerListItems/TopItem";
+import Bloc from "../Bloc/Bloc";
 
 interface TopListProps {
     title: string;
@@ -14,8 +15,9 @@ const TopList = ({title, items}: TopListProps) => {
 
     return (
         <>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.search}>
+            <div className={styles.header}>
+                <div className={styles.header__title}>{title}</div>
+                <Bloc height="16px"/>
                 <SearchField value={search} setValue={setSearch}/>
             </div>
             {topItems.map((item) => <TopItem key={item.number} topItem={item}/>)}

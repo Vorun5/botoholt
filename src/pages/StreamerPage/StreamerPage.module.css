@@ -10,6 +10,12 @@
     margin-right: 30px;
 }
 
+.info__main {
+    position: sticky;
+    top: 20px;
+    margin-bottom: 70px;
+}
+
 .info__links {
     border-radius: 5px;
     margin: 24px 0;
@@ -26,7 +32,7 @@
     width: 100%;
     border-radius: 5px;
     background-color: var(--background-color);
-    padding: 30px 40px;
+    padding: 30px;
 }
 
 .content__navigation {
@@ -73,7 +79,9 @@
 }
 
 .main__board {
-
+    height: 100%;
+    position: sticky;
+    top: 20px;
 }
 
 .main__divider {

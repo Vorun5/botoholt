@@ -1,9 +1,12 @@
-.title {
+.header {
+    padding: 20px 0 16px 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--background-color);
+}
+
+.header__title {
     font-weight: bold;
     font-size: var(--secondary-text-size);
     color: var(--text-color);
-}
-
-.search {
-    margin: 16px 0;
 }

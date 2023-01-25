@@ -24,23 +24,24 @@ interface StreamerPageDesktopProps {
     streamer: Streamer;
 }
 
-
 const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     const {t} = useTranslation();
-    const location = useLocation();
+
     const [error, setError] = useState(false);
     const [queue, setQueue] = useState<StreamerQueue | null>(null);
-
+    const [period, setPeriod] = useState<Period>("week");
+    const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
+        console.log("streamer");
         setPeriod("week");
         getQueue();
         setError(false);
     }, [streamer]);
 
-    const [period, setPeriod] = useState<Period>("week");
-    const [searchParams, setSearchParams] = useSearchParams();
     useEffect(() => {
+        console.log("searchParams");
         const searchPeriod = searchParams.get("period");
         if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
             setPeriod("week");
@@ -76,7 +77,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.info}>
-                <div>
+                <div className={styles.info__main}>
                     <div className={styles.info__card}>
                         <StreamerCard streamer={streamer} title={t("streamer-card.title")}/>
                     </div>
@@ -84,9 +85,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                 </div>
                 <CreateWith/>
             </div>
-
             <div className={styles.content}>
-
                 <div className={styles.content__navigation}>
                     <div className={styles.navigation__tabs}>
                         <div>
@@ -152,7 +151,6 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.content__song}>
                     <SongCard
                         song={{
@@ -165,9 +163,7 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         }}
                     />
                 </div>
-
                 <div className={styles.content__main}>
-
                     <div className={styles.main__board}>
                         <div className={styles.board__item}>
                             <Ad
@@ -190,31 +186,24 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                                 bthText={t("connect-bot-bth")}
                                 adStyle="primary"
                                 bthOnClick={() => {
-                                    window.open("google.com")
+                                    window.open("https://www.youtube.com/watch?v=UhvaUwtGyH4")
                                 }}
                             />
                         </div>
                     </div>
-
                     <div className={styles.main__divider}/>
-
                     <div className={styles.main__list}>
                         <Routes>
                             <Route path="/" element={<QueueList items={queue.queueList}/>}/>
                             <Route path="/h" element={<HistoryList streamerLogin={streamer.login}/>}/>
-                            <Route
-                                path="/top/djs"
-                                element={<TopDJs streamerLogin={streamer.login} period={period}/>}
-                            />
+                            <Route path="/top/djs" element={<TopDJs streamerLogin={streamer.login} period={period}/>}/>
                             <Route
                                 path="/top/songs"
                                 element={<TopSongList streamerLogin={streamer.login} period={period}/>}
                             />
                         </Routes>
                     </div>
-
                 </div>
-
             </div>
         </div>
     );

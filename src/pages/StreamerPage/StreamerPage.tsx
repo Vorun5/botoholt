@@ -22,6 +22,7 @@ const StreamerPage = () => {
     });
 
     const {streamerLogin} = useParams();
+    // const streamerLogin = "smurf_tv";
     const [streamer, setStreamer] = useState<Streamer | null>(null);
     const [error, setError] = useState(false);
 
