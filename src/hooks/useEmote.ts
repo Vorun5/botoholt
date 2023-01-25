@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 
 // get random emote
 const useEmote = (basePath = "/emotes/", emotes = ["catRAVE.gif", "RainbowPls.gif", "VIBE.gif", "DANCE.gif", "PartyKirby.gif", "pepeGuitar.gif"]) => {
-    console.log("emote");
     const [emote, setEmote] = useState("");
 
     useEffect(() => {

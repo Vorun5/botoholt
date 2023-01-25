@@ -34,14 +34,13 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        console.log("streamer");
+        document.title = `${streamer.display_name} - Botoholt`;
         setPeriod("week");
         getQueue();
         setError(false);
     }, [streamer]);
 
     useEffect(() => {
-        console.log("searchParams");
         const searchPeriod = searchParams.get("period");
         if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
             setPeriod("week");
