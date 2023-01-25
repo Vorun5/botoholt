@@ -1,5 +1,5 @@
-import styles from "./LinkButton.module.css";
 import {Link} from "react-router-dom";
+import Button from "./Button";
 
 interface LinkButtonProps {
     text: string;
@@ -8,8 +8,8 @@ interface LinkButtonProps {
 }
 
 const LinkButton = ({text, url, isActive}: LinkButtonProps) =>
-    <Link to={url} className={`${styles.button} ${isActive ? styles.button_active : ""}`}>
-        <span>{text}</span>
+    <Link to={url}>
+        <Button text={text} isActive={isActive}/>
     </Link>;
 
 export default LinkButton;

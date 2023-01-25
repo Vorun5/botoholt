@@ -1,7 +1,7 @@
-import styles from "./StreamerList.module.css";
+import styles from "./StreamerLists.module.css";
 import useSongListItemSearch from "../../hooks/useSongListItemSearch";
 import SearchField from "../SearchField/SearchField";
-import SongItem from "../ListItems/SongItem";
+import SongItem from "../StreamerListItems/SongItem";
 import SongListItem from "../../models/SongListItem";
 
 interface SongListProps {

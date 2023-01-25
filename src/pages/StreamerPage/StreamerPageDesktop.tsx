@@ -3,8 +3,8 @@ import {useTranslation} from "react-i18next";
 import Bloc from "../../components/Bloc/Bloc";
 import {StreamerCard} from "../../components/StreamerCard/StreamerCard";
 import {Streamer} from "../../models/Streamer";
-import LinkButton from "../../components/LinkButton/LinkButton";
-import {Route, Routes, useLocation} from "react-router-dom";
+import LinkButton from "../../components/Buttons/LinkButton";
+import {Route, Routes, useLocation, useSearchParams} from "react-router-dom";
 import SongCard from "../../components/SongCard/SongCard";
 import CreateWith from "../../components/CreateWith/CreateWith";
 import Ad from "../../components/Ad/Ad";
@@ -15,24 +15,40 @@ import Loading from "../../components/Loading/Loading";
 import ErrorPage from "../NotFoundPage/ErrorPage";
 import QueueList from "../../components/StreamerLists/QueueList";
 import HistoryList from "../../components/StreamerLists/HistoryList";
+import {ALL_AVAILABLE_PERIODS, Period} from "../../types";
+import Button from "../../components/Buttons/Button";
+import TopSongList from "../../components/StreamerLists/TopSongs";
+import TopDJs from "../../components/StreamerLists/TopDJs";
 
 interface StreamerPageDesktopProps {
     streamer: Streamer;
 }
 
-type Period = "week" | "month" | "alltime";
 
 const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     const {t} = useTranslation();
     const location = useLocation();
     const [error, setError] = useState(false);
     const [queue, setQueue] = useState<StreamerQueue | null>(null);
-    const [period, setPeriod] = useState<Period>("week");
+
+
     useEffect(() => {
         setPeriod("week");
         getQueue();
         setError(false);
     }, [streamer]);
+
+    const [period, setPeriod] = useState<Period>("week");
+    const [searchParams, setSearchParams] = useSearchParams();
+    useEffect(() => {
+        const searchPeriod = searchParams.get("period");
+        if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
+            setPeriod("week");
+            return;
+        }
+
+        setPeriod(searchPeriod as Period);
+    }, [searchParams]);
 
     const getQueue = () => {
         ApiService.getStreamerQueue(streamer.login)
@@ -93,14 +109,14 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         </div>
                         <div>
                             <LinkButton
-                                url={changeLocation(`/top/djs/${period}`)}
+                                url={changeLocation(`/top/djs`)}
                                 isActive={checkLocation("/top/djs")}
                                 text={t("streamer-page.tabs.top-djs")}
                             />
                         </div>
                         <div>
                             <LinkButton
-                                url={changeLocation(`/top/songs/${period}`)}
+                                url={changeLocation(`/top/songs`)}
                                 isActive={checkLocation("/top/songs")}
                                 text={t("streamer-page.tabs.top-songs")}
                             />
@@ -113,30 +129,29 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         <Bloc width="20px"/>
                         <div className={styles.filters__buttons}>
                             <div>
-                                <LinkButton
-                                    url={changeLocation(`/top/djs/${period}`)}
+                                <Button
                                     isActive={period === "week"}
                                     text={t("streamer-page.tabs.filters.week")}
+                                    onClick={() => setSearchParams({period: "week"})}
                                 />
                             </div>
                             <div>
-                                <LinkButton
-                                    url={changeLocation(`/top/djs/${period}`)}
+                                <Button
                                     isActive={period === "month"}
                                     text={t("streamer-page.tabs.filters.month")}
+                                    onClick={() => setSearchParams({period: "month"})}
                                 />
                             </div>
                             <div>
-                                <LinkButton
-                                    url={changeLocation(`/top/djs/${period}`)}
+                                <Button
                                     isActive={period === "alltime"}
                                     text={t("streamer-page.tabs.filters.all-time")}
+                                    onClick={() => setSearchParams({period: "alltime"})}
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div className={styles.content__song}>
                     <SongCard
@@ -157,10 +172,10 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         <div className={styles.board__item}>
                             <Ad
                                 text={t("support-streamer")}
-                                bthIcon="../icons/da-hover.svg"
-                                icon="../emotes/money.gif"
+                                bthIcon="/icons/da-hover.svg"
+                                icon="/emotes/money.gif"
                                 bthText={t("support-streamer-bth")}
-                                style="secondary"
+                                adStyle="secondary"
                                 bthOnClick={() => {
                                     window.open(streamer.daLink)
                                 }}
@@ -170,10 +185,10 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         <div className={styles.board__item}>
                             <Ad
                                 text={t("connect-bot")}
-                                bthIcon="../icons/star-hover.svg"
-                                icon="../emotes/EZ.png"
+                                bthIcon="/icons/star-hover.svg"
+                                icon="/emotes/EZ.png"
                                 bthText={t("connect-bot-bth")}
-                                style="primary"
+                                adStyle="primary"
                                 bthOnClick={() => {
                                     window.open("google.com")
                                 }}
@@ -181,17 +196,20 @@ const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
                         </div>
                     </div>
 
-                    <div className={styles.main__divider}></div>
+                    <div className={styles.main__divider}/>
 
                     <div className={styles.main__list}>
                         <Routes>
                             <Route path="/" element={<QueueList items={queue.queueList}/>}/>
                             <Route path="/h" element={<HistoryList streamerLogin={streamer.login}/>}/>
-                            <Route path="/top" element={
-                                <div className={styles.list__title}>
-                                    {location.pathname}
-                                </div>
-                            }/>
+                            <Route
+                                path="/top/djs"
+                                element={<TopDJs streamerLogin={streamer.login} period={period}/>}
+                            />
+                            <Route
+                                path="/top/songs"
+                                element={<TopSongList streamerLogin={streamer.login} period={period}/>}
+                            />
                         </Routes>
                     </div>
 

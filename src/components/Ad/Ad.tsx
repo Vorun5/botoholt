@@ -3,10 +3,10 @@ import stylesSecondary from "./AdSecondary.module.css";
 import stylesPrimary from "./AdPrimary.module.css";
 import {HandySvg} from "handy-svg";
 
-type AddStyle = "primary" | "secondary";
+type AdStyle = "primary" | "secondary";
 
-interface AddProps {
-    style: AddStyle;
+interface AdProps {
+    adStyle: AdStyle;
     icon: string;
     text: string;
     bthText: string;
@@ -14,8 +14,8 @@ interface AddProps {
     bthOnClick: () => void;
 }
 
-const getDynamicStyles = (style: AddStyle) => {
-    switch (style) {
+const getDynamicStyles = (adStyle: AdStyle) => {
+    switch (adStyle) {
         case "secondary":
             return stylesSecondary;
         case "primary":
@@ -25,8 +25,8 @@ const getDynamicStyles = (style: AddStyle) => {
     }
 }
 
-const Ad = ({style, icon, text, bthText, bthIcon, bthOnClick}: AddProps) => {
-    const dynamicStyles = getDynamicStyles(style);
+const Ad = ({adStyle, icon, text, bthText, bthIcon, bthOnClick}: AdProps) => {
+    const dynamicStyles = getDynamicStyles(adStyle);
 
     return (
         <div className={`${styles.container} ${dynamicStyles.container}`}>

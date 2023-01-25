@@ -4,13 +4,13 @@ import TopListItem from "../models/TopListItem";
 
 const useTopListItemSearch = (items: TopListItem[]) => {
     const [search, setSearch] = useState("");
-    const [songs, setSongs] = useState(items);
+    const [topItems, setTopItems] = useState(items);
 
     useEffect(() => {
-        setSongs(items.filter(item => item.text.includes(search)));
+        setTopItems(items.filter(item => item.text.includes(search)));
     }, [search, items]);
 
-    return {search, setSearch, songs};
+    return {search, setSearch, topItems};
 }
 
 export default useTopListItemSearch;

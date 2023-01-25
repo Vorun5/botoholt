@@ -12,7 +12,7 @@ const ToggleTheme = () => {
             <div className={styles.label}>{t("header.change-theme")}</div>
             <HandySvg
                 className={styles.icon}
-                src={theme === "dark" ? "../icons/moon.svg" : "../icons/sun.svg"}
+                src={theme === "dark" ? "/icons/moon.svg" : "/icons/sun.svg"}
                 width="32"
                 height="32"
             />

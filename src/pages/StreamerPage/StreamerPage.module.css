@@ -22,14 +22,11 @@
     width: 400px;
 }
 
-/* TODO: поправить дёрганье */
-
 .content {
-    flex: auto;
+    width: 100%;
     border-radius: 5px;
     background-color: var(--background-color);
     padding: 30px 40px;
-    /*flex-grow: 1;*/
 }
 
 .content__navigation {
@@ -74,8 +71,6 @@
 .content__main {
     display: flex;
 }
-
-
 
 .main__board {
 

@@ -17,7 +17,7 @@ const HeaderDesktop = () => {
     return (
         <div className={styles.container}>
             <Link className={styles.logo} to="/">
-                <img src="../images/Logo.svg" alt="logo"/>
+                <img src="/images/Logo.svg" alt="logo"/>
             </Link>
             <div className={styles.streamers}>
                 {viewSteamers.map((streamer) => <div className={styles.streamers__streamer} key={streamer.login}>
