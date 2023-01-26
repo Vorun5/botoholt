@@ -27,27 +27,33 @@ interface StreamerPageDesktopProps {
 const StreamerPageDesktop = ({streamer}: StreamerPageDesktopProps) => {
     const {t} = useTranslation();
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const getPeriodFromSearchParams = () => {
+        const searchPeriod = searchParams.get("period");
+        if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
+            return "week";
+        }
+
+        return  searchPeriod as Period;
+    }
+
     const [error, setError] = useState(false);
     const [queue, setQueue] = useState<StreamerQueue | null>(null);
-    const [period, setPeriod] = useState<Period>("week");
+    const [period, setPeriod] = useState<Period>(getPeriodFromSearchParams());
     const location = useLocation();
-    const [searchParams, setSearchParams] = useSearchParams();
+
 
     useEffect(() => {
         document.title = `${streamer.display_name} - Botoholt`;
-        setPeriod("week");
+        setPeriod(getPeriodFromSearchParams());
         getQueue();
         setError(false);
     }, [streamer]);
 
-    useEffect(() => {
-        const searchPeriod = searchParams.get("period");
-        if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
-            setPeriod("week");
-            return;
-        }
 
-        setPeriod(searchPeriod as Period);
+
+    useEffect(() => {
+        setPeriod(getPeriodFromSearchParams());
     }, [searchParams]);
 
     const getQueue = () => {
