@@ -4,13 +4,15 @@ import TopListItem from "../../models/TopListItem";
 import useTopListItemSearch from "../../hooks/useTopListItemSearch";
 import TopItem from "../StreamerListItems/TopItem";
 import Bloc from "../Bloc/Bloc";
+import Loading from "../Loading/Loading";
 
 interface TopListProps {
+    loading: boolean;
     title: string;
     items: TopListItem[];
 }
 
-const TopList = ({title, items}: TopListProps) => {
+const TopList = ({title, items, loading}: TopListProps) => {
     const {search, setSearch, topItems} = useTopListItemSearch(items);
 
     return (
@@ -20,7 +22,7 @@ const TopList = ({title, items}: TopListProps) => {
                 <Bloc height="16px"/>
                 <SearchField value={search} setValue={setSearch}/>
             </div>
-            {topItems.map((item) => <TopItem key={item.number} topItem={item}/>)}
+            {loading ? <Loading/> :topItems.map((item) => <TopItem key={item.number} topItem={item}/>) }
         </>
     );
 }

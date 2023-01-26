@@ -10,11 +10,12 @@ interface TopSongsListProps {
 
 const TopSongs = ({streamerLogin, period}: TopSongsListProps) => {
     const {t} = useTranslation();
-    const {topSongs} = useTopSongs(streamerLogin, period);
+    const {topSongs, loading} = useTopSongs(streamerLogin, period);
 
     return (
         <TopList
             title={t("streamer-page.tab-titles.top-songs")}
+            loading={loading}
             items={topSongs.map((topSong, index) => {
                 return {
                     text: topSong.mediaName,

@@ -4,13 +4,15 @@ import SearchField from "../SearchField/SearchField";
 import SongItem from "../StreamerListItems/SongItem";
 import SongListItem from "../../models/SongListItem";
 import Bloc from "../Bloc/Bloc";
+import Loading from "../Loading/Loading";
 
 interface SongListProps {
+    loading: boolean;
     title: string;
     items: SongListItem[];
 }
 
-const SongList = ({items, title}: SongListProps) => {
+const SongList = ({items, title, loading}: SongListProps) => {
     const {search, setSearch, songs} = useSongListItemSearch(items);
 
     return (
@@ -20,7 +22,7 @@ const SongList = ({items, title}: SongListProps) => {
                 <Bloc height="16px"/>
                 <SearchField value={search} setValue={setSearch}/>
             </div>
-            {songs.map((song) => <SongItem key={song.number} song={song}/>)}
+            {loading ? <Loading/> : songs.map((song) => <SongItem key={song.number} song={song}/>)}
         </>
     );
 }

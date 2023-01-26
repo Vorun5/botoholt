@@ -10,11 +10,12 @@ interface TopDJsListProps {
 
 const TopDJs = ({streamerLogin, period}: TopDJsListProps) => {
     const {t} = useTranslation();
-    const {topDJs} = useTopDJs(streamerLogin, period);
+    const {topDJs, loading} = useTopDJs(streamerLogin, period);
 
     return (
         <TopList
             title={t("streamer-page.tab-titles.top-djs")}
+            loading={loading}
             items={topDJs.map((topDJ, index) => {
                 return {
                     text: topDJ.requestedBy,

@@ -8,13 +8,14 @@ interface HistoryListProps {
 }
 
 const HistoryList = ({streamerLogin}: HistoryListProps) => {
-    const {history} = useHistory(streamerLogin);
+    const {history, loading} = useHistory(streamerLogin);
     const {t, i18n} = useTranslation();
 
 
     return (
         <SongList
             title={t("streamer-page.tab-titles.history")}
+            loading={loading}
             items={history.map((song, index) => {
                 const date = new Date(song.timeFrom);
                 const formatDateWeek = new Intl.DateTimeFormat(i18n.language, {

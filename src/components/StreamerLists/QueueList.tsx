@@ -12,6 +12,7 @@ const QueueList = ({items}: QueueListProps) => {
 
     return (
         <SongList
+            loading={false}
             title={t("streamer-page.tab-titles.queue")}
             items={items.map((item, index) => {
                 return {
