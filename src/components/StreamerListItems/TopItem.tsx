@@ -9,8 +9,14 @@ const TopItem = ({topItem}: TopItemProps) =>
     <div className={styles.container}>
         <span className={styles.number}>{topItem.number}</span>
         <div className={styles.info}>
-            {topItem.link != null
-                ? <a href={topItem.link} target="_blank" className={styles.name} rel="noreferrer">{topItem.text}</a>
+            {topItem.link != null ?
+                <a
+                    className={`${styles.name} ${styles.hoverable}`}
+                    href={topItem.link}
+                    target="_blank"
+                    rel="noreferrer">
+                    {topItem.text}
+                </a>
                 : <span className={styles.name}>{topItem.text}</span>
             }
         </div>

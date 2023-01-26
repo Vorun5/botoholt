@@ -16,7 +16,6 @@
     margin-right: 30px;
 }
 
-
 .info {
 
 }
@@ -26,10 +25,9 @@
     color: var(--secondary-text-color);
 }
 
-.name:hover {
+.hoverable:hover {
     text-decoration: underline;
 }
-
 .by {
     line-height: 1.5;
     display: block;
