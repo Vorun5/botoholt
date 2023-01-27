@@ -20,7 +20,7 @@
     border-radius: 5px;
     margin: 24px 0;
     width: 400px;
-    height: 120px;
+    /*height: 120px;*/
     background-color: var(--accent-background-color);
 }
 

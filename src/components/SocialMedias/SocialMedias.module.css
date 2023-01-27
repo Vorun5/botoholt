@@ -1,0 +1,130 @@
+body[data-theme="light"] {
+    --sm-red: #FFD2D2;
+    --sm-blue: #D6E4FF;
+    --sm-purple: #DCC8FF;
+    --sm-orange: #FFE9CF;
+    --sm-black: #d5d5d5;
+}
+
+body[data-theme="dark"] {
+    --sm-red: #391010;
+    --sm-purple: #261D36;
+    --sm-orange: #312518;
+    --sm-blue: #172132;
+    --sm-black: var(--neutral-text-color);
+}
+
+.black {
+    background-color: var(--sm-black);
+}
+
+.red {
+    background-color: var(--sm-red);
+}
+
+.purple {
+    background-color: var(--sm-purple);
+}
+
+.orange {
+    background-color: var(--sm-orange);
+}
+
+.blue {
+    background-color: var(--sm-blue);
+}
+
+.container {
+    border-radius: 5px;
+    margin: 24px 0;
+    width: 100%;
+    /*width: 360px;*/
+    height: 100px;
+    padding: 20px 10px;
+    background-color: var(--accent-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrow {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--primary-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow__left:hover .arrow__icon {
+    margin-right: 8px;
+}
+
+.arrow__right:hover .arrow__icon {
+    margin-left: 8px;
+}
+
+
+.arrow_disable {
+    visibility: hidden;
+    background-color: var(--neutral-text-color);
+    cursor: default;
+}
+
+.arrow_disable:hover .arrow__icon {
+    margin-right: 0;
+}
+
+.arrow_disable:hover .arrow__icon {
+    margin-left: 0;
+}
+
+.arrow__icon {
+    transition: margin 0.3s;
+    width: 10px;
+    height: 10px;
+}
+
+.tooltip {
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.social_medias {
+    overflow: hidden;
+    position: relative;
+    flex: auto;
+    height: 100%;
+}
+
+.social_media__container {
+    transition: left 0.3s;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.social_media {
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.social_media:hover {
+    background-color: #FFFFFF;
+}
+
+.social_media__icon {
+    width: 28px;
+    height: 28px;
+}

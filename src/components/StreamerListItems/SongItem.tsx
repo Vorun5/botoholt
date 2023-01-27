@@ -13,7 +13,7 @@ const SongItem = ({song}: SongListItemProps) => {
         <div className={styles.container}>
             <span className={styles.number}>{song.number}</span>
             <div className={styles.info}>
-                <a href={song.mediaLink} target="_blank" className={styles.name} rel="noreferrer">{song.mediaName}</a>
+                <a href={song.mediaLink} target="_blank" className={`${styles.name} ${styles.hoverable}`} rel="noreferrer">{song.mediaName}</a>
                 <span className={styles.by}>{t("song-card.by")} <span>{song.requestedBy}</span></span>
             </div>
             <div className={styles.extra}>{song.extraText}</div>

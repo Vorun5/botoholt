@@ -1,4 +1,5 @@
 import StreamInfo from "./StreamInfo";
+import {SocialMedia} from "./SocialMedia";
 
 export type BroadcasterType = "affiliate" | "partner" | "";
 
@@ -12,5 +13,6 @@ export interface Streamer {
     description: string;
     daLink: string;
     followersCount: number;
+    socialMedias: SocialMedia[] | null;
 }
 
