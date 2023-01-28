@@ -1,14 +1,16 @@
 .container {
-    padding: 16px 24px;
+    text-align: left;
+    padding: 16px 16px;
     background-color: var(--accent-background-color);
     display: flex;
+    flex-direction: column;
     align-items: center;
     border-radius: 5px;
     color: var(--text-color);
 }
 
 .emote {
-
+    margin-bottom: 24px;
 }
 
 .song__status {
@@ -32,8 +34,13 @@
 }
 
 .by__label {
+    white-space: nowrap;
     display: flex;
     align-items: center;
+}
+
+.by__label span {
+    white-space: pre-wrap;
 }
 
 .by__name {
@@ -48,13 +55,53 @@
 }
 
 .song__duration {
-
+    white-space: nowrap;
 }
 
 .empty {
     font-size: var(--secondary-text-size);
     font-weight: bold;
 }
+
+@media (min-width: 520px) {
+    .container {
+        flex-direction: row;
+        padding: 16px 24px;
+    }
+
+    .emote {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .container {
+        padding: 16px 24px;
+    }
+}
+
+@media (min-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .emote {
+        margin-bottom: 24px;
+    }
+
+}
+
+@media (min-width: 1100px) {
+    .container {
+        flex-direction: row;
+        padding: 25px 60px;
+    }
+
+    .emote {
+        margin-bottom: 0;
+    }
+}
+
 
 @media (min-width: 1400px) {
     .container {

@@ -40,9 +40,9 @@ const StreamerPage = () => {
     if (error) return <ErrorPage text={t("streamer-not-found", {login: capitalize(streamerLogin)})}/>;
     if (!streamer) return <Loading/>;
     if (isDesktop) return <StreamerPageDesktop streamer={streamer}/>;
-    if (isTable) return <StreamerPageTable/>;
+    if (isTable) return <StreamerPageTable streamer={streamer}/>;
 
-    return <StreamerPageMobile/>;
+    return <StreamerPageMobile streamer={streamer}/>;
 }
 
 export default StreamerPage;

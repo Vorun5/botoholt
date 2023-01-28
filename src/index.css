@@ -6,6 +6,8 @@
     box-sizing: border-box;
 }
 
+body.modal-show { overflow: hidden; }
+
 @font-face {
     font-family: helveticaneuecyr;
     font-style: normal;

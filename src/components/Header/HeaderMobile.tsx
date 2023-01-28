@@ -13,7 +13,16 @@ const HeaderMobile = () => {
         <>
             <div className={styles.container}>
                 <div className={`${styles.burger} ${settingsOpen ? styles.burger__open : ""}`}
-                     onClick={() => setSettingsOpen(!settingsOpen)}>
+                     onClick={() => {
+                         if (!settingsOpen) {
+                             setSettingsOpen(true);
+                             document.body.classList.add("modal-show");
+                             window.scrollTo(0, 0);
+                             return;
+                         }
+                         setSettingsOpen(false);
+                         document.body.classList.remove("modal-show");
+                     }}>
                     <div/>
                     <div/>
                     <div/>

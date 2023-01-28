@@ -6,8 +6,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 423px;
-    margin-right: 30px;
+    /*width: 400px;*/
+    margin-right: 24px;
 }
 
 .info__main {
@@ -19,20 +19,19 @@
 .info__links {
     border-radius: 5px;
     margin: 24px 0;
-    width: 400px;
-    /*height: 120px;*/
+    width: 350px;
     background-color: var(--accent-background-color);
 }
 
 .info__card {
-    width: 400px;
+    width: 350px;
 }
 
 .content {
     width: 100%;
     border-radius: 5px;
     background-color: var(--background-color);
-    padding: 30px;
+    padding: 24px;
 }
 
 .content__navigation {
@@ -46,16 +45,30 @@
     margin: 20px 0;
 }
 
+/*.navigation__tabs::-webkit-scrollbar { width: 0; }*/
+
+/*.navigation__tabs { -ms-overflow-style: none; }*/
+
 .navigation__tabs {
+    height: 100%;
+    margin-top: 24px;
+    /*display: flex;*/
+    /*overflow: auto;*/
 }
+
+/*.navigation__tabs > div {*/
+/*    display: block;*/
+/*    margin-right: 10px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 .navigation__tabs > div {
     display: inline-block;
-    margin-right: 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .navigation__filters {
-    margin-top: 20px;
     display: flex;
     align-items: center;
 }
@@ -68,11 +81,12 @@
 .filters__buttons > div {
     display: inline-block;
     margin-left: 16px;
+    margin-bottom: 10px;
 }
 
 
 .board__item {
-    width: 250px;
+    width: 100%;
 }
 
 .content__main {
@@ -96,13 +110,54 @@
     flex: auto;
 }
 
-.list__title {
+@media (min-width: 600px) {
+    .board_mobile {
+        height: 100%;
+        display: flex;
+    }
+
+    .board_mobile__item {
+        height: 300px;
+    }
+}
+
+@media (min-width: 900px) {
 
 }
 
 @media (min-width: 1400px) {
+    .navigation__filters {
+        margin-top: 20px;
+    }
+
+    .filters__buttons > div {
+        margin-left: 16px;
+    }
+
+    .navigation__tabs > div {
+        display: inline-block;
+        margin-right: 16px;
+    }
+
+    .info {
+        margin-right: 30px;
+        width: 423px;
+    }
+
+    .info__links {
+        width: 400px;
+    }
+
+    .info__card {
+        width: 400px;
+    }
+
     .board__item {
         width: 294px;
+    }
+
+    .content {
+        padding: 30px;
     }
 }
 

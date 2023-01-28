@@ -30,8 +30,10 @@ const Ad = ({adStyle, icon, text, bthText, bthIcon, bthOnClick}: AdProps) => {
 
     return (
         <div className={`${styles.container} ${dynamicStyles.container}`}>
-            <img className={styles.icon} src={icon} alt="ad img"/>
-            <div className={`${styles.text} ${dynamicStyles.text}`}>{text}</div>
+            <div>
+                <img className={styles.icon} src={icon} alt="ad img"/>
+                <div className={`${styles.text} ${dynamicStyles.text}`}>{text}</div>
+            </div>
             <div className={`${styles.bth} ${dynamicStyles.bth}`} onClick={bthOnClick}>
                 <HandySvg
                     className={styles.bth__icon}

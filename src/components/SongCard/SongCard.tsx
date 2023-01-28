@@ -14,8 +14,11 @@ const SongCard = ({song}: SongCardProps) => {
 
     return (
         <div className={styles.container}>
-            <img className={styles.emote} src={song.isPlaying ? emote : "/emotes/PoroSad.png"} alt={"Dance emote"}
-                 width="120px" height="120px"/>
+            <img
+                className={styles.emote}
+                src={song.isPlaying ? emote : "/emotes/PoroSad.png"} alt={"Dance emote"}
+                width="120px" height="120px"
+            />
             <Bloc width="40px"/>
             {
                 song.nowPlayingName == null
@@ -42,8 +45,9 @@ const SongCard = ({song}: SongCardProps) => {
                                     {t("song-card.by")}<span className={styles.by__name}>{song.nowPlayingOwner}</span>
                                 </div>
                             </div>
-                            <div
-                                className={styles.song__duration}>{`${Math.floor(song.nowPlayingDuration! / 60)}${t("minutes")} ${song.nowPlayingDuration! % 60}${t("seconds")}`}</div>
+                            <div className={styles.song__duration}>
+                                {`${Math.floor(song.nowPlayingDuration! / 60)}${t("minutes")} ${song.nowPlayingDuration! % 60}${t("seconds")}`}
+                            </div>
                         </div>
                     </div>
             }

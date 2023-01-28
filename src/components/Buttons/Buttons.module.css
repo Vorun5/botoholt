@@ -9,6 +9,10 @@
     font-weight: bold;
 }
 
+.button span {
+    white-space: nowrap;
+}
+
 .button:hover {
     background-color: var(--primary-bth-color);
     color: #FFFFFF;
