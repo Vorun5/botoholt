@@ -34,6 +34,14 @@
   "streamer-page": {
     "not-have-songs": "{{login}} has no ordered songs yet. But he has everything ahead!",
     "filter": "Filter",
+    "list-is-empty": {
+      "queue": "The song queue is empty. ",
+      "history": "The song history is empty. ",
+      "top-songs": "Top songs for this period is empty. ",
+      "top-djs": "Top DJs for this period is empty. ",
+      "fix": "But you can fix it!",
+      "first": "Be the first to order a song!"
+    },
     "tab-titles": {
       "top-songs": "List of frequently ordered songs",
       "top-djs": "List of DJs",

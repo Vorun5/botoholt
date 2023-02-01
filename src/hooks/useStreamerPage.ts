@@ -9,6 +9,7 @@ const useStreamerPage = (streamer: Streamer) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [error, setError] = useState(false);
     const [queue, setQueue] = useState<StreamerQueue | null>(null);
+    const [queueIsEmpty, setQueueIsEmpty] = useState(false);
 
     const getPeriodFromSearchParams = useCallback(() => {
         const searchPeriod = searchParams.get("period");
@@ -36,6 +37,7 @@ const useStreamerPage = (streamer: Streamer) => {
         ApiService.getStreamerQueue(streamer.login)
             .then((response) => {
                 setQueue(response.data);
+                setQueueIsEmpty(response.data.queueList.length === 0);
                 setError(false);
             })
             .catch((e) => console.log(e))
@@ -45,6 +47,7 @@ const useStreamerPage = (streamer: Streamer) => {
         ApiService.getStreamerQueue(streamer.login)
             .then((response) => {
                 setQueue(response.data);
+                setQueueIsEmpty(response.data.queueList.length === 0);
                 setError(false);
             })
             .catch((e) => {
@@ -63,7 +66,7 @@ const useStreamerPage = (streamer: Streamer) => {
         return () => clearInterval(timerID);
     }, [updateQueue]);
 
-    return {error, queue, period, setSearchParams}
+    return {error, queue, queueIsEmpty, period, setSearchParams}
 }
 
 export default useStreamerPage;

@@ -5,14 +5,17 @@ import useTopListItemSearch from "../../hooks/useTopListItemSearch";
 import TopItem from "../StreamerListItems/TopItem";
 import Bloc from "../Bloc/Bloc";
 import Loading from "../Loading/Loading";
+import {ReactNode} from "react";
 
 interface TopListProps {
-    loading: boolean;
+    loading?: boolean;
+    listIsEmpty?: boolean;
     title: string;
     items: TopListItem[];
+    emptyCard?: ReactNode;
 }
 
-const TopList = ({title, items, loading}: TopListProps) => {
+const TopList = ({title, items, loading = false, listIsEmpty = false, emptyCard = null}: TopListProps) => {
     const {search, setSearch, topItems} = useTopListItemSearch(items);
 
     return (
@@ -20,9 +23,14 @@ const TopList = ({title, items, loading}: TopListProps) => {
             <div className={styles.header}>
                 <div className={styles.header__title}>{title}</div>
                 <Bloc height="16px"/>
-                <SearchField value={search} setValue={setSearch}/>
+                {!listIsEmpty ? <SearchField value={search} setValue={setSearch}/> : <></>}
             </div>
-            {loading ? <Loading/> :topItems.map((item) => <TopItem key={item.number} topItem={item}/>) }
+            {loading
+                ? <Loading/>
+                : (listIsEmpty
+                    ? emptyCard
+                    : topItems.map((item) => <TopItem key={item.number} topItem={item}/>))
+            }
         </>
     );
 }

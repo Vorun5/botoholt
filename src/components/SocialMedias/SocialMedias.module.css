@@ -40,7 +40,8 @@ body[data-theme="dark"] {
     width: 100%;
     height: 90px;
     padding: 20px 10px;
-    background-color: var(--accent-background-color);
+    background-color: var(--background-color);
+    /*background-color: var(--accent-background-color);*/
     display: flex;
     align-items: center;
     justify-content: space-between;

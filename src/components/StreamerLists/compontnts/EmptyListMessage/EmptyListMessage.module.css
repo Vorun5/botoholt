@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.emote {
+    height: 57px;
+    margin-right: 16px;
+}
+
+.text {
+    font-size: var(--secondary-text-size);
+    color: var(--text-color);
+}
+
+.text__main {
+    color: var(--primary-text-color);
+}

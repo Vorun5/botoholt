@@ -5,14 +5,17 @@ import SongItem from "../StreamerListItems/SongItem";
 import SongListItem from "../../models/SongListItem";
 import Bloc from "../Bloc/Bloc";
 import Loading from "../Loading/Loading";
+import {ReactNode} from "react";
 
 interface SongListProps {
-    loading: boolean;
+    loading?: boolean;
+    listIsEmpty?: boolean;
     title: string;
     items: SongListItem[];
+    emptyCard?: ReactNode;
 }
 
-const SongList = ({items, title, loading}: SongListProps) => {
+const SongList = ({items, title, loading = false, listIsEmpty = true, emptyCard = null}: SongListProps) => {
     const {search, setSearch, songs} = useSongListItemSearch(items);
 
     return (
@@ -20,9 +23,14 @@ const SongList = ({items, title, loading}: SongListProps) => {
             <div className={styles.header}>
                 <div className={styles.header__title}>{title}</div>
                 <Bloc height="16px"/>
-                <SearchField value={search} setValue={setSearch}/>
+                {!listIsEmpty ? <SearchField value={search} setValue={setSearch}/> : <></>}
             </div>
-            {loading ? <Loading/> : songs.map((song) => <SongItem key={song.number} song={song}/>)}
+            {loading
+                ? <Loading/>
+                : (listIsEmpty
+                    ? emptyCard
+                    : songs.map((song) => <SongItem key={song.number} song={song}/>))
+            }
         </>
     );
 }

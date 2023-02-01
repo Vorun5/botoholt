@@ -27,7 +27,7 @@ const StreamerPageMobile = ({streamer}: StreamerPageProps) => {
     const changeLocation = (str: string): string =>
         `/${streamer.login.toLowerCase()}${str}`;
 
-    const {error, queue, period, setSearchParams} = useStreamerPage(streamer);
+    const {error, queue, queueIsEmpty, period, setSearchParams} = useStreamerPage(streamer);
 
     if (error) return <ErrorPage text={t("streamer-page.not-have-songs", {login: streamer.display_name})}/>;
 
@@ -123,7 +123,7 @@ const StreamerPageMobile = ({streamer}: StreamerPageProps) => {
                 </div> : <></>}
             <div className={styles.main__list}>
                 <Routes>
-                    <Route path="/" element={<QueueList items={queue.queueList}/>}/>
+                    <Route path="/" element={<QueueList queueIsEmpty={queueIsEmpty} items={queue.queueList}/>}/>
                     <Route path="/h" element={<HistoryList streamerLogin={streamer.login}/>}/>
                     <Route path="/top/djs" element={<TopDJs streamerLogin={streamer.login} period={period}/>}/>
                     <Route
