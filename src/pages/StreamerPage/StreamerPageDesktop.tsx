@@ -20,31 +20,29 @@ const StreamerPageDesktop = ({streamer}: StreamerPageProps) => {
     if (queue == null) return <Loading/>;
 
     return (
-        <>
-            <div className={styles.container}>
-                <div className={styles.info}>
-                    <div className={styles.info__main}>
-                        <div className={styles.info__card}>
-                            <StreamerCard streamer={streamer} title={t("streamer-card.title")}/>
-                        </div>
-                        <SocialMedias socialMedias={streamerSocialMedias(streamer)}/>
+        <div className={styles.container}>
+            <div className={styles.info}>
+                <div className={styles.info__main}>
+                    <div className={styles.info__card}>
+                        <StreamerCard streamer={streamer} title={t("streamer-card.title")}/>
                     </div>
-                    <CreateWith/>
+                    <SocialMedias socialMedias={streamerSocialMedias(streamer)}/>
                 </div>
-                <div className={styles.content}>
-                    <Navigation streamer={streamer} setSearchParams={setSearchParams} period={period}/>
-                    <div className={styles.content__song}>
-                        <SongCard song={queueToSongPlaying(queue)}/>
-                    </div>
-                    <div className={styles.content__main}>
-                        <Ads daLink={streamer.daLink}/>
-                        <div className={styles.main__divider}/>
-                        <RouteList queueIsEmpty={queueIsEmpty} period={period} streamer={streamer}
-                                   queue={queue.queueList}/>
-                    </div>
+                <CreateWith/>
+            </div>
+            <div className={styles.content}>
+                <Navigation streamer={streamer} setSearchParams={setSearchParams} period={period}/>
+                <div className={styles.content__song}>
+                    <SongCard song={queueToSongPlaying(queue)}/>
+                </div>
+                <div className={styles.content__main}>
+                    <Ads daLink={streamer.daLink}/>
+                    <div className={styles.main__divider}/>
+                    <RouteList queueIsEmpty={queueIsEmpty} period={period} streamer={streamer}
+                               queue={queue.queueList}/>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

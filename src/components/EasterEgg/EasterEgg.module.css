@@ -1,0 +1,27 @@
+.container {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.emote {
+    height: 30px;
+    margin: 0 2px;
+}
+
+.nickname {
+    color: var(--primary-text-color);
+    margin: 0 5px;
+}
+
+.nickname:hover {
+    text-decoration: underline;
+}
+
+.big {
+    display: flex;
+    margin: 5px 0;
+    color: var(--text-color);
+    align-items: center;
+    justify-content: center;
+}
