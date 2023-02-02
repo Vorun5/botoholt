@@ -1,6 +1,8 @@
 import styles from "../StreamerPage.module.css";
 import Ad from "../../../components/Ad/Ad";
 import {useTranslation} from "react-i18next";
+import Snackbar from "../../../components/Snackbar/Snackbar";
+import {useState} from "react";
 
 interface AdsProps {
     daLink: string;
@@ -8,9 +10,19 @@ interface AdsProps {
 
 const Ads = ({daLink}: AdsProps) => {
     const {t} = useTranslation();
+    const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
     return (
         <>
+            <Snackbar
+                title={t("connect-bot-bth")!}
+                isOpen={isSnackbarOpen}
+                close={() => setIsSnackbarOpen(false)}
+            >
+                {t("connect-bot-text-1")}
+                <span className={styles.contact}>Urbinholt#0640</span>
+                {t("connect-bot-text-2")}
+            </Snackbar>
             <div className={styles.main__board}>
                 <div className={styles.board__item}>
                     <Ad
@@ -29,7 +41,7 @@ const Ads = ({daLink}: AdsProps) => {
                         icon="/emotes/EZ.png"
                         bthText={t("connect-bot-bth")}
                         adStyle="primary"
-                        bthOnClick={() => window.open("https://www.youtube.com/watch?v=UhvaUwtGyH4")}
+                        bthOnClick={() => setIsSnackbarOpen(!isSnackbarOpen)}
                     />
                 </div>
             </div>

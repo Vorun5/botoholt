@@ -1,3 +1,7 @@
+.contact {
+    color: var(--secondary-text-color);
+}
+
 .container {
     display: flex;
 }

@@ -29,6 +29,8 @@
   "connect-bot": "Want to add a bot to your stream?",
   "support-streamer-bth": "Donate",
   "connect-bot-bth": "Connect the bot",
+  "connect-bot-text-1": "If you want to connect Botoholt, then just write to ",
+  "connect-bot-text-2": " in the discord!",
   "support": "Support",
   "search": "Search",
   "streamer-page": {
