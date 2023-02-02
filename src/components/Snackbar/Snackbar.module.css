@@ -1,8 +1,7 @@
 .container {
     z-index: 100;
     position: fixed;
-    bottom: 15px;
-    width: 100%;
+    width: calc(100% - 30px);
     transition: bottom 0.2s;
 }
 
@@ -28,7 +27,6 @@
 .wrapper:hover {
     border-color: var(--text-color);
 }
-
 
 .header {
     display: flex;
