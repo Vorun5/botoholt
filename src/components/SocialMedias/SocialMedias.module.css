@@ -41,7 +41,6 @@ body[data-theme="dark"] {
     height: 90px;
     padding: 20px 10px;
     background-color: var(--background-color);
-    /*background-color: var(--accent-background-color);*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,7 +64,6 @@ body[data-theme="dark"] {
 .arrow__right:hover .arrow__icon {
     margin-left: 8px;
 }
-
 
 .arrow_disable {
     background-color: var(--neutral-text-color);

@@ -4,6 +4,7 @@
     font-size: var(--primary-text-size);
     color: var(--neutral-text-color);
 }
+
 .container a {
     color: var(--primary-text-color);
 }

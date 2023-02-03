@@ -1,15 +1,13 @@
-import {useMediaQuery} from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import HeaderDesktop from "./HeaderDesktop";
 import HeaderMobile from "./HeaderMobile";
 
 const Header = () => {
-    const isDesktop = useMediaQuery({
-        query: "(min-width: 992px)"
-    });
+  const isDesktop = useMediaQuery({ query: "(min-width: 992px)" });
 
-    if (isDesktop) return  <HeaderDesktop/>;
+  if (isDesktop) return <HeaderDesktop />;
 
-    return <HeaderMobile/>;
-}
+  return <HeaderMobile />;
+};
 
 export default Header;

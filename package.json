@@ -50,6 +50,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-slick": "^0.23.10"
+    "prettier": "2.8.3"
   }
 }
