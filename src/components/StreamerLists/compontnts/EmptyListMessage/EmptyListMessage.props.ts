@@ -1,5 +1,5 @@
 export interface EmptyListMessageProps {
-  emote?: string;
-  mainText: string;
-  text: string;
+    emote?: string
+    mainText: string
+    text: string
 }

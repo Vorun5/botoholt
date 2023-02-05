@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 export interface SnackbarProps {
-  title?: string;
-  isOpen: boolean;
-  close: () => void;
-  children: ReactNode;
+    title?: string
+    isOpen: boolean
+    close: () => void
+    children: ReactNode
 }

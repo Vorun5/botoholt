@@ -1,5 +1,5 @@
 export default interface TopSong {
-  count: number;
-  mediaName: string;
-  mediaLink: string;
+    count: number
+    mediaName: string
+    mediaLink: string
 }

@@ -53,7 +53,7 @@
     transition: bottom 0.3s;
     height: 382px;
     bottom: -382px;
-    width: 100% ;
+    width: 100%;
     background-color: var(--accent-background-color);
 }
 
@@ -61,7 +61,7 @@
     bottom: -2px;
 }
 
-.menu_bth{
+.menu_bth {
     display: flex;
     align-items: center;
     justify-content: center;

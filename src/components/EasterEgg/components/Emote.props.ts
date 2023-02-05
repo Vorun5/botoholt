@@ -1,4 +1,4 @@
 export interface EmoteProps {
-  path: string;
-  alt: string;
+    path: string
+    alt: string
 }

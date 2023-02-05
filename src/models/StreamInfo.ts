@@ -1,4 +1,4 @@
 export default interface StreamInfo {
-  title: string;
-  game_name: string;
+    title: string
+    game_name: string
 }

@@ -1,4 +1,4 @@
 export default interface TopDJ {
-  count: number;
-  requestedBy: string;
+    count: number
+    requestedBy: string
 }

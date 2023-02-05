@@ -1,5 +1,5 @@
 export interface ButtonProps {
-  isActive: boolean;
-  text: string;
-  onClick?: () => void;
+    isActive: boolean
+    text: string
+    onClick?: () => void
 }

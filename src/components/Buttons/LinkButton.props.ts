@@ -1,5 +1,5 @@
 export interface LinkButtonProps {
-  text: string;
-  url: string;
-  isActive: boolean;
+    text: string
+    url: string
+    isActive: boolean
 }

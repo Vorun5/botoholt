@@ -15,11 +15,10 @@
 
 .button:hover {
     background-color: var(--primary-bth-color);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .button_active {
     background-color: var(--primary-bth-color);
-    color: #FFFFFF;
+    color: #ffffff;
 }
-

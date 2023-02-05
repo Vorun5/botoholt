@@ -6,16 +6,21 @@
     box-sizing: border-box;
 }
 
-body.modal-show { overflow: hidden; }
+body.modal-show {
+    overflow: hidden;
+}
 
 @font-face {
     font-family: helveticaneuecyr;
     font-style: normal;
     font-weight: 400;
     src: local('HelveticaNeueCyr'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.eot?#iefix') format('embedded-opentype'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.woff') format('woff'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.ttf') format('truetype');
+        url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.eot?#iefix')
+            format('embedded-opentype'),
+        url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.woff')
+            format('woff'),
+        url('../static/fonts/helveticaneuecyr/helveticaneuecyr-roman.ttf')
+            format('truetype');
 }
 
 @font-face {
@@ -23,46 +28,49 @@ body.modal-show { overflow: hidden; }
     font-style: normal;
     font-weight: 500;
     src: local('HelveticaNeueCyr'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecy-bold.eot?#iefix') format('embedded-opentype'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecyr-bold.woff') format('woff'),
-    url('../static/fonts/helveticaneuecyr/helveticaneuecyr-bold.ttf') format('truetype');
+        url('../static/fonts/helveticaneuecyr/helveticaneuecy-bold.eot?#iefix')
+            format('embedded-opentype'),
+        url('../static/fonts/helveticaneuecyr/helveticaneuecyr-bold.woff')
+            format('woff'),
+        url('../static/fonts/helveticaneuecyr/helveticaneuecyr-bold.ttf')
+            format('truetype');
 }
 
-body[data-theme="light"] {
-    --bth-color: #E0E0E0;
-    --app-background-color: #EAEAEA;
-    --background-color: #FFFFFF;
-    --accent-background-color: #EDF2FF;
-    --theme-switcher-color: #8A8A8A;
+body[data-theme='light'] {
+    --bth-color: #e0e0e0;
+    --app-background-color: #eaeaea;
+    --background-color: #ffffff;
+    --accent-background-color: #edf2ff;
+    --theme-switcher-color: #8a8a8a;
     --text-color: #000000;
-    --neutral-text-color: #A0A0A0;
-    --primary-add-background-color: #EDF2FF;
-    --secondary-add-background-color: #FFEFE5;
+    --neutral-text-color: #a0a0a0;
+    --primary-add-background-color: #edf2ff;
+    --secondary-add-background-color: #ffefe5;
 }
 
-body[data-theme="dark"] {
+body[data-theme='dark'] {
     --primary-add-background-color: #172132;
     --secondary-add-background-color: #322117;
     --bth-color: #323237;
-    --app-background-color: #0F0F10;
-    --background-color: #1F1F23;
-    --accent-background-color: #18181B;
-    --theme-switcher-color: #FFFFFF;
-    --text-color: #FFFFFF;
-    --neutral-text-color: #6F6F75;
+    --app-background-color: #0f0f10;
+    --background-color: #1f1f23;
+    --accent-background-color: #18181b;
+    --theme-switcher-color: #ffffff;
+    --text-color: #ffffff;
+    --neutral-text-color: #6f6f75;
 }
 
 body {
-    --online-status-color: #EB0400;
+    --online-status-color: #eb0400;
     --offline-status-color: #444444;
-    --primary-text-color: #4C8CFF;
-    --secondary-text-color: #FF810D;
-    --hover-bth-text-color: #FFFFFF;
-    --primary-bth-color: #4C8CFF;
-    --secondary-bth-color: #273C61;
-    --tertiary-bth-color: #57340D;
-    --secondary-hover-bth-color: #4C8CFF;
-    --tertiary-hover-bth-color: #F58307;
+    --primary-text-color: #4c8cff;
+    --secondary-text-color: #ff810d;
+    --hover-bth-text-color: #ffffff;
+    --primary-bth-color: #4c8cff;
+    --secondary-bth-color: #273c61;
+    --tertiary-bth-color: #57340d;
+    --secondary-hover-bth-color: #4c8cff;
+    --tertiary-hover-bth-color: #f58307;
     --primary-text-size: 14px;
     --secondary-text-size: 20px;
 }
@@ -76,21 +84,18 @@ body {
     line-height: 1.1;
 }
 
-*::-webkit-scrollbar-track
-{
+*::-webkit-scrollbar-track {
     -webkit-box-shadow: none;
     border-radius: 5px;
     background-color: var(--app-background-color);
 }
 
-*::-webkit-scrollbar
-{
+*::-webkit-scrollbar {
     width: 8px;
     background-color: var(--app-background-color);
 }
 
-*::-webkit-scrollbar-thumb
-{
+*::-webkit-scrollbar-thumb {
     border-radius: 5px;
     -webkit-box-shadow: none;
     background-color: var(--neutral-text-color);
@@ -120,4 +125,3 @@ body {
         --secondary-text-size: 24px;
     }
 }
-

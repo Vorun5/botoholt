@@ -1,6 +1,6 @@
-import { QueueSong } from "models/QueueSong";
+import { QueueSong } from 'models/QueueSong'
 
 export interface QueueListProps {
-  items: QueueSong[];
-  queueIsEmpty: boolean;
+    items: QueueSong[]
+    queueIsEmpty: boolean
 }

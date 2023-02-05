@@ -1,6 +1,6 @@
-import { Period } from "types";
+import { Period } from 'types'
 
 export interface TopDJsListProps {
-  streamerLogin: string;
-  period: Period;
+    streamerLogin: string
+    period: Period
 }

@@ -1,4 +1,4 @@
 export interface BlocProps {
-  width?: string;
-  height?: string;
+    width?: string
+    height?: string
 }

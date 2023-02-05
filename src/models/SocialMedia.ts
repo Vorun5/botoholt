@@ -1,6 +1,6 @@
 export interface SocialMedia {
-  id: string;
-  name: string;
-  title: string;
-  url: string;
+    id: string
+    name: string
+    title: string
+    url: string
 }
