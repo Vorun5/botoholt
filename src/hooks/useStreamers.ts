@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { Streamer } from 'models/Streamer'
+import { useEffect, useState } from 'react'
 import ApiService from 'services/ApiService'
 
 const useStreamers = () => {

@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import ApiService from 'services/ApiService'
-import { useSearchParams } from 'react-router-dom'
-import { ALL_AVAILABLE_PERIODS, Period } from 'types'
-import { StreamerQueue } from 'models/StreamerQueue'
 import { Streamer } from 'models/Streamer'
+import { StreamerQueue } from 'models/StreamerQueue'
+import { useCallback, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import ApiService from 'services/ApiService'
+import { ALL_AVAILABLE_PERIODS, Period } from 'types'
 
 const useStreamerPage = (streamer: Streamer) => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -13,10 +13,7 @@ const useStreamerPage = (streamer: Streamer) => {
 
     const getPeriodFromSearchParams = useCallback(() => {
         const searchPeriod = searchParams.get('period')
-        if (
-            searchPeriod == null ||
-            !ALL_AVAILABLE_PERIODS.includes(searchPeriod)
-        ) {
+        if (searchPeriod == null || !ALL_AVAILABLE_PERIODS.includes(searchPeriod)) {
             return 'week'
         }
 

@@ -2,5 +2,8 @@
   "trailingComma": "all",
   "tabWidth": 4,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": ["^components/(.*)$", "^[./]" ],
+  "importOrderSeparation": true, 
+  "importOrderSortSpecifiers": true 
 }

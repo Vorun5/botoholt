@@ -27,7 +27,7 @@
     justify-content: center;
 }
 
-.bigs__title {
+.easter_egg__title {
     display: inline-block;
     margin-top: 12px;
     font-size: calc(var(--secondary-text-size) - 3px);

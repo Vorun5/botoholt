@@ -1,4 +1,5 @@
 import styles from './StreamerListItems.module.css'
+import clsx from 'clsx'
 import SongListItem from 'models/SongListItem'
 import { useTranslation } from 'react-i18next'
 
@@ -10,10 +11,10 @@ const SongItem = ({ song }: { song: SongListItem }) => {
             <span className={styles.number}>{song.number}</span>
             <div className={styles.info}>
                 <a
-                    className={`${styles.name} ${styles.hoverable}`}
+                    className={clsx(styles.name, styles.hoverable)}
                     href={song.mediaLink}
-                    target="_blank"
-                    rel="noreferrer"
+                    target='_blank'
+                    rel='noreferrer'
                 >
                     {song.mediaName}
                 </a>

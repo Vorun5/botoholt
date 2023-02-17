@@ -3,9 +3,9 @@ import styles from '../EasterEgg.module.css'
 const Nickname = ({ nickname }: { nickname: string }) => (
     <a
         className={styles.nickname}
-        target="_blank"
+        target='_blank'
         href={`https://www.twitch.tv/${nickname.toLowerCase()}`}
-        rel="noreferrer"
+        rel='noreferrer'
     >
         {`@${nickname}`}
     </a>

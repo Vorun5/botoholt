@@ -1,15 +1,12 @@
 import TopList from './TopList'
-import useTopSongs from '../../hooks/useTopSongs'
-import { useTranslation } from 'react-i18next'
-import EmptyListMessage from './compontnts/EmptyListMessage/EmptyListMessage'
 import { TopSongsListProps } from './TopSongsList.props'
+import EmptyListMessage from './components/EmptyListMessage/EmptyListMessage'
+import useTopSongs from 'hooks/useTopSongs'
+import { useTranslation } from 'react-i18next'
 
 const TopSongs = ({ streamerLogin, period }: TopSongsListProps) => {
     const { t } = useTranslation()
-    const { topSongs, loading, topSongsIsEmpty } = useTopSongs(
-        streamerLogin,
-        period,
-    )
+    const { topSongs, loading, topSongsIsEmpty } = useTopSongs(streamerLogin, period)
 
     return (
         <TopList
@@ -18,7 +15,7 @@ const TopSongs = ({ streamerLogin, period }: TopSongsListProps) => {
             listIsEmpty={topSongsIsEmpty}
             emptyCard={
                 <EmptyListMessage
-                    emote="/emotes/INSANECAT.gif"
+                    emote='/emotes/INSANECAT.gif'
                     mainText={t('streamer-page.list-is-empty.top-songs')}
                     text={t('streamer-page.list-is-empty.fix')}
                 />

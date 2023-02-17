@@ -1,15 +1,15 @@
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import StreamerPageDesktop from './StreamerPageDesktop'
+import StreamerPageMobile from './StreamerPageMobile'
+import StreamerPageTable from './StreamerPageTable'
+import Loading from 'components/Loading/Loading'
 import { Streamer } from 'models/Streamer'
-import { capitalize } from 'utils'
+import ErrorPage from 'pages/NotFoundPage/ErrorPage'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive'
+import { useParams } from 'react-router-dom'
 import ApiService from 'services/ApiService'
-import StreamerPageDesktop from './StreamerPageDesktop'
-import StreamerPageTable from './StreamerPageTable'
-import StreamerPageMobile from './StreamerPageMobile'
-import Loading from 'components/Loading/Loading'
-import ErrorPage from 'pages/NotFoundPage/ErrorPage'
+import { capitalize } from 'utils'
 
 const StreamerPage = () => {
     const { t } = useTranslation()

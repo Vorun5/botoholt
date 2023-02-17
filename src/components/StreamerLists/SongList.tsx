@@ -1,10 +1,10 @@
+import { SongListProps } from './SongList.props'
 import styles from './StreamerLists.module.css'
-import useSongListItemSearch from 'hooks/useSongListItemSearch'
-import SearchField from 'components/SearchField/SearchField'
-import SongItem from 'components/StreamerListItems/SongItem'
 import Bloc from 'components/Bloc/Bloc'
 import Loading from 'components/Loading/Loading'
-import { SongListProps } from './SongList.props'
+import SearchField from 'components/SearchField/SearchField'
+import SongItem from 'components/StreamerListItems/SongItem'
+import useSongListItemSearch from 'hooks/useSongListItemSearch'
 
 const SongList = ({
     items,
@@ -19,10 +19,8 @@ const SongList = ({
         <>
             <div className={styles.header}>
                 <div className={styles.header__title}>{title}</div>
-                <Bloc height="16px" />
-                {!listIsEmpty && (
-                    <SearchField value={search} setValue={setSearch} />
-                )}
+                <Bloc height='16px' />
+                {!listIsEmpty && <SearchField value={search} setValue={setSearch} />}
             </div>
             {loading ? (
                 <Loading />

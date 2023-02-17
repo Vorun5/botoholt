@@ -9,8 +9,8 @@ const TopItem = ({ topItem }: { topItem: TopListItem }) => (
                 <a
                     className={`${styles.name} ${styles.hoverable}`}
                     href={topItem.link}
-                    target="_blank"
-                    rel="noreferrer"
+                    target='_blank'
+                    rel='noreferrer'
                 >
                     {topItem.text}
                 </a>

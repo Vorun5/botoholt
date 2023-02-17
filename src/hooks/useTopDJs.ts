@@ -1,7 +1,7 @@
+import TopDJ from 'models/TopDJ'
 import { useEffect, useState } from 'react'
 import ApiService from 'services/ApiService'
 import { Period } from 'types'
-import TopDJ from 'models/TopDJ'
 
 const useTopDJs = (streamerLogin: string, period: Period) => {
     const [topDJs, setTopDJs] = useState<Array<TopDJ>>([])

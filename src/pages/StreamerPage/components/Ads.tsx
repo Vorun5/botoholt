@@ -1,8 +1,8 @@
 import styles from '../StreamerPage.module.css'
 import Ad from 'components/Ad/Ad'
-import { useTranslation } from 'react-i18next'
 import Snackbar from 'components/Snackbar/Snackbar'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Ads = ({ daLink }: { daLink: string }) => {
     const { t } = useTranslation()
@@ -23,20 +23,20 @@ const Ads = ({ daLink }: { daLink: string }) => {
                 <div className={styles.board__item}>
                     <Ad
                         text={t('support-streamer')}
-                        bthIcon="/icons/da-hover.svg"
-                        icon="/emotes/money.gif"
+                        bthIcon='/icons/da-hover.svg'
+                        icon='/emotes/money.gif'
                         bthText={t('support-streamer-bth')}
-                        adStyle="secondary"
+                        adStyle='secondary'
                         bthOnClick={() => window.open(daLink)}
                     />
                 </div>
                 <div className={styles.board__item}>
                     <Ad
                         text={t('connect-bot')}
-                        bthIcon="/icons/star-hover.svg"
-                        icon="/emotes/EZ.png"
+                        bthIcon='/icons/star-hover.svg'
+                        icon='/emotes/EZ.png'
                         bthText={t('connect-bot-bth')}
-                        adStyle="primary"
+                        adStyle='primary'
                         bthOnClick={() => setIsSnackbarOpen(!isSnackbarOpen)}
                     />
                 </div>

@@ -6,7 +6,7 @@ const Loading = () => {
 
     return (
         <div className={styles.container}>
-            <img src="/emotes/ROLLING.gif" alt="ROLLING" />
+            <img src='/emotes/ROLLING.gif' alt='ROLLING' />
             <span>{t('loading')}</span>
         </div>
     )

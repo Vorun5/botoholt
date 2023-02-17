@@ -17,9 +17,6 @@
     margin-right: 30px;
 }
 
-.info {
-}
-
 .name {
     overflow-wrap: anywhere;
     color: var(--secondary-text-color);

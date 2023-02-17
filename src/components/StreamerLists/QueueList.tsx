@@ -1,8 +1,8 @@
-import { formatTime } from 'utils'
-import { useTranslation } from 'react-i18next'
-import SongList from './SongList'
-import EmptyListMessage from './compontnts/EmptyListMessage/EmptyListMessage'
 import { QueueListProps } from './QueueList.proprs'
+import SongList from './SongList'
+import EmptyListMessage from './components/EmptyListMessage/EmptyListMessage'
+import { useTranslation } from 'react-i18next'
+import { formatTime } from 'utils'
 
 const QueueList = ({ items, queueIsEmpty }: QueueListProps) => {
     const { t } = useTranslation()

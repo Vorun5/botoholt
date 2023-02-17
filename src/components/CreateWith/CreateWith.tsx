@@ -8,13 +8,13 @@ const CreateWith = () => {
         <div className={styles.container}>
             <p className={styles.creators}>
                 {t('creators.create-with-love-by')}
-                <a href="https://www.twitch.tv/vorun5">@Vorun5</a>
+                <a href='https://www.twitch.tv/vorun5'>@Vorun5</a>
                 <br />
-                <a href="https://www.twitch.tv/urbinholt">@Urbinholt</a>
+                <a href='https://www.twitch.tv/urbinholt'>@Urbinholt</a>
                 {t('and')}
-                <a href="https://www.twitch.tv/montag_r">@montag_r</a>
+                <a href='https://www.twitch.tv/montagerr_'>@montagerr_</a>
             </p>
-            <a href="https://fantalks.io/r/botoholt" className={styles.support}>
+            <a href='https://fantalks.io/r/botoholt' className={styles.support}>
                 {t('support')}
             </a>
         </div>

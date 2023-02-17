@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next'
 import SongList from './SongList'
+import EmptyListMessage from './components/EmptyListMessage/EmptyListMessage'
 import useHistory from 'hooks/useHistory'
+import { useTranslation } from 'react-i18next'
 import { capitalize } from 'utils'
-import EmptyListMessage from './compontnts/EmptyListMessage/EmptyListMessage'
 
 const HistoryList = ({ streamerLogin }: { streamerLogin: string }) => {
     const { history, loading, historyIsEmpty } = useHistory(streamerLogin)
@@ -15,7 +15,7 @@ const HistoryList = ({ streamerLogin }: { streamerLogin: string }) => {
             listIsEmpty={historyIsEmpty}
             emptyCard={
                 <EmptyListMessage
-                    emote="/emotes/Orkdwn.gif"
+                    emote='/emotes/Orkdwn.gif'
                     mainText={t('streamer-page.list-is-empty.history')}
                     text={t('streamer-page.list-is-empty.fix')}
                 />
@@ -36,9 +36,7 @@ const HistoryList = ({ streamerLogin }: { streamerLogin: string }) => {
                     mediaLink: song.mediaLink,
                     requestedBy: song.requestedBy,
                     number: index + 1,
-                    extraText: `${formatDateTime} ${capitalize(
-                        formatDateWeek,
-                    )}`,
+                    extraText: `${formatDateTime} ${capitalize(formatDateWeek)}`,
                 }
             })}
         />

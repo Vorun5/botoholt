@@ -1,8 +1,9 @@
 import styles from './SocialMedias.module.css'
-import { SocialMedia } from 'models/SocialMedia'
+import clsx from 'clsx'
 import { HandySvg } from 'handy-svg'
-import { useState } from 'react'
+import { SocialMedia } from 'models/SocialMedia'
 import Postel from 'postel'
+import { useState } from 'react'
 
 const getMediaProperty = (socialMedia: SocialMedia) => {
     switch (socialMedia.name) {
@@ -41,16 +42,14 @@ const SocialMedias = ({ socialMedias }: { socialMedias: SocialMedia[] }) => {
     return (
         <div className={styles.container}>
             <div
-                className={`${styles.arrow} ${styles.arrow__left} 
-        ${disableLeftArrow && styles.arrow_disable}`}
-                onClick={() =>
-                    !disableLeftArrow && setScrollIndex(scrollIndex + 1)
-                }
+                className={clsx(
+                    styles.arrow,
+                    styles.arrow__left,
+                    disableLeftArrow && styles.arrow_disable,
+                )}
+                onClick={() => !disableLeftArrow && setScrollIndex(scrollIndex + 1)}
             >
-                <HandySvg
-                    className={styles.arrow__icon}
-                    src="/icons/arrow-left.svg"
-                />
+                <HandySvg className={styles.arrow__icon} src='/icons/arrow-left.svg' />
             </div>
             <div className={styles.social_medias}>
                 {socialMedias.map((socialMedia, index) => {
@@ -60,9 +59,7 @@ const SocialMedias = ({ socialMedias }: { socialMedias: SocialMedia[] }) => {
                         <div
                             key={index}
                             className={styles.social_media__container}
-                            style={{
-                                left: `${index * 25 + scrollIndex * 25}%`,
-                            }}
+                            style={{ left: `${index * 25 + scrollIndex * 25}%` }}
                         >
                             <Postel
                                 title={socialMedia.title}
@@ -74,14 +71,11 @@ const SocialMedias = ({ socialMedias }: { socialMedias: SocialMedia[] }) => {
                             >
                                 <a
                                     href={socialMedia.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={`${styles.social_media} ${color}`}
+                                    target='_blank'
+                                    rel='noreferrer'
+                                    className={clsx(styles.social_media, color)}
                                 >
-                                    <HandySvg
-                                        className={styles.social_media__icon}
-                                        src={icon}
-                                    />
+                                    <HandySvg className={styles.social_media__icon} src={icon} />
                                 </a>
                             </Postel>
                         </div>
@@ -89,16 +83,14 @@ const SocialMedias = ({ socialMedias }: { socialMedias: SocialMedia[] }) => {
                 })}
             </div>
             <div
-                className={`${styles.arrow} ${styles.arrow__right} 
-        ${disableRightArrow && styles.arrow_disable}`}
-                onClick={() =>
-                    !disableRightArrow && setScrollIndex(scrollIndex - 1)
-                }
+                className={clsx(
+                    styles.arrow,
+                    styles.arrow__right,
+                    disableRightArrow && styles.arrow_disable,
+                )}
+                onClick={() => !disableRightArrow && setScrollIndex(scrollIndex - 1)}
             >
-                <HandySvg
-                    className={styles.arrow__icon}
-                    src="/icons/arrow-right.svg"
-                />
+                <HandySvg className={styles.arrow__icon} src='/icons/arrow-right.svg' />
             </div>
         </div>
     )

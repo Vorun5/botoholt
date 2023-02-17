@@ -1,5 +1,5 @@
-import StreamInfo from 'models/StreamInfo'
 import { SocialMedia } from 'models/SocialMedia'
+import StreamInfo from 'models/StreamInfo'
 
 export type BroadcasterType = 'affiliate' | 'partner' | ''
 
