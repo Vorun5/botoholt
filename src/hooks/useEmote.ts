@@ -7,7 +7,7 @@ const useEmote = (
         'catRAVE.gif',
         'RainbowPls.gif',
         'VIBE.gif',
-        'DANCE.gif',
+        'Dance.gif',
         'PartyKirby.gif',
         'pepeGuitar.gif',
     ],
