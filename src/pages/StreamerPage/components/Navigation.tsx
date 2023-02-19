@@ -57,8 +57,7 @@ const Navigation = ({ streamer, period, setSearchParams }: NavigationProps) => {
                     />
                 </div>
             </div>
-            {isTopSongsTab ||
-                (isTopDJsTab && (
+            {(isTopSongsTab || isTopDJsTab) && (
                     <div className={styles.navigation__filters}>
                         <span className={styles.filters__title}>
                             {t('streamer-page.filter')}
@@ -96,7 +95,7 @@ const Navigation = ({ streamer, period, setSearchParams }: NavigationProps) => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )}
         </div>
     )
 }

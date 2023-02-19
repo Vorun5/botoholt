@@ -7,12 +7,12 @@ import TopSong from 'models/TopSong'
 
 type Period = 'month' | 'week' | 'alltime'
 
-const getAllStreamers = () => http.get<Array<Streamer>>('https://dev.bho.lt/api/v1/streams')
+const getAllStreamers = () => http.get<Array<Streamer>>('https://bho.lt/api/v1/streams')
 
 const getStreamer = (login: string) =>
-    http.get<Array<Streamer>>(`https://dev.bho.lt/api/v1/streams/${login}`)
+    http.get<Array<Streamer>>(`https://bho.lt/api/v1/streams/${login}`)
 
-const getStreamerQueue = (login: string) => http.get<StreamerQueue>(`https://bho.lt/api/${login}/`)
+const getStreamerQueue = (login: string) => http.get<StreamerQueue>(`https://bho.lt/api/v1/${login}/`)
 
 const getStreamerHistory = (login: string) =>
     http.get<Array<HistorySong>>(`https://bho.lt/api/v1/${login}/songs/`)
