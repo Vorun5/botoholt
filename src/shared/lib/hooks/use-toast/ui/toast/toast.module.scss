@@ -1,0 +1,33 @@
+.toast {
+    display: inline-block;
+    margin-bottom: 1rem;
+    position: relative;
+    padding: 1rem;
+    border: 1px solid var(--primary-text-color);
+    border-radius: 5px;
+    background: var(--accent-background-color);
+    color: var(--text-color);
+    max-width: 200px;
+    @media (min-width: 1200px) {
+        
+        max-width: 300px;
+    }
+
+    @media (min-width: 1700px) {
+        max-width: 350px;
+    }
+
+    &Title {
+        color: var(--primary-text-color);
+        font-size: var(--secondary-text-size);
+        margin-bottom: 10px;
+    }
+
+    &Error {
+        border-color: red;
+
+        &Title {
+            color: red;
+        }
+    }
+}

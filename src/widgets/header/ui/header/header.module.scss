@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &Settings {
+        display: flex;
+        align-items: center;
+
+        & button:first-child {
+            margin-right: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            position: static;
+            z-index: 1;
+            position: fixed;
+            left: 0;
+            bottom: -350px;
+            flex-direction: column;
+            padding: 25px 15px 0 15px;
+            border-radius: 10px 10px 0 0;
+            height: 350px;
+            width: 100%;
+            background-color: var(--accent-background-color);
+            transition: bottom 0.3s;
+
+            &Open {
+                bottom: -2px;
+            }
+
+            & button:first-child {
+                margin: 0 0 1rem 0;
+            }
+
+            & button {
+                margin: 0 0 1rem 0;
+                display: block;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 88px;
+                border-radius: 5px;
+                background: var(--background-color);
+            }
+        }
+    }
+}

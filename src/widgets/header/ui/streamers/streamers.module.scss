@@ -1,0 +1,14 @@
+.streamers {
+    display: flex;
+
+    & div {
+        margin-right: 24px;
+        background-color: var(--background-color);
+        border-radius: 50%;
+    }
+
+    &Count {
+        color: var(--neutral-text-color);
+        font-weight: bold;
+    }
+}

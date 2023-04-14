@@ -1,0 +1,12 @@
+.list {
+    &Title {
+        margin-bottom: 1rem;
+        color: var(--text-color);
+        font-weight: bold;
+        font-size: var(--secondary-text-size);
+    }
+    
+    &Items {
+        margin-top: 1rem;
+    }
+}

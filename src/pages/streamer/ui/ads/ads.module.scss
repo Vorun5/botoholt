@@ -1,0 +1,64 @@
+.ads {
+    display: flex;
+    & div {
+        height: 100%;
+    }
+
+    &Compact {
+        flex-direction: column;
+
+        & .banner {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &Normal {
+        flex-direction: row;
+        align-items: center;
+
+        & .banner {
+            height: 300px;
+            margin-right: 1rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &Emote {
+        height: 6rem;
+    }
+
+    &Text {
+        font-size: var(--secondary-text-size);
+        display: block;
+        margin: 1rem 0;
+    }
+
+    &Bth {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &Icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        & span {
+            font-size: var(--primary-text-size);
+            margin-left: 10px;
+        }
+    }
+}

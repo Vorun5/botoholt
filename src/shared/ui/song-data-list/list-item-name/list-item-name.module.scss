@@ -1,0 +1,12 @@
+.item {
+    &Name {
+        overflow-wrap: anywhere;
+        color: var(--secondary-text-color);
+    }
+
+    &Link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

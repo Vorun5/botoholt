@@ -1,0 +1,32 @@
+.item {
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: var(--background-color);
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.1s;
+
+    &:hover {
+        background-color: var(--accent-background-color);
+    }
+
+    &Info {
+        font-size: var(--secondary-text-size);
+        white-space: nowrap;
+        margin: 0 1.5rem;
+        color: var(--neutral-text-color);
+    }
+
+    &Compact {
+        & .itemInfo {
+            margin: 0 1rem;
+        }
+    }
+
+    &Content {
+        width: 100%;
+        text-align: left;
+    }
+}
