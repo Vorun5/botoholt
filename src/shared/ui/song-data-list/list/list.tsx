@@ -6,13 +6,14 @@ interface ListProps {
     title: string
     children: ReactNode
     searchFun: (str: string) => void
+    searchStr?: string
 }
 
-export const List = ({ children, searchFun, title }: ListProps) => {
+export const List = ({ children, searchFun, searchStr, title }: ListProps) => {
     return (
         <div className={styles.list}>
             <h2 className={styles.listTitle}>{title}</h2>
-            <SearchField value="123" onChange={(str: string) => {}} />
+            <SearchField value={searchStr} onChange={searchFun} />
             <ul className={styles.listItems}>{children}</ul>
         </div>
     )

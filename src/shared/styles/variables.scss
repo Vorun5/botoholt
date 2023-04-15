@@ -9,8 +9,8 @@ body {
     --tertiary-bth-color: #57340d;
     --secondary-hover-bth-color: #4c8cff;
     --tertiary-hover-bth-color: #f58307;
-    --primary-text-size: 14px;
-    --secondary-text-size: 20px;
+    --primary-text-size: 13px;
+    --secondary-text-size: 16px;
 }
 
 body[data-theme='light'] {
@@ -39,6 +39,13 @@ body[data-theme='dark'] {
     --scroll-color: rgb(40, 40, 40);
 }
 
+@media (min-width: 360px) {
+    body {
+        --primary-text-size: 14px;
+        --secondary-text-size: 20px;
+    }
+}
+
 @media (min-width: 1700px) {
     body {
         --primary-text-size: 16px;
@@ -46,9 +53,3 @@ body[data-theme='dark'] {
     }
 }
 
-@media (max-width: 360px) {
-    body {
-        --primary-text-size: 13px;
-        --secondary-text-size: 16px;
-    }
-}

@@ -1,18 +1,15 @@
 import clsx from 'clsx'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
 import peepoDj from 'shared/assets/emotes/peepoDJ.gif'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
 import { StreamerQueue } from 'shared/types'
 import styles from './current-song.module.scss'
 
-interface CurrentSongProps {
-    song: Omit<StreamerQueue, 'queue'>
-    center?: boolean
-}
-
-const CurrentSongExtraInfo = ({ song }: CurrentSongProps) => {
+const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) => {
     const { t } = useTranslation()
 
     return (
@@ -27,8 +24,10 @@ const CurrentSongExtraInfo = ({ song }: CurrentSongProps) => {
     )
 }
 
-export const CurrentSong = ({ song, center = true }: CurrentSongProps) => {
+export const CurrentSong = ({ center = true }: { center?: boolean }) => {
     const { t } = useTranslation()
+    const song = useSelector(selectStreamerCurrentSong)
+
     const { danceEmote } = useDanceEmote()
 
     const songRef = useRef<HTMLDivElement>(null)

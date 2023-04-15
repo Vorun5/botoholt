@@ -13,7 +13,7 @@
     }
 
     &Info {
-        font-size: var(--secondary-text-size);
+        font-size: calc(var(--primary-text-size) + 2px);
         white-space: nowrap;
         margin: 0 1.5rem;
         color: var(--neutral-text-color);

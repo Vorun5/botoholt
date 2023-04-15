@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import styles from './search-field.module.scss'
 
 interface SearchFieldProps {
-    value: string
+    value?: string
     onChange: (searchString: string) => void
 }
 
@@ -15,8 +15,8 @@ export const SearchField = ({ value, onChange }: SearchFieldProps) => {
                 className={styles.searchField}
                 type="search"
                 name="search"
-                placeholder={t('search')!}
                 value={value}
+                placeholder={t('search')!}
                 onChange={(event) => onChange(event.target.value)}
             />
             <span className={styles.searchIcon}>

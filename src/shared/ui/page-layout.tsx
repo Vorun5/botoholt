@@ -40,3 +40,13 @@ export const PageContentExpanded = styled.div`
 export const PageFooter = styled.footer`
     flex-shrink: 0;
 `
+// export const PageLoading = () => {
+//     return            <>
+//                 <PageContent>
+//                     <PageContentExpanded>
+//                         <Loading />
+//                     </PageContentExpanded>
+//                 </PageContent>
+//                 <Footer />
+//             </>
+// }

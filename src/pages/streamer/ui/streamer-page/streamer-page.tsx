@@ -1,24 +1,29 @@
 import { useCallback, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { Footer } from 'widgets/footer'
 import {
     loadStreamer,
     loadStreamerHistorySongs,
     loadStreamerQueue,
     loadStreamerTopDjs,
     loadStreamerTopSongs,
+    selectStreamer,
 } from 'entities/streamer-song-data'
-import { useMediaQuery } from 'shared/lib/hooks'
+import { useInterval, useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
+import { Loading, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageMobile } from './streamer-page-mobile'
 
 export const StreamerPage = () => {
     const { streamerName } = useParams()
     const login = streamerName || ''
-    const dispatch = useAppDispatch()
-
+    const streamer = useSelector(selectStreamer)
     useEffect(() => {
-        window.document.title = `${login} - Botoholt`
-    }, [streamerName])
+        window.document.title = `${streamer.data.name} - Botoholt`
+    }, [streamer])
+
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(loadStreamer(login))
@@ -33,14 +38,22 @@ export const StreamerPage = () => {
         dispatch(loadStreamerHistorySongs(login))
     }, [dispatch, streamerName])
 
-    useEffect(() => {
-        const timerID = setInterval(() => {
-            updateInfo()
-        }, 15000)
-        return () => clearInterval(timerID)
-    }, [updateInfo])
+    useInterval(updateInfo)
 
     const isDesktop = useMediaQuery('(min-width: 10000px)')
 
-    return isDesktop ? <div>Desc</div> : <StreamerPageMobile />
+    if (streamer.status === 'loading')
+        return (
+            <>
+                <PageContent>
+                    <PageContentExpanded>
+                        <Loading />
+                    </PageContentExpanded>
+                </PageContent>
+                <Footer />
+            </>
+        )
+    if (streamer.status === 'rejected') return <span>Error!</span>
+
+    return isDesktop ? <div>Desc</div> : <StreamerPageMobile streamer={streamer} />
 }
