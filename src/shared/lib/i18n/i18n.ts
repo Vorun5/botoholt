@@ -11,7 +11,8 @@ i18n.use(Backend)
         ns: 'translation',
         defaultNS: 'translation',
         backend: {
-            loadPath: 'src/shared/lib/i18n/locales/{{lng}}/{{ns}}.json',
+            // TODO: not working with slash in url. Fix it!
+            // loadPath: 'src/shared/lib/i18n/locales/{{lng}}/{{ns}}.json',
             crossDomain: false,
             detection: {
                 order: ['queryString', 'cookie'],

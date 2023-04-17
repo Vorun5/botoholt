@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectStreamerQueue } from 'entities/streamer-song-data'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
+import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
 export const Queue = () => {
     const { t } = useTranslation()
@@ -31,9 +32,17 @@ export const Queue = () => {
 
     return (
         <>
-            <SongDataList title="Queue" searchFun={search}>
+            <SongDataList title={t('streamer-page.tab-titles.queue')} searchFun={search}>
                 {queue.status === 'loading' && <Loading />}
                 {queue.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
+                {queue.status === 'received' && queue.list.length === 0 && (
+                    <ListStatusNotification
+                        emote="src/shared/assets/emotes/FeelsOkayMan.png"
+                        altEmote="FeelsOkayMan"
+                        title={t('streamer-page.list-is-empty.queue')}
+                        text={t('streamer-page.list-is-empty.first')}
+                    />
+                )}
                 {queue.status === 'received' &&
                     queueList.map((song, index) => (
                         <SongListItem

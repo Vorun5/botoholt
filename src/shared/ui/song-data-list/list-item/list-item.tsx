@@ -9,7 +9,7 @@ export interface ListItemProps {
     children: ReactNode
 }
 
-export const Listitem = ({ number, extraInfo, children }: ListItemProps) => {
+export const ListItem = ({ number, extraInfo, children }: ListItemProps) => {
     const itemRef = useRef(null)
     const { width } = useElementSize(itemRef)
 

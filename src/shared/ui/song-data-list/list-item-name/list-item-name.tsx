@@ -8,7 +8,7 @@ interface ListItemNameProps {
 
 export const ListItemName = ({ children, link }: ListItemNameProps) => {
     return link ? (
-        <a className={clsx(styles.itemName, styles.itemLink)} href={link}>
+        <a className={clsx(styles.itemName, styles.itemLink)} href={link} target='_blank'>
             {children}
         </a>
     ) : (

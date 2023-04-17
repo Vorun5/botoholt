@@ -2,25 +2,19 @@
     display: inline-block;
     margin-bottom: 1rem;
     position: relative;
-    padding: 1rem;
-    border: 1px solid var(--primary-text-color);
-    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid var(--neutral-text-color);
+    border-radius: 14px;
     background: var(--accent-background-color);
     color: var(--text-color);
-    max-width: 200px;
-    @media (min-width: 1200px) {
-        
-        max-width: 300px;
+    max-width: 280px;
+
+    @media (min-width: 400px) {
+        max-width: 360px;
     }
 
-    @media (min-width: 1700px) {
-        max-width: 350px;
-    }
-
-    &Title {
-        color: var(--primary-text-color);
-        font-size: var(--secondary-text-size);
-        margin-bottom: 10px;
+    @media (min-width: 1000px) {
+        max-width: 600px;
     }
 
     &Error {
@@ -28,6 +22,45 @@
 
         &Title {
             color: red;
+        }
+    }
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+
+    &Title {
+        margin-top: 4px;
+        font-weight: bold;
+        color: var(--text-color);
+        font-size: var(--secondary-text-size);
+        margin-bottom: 10px;
+    }
+
+    &Close {
+        margin-left: 10px;
+        display: inline-block;
+        border-radius: 50%;
+        background-color: var(--neutral-text-color);
+        width: 36px;
+        height: 36px;
+        padding: calc((36px - 14px) / 2);
+
+        & svg {
+            transition: transform 0.3s;
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+
+        
+        &:hover {
+            & svg {
+                transform: rotate(180deg);
+            }
         }
     }
 }

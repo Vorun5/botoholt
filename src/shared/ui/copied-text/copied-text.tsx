@@ -2,12 +2,12 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as Copy } from 'shared/assets/icons/copy.svg'
 import { useCopyToClipboard } from 'shared/lib/hooks'
-import { useToast } from 'shared/lib/hooks/use-toast'
+import { useToast } from 'shared/lib/hooks'
 import styles from './copied-text.module.scss'
 
 export const CopiedText = ({ children }: { children: string }) => {
     const { t } = useTranslation()
-    const [value, copy] = useCopyToClipboard()
+    const [_, copy] = useCopyToClipboard()
     const toastTools = useToast()
 
     const copyHandler = useCallback(async () => {
@@ -17,7 +17,7 @@ export const CopiedText = ({ children }: { children: string }) => {
                 {
                     text: t(success ? 'copied-to-clipboard' : 'failed-to-copy') ?? '',
                 },
-                { position: 'top-right' },
+                { position: 'top-right', delayInSeconds: 2},
             )
         }
     }, [copy, toastTools])
