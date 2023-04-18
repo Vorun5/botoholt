@@ -6,10 +6,7 @@ import { Avatar } from 'shared/ui'
 import { StreamerSocialMedias } from '../streamer-social-medias/streamer-social-medias'
 import styles from './streamer-card.module.scss'
 
-interface StreamerCardProps {
-    title?: string
-    streamer: Streamer
-}
+
 
 type Degree = 'thousands' | 'none'
 
@@ -25,13 +22,19 @@ const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     return [result, degree]
 }
 
-export const StreamerCard = ({ title, streamer }: StreamerCardProps) => {
+interface StreamerCardProps {
+    title?: string
+    streamer: Streamer
+    className?: string
+}
+
+export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) => {
     const { t } = useTranslation()
     const [followers, degree] = getNumberFollowersAndDegree(streamer.followers)
     const isOnline = streamer.streamInfo !== null
 
     return (
-        <div className={styles.streamer}>
+        <div className={clsx(styles.streamer, className && className)}>
             <div className={styles.cardWrapper}>
                 <div className={styles.card}>
                     {title && <h2 className={styles.cardTitle}>{title}</h2>}

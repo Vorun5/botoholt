@@ -90,7 +90,10 @@
         line-height: 1.2;
         width: 100%;
         margin: 0 20px 0 10px;
-        font-weight: bold;
+
+        & span {
+            font-weight: bold;
+        }
 
         &Emote {
             width: 30px;

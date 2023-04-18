@@ -14,7 +14,9 @@ import {
 import { useInterval, useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, PageContent, PageContentExpanded } from 'shared/ui'
+import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
+import { StreamerPageTablet } from './tablet/streamer-page-tablet'
 
 export const StreamerPage = () => {
     const dispatch = useAppDispatch()
@@ -45,10 +47,13 @@ export const StreamerPage = () => {
         if (tab === 'top-songs') dispatch(loadStreamerTopSongs({ login: login, period: period }))
     }, [period, tab])
 
-    const isDesktop = useMediaQuery('(min-width: 10000px)')
+    const isTablet = useMediaQuery('(min-width: 900px)')
+    const isDesktop = useMediaQuery('(min-width: 1400px)')
 
     if (streamer.status === 'received') {
-        return isDesktop ? <div>Desc</div> : <StreamerPageMobile tab={tab} period={period} streamer={streamer} />
+        if (isDesktop) return <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />
+        if (isTablet) return <StreamerPageTablet tab={tab} period={period} streamer={streamer} />
+        return <StreamerPageMobile tab={tab} period={period} streamer={streamer} />
     }
 
     return (

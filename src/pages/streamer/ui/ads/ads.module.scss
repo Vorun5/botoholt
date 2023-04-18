@@ -57,7 +57,7 @@
         }
 
         & span {
-            font-size: var(--primary-text-size);
+            font-size: calc(var(--primary-text-size) + 2px);
             margin-left: 10px;
         }
     }

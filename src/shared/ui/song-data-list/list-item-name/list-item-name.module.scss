@@ -1,5 +1,6 @@
 .item {
     &Name {
+        font-size: calc(var(--primary-text-size) + 2px);
         overflow-wrap: anywhere;
         color: var(--secondary-text-color);
     }

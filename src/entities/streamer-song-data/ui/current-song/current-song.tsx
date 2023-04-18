@@ -15,7 +15,10 @@ const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) 
     return (
         <div className={styles.songExtraInfo}>
             <img className={styles.songSenderEmote} src={peepoDj} alt="peepoDj" />
-            <span className={styles.songSender}>{song.sender}</span>
+            <span className={styles.songSender}>
+                {t('song-card.by')}
+                <span>{song.sender}</span>
+            </span>
             <span className={styles.songDuration}>
                 {`${Math.floor(song.durationInSeconds! / 60)}${t('minutes')} 
                 ${song.durationInSeconds! % 60}${t('seconds')}`}
@@ -24,7 +27,12 @@ const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) 
     )
 }
 
-export const CurrentSong = ({ center = true }: { center?: boolean }) => {
+interface CurrentSongProps {
+    className?: string
+    center?: boolean
+}
+
+export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
     const { t } = useTranslation()
     const song = useSelector(selectStreamerCurrentSong)
 
@@ -42,6 +50,7 @@ export const CurrentSong = ({ center = true }: { center?: boolean }) => {
                 width < 400 && styles.songSmall,
                 width < 600 && width >= 400 && styles.songCompact,
                 width >= 600 && styles.songNormal,
+                className && className,
             )}
         >
             <div className={styles.songFlex}>

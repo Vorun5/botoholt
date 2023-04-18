@@ -1,14 +1,16 @@
 import styles from './emote.module.scss'
 
-// change this if you transfer emotes to another place
-const BASE_EMOTE_PATH = '/src/features/easter-egg/ui/emotes/'
+interface EmoteProps {
+    src: string
+    alt: string
+}
 
-export const Emote = ({ emoteName }: { emoteName: string }) => {
+export const Emote = ({ src, alt }: EmoteProps) => {
     return (
         <img
             className={styles.emote}
-            src={`${BASE_EMOTE_PATH}${emoteName}`}
-            alt={` ${emoteName.replaceAll('.gif', '').replace('.png', '')} `}
+            src={src}
+            alt={alt}
         />
     )
 }

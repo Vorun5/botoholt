@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectStreamerQueue } from 'entities/streamer-song-data'
+import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
@@ -37,20 +38,20 @@ export const Queue = () => {
                 {queue.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
                 {queue.status === 'received' && queue.list.length === 0 && (
                     <ListStatusNotification
-                        emote="src/shared/assets/emotes/FeelsOkayMan.png"
+                        emote={FeelsOkayMan}
                         altEmote="FeelsOkayMan"
                         title={t('streamer-page.list-is-empty.queue')}
                         text={t('streamer-page.list-is-empty.first')}
                     />
                 )}
                 {queue.status === 'received' &&
-                    queueList.map((song, index) => (
+                    queueList.map((song) => (
                         <SongListItem
                             key={song.id}
                             songName={song.name}
                             songLink={song.link}
                             sender={song.sender}
-                            number={index + 1}
+                            number={queue.list.findIndex((i) => i === song) + 1}
                             extraInfo={`${Math.floor(song.durationInSeconds! / 60)}${t('minutes')} 
                                       ${song.durationInSeconds! % 60}${t('seconds')}`}
                         />

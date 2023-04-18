@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectStreamerHistorySongs } from 'entities/streamer-song-data'
+import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { capitalize } from 'shared/lib/helpers'
 import i18n from 'shared/lib/i18n/i18n'
 import { StreamerHistorySong } from 'shared/types'
@@ -40,14 +41,15 @@ export const History = () => {
                 {history.status === 'rejected' && <ErrorMessage>{history.error}</ErrorMessage>}
                 {history.status === 'received' && history.list.length === 0 && (
                     <ListStatusNotification
-                        emote="../src/shared/assets/emotes/FeelsOkayMan.png"
+                        emote={FeelsOkayMan}
                         altEmote="FeelsOkayMan"
                         title={t('streamer-page.list-is-empty.history')}
                         text={t('streamer-page.list-is-empty.fix')}
                     />
                 )}
                 {history.status === 'received' &&
-                    historyList.map((song, index) => {
+                    historyList.map((song) => {
+
                         const date = new Date(song.date)
                         const formatDateWeek = new Intl.DateTimeFormat(i18n.language, {
                             weekday: 'short',
@@ -57,14 +59,14 @@ export const History = () => {
                             minute: 'numeric',
                             hour12: false,
                         }).format(date)
-
+                     
                         return (
                             <SongListItem
                                 key={date.toString()}
                                 songName={song.name}
                                 songLink={song.link}
                                 sender={song.sender}
-                                number={index + 1}
+                                number={history.list.findIndex(i => i === song) + 1}
                                 extraInfo={`${formatDateTime} ${capitalize(formatDateWeek)}`}
                             />
                         )

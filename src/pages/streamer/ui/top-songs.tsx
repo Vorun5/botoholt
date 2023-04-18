@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectStreamerTopSongs } from 'entities/streamer-song-data'
+import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { ErrorMessage, Loading, SongDataList } from 'shared/ui'
 import { TopListItem } from 'shared/ui'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
@@ -31,20 +32,20 @@ export const TopSongs = () => {
                 {topSongs.status === 'rejected' && <ErrorMessage>{topSongs.error}</ErrorMessage>}
                 {topSongs.status === 'received' && topSongs.list.length === 0 && (
                     <ListStatusNotification
-                        emote="../../../src/shared/assets/emotes/INSANECAT.gif"
+                        emote={INSANECAT}
                         altEmote="INSANECAT"
                         title={t('streamer-page.list-is-empty.top-songs')}
                         text={t('streamer-page.list-is-empty.fix')}
                     />
                 )}
                 {topSongs.status === 'received' &&
-                    topSongsList.map((song, index) => (
+                    topSongsList.map((song) => (
                         <TopListItem
                             key={song.link}
                             extraInfo={song.amount.toString()}
                             link={song.link}
                             text={song.name}
-                            number={index + 1}
+                            number={topSongs.list.findIndex((i) => i === song) + 1}
                         />
                     ))}
             </SongDataList>
