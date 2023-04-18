@@ -1,0 +1,22 @@
+.expanded {
+    height: 500px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 100%;
+    text-align: center;
+}
+
+.streamersTitle {
+    display: block;
+    text-align: center;
+    font-size: var(--secondary-text-size);
+    color: var(--text-color);
+    font-weight: bold;
+    margin-top: 2rem;
+
+    @media (min-width: 1200px) {
+        margin-top: 3rem;
+    }
+}

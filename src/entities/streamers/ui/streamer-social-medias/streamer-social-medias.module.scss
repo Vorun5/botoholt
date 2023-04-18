@@ -1,0 +1,144 @@
+body[data-theme='light'] {
+    --sm-red: #ffd2d2;
+    --sm-blue: #d6e4ff;
+    --sm-purple: #dcc8ff;
+    --sm-orange: #ffe9cf;
+    --sm-black: #d5d5d5;
+    --sm-hover: var(--app-background-color);
+}
+
+body[data-theme='dark'] {
+    --sm-red: #331010;
+    --sm-purple: #36284c;
+    --sm-orange: #6a3b31;
+    --sm-blue: #27344a;
+    --sm-black: #393535;
+    --sm-hover: var(--app-background-color);
+}
+
+.black {
+    background-color: var(--sm-black);
+}
+
+.red {
+    background-color: var(--sm-red);
+}
+
+.purple {
+    background-color: var(--sm-purple);
+}
+
+.orange {
+    background-color: var(--sm-orange);
+}
+
+.blue {
+    background-color: var(--sm-blue);
+}
+
+.arrow {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: var(--primary-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    @media (min-width: 400px) {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.arrowIcon {
+    transition: margin 0.3s;
+}
+
+.arrowLeft:hover .arrowIcon {
+    margin-right: 6px;
+}
+
+.arrowRight:hover .arrowIcon {
+    margin-left: 6px;
+}
+
+.arrowDisable {
+    background-color: var(--neutral-text-color);
+    cursor: default;
+}
+
+.arrowDisable:hover .arrowIcon {
+    margin-right: 0;
+}
+
+.arrowDisable:hover .arrowIcon {
+    margin-left: 0;
+}
+
+.arrow__icon {
+    transition: margin 0.3s;
+    width: 10px;
+    height: 10px;
+}
+
+.tooltip {
+    background-color: var(--text-color);
+    color: var(--background-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.socialMedias {
+    overflow: hidden;
+    position: relative;
+    flex: auto;
+    height: 100%;
+
+    &Wrapper {
+        width: 100%;
+        max-width: 440px;
+        border-radius: 5px;
+        margin-top: 1rem;
+        height: 60px;
+        padding: 10px 5px;
+        background-color: var(--background-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media (min-width: 400px) {
+            height: 80px;
+            padding: 1rem 1rem;
+        }
+    }
+}
+
+.socialMedia {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+
+    @media (min-width: 400px) {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    &:hover {
+        background-color: var(--sm-hover);
+    }
+
+    &Wrapper {
+        transition: left 0.3s;
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+    }
+}

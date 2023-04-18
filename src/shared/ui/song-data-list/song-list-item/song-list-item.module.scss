@@ -1,0 +1,9 @@
+.sender {
+    color: var(--text-color);
+    display: block;
+    margin-top: 1rem;
+
+    & b {
+        font-weight: bold;
+    }
+}

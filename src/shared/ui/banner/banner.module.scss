@@ -1,0 +1,19 @@
+.banner {
+    padding: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    font-size: var(--secondary-text-size);
+    font-weight: bold;
+
+    &Primary {
+        border: 2px solid var(--primary-text-color);
+        background-color: var(--primary-add-background-color);
+        color: var(--primary-text-color);
+    }
+
+    &Secondary {
+        border: 2px solid var(--secondary-text-color);
+        background-color: var(--secondary-add-background-color);
+        color: var(--secondary-text-color);
+    }
+}

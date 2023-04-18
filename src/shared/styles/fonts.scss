@@ -1,0 +1,19 @@
+@font-face {
+    font-family: helveticaneuecyr;
+    font-style: normal;
+    font-weight: 400;
+    src: local('HelveticaNeueCyr'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecyr-roman.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecyr-roman.woff') format('woff'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecyr-roman.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: helveticaneuecyr;
+    font-style: normal;
+    font-weight: 500;
+    src: local('HelveticaNeueCyr'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecy-bold.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecyr-bold.woff') format('woff'),
+        url('../assets/fonts/helveticaneuecyr/helveticaneuecyr-bold.ttf') format('truetype');
+}

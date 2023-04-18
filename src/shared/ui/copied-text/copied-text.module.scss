@@ -1,0 +1,21 @@
+.copiedText {
+    display: flex;
+    // align-items: center;
+    font-size: var(--secondary-text-size);
+    color: var(--secondary-text-color);
+
+    &Icon {
+        margin-left: 5px;
+        width: calc(var(--secondary-text-size) + 1px);
+        height: calc(var(--secondary-text-size) + 1px);
+        fill: var(--secondary-text-color);
+    }
+
+    &Wrapper {
+        display: inline-block;
+        border: solid 2px;
+        border-radius: 5px;
+        border-color: var(--bth-color);
+        padding: 2px 10px;
+    }
+}

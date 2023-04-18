@@ -1,71 +1,73 @@
 {
-  "about-botoholt": "About Botoholt",
-  "about-botoholt-text-1": "Music is an integral part of streaming, and if your musical taste is good enough, then the audience will probably be interested in what kind of songs you play. Botoholt was created in order to shazam tracks and write their names in the chat. And if you use DonationAlerts as a platform for donations and ordering music, then the audience, thanks to this tool, will be able to find out the exact name of the next remix gachi, their place in the order queue, the time before their song, view the entire queue, compete for a place in the top DJs And so on!",
-  "about-botoholt-text-2": "Join, it's absolutely free. To connect, you just need to write  ",
-  "about-botoholt-text-3": " in the discord!",
-  "special-thanks": "Special thanks",
-  "bigs-and-pigs": "Bigs and Pigs",
-  "loading": "Loading...",
-  "header": {
-    "change-theme": "Change theme"
-  },
-  "creators": {
-    "create-with-love-by": "Create with 💖 by "
-  },
-  "top-streamers": "Top streamers",
-  "and": " and ",
-  "thousands": "K ",
-  "minutes": "m",
-  "seconds": "s",
-  "streamer-not-found": "{{login}} is not connected to Botoholt",
-  "page-not-found": "Page not found",
-  "song-card": {
-    "playing": "Now playing:",
-    "not-playing": "Songs on pause. Last song:",
-    "by": "Order from: ",
-    "empty": "Songs on pause!"
-  },
-  "streamer-card": {
-    "title": "Channel Information",
-    "online": "Online now",
-    "offline": "Streamer offline",
-    "followers": " followers"
-  },
-  "support-streamer": "Want to order a song or support a streamer?",
-  "connect-bot": "Want to add a bot to your stream?",
-  "support-streamer-bth": "Donate",
-  "connect-bot-bth": "Connect the bot",
-  "connect-bot-text-1": "If you want to connect Botoholt, then just write to ",
-  "connect-bot-text-2": " in the discord!",
-  "support": "Support",
-  "search": "Search",
-  "streamer-page": {
-    "not-have-songs": "{{login}} has no ordered songs yet. But he has everything ahead!",
-    "filter": "Filter",
-    "list-is-empty": {
-      "queue": "The song queue is empty. ",
-      "history": "The song history is empty. ",
-      "top-songs": "Top songs for this period is empty. ",
-      "top-djs": "Top DJs for this period is empty. ",
-      "fix": "But you can fix it!",
-      "first": "Be the first to order a song!"
+    "copied-to-clipboard": "Copied to clipboard",
+    "failed-to-copy": "Failed to copy to clipboard💀",
+    "about-botoholt": "About Botoholt",
+    "about-botoholt-text-1": "Music is an integral part of streaming, and if your musical taste is good enough, then the audience will probably be interested in what kind of songs you play. Botoholt was created in order to shazam tracks and write their names in the chat. And if you use DonationAlerts as a platform for donations and ordering music, then the audience, thanks to this tool, will be able to find out the exact name of the next remix gachi, their place in the order queue, the time before their song, view the entire queue, compete for a place in the top DJs And so on!",
+    "about-botoholt-text-2": "Join, it's absolutely free. To connect, you just need to write  ",
+    "about-botoholt-text-3": " in the discord!",
+    "special-thanks": "Special thanks",
+    "bigs-and-pigs": "Bigs and Pigs",
+    "loading": "Loading...",
+    "header": {
+        "change-theme": "Change theme"
     },
-    "tab-titles": {
-      "top-songs": "List of frequently ordered songs",
-      "top-djs": "List of DJs",
-      "queue": "Song queue",
-      "history": "Song history"
+    "creators": {
+        "create-with-love-by": "Created with 💖 by "
     },
-    "tabs": {
-      "queue": "Queue",
-      "history": "History",
-      "top-djs": "Top DJs",
-      "top-songs": "Top songs",
-      "filters": {
-        "week": "Week",
-        "month": "Month",
-        "all-time": "All time"
-      }
+    "top-streamers": "Top streamers",
+    "and": " and ",
+    "thousands": "K ",
+    "minutes": "m",
+    "seconds": "s",
+    "streamer-not-found": "{{login}} is not connected to Botoholt",
+    "page-not-found": "Page not found",
+    "song-card": {
+        "playing": "Now playing:",
+        "not-playing": "Songs on pause. Last song:",
+        "by": "Order from: ",
+        "empty": "Songs on pause!"
+    },
+    "streamer-card": {
+        "title": "Channel Information",
+        "online": "Online now",
+        "offline": "Streamer offline",
+        "followers": " followers"
+    },
+    "support-streamer": "Want to order a song or support a streamer?",
+    "connect-bot": "Want to add a bot to your stream?",
+    "support-streamer-bth": "Donate",
+    "connect-bot-bth": "Connect the bot",
+    "connect-bot-text-1": "If you want to connect Botoholt, then just write to ",
+    "connect-bot-text-2": " in the discord!",
+    "support": "Support",
+    "search": "Search",
+    "streamer-page": {
+        "not-have-songs": "{{login}} has no ordered songs yet. But he has everything ahead!",
+        "filter": "Filter",
+        "list-is-empty": {
+            "queue": "The song queue is empty. ",
+            "history": "The song history is empty. ",
+            "top-songs": "Top songs for this period is empty. ",
+            "top-djs": "Top DJs for this period is empty. ",
+            "fix": "But you can fix it!",
+            "first": "Be the first to order a song!"
+        },
+        "tab-titles": {
+            "top-songs": "List of frequently ordered songs",
+            "top-djs": "List of DJs",
+            "queue": "Song queue",
+            "history": "Song history"
+        },
+        "tabs": {
+            "queue": "Queue",
+            "history": "History",
+            "top-djs": "Top DJs",
+            "top-songs": "Top songs",
+            "filters": {
+                "week": "Week",
+                "month": "Month",
+                "all-time": "All time"
+            }
+        }
     }
-  }
 }

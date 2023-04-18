@@ -1,0 +1,29 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &Compact {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    &Title {
+        color: var(--text-color);
+        font-weight: bold;
+    }
+
+    &Tabs {
+        & button {
+            margin-bottom: 10px;
+            margin-right: 1rem;
+        }
+    }
+
+    &Periods {
+        & button {
+            margin-bottom: 10px;
+            margin-left: 1rem;
+        }
+    }
+}

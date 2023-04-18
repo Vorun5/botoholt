@@ -1,0 +1,108 @@
+.song {
+    text-align: left;
+    background-color: var(--accent-background-color);
+    border-radius: 5px;
+    color: var(--text-color);
+
+    &Flex {
+        display: flex;
+        align-items: center;
+    }
+
+    &Center .songFlex {
+        justify-content: center;
+    }
+
+    &Small {
+        padding: 1rem;
+
+        & .songEmote {
+            width: 80px;
+            height: 80px;
+        }
+
+        & .songEmote {
+            margin-right: 1rem;
+        }
+    }
+
+    &Compact {
+        padding: 1rem 2rem;
+
+        & .songEmote {
+            width: 100px;
+            height: 100px;
+        }
+
+        & .songEmote {
+            margin-right: 1rem;
+        }
+    }
+
+    &Normal {
+        padding: 1rem 2rem;
+
+        & .songEmote {
+            width: 120px;
+            height: 120px;
+        }
+
+        & .songEmote {
+            margin-right: 2rem;
+        }
+    }
+
+    &Empty {
+        font-size: var(--secondary-text-size);
+        font-weight: bold;
+    }
+
+    &Status {
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    &Emote {
+        margin-right: 1rem;
+    }
+
+    &Name {
+        height: 100%;
+        line-height: 1.2;
+        display: block;
+        font-weight: bold;
+        font-size: var(--secondary-text-size);
+        color: var(--primary-text-color);
+
+        &:hover {
+            text-decoration-line: underline;
+        }
+    }
+
+    &ExtraInfo {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    &Sender {
+        white-space: pre-wrap;
+        line-height: 1.2;
+        width: 100%;
+        margin: 0 20px 0 10px;
+
+        & span {
+            font-weight: bold;
+        }
+
+        &Emote {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    }
+
+    &Duration {
+        white-space: nowrap;
+    }
+}

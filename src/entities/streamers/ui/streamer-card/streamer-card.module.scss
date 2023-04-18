@@ -1,0 +1,141 @@
+.streamer {
+    margin-bottom: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    display: inline-block;
+    width: 280px;
+    height: 100%;
+    color: var(--text-color);
+
+    &Wrapper {
+        padding: 2rem 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+        background-color: var(--background-color);
+    }
+
+    &Title {
+        font-weight: bold;
+        font-size: var(--secondary-text-size);
+        margin-bottom: 2rem;
+    }
+
+    @media (min-width: 360px) {
+        width: 303px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 360px;
+    }
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 34px;
+    justify-content: space-between;
+
+    &Avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    &Main {
+        width: calc(280px - 80px - 15px);
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    &Name {
+        display: flex;
+        align-items: center;
+        font-size: var(--secondary-text-size);
+        font-weight: bold;
+        margin-bottom: 6px;
+        word-break: break-all;
+    }
+
+    &Followers {
+        color: var(--neutral-text-color);
+    }
+
+    @media (min-width: 360px) {
+        &Avatar {
+            width: 109px;
+            height: 109px;
+        }
+
+        &Main {
+            width: calc(303px - 109px - 24px);
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &Main {
+            width: calc(360px - 109px - 24px);
+        }
+    }
+}
+
+.description {
+    line-height: 1.3;
+    display: block;
+    text-align: left;
+    overflow-wrap: break-word;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+.status {
+    text-align: left;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        border-radius: 0.2rem;
+        height: 0.1rem;
+        background-color: var(--neutral-text-color);
+        margin: 2rem 0;
+    }
+
+    & span {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+    }
+
+    &Online::before {
+        background-color: var(--online-status-color);
+    }
+
+    &Offline::before {
+        background-color: var(--offline-status-color);
+    }
+}
+
+.category {
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+    color: var(--neutral-text-color);
+}

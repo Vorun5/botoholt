@@ -1,0 +1,50 @@
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-style: solid;
+    position: relative;
+
+    &Child {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.circleIndicator::before {
+    content: '';
+    display: block;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.online {
+    outline-color: var(--online-status-color);
+
+    &::before {
+        background-color: var(--online-status-color);
+    }
+}
+
+.offline {
+    outline-color: var(--offline-status-color);
+
+    &::before {
+        background-color: var(--offline-status-color);
+    }
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}

@@ -1,0 +1,55 @@
+body {
+    --online-status-color: #eb0400;
+    --offline-status-color: #444444;
+    --primary-text-color: #4c8cff;
+    --secondary-text-color: #ff810d;
+    --hover-bth-text-color: #ffffff;
+    --primary-bth-color: #4c8cff;
+    --secondary-bth-color: #273c61;
+    --tertiary-bth-color: #57340d;
+    --secondary-hover-bth-color: #4c8cff;
+    --tertiary-hover-bth-color: #f58307;
+    --primary-text-size: 13px;
+    --secondary-text-size: 16px;
+}
+
+body[data-theme='light'] {
+    --bth-color: #e0e0e0;
+    --app-background-color: #eaeaea;
+    --background-color: #ffffff;
+    --accent-background-color: #edf2ff;
+    --theme-switcher-color: #8a8a8a;
+    --text-color: #000000;
+    --neutral-text-color: #a0a0a0;
+    --primary-add-background-color: #edf2ff;
+    --secondary-add-background-color: #ffefe5;
+    --scroll-color: rgb(189, 189, 189);
+}
+
+body[data-theme='dark'] {
+    --primary-add-background-color: #172132;
+    --secondary-add-background-color: #322117;
+    --bth-color: #323237;
+    --app-background-color: #0f0f10;
+    --background-color: #1f1f23;
+    --accent-background-color: #18181b;
+    --theme-switcher-color: #ffffff;
+    --text-color: #ffffff;
+    --neutral-text-color: #6f6f75;
+    --scroll-color: rgb(40, 40, 40);
+}
+
+@media (min-width: 360px) {
+    body {
+        --primary-text-size: 14px;
+        --secondary-text-size: 20px;
+    }
+}
+
+@media (min-width: 1700px) {
+    body {
+        --primary-text-size: 16px;
+        --secondary-text-size: 24px;
+    }
+}
+

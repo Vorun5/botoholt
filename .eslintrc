@@ -1,0 +1,15 @@
+{
+    "extends": ["@feature-sliced/eslint-config/rules/import-order"],
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            }
+        }
+    },
+    "rules": {
+        // feature-sliced/import-order
+        "import/order": "warn" // ~ 1,
+    }
+}
