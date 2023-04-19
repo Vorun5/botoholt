@@ -1,0 +1,14 @@
+.about {
+    display: flex;
+    column-gap: 24px;
+
+    & div {
+        flex-grow: 1
+    }
+
+    &Compact {
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 1rem;
+    }
+}

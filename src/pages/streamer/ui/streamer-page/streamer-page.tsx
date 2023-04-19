@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useNav } from 'pages/streamer/lib'
-import { Footer } from 'widgets/footer'
+import { Footer, Header } from 'widgets'
 import {
     loadStreamer,
     loadStreamerHistorySongs,
@@ -13,7 +13,7 @@ import {
 } from 'entities/streamer-song-data'
 import { useInterval, useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
-import { ErrorMessage, Loading, PageContent, PageContentExpanded } from 'shared/ui'
+import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
 import { StreamerPageTablet } from './tablet/streamer-page-tablet'
@@ -47,24 +47,27 @@ export const StreamerPage = () => {
         if (tab === 'top-songs') dispatch(loadStreamerTopSongs({ login: login, period: period }))
     }, [period, tab])
 
-    const isTablet = useMediaQuery('(min-width: 900px)')
     const isDesktop = useMediaQuery('(min-width: 1400px)')
-
-    if (streamer.status === 'received') {
-        if (isDesktop) return <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />
-        if (isTablet) return <StreamerPageTablet tab={tab} period={period} streamer={streamer} />
-        return <StreamerPageMobile tab={tab} period={period} streamer={streamer} />
-    }
+    const isTablet = useMediaQuery('(min-width: 900px)') && !isDesktop
+    const isMobile = !isDesktop && !isTablet
 
     return (
-        <>
+        <Page>
+            <Header />
             <PageContent>
                 <PageContentExpanded>
                     {streamer.status === 'loading' && <Loading />}
                     {streamer.status === 'rejected' && <ErrorMessage>{streamer.error}</ErrorMessage>}
                 </PageContentExpanded>
+                {streamer.status === 'received' && (
+                    <>
+                        {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
+                        {isTablet && <StreamerPageTablet tab={tab} period={period} streamer={streamer} />}
+                        {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
+                    </>
+                )}
             </PageContent>
             <Footer />
-        </>
+        </Page>
     )
 }

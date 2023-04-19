@@ -69,5 +69,22 @@
                 "all-time": "All time"
             }
         }
+    },
+    "login-page": {
+        "welcome": "Welcome",
+        "login": {
+            "title": "Personal account",
+            "description": "To enter your personal Botoholt account you need to pass authorization",
+            "bth": "Login with Twitch"
+        }
+    },
+    "about": {
+        "botoholt": "What is Botoholt?",
+        "botoholt-text": "Botoholt is a handy bot for streamers that allows viewers to shazam tracks and more",
+        "connect": "How to connect a bot?",
+        "connect-text": "To connect and use our bot in the future, you just need to log in through Twitch",
+        "support": "Support the project",
+        "support-text": "If you want to support the authors of the project with a coin, then you can do ",
+        "support-link-text": "it at this link"
     }
 }

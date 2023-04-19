@@ -1,0 +1,189 @@
+.page {
+    &Wrapper {
+        z-index: 0;
+        position: relative;
+        min-height: 100vh;
+        background-color: var(--bh-background-color);
+    }
+
+    &Container {
+        @media (min-width: 420px) {
+            margin: 0 20px;
+        }
+
+        @media (min-width: 440px) {
+            margin: 0 30px;
+        }
+
+        @media (min-width: 830px) {
+            margin: 0 50px;
+        }
+
+        @media (min-width: 1700px) {
+            max-width: 1540px;
+            margin: 0 auto;
+        }
+    }
+
+    &Background {
+        z-index: -1;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 414px;
+        background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bh-background-color) 89.64%),
+            url('/src/shared/assets/images/background.png');
+        opacity: 0.2;
+        background-size: 100% 414px;
+    }
+
+    &Title {
+        z-index: 2;
+        padding: 30px 0;
+        text-align: center;
+        font-size: var(--bh-big-title-text-size);
+        color: var(--bh-text-color);
+
+        @media (min-width: 600px) {
+            padding: 40px 0;
+        }
+    }
+
+    &About {
+        padding: 2rem 0 50px 0;
+
+        @media (min-width: 1200px) {
+            padding: 2rem 0 150px 0; 
+        }
+    }
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border: 1px solid var(--bh-outside-color);
+    background-color: var(--bh-primary-background-color);
+
+    &Emote {
+        width: 50px;
+        height: 50px;
+        margin-left: 20px;
+    }
+
+    &Content {
+        max-width: 410px;
+    }
+
+    &Title {
+        display: flex;
+        align-items: center;
+        color: var(--bh-text-color);
+        font-size: var(--bh-title-text-size);
+    }
+
+    &Description {
+        display: block;
+        padding: 20px 0;
+        color: var(--bh-description-text-color);
+        font-size: var(--bh-large-text-size);
+        line-height: 140%;
+    }
+
+    &Bth {
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        background-color: white;
+        border: 1px solid var(--bh-background-color);
+        border-radius: var(--bh-bth-border-radius);
+
+        &Icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+        }
+
+        &Text {
+            font-size: var(--bh-big-text-size);
+            color: #673ab7;
+            font-weight: bold;
+        }
+    }
+
+    @media (min-width: 420px) {
+        padding: 20px;
+        border: 1px solid var(--bh-outside-color);
+        border-radius: var(--bh-card-border-radius);
+        background-color: var(--bh-primary-background-color);
+    }
+
+    @media (min-width: 440px) {
+        padding: 2rem;
+    }
+
+    @media (min-width: 550px) {
+        &Title {
+            font-size: var(--bh-big-title-text-size);
+        }
+    }
+
+    @media (min-width: 767px) {
+        &Emote {
+            width: 200px;
+            height: 200px;
+            margin: 47px 0;
+        }
+
+        &Content {
+            margin-left: 50px;
+        }
+    }
+
+    @media (min-width: 800px) {
+        &Emote {
+            width: 200px;
+            height: 200px;
+            margin: 47px 0;
+        }
+
+        &Content {
+            max-width: 410px;
+            margin: 0 0px 0 50px;
+        }
+    }
+
+    @media (min-width: 982px) {
+        &Emote {
+            width: 280px;
+            height: 280px;
+            margin: 47px 0;
+        }
+
+        &Content {
+            max-width: 410px;
+            margin: 0 0px 0 80px;
+        }
+    }
+
+    @media (min-width: 1300px) {
+        &Emote {
+            width: 320px;
+            height: 320px;
+            margin: 77px 0;
+        }
+
+        &Content {
+            max-width: 410px;
+            margin: 0 180px 0 120px;
+        }
+    }
+
+    @media (min-width: 1700px) {
+        max-width: 1540px;
+        margin: 0 auto;
+    }
+}

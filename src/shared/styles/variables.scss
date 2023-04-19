@@ -11,6 +11,35 @@ body {
     --tertiary-hover-bth-color: #f58307;
     --primary-text-size: 13px;
     --secondary-text-size: 16px;
+
+    --bh-background-color: #0e0e10;
+    --bh-primary-background-color: #141415;
+    --bh-outside-color: rgb(255, 255, 255, 0.1);
+    --bh-text-color: #ffffff;
+    --bh-description-text-color: rgb(255, 255, 255, 0.4);
+
+    --bh-card-border-radius: 32px;
+    --bh-bth-border-radius: 100px;
+
+    --bh-big-title-text-size: 32px;
+    --bh-title-text-size: 26px;
+    --bh-small-title-text-size: 24px;
+    --bh-large-text-size: 20px;
+    --bh-big-text-size: 18px;
+    --bh-text-size: 16px;
+    --bh-small-text-size: 14px;
+    @media (min-width: 440px) {
+        --bh-big-title-text-size: 38px;
+        --bh-title-text-size: 30px;
+    }
+    @media (min-width: 900px) {
+        --bh-big-title-text-size: 40px;
+        --bh-title-text-size: 32px;
+    }
+    @media (min-width: 1700px) {
+        --bh-big-title-text-size: 48px;
+        --bh-title-text-size: 34px;
+    }
 }
 
 body[data-theme='light'] {
@@ -24,9 +53,21 @@ body[data-theme='light'] {
     --primary-add-background-color: #edf2ff;
     --secondary-add-background-color: #ffefe5;
     --scroll-color: rgb(189, 189, 189);
+
+    --bh-background-color: #eaeaea;
+    --bh-primary-background-color: #ffffff;
+    --bh-outside-color: rbg(0, 0, 0, 0.1);
+    --bh-text-color: #000000;
+    --bh-description-text-color: rgb(0, 0, 0, 0.4);
 }
 
 body[data-theme='dark'] {
+    --bh-background-color: #0e0e10;
+    --bh-primary-background-color: #141415;
+    --bh-outside-color: rgb(255, 255, 255, 0.1);
+    --bh-text-color: #ffffff;
+    --bh-description-text-color: rgb(255, 255, 255, 0.4);
+ 
     --primary-add-background-color: #172132;
     --secondary-add-background-color: #322117;
     --bth-color: #323237;
@@ -52,4 +93,3 @@ body[data-theme='dark'] {
         --secondary-text-size: 24px;
     }
 }
-

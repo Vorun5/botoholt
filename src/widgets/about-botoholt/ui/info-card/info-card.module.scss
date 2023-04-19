@@ -1,0 +1,32 @@
+.card {
+    padding: 38px;
+    border: 1px solid var(--bh-outside-color);
+    border-radius: var(--bh-card-border-radius);
+    background-color: var(--bh-primary-background-color);
+
+    &Mobile {
+        border-radius: 0;
+        padding: 24px;
+    }
+
+    &Title {
+        color: var(--bh-text-color);
+        font-size: var(--bh-title-text-size);
+        font-weight: bold;
+        margin: 16px 0;
+    }
+
+    &Content {
+        line-height: 130%;
+        margin-bottom: 1rem;
+        color: var(--bh-text-color);
+        font-size: var(--bh-large-text-size);
+
+        & a {
+            display: inline-block;
+            color: var(--bh-text-color);
+            font-size: var(--bh-big-text-size);
+            border-bottom: 1px solid var(--bh-text-color);
+        }
+    }
+}
