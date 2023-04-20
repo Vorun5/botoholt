@@ -12,7 +12,7 @@
         "change-theme": "Change theme"
     },
     "creators": {
-        "create-with-love-by": "Created with 💖 by "
+        "create-with-love-by": "Created with love by "
     },
     "top-streamers": "Top streamers",
     "and": " and ",
@@ -86,5 +86,18 @@
         "support": "Support the project",
         "support-text": "If you want to support the authors of the project with a coin, then you can do ",
         "support-link-text": "it at this link"
+    },
+    "admin-page": {
+        "nav": {
+            "menu": "Menu",
+            "dashboard": "Dashboard",
+            "commands": "Commands",
+            "song-queue": "Song queue",
+            "integrations": "Integrations",
+            "setting": "Settings",
+            "language": "Change language",
+            "support": "Customer support",
+            "sign-out": "Sign out"
+        }
     }
 }

@@ -1,6 +1,6 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AboutBotoholt } from 'widgets'
-import { useTheme } from 'features'
 import pepeD from 'shared/assets/emotes/pepeD.gif'
 import { TwitchIcon } from 'shared/assets/icons/social'
 import { useMediaQuery } from 'shared/lib/hooks'
@@ -9,7 +9,10 @@ import styles from './login-page.module.scss'
 const Emote = () => <img draggable={false} src={pepeD} alt="pepeD" className={styles.loginEmote} />
 
 export const LoginPage = () => {
-    useTheme()
+    useEffect(() => {
+        window.document.title = 'Login'
+    }, [])
+    
     const { t } = useTranslation()
     const isDesktop = useMediaQuery('(min-width: 767px)')
 

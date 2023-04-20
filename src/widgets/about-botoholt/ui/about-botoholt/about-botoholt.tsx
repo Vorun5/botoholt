@@ -14,8 +14,6 @@ export const AboutBotoholt = () => {
     const { t } = useTranslation()
     const isMobile = !useMediaQuery('(min-width: 420px)')
 
-    console.log(isMobile)
-
     return (
         <div ref={ref} className={clsx(styles.about, width < 1000 && styles.aboutCompact)}>
             <InfoCard mobile={isMobile} icon={<Note />} title={t('about.botoholt')}>

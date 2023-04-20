@@ -15,7 +15,7 @@ export const Streamers = () => {
     return (
         <div className={styles.streamers}>
             {viewSteamers.map((streamer) => (
-                <Link key={streamer.name} to={streamer.name.toLocaleLowerCase()}>
+                <Link key={streamer.name} to={`/${streamer.name.toLocaleLowerCase()}`}>
                     <Avatar
                         image={streamer.image}
                         alt={streamer.name}

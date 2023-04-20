@@ -1,5 +1,5 @@
 body {
-    --online-status-color: #eb0400;
+    --online-status-color: #EB0400;
     --offline-status-color: #444444;
     --primary-text-color: #4c8cff;
     --secondary-text-color: #ff810d;
@@ -56,7 +56,7 @@ body[data-theme='light'] {
 
     --bh-background-color: #eaeaea;
     --bh-primary-background-color: #ffffff;
-    --bh-outside-color: rbg(0, 0, 0, 0.1);
+    --bh-outside-color: rgba(0, 0, 0, 0.2);;
     --bh-text-color: #000000;
     --bh-description-text-color: rgb(0, 0, 0, 0.4);
 }

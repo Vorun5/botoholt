@@ -4,7 +4,7 @@ import { ReactComponent as MoonIcon } from '../icons/moon.svg'
 import { ReactComponent as SunIcon } from '../icons/sun.svg'
 import styles from './theme-switcher.module.scss'
 
-export const ThemeSwitcher = () => {
+export const ThemeSwitcher = ({ short = false }: { short?: boolean }) => {
     const { t } = useTranslation()
     const [theme, handleChange] = useTheme()
 
@@ -19,7 +19,7 @@ export const ThemeSwitcher = () => {
             className={styles.themeSwitcher}
             onClick={() => handleChange(theme === 'dark' ? 'light' : 'dark')}
         >
-            <span className={styles.themeLabel}>{t('header.change-theme')}</span>
+            {!short && <span className={styles.themeLabel}>{t('header.change-theme')}</span>}
             {theme === 'dark' ? <MoonIcon {...iconSize} /> : <SunIcon {...iconSize} />}
         </button>
     )

@@ -1,0 +1,48 @@
+.page {
+    &Wrapper {
+        display: flex;
+        min-height: 100vh;
+        min-width: calc(100vw - 10px);
+        background-color: var(--bh-background-color);
+    }
+
+    &Content {
+        padding: 0px 40px;
+        width: 100%;
+    }
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.header {
+    width: 100%;
+    margin: 24px 0;
+
+    &Title {
+        font-size: var(--bh-big-title-text-size);
+        color: var(--bh-text-color);
+
+        & span {
+            font-size: var(--bh-big-title-text-size);
+            color: var(--bh-description-text-color);
+        }
+    }
+}
+
+.settings {
+    &ThemeSwitcher {
+        overflow: hidden;
+        width: 50px;
+        height: 50px;
+        border: 1px solid var(--bh-outside-color);
+        border-radius: 100px;
+        & button {
+            width: 100%;
+            height: 100%;
+            padding: calc((50px - 24px) / 2);
+        }
+    }
+}
