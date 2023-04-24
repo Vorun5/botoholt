@@ -1,5 +1,6 @@
 .ads {
     display: flex;
+
     & div {
         height: 100%;
     }
@@ -47,18 +48,28 @@
     }
 
     &Bth {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &Icon {
-            width: 20px;
-            height: 20px;
-        }
+        height: 60px;
+        padding: 0 16px;
+        border-radius: 5px;
 
         & span {
-            font-size: calc(var(--primary-text-size) + 2px);
-            margin-left: 10px;
+            color: white;
+        }
+    }
+
+    &:nth-child(1) &Bth {
+        background-color: #a53c01;
+
+        &:hover {
+            background-color: #c75412;
+        }
+    }
+
+    &:nth-child(2) .bannerBth {
+        background-color: #4759FF;
+ 
+        &:hover {
+            background-color: #4656e9;
         }
     }
 }

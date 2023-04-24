@@ -10,7 +10,7 @@ import { ReactComponent as LanguageIcon } from 'shared/assets/icons/language.svg
 import { ReactComponent as LogoIcon } from 'shared/assets/icons/logo.svg'
 import { ReactComponent as LogoutIcon } from 'shared/assets/icons/logout.svg'
 import { ReactComponent as SongQueueIcon } from 'shared/assets/icons/song-queue.svg'
-import { Avatar, CreatedWithLove } from 'shared/ui'
+import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {
@@ -19,12 +19,12 @@ interface TabProps {
     icon: ReactNode
 }
 
-const Tab = ({ onClick = () => {}, children, icon }: TabProps) => {
+const Tab = ({ onClick, children, icon }: TabProps) => {
     return (
-        <button type="button" onClick={onClick} className={styles.tab}>
-            <div className={styles.tabIcon}>{icon}</div>
-            <span className={styles.tabText}>{children}</span>
-        </button>
+        <Button style='transparent' width='100%' height='58px' alignment="left" onClick={onClick}>
+            <ButtonIcon>{icon}</ButtonIcon>
+            <ButtonText>{children}</ButtonText>
+        </Button>
     )
 }
 

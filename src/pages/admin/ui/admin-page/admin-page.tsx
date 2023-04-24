@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ThemeSwitcher } from 'features/index'
+import { Button, ButtonText, Toggle } from 'shared/ui'
 import { NavigationBar } from '../navigation-bar/navigation-bar'
 import styles from './admin-page.module.scss'
 
@@ -8,6 +9,8 @@ export const AdminPage = () => {
     useEffect(() => {
         window.document.title = 'Admin'
     }, [])
+
+    const [checked, setChecked] = useState(false)
 
     return (
         <div className={styles.pageWrapper}>
@@ -23,6 +26,43 @@ export const AdminPage = () => {
                         </div>
                     </div>
                 </header>
+                <div className={styles.test}>
+                    <Button border style="default">
+                        <ButtonText>default</ButtonText>
+                    </Button>
+                    <br />
+                    <Button border style="blue">
+                        <ButtonText>fill blue</ButtonText>
+                    </Button>
+                    <br />
+                    <Button padding="big" style="fill-blue">
+                        <ButtonText>fill blue</ButtonText>
+                    </Button>
+                    <br />
+                    <Button border padding="small" style="transparent">
+                        <ButtonText>transparent</ButtonText>
+                    </Button>
+                    <br />
+                    <Button border style="green" borderRadius="5px">
+                        <ButtonText>green</ButtonText>
+                    </Button>
+                    <br />
+                    <Button width="300px" height="70px" alignment="left" border style="fill-red">
+                        <ButtonText>fill red</ButtonText>
+                    </Button>
+                    <br />
+                    <Button width="300px" height="70px" alignment="right" border style="red">
+                        <ButtonText>red</ButtonText>
+                    </Button>
+                    <br />
+
+                    <Toggle
+                        checked={checked}
+                        onChange={() => {
+                            setChecked(!checked)
+                        }}
+                    />
+                </div>
             </div>
         </div>
     )

@@ -1,31 +1,192 @@
 .bth {
-    padding: 1rem;
-    width: 100%;
-    border-radius: 5px;
-    text-align: center;
-    transition: all 0.3s;
-    font-size: var(--secondary-text-size);
-    font-weight: bold;
-    
-    &:hover {
-        color: #ffffff;
+    display: flex;
+    align-items: center;
+    border-radius: var(--bh-bth-border-radius);
+    transition: background-color 0.1s;
+
+    &Border {
+        border: 1px solid var(--bh-outside-color);
     }
 
-    &Primary {
-        background-color: var(--secondary-bth-color);
-        color: var(--primary-text-color);
+    &Text {
+        line-height: 1;
+        color: var(--bh-text-color);
+        font-size: var(--bh-text-size);
+        font-weight: bold;
+        transition: color 0.1s;
+    }
 
-        &:hover {
-            background-color: var(--secondary-hover-bth-color);
+    &Icon {
+        color: var(--bh-text-color);
+        transition: color 0.1s;
+
+        &Left {
+            margin-left: 12px;
+        }
+
+        &Right {
+            margin-right: 12px;
         }
     }
 
-    &Secondary {
-        background-color: var(--tertiary-bth-color);
-        color: var(--secondary-text-color);
+    &Transparent {
+        &:hover {
+            background-color: var(--bh-blue);
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+    }
+
+    &Default {
+        background-color: var(--bh-outside-color);
 
         &:hover {
-            background-color: var(--tertiary-hover-bth-color);
+            background-color: var(--bh-blue);
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+    }
+
+    &Blue {
+        background-color: var(--bh-blue-008);
+        border-color: var(--bh-blue-06);
+
+        &:hover {
+            background-color: blue;
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+
+        .bthText {
+            color: var(--bh-text-color);
+        }
+
+        .bthIcon {
+            color: var(--bh-text-color);
+        }
+    }
+
+    &FillBlue {
+        background-color: var(--bh-blue);
+        border-color: var(--bh-blue-06);
+
+        &:hover {
+            background-color: blue;
+        }
+
+        .bthText {
+            color: white;
+        }
+
+        .bthIcon {
+            color: white;
+        }
+    }
+
+    &Green {
+        background-color: var(--bh-green-008);
+        border-color: var(--bh-green-06);
+
+        &:hover {
+            background-color: var(--bh-green-06);
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+
+        .bthText {
+            color: var(--bh-green);
+        }
+
+        .bthIcon {
+            color: var(--bh-green);
+        }
+    }
+
+    &FillRed {
+        background-color: var(--bh-red);
+        border-color: var(--bh-outside-color);
+
+        &:hover {
+            background-color: red;
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+
+        .bthText {
+            color: white;
+        }
+
+        .bthIcon {
+            color: white;
+        }
+    }
+
+    &Red {
+        background-color: var(--bh-red-008);
+        border-color: var(--bh-red-06);
+
+        &:hover {
+            background-color: var(--bh-red-06);
+
+            .bthText {
+                color: white;
+            }
+
+            .bthIcon {
+                color: white;
+            }
+        }
+
+        .bthText {
+            color: var(--bh-red);
+        }
+
+        .bthIcon {
+            color: var(--bh-red);
+        }
+    }
+
+    &Padding {
+        &Big {
+            padding: 16px 28px;
+        }
+
+        &Normal {
+            padding: 12px 24px;
+        }
+
+        &Small {
+            padding: 10px 20px;
         }
     }
 }

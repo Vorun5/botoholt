@@ -7,7 +7,7 @@ import { ReactComponent as DA } from 'shared/assets/icons/da.svg'
 import { ReactComponent as Star } from 'shared/assets/icons/star.svg'
 import { useElementSize } from 'shared/lib/hooks'
 import { useToast } from 'shared/lib/hooks'
-import { Banner, Button, CopiedText } from 'shared/ui'
+import { Banner, Button, ButtonIcon, ButtonText, CopiedText } from 'shared/ui'
 import styles from './ads.module.scss'
 
 interface AdsProps {
@@ -31,11 +31,11 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                     <img className={styles.bannerEmote} src={Money} alt="Money" />
                     <span className={styles.bannerText}>{t('support-streamer')}</span>
                 </div>
-                <Button style="secondary" onClick={() => window.open(donationAlertsLink)}>
-                    <div className={styles.bannerBth}>
-                        <DA className={styles.bannerBthIcon} />
-                        <span>{t('support-streamer-bth')}</span>
-                    </div>
+                <Button className={styles.bannerBth} onClick={() => window.open(donationAlertsLink)}>
+                    <ButtonIcon>
+                        <DA height="19px" width="17px" />
+                    </ButtonIcon>
+                    <ButtonText>{t('support-streamer-bth')}</ButtonText>
                 </Button>
             </Banner>
             <Banner className={styles.banner}>
@@ -44,6 +44,7 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                     <span className={styles.bannerText}>{t('connect-bot')}</span>
                 </div>
                 <Button
+                    className={styles.bannerBth}
                     onClick={() => {
                         if (toastTools) {
                             toastTools.addToast(
@@ -62,10 +63,10 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                         }
                     }}
                 >
-                    <div className={styles.bannerBth}>
-                        <Star className={styles.bannerBthIcon} />
-                        <span>{t('connect-bot-bth')}</span>
-                    </div>
+                    <ButtonIcon>
+                        <Star height="18px" width="20px" />
+                    </ButtonIcon>
+                    <ButtonText>{t('connect-bot-bth')}</ButtonText>
                 </Button>
             </Banner>
         </div>

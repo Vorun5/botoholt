@@ -17,7 +17,8 @@
     }
 
     &Tabs {
-        margin: 0 40px;
+        margin: 0 auto;
+        width: 268px;
         height: 100%;
     }
 
@@ -48,27 +49,13 @@
 
 .tabs {
     &Title {
-        margin: 18px 0 36px 0;
+        margin: 18px 24px;
         font-size: var(--bh-text-size);
         font-weight: bold;
         color: var(--bh-description-text-color);
     }
-}
 
-.tab {
-    overflow: hidden;
-    margin: 18px 0 36px 0;
-    display: flex;
-    align-items: center;
-
-    &Icon {
-        margin: 5px 12px 0 0;
-        color: var(--bh-text-color);
-    }
-
-    &Text {
-        font-size: var(--bh-text-size);
-        font-weight: bold;
-        color: var(--bh-text-color);
+    &Title:last-child {
+        margin: 18px 24px 40px 18px;
     }
 }
