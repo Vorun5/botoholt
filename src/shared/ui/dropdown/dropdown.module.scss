@@ -1,0 +1,83 @@
+.dropdown {
+    &Wrapper {
+        width: 260px;
+        height: 46px;
+        position: relative;
+    }
+
+    &Items {
+        z-index: 2;
+        border: 1px solid var(--bh-outside-color);
+        overflow: hidden;
+        border-radius: 8px;
+        position: absolute;
+        top: calc(46px + 14px);
+    }
+
+    &Item {
+        font-weight: 500;
+        text-align: left;
+        width: 100%;
+        background-color: var(--bh-primary-background-color);
+        font-size: var(--bh-text-size);
+        color: var(--bh-text-color);
+        padding: 16px 24px;
+        transition: 0.3s background-color;
+
+        &:hover {
+            background-color: var(--bh-background-color);
+        }
+    }
+
+    &SelectedItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--bh-outside-color);
+        border-radius: 8px;
+
+        .arrow {
+            transition: 0.3s transform;
+        }
+
+        &:hover {
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    &Open {
+        background-color: var(--bh-background-color);
+    }
+
+    &HoveredItem {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            border-radius: 3px;
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background-color: var(--bh-blue);
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &Name {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .arrow {
+            transform: rotate(180deg);
+        }
+
+        &:hover {
+            background-color: var(--bh-primary-background-color);
+        }
+    }
+}

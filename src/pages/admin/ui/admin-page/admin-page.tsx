@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { ThemeSwitcher } from 'features/index'
-import { Button, ButtonText, Toggle } from 'shared/ui'
+import { Button, ButtonText, Dropdown, Toggle } from 'shared/ui'
 import { NavigationBar } from '../navigation-bar/navigation-bar'
 import styles from './admin-page.module.scss'
 
@@ -11,6 +11,9 @@ export const AdminPage = () => {
     }, [])
 
     const [checked, setChecked] = useState(false)
+
+    const dropdownItems = ['Everyone', 'Subscriber', 'Vip', 'Moderator', 'Broadcaster']
+    const [selectedDropdownItem, setSelectedDropdownItem] = useState(dropdownItems[0])
 
     return (
         <div className={styles.pageWrapper}>
@@ -27,6 +30,14 @@ export const AdminPage = () => {
                     </div>
                 </header>
                 <div className={styles.test}>
+                    <br />
+                    <Dropdown
+                        name="Access"
+                        items={dropdownItems}
+                        selectedItem={selectedDropdownItem}
+                        onSelect={(item) => setSelectedDropdownItem(item)}
+                    />
+                    <br />
                     <Button border style="default">
                         <ButtonText>default</ButtonText>
                     </Button>
@@ -55,7 +66,6 @@ export const AdminPage = () => {
                         <ButtonText>red</ButtonText>
                     </Button>
                     <br />
-
                     <Toggle
                         checked={checked}
                         onChange={() => {
