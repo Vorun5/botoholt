@@ -1,7 +1,9 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ThemeSwitcher } from 'features/index'
-import { Button, ButtonText, Dropdown, Toggle } from 'shared/ui'
+import { ReactComponent as StatusNotOk } from 'shared/assets/icons/status-not-ok.svg'
+import { ReactComponent as StatusOk } from 'shared/assets/icons/status-ok.svg'
+import { Button, ButtonIcon, ButtonText } from 'shared/ui'
 import { NavigationBar } from '../navigation-bar/navigation-bar'
 import styles from './admin-page.module.scss'
 
@@ -10,18 +12,14 @@ export const AdminPage = () => {
         window.document.title = 'Admin'
     }, [])
 
-    const [checked, setChecked] = useState(false)
-
-    const dropdownItems = ['Everyone', 'Subscriber', 'Vip', 'Moderator', 'Broadcaster']
-    const [selectedDropdownItem, setSelectedDropdownItem] = useState(dropdownItems[0])
-
     return (
         <div className={styles.pageWrapper}>
             <NavigationBar />
-            <div className={styles.pageContent}>
+            <div className={styles.page}>
+                <div className={styles.pageBackground} />
                 <header className={clsx(styles.pageHeader, styles.header)}>
                     <h1 className={styles.headerTitle}>
-                        <span>Приветствуем, </span>Smurf_tv!
+                        <span>Welcome, </span>Smurf_tv!
                     </h1>
                     <div className={styles.headerSetting}>
                         <div className={styles.settingsThemeSwitcher}>
@@ -29,49 +27,39 @@ export const AdminPage = () => {
                         </div>
                     </div>
                 </header>
-                <div className={styles.test}>
-                    <br />
-                    <Dropdown
-                        name="Access"
-                        items={dropdownItems}
-                        selectedItem={selectedDropdownItem}
-                        onSelect={(item) => setSelectedDropdownItem(item)}
-                    />
-                    <br />
-                    <Button border style="default">
-                        <ButtonText>default</ButtonText>
-                    </Button>
-                    <br />
-                    <Button border style="blue">
-                        <ButtonText>fill blue</ButtonText>
-                    </Button>
-                    <br />
-                    <Button padding="big" style="fill-blue">
-                        <ButtonText>fill blue</ButtonText>
-                    </Button>
-                    <br />
-                    <Button border padding="small" style="transparent">
-                        <ButtonText>transparent</ButtonText>
-                    </Button>
-                    <br />
-                    <Button border style="green" borderRadius="5px">
-                        <ButtonText>green</ButtonText>
-                    </Button>
-                    <br />
-                    <Button width="300px" height="70px" alignment="left" border style="fill-red">
-                        <ButtonText>fill red</ButtonText>
-                    </Button>
-                    <br />
-                    <Button width="300px" height="70px" alignment="right" border style="red">
-                        <ButtonText>red</ButtonText>
-                    </Button>
-                    <br />
-                    <Toggle
-                        checked={checked}
-                        onChange={() => {
-                            setChecked(!checked)
-                        }}
-                    />
+                <div className={styles.pageContent}>
+                    <div className={styles.statuses}>
+                        <div className={styles.status}>
+                            <h5 className={styles.statusTitle}>Статус бота</h5>
+                            <span className={styles.statusText}>Всё работает исправно</span>
+                            <div className={styles.statusButtons}>
+                                <Button padding="big">
+                                    <ButtonText>Отключить</ButtonText>
+                                </Button>
+                                <Button style="red" borderRadius="50%" width="50px" height="50px" alignment="center">
+                                    <ButtonIcon margin="none">
+                                        <StatusNotOk />
+                                    </ButtonIcon>
+                                </Button>
+                            </div>
+                        </div>
+                        <div className={styles.status}>
+                            <h5 className={styles.statusTitle}>статус donation alerts</h5>
+                            <span className={styles.statusText}>Donation alerts подключен</span>
+                            <div className={styles.statusButtons}>
+                                <Button padding="big">
+                                    <ButtonText>Отключить</ButtonText>
+                                </Button>
+                                <Button style="green" borderRadius="50%" width="50px" height="50px" alignment="center">
+                                    <ButtonIcon margin="none">
+                                        <StatusOk />
+                                    </ButtonIcon>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.emotes}>
+                    </div>
                 </div>
             </div>
         </div>
