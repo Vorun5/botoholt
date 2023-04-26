@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router-dom'
 import { ReactComponent as ApprovalIcon } from 'shared/assets/icons/approval.svg'
 import { ReactComponent as CommandsIcons } from 'shared/assets/icons/commands.svg'
 import { ReactComponent as CustomerSupportIcon } from 'shared/assets/icons/customer-support.svg'
@@ -14,24 +15,31 @@ import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove } from 'shared/
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {
+    selected?: boolean
     onClick?: () => void
     children: string
     icon: ReactNode
 }
 
-const Tab = ({ onClick, children, icon }: TabProps) => {
+const Tab = ({ selected, onClick, children, icon }: TabProps) => {
     return (
-        <Button style='transparent' width='100%' height='58px' alignment="left" onClick={onClick}>
+        <Button
+            style={selected ? 'fill-blue' : 'transparent'}
+            className={styles.tab}
+            alignment="left"
+            onClick={onClick}
+        >
             <ButtonIcon>{icon}</ButtonIcon>
             <ButtonText>{children}</ButtonText>
         </Button>
     )
 }
 
-// TODO: tabulation
 export const NavigationBar = () => {
     const { t } = useTranslation()
     const approval = true
+
+    const pathname = useLocation().pathname
 
     return (
         <nav className={styles.navigation}>
@@ -52,13 +60,33 @@ export const NavigationBar = () => {
 
             <div className={clsx(styles.navigationTabs, styles.tabs)}>
                 <h5 className={styles.tabsTitle}>{t('admin-page.nav.menu')}</h5>
-                <Tab icon={<DashboardIcon />}>{t('admin-page.nav.dashboard')}</Tab>
-                <Tab icon={<CommandsIcons />}>{t('admin-page.nav.commands')}</Tab>
-                <Tab icon={<SongQueueIcon />}>{t('admin-page.nav.song-queue')}</Tab>
-                <Tab icon={<IntegrationsIcons />}>{t('admin-page.nav.integrations')}</Tab>
+                <Link to="/admin">
+                    <Tab selected={pathname === '/admin' || pathname === '/admin/'} icon={<DashboardIcon />}>
+                        {t('admin-page.nav.dashboard')}
+                    </Tab>
+                </Link>
+                <Link to="/admin/commands">
+                    <Tab selected={pathname.includes('/admin/commands')} icon={<CommandsIcons />}>
+                        {t('admin-page.nav.commands')}
+                    </Tab>
+                </Link>
+                <Link to="/admin/song-queue">
+                    <Tab selected={pathname.includes('/admin/song-queue')} icon={<SongQueueIcon />}>
+                        {t('admin-page.nav.song-queue')}
+                    </Tab>
+                </Link>
+                <Link to="/admin/integrations">
+                    <Tab selected={pathname.includes('/admin/integrations')} icon={<IntegrationsIcons />}>
+                        {t('admin-page.nav.integrations')}
+                    </Tab>
+                </Link>
                 <h5 className={styles.tabsTitle}>{t('admin-page.nav.setting')}</h5>
                 <Tab icon={<LanguageIcon />}>{t('admin-page.nav.language')}</Tab>
-                <Tab icon={<CustomerSupportIcon />}>{t('admin-page.nav.support')}</Tab>
+                <Link to="/admin/support">
+                    <Tab selected={pathname.includes('/admin/support')} icon={<CustomerSupportIcon />}>
+                        {t('admin-page.nav.support')}
+                    </Tab>
+                </Link>
                 <Tab icon={<LogoutIcon />}>{t('admin-page.nav.sign-out')}</Tab>
             </div>
 
