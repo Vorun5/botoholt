@@ -1,0 +1,30 @@
+.page {
+    &Content {
+        display: flex;
+    }
+}
+
+.status {
+    width: 470px;
+    height: 220px;
+    margin-bottom: 2rem;
+
+    &Text {
+        height: 78px;
+        margin: 12px 0 8px 0;
+    }
+
+    &Buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.status:last-child {
+    margin-bottom: 0;
+}
+
+.emotes {
+    margin-left: 2rem;
+    width: 100%;
+}

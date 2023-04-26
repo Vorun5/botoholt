@@ -1,0 +1,65 @@
+.wrapper {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: var(--bh-background-color);
+
+    @media (pointer: fine) {
+        min-width: calc(100vw - 20px);
+    }
+}
+
+.page {
+    padding: 0px 40px;
+    width: 100%;
+
+    &Background {
+        z-index: -1;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 414px;
+        background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bh-background-color) 89.64%),
+            url('/src/shared/assets/images/dashboard-background.png') no-repeat;
+        opacity: 0.2;
+        background-size: 100% 354px;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 24px 0;
+
+    &Title {
+        margin-right: 1rem;
+        font-size: var(--bh-big-title-text-size);
+        color: var(--bh-text-color);
+
+        & span {
+            font-size: var(--bh-big-title-text-size);
+            color: var(--bh-description-text-color);
+        }
+    }
+
+    &Settings {
+        &Theme {
+            overflow: hidden;
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--bh-outside-color);
+            border-radius: 100px;
+            
+            & button {
+                width: 100%;
+                height: 100%;
+                padding: calc((50px - 24px) / 2);
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <ToastProvider>
             <Provider store={store}>
-                <React.Suspense fallback="loading">
+                <React.Suspense>
                     <BrowserRouter>
                         <App />
                     </BrowserRouter>

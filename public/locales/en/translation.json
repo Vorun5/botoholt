@@ -109,6 +109,10 @@
             "da-status": "Donation Alerts status",
             "da-status-connected": "Donation Alerts connected",
             "da-status-not-connected": "Donation Alerts not connected"
-        }
+        },
+        "commands": {},
+        "song-queue": {},
+        "integrations": {},
+        "support": {}
     }
 }

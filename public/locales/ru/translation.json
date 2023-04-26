@@ -94,12 +94,12 @@
         "nav": {
             "menu": "Меню",
             "dashboard": "Dashboard",
-            "commands": "Комманды",
+            "commands": "Команды",
             "song-queue": "Очередь песен",
             "integrations": "Интеграции",
             "setting": "Настройки",
             "language": "Сменить язык",
-            "support": "Сменить язык",
+            "support": "Техподдержка",
             "sign-out": "Выйти из аккаунта"
         },
         "dashboard": {
@@ -109,6 +109,18 @@
             "da-status": "Статус Donation Alerts",
             "da-status-connected": "Donation Alerts подключен",
             "da-status-not-connected": "Donation Alerts не подключен"
+        },
+        "commands": {
+            "": "Команды"
+        },
+        "song-queue": {
+            "": "Очередь песен"
+        },
+        "integrations": {
+            "": "Интеграции"
+        },
+        "support": {
+            "": "Техподдержка"
         }
     }
 }
