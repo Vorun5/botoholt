@@ -50,7 +50,7 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
                 width < 400 && styles.songSmall,
                 width < 600 && width >= 400 && styles.songCompact,
                 width >= 600 && styles.songNormal,
-                className && className,
+                className,
             )}
         >
             <div className={styles.songFlex}>

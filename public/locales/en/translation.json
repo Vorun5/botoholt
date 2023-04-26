@@ -87,6 +87,9 @@
         "support-text": "If you want to support the authors of the project with a coin, then you can do ",
         "support-link-text": "it at this link"
     },
+    "welcome": "Welcome",
+    "connect": "To plug",
+    "disable": "Disable",
     "admin-page": {
         "nav": {
             "menu": "Menu",
@@ -98,6 +101,14 @@
             "language": "Change language",
             "support": "Customer support",
             "sign-out": "Sign out"
+        },
+        "dashboard": {
+            "bot-status": "Bot status",
+            "bot-status-connected": "Bot is working properly",
+            "bot-status-not-connected": "Bot not connected",
+            "da-status": "Donation Alerts status",
+            "da-status-connected": "Donation Alerts connected",
+            "da-status-not-connected": "Donation Alerts not connected"
         }
     }
 }

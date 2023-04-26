@@ -34,7 +34,7 @@ export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) 
     const isOnline = streamer.streamInfo !== null
 
     return (
-        <div className={clsx(styles.streamer, className && className)}>
+        <div className={clsx(styles.streamer, className)}>
             <div className={styles.cardWrapper}>
                 <div className={styles.card}>
                     {title && <h2 className={styles.cardTitle}>{title}</h2>}

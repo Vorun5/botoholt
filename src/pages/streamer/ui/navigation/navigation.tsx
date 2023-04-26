@@ -24,7 +24,7 @@ export const Navigation = ({ period, tab, className, login }: NavigationProps) =
     const redirect = (str: string): string => `/${login.toLowerCase()}${str}`
 
     return (
-        <div ref={ref} className={clsx(styles.nav, width < 970 && styles.navCompact, className && className)}>
+        <div ref={ref} className={clsx(styles.nav, width < 970 && styles.navCompact, className)}>
             <div className={styles.navTabs}>
                 <LinkButton active={tab === 'queue'} url={redirect('')}>
                     {t('streamer-page.tabs.queue')}

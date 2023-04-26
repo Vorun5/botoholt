@@ -8,7 +8,7 @@ interface ButtonTextProps {
 }
 
 export const ButtonText = ({ children, className }: ButtonTextProps) => {
-    return <span className={clsx(styles.bthText, className && className)}>{children}</span>
+    return <span className={clsx(styles.bthText, className)}>{children}</span>
 }
 
 interface ButtonIconProps {
@@ -24,7 +24,7 @@ export const ButtonIcon = ({ children, margin = 'right', className }: ButtonIcon
                 styles.bthIcon,
                 margin === 'right' && styles.bthIconRight,
                 margin === 'left' && styles.bthIconLeft,
-                className && className,
+                className,
             )}
         >
             {children}
@@ -72,7 +72,7 @@ export const Button = ({
                 padding === 'normal' && styles.bthPaddingNormal,
                 padding === 'small' && styles.bthPaddingSmall,
                 border && styles.bthBorder,
-                className && className,
+                className,
             )}
             type="button"
             onClick={onClick}

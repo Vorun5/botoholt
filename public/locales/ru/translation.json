@@ -87,6 +87,9 @@
         "support-text": "Если вы хотите поддержать авторов проекта монеткой, то милости просим сделать ",
         "support-link-text": "это по этой ссылке"
     },
+    "welcome": "Добро пожаловать",
+    "connect": "Подключить",
+    "disable": "Отключить",
     "admin-page": {
         "nav": {
             "menu": "Меню",
@@ -98,6 +101,14 @@
             "language": "Сменить язык",
             "support": "Сменить язык",
             "sign-out": "Выйти из аккаунта"
+        },
+        "dashboard": {
+            "bot-status": "Статус бота",
+            "bot-status-connected": "Бот работает исправно",
+            "bot-status-not-connected": "Бот не подключен",
+            "da-status": "Статус Donation Alerts",
+            "da-status-connected": "Donation Alerts подключен",
+            "da-status-not-connected": "Donation Alerts не подключен"
         }
     }
 }

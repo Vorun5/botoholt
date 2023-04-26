@@ -1,0 +1,68 @@
+.card {
+    background-color: var(--bh-primary-background-color);
+    border: 1px solid var(--bh-outside-color);
+    border-radius: var(--bh-card-border-radius);
+
+    &Blue {
+        border-color: var(--bh-blue-06);
+        background-color: var(--bh-blue-008);
+    }
+
+    &Green {
+        border-color: var(--bh-green-06);
+        background-color: var(--bh-green-008);
+    }
+
+    &Orange {
+        border-color: var(--bh-orange-06);
+        background-color: var(--bh-orange-008);
+    }
+
+    &Padding {
+        &Normal {
+            padding: 30px;
+        }
+    }
+
+    &Description {
+        font-size: var(--bh-small-text-size);
+        color: var(--bh-description-text-color);
+        text-transform: uppercase;
+
+        &Red {
+            color: var(--bh-red);
+        }
+
+        &Blue {
+            color: var(--bh-blue);
+        }
+
+        &Green {
+            color: var(--bh-green);
+        }
+
+        &Orange {
+            color: var(--bh-orange);
+        }
+    }
+
+    &Title {
+        font-weight: 500;
+        color: var(--bh-text-color);
+        font-size: var(--bh-title-text-size);
+        display: inline-block;
+        margin: 8px 0;
+
+        &Blue {
+            color: var(--bh-blue);
+        }
+
+        &Green {
+            color: var(--bh-green);
+        }
+
+        &Orange {
+            color: var(--bh-orange);
+        }
+    }
+}

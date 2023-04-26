@@ -20,9 +20,9 @@
         width: 100%;
         height: 414px;
         background: linear-gradient(180deg, rgba(14, 14, 16, 0) 0%, var(--bh-background-color) 89.64%),
-            url('/src/shared/assets/images/dashboard-background.png');
+            url('/src/shared/assets/images/dashboard-background.png') no-repeat;
         opacity: 0.2;
-        background-size: 100% 414px;
+        background-size: 100% 354px;
     }
 
     &Content {
@@ -36,24 +36,11 @@
 }
 
 .status {
-    padding: 30px;
-    background-color: var(--bh-primary-background-color);
-    border: 1px solid var(--bh-outside-color);
-    border-radius: var(--bh-card-border-radius);
     width: 470px;
     height: 220px;
     margin-bottom: 2rem;
 
-    &Title {
-        font-size: var(--bh-small-text-size);
-        color: var(--bh-green);
-        text-transform: uppercase;
-    }
-
     &Text {
-        color: var(--bh-text-color);
-        font-size: var(--bh-title-text-size);
-        display: inline-block;
         height: 78px;
         margin: 12px 0 8px 0;
     }
@@ -71,10 +58,6 @@
 .emotes {
     margin-left: 2rem;
     width: 100%;
-    padding: 30px;
-    background-color: var(--bh-primary-background-color);
-    border: 1px solid var(--bh-outside-color);
-    border-radius: var(--bh-card-border-radius);
 }
 
 .header {

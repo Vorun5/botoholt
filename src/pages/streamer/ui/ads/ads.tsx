@@ -24,7 +24,7 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
     return (
         <div
             ref={adsRef}
-            className={clsx(styles.ads, width < 500 ? styles.adsCompact : styles.adsNormal, className && className)}
+            className={clsx(styles.ads, width < 500 ? styles.adsCompact : styles.adsNormal, className)}
         >
             <Banner className={styles.banner} style="secondary">
                 <div>
