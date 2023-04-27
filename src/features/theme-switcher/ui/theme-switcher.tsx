@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '../../lib/useTheme'
-import { ReactComponent as MoonIcon } from '../icons/moon.svg'
-import { ReactComponent as SunIcon } from '../icons/sun.svg'
+import { ReactComponent as MoonIcon } from 'shared/assets/icons/moon.svg'
+import { ReactComponent as SunIcon } from 'shared/assets/icons/sun.svg'
+import { useTheme } from '../lib/useTheme'
 import styles from './theme-switcher.module.scss'
 
 export const ThemeSwitcher = ({ short = false }: { short?: boolean }) => {

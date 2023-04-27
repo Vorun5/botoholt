@@ -1,11 +1,50 @@
+.burger {
+    position: absolute;
+    z-index: 2;
+    top: 1rem;
+    left: 24px;
+    transition: all 0.2s;
+
+    &Open {
+        top: 1rem;
+        left: calc(300px - 12px - 50px);
+    }
+}
+
 .navigation {
-    display: flex;
-    flex-direction: column;
+    z-index: 3;
+    overflow-x: scroll;
+    @media (pointer: fine) {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    min-height: 100vh;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -305px;
     width: 300px;
     background-color: var(--bh-primary-background-color);
+    transition: left 0.3s;
+
+    &Open {
+        left: 0;
+    }
+
+    &Header {
+        display: flex;
+
+        &Burger {
+            margin-top: 16px;
+        }
+    }
 
     &Logo {
-        margin: 8px 16px;
+        margin: 8px 0 8px 16px;
         padding: 22px;
     }
 
@@ -19,11 +58,24 @@
     &Tabs {
         margin: 0 auto;
         width: 268px;
-        height: 100%;
     }
 
     &Creators {
         margin: 40px 0;
+    }
+
+    @media (min-width: 1100px) {
+        height: auto;
+        overflow: visible;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        position: static;
+        width: 300px;
+
+        &Tabs {
+            height: 100%;
+        }
     }
 }
 
