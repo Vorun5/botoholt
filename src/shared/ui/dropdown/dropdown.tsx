@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
-import { ReactComponent as Arrow } from 'shared/assets/icons/arrow-bottom.svg'
+import { ArrowDownIcon } from 'shared/assets/icons'
 import { useOnClickOutside } from 'shared/lib/hooks'
 import styles from './dropdown.module.scss'
 
@@ -34,7 +34,7 @@ export const Dropdown = ({ items, selectedItem, name, width, onSelect }: Dropdow
             >
                 {selectedItem ?? name}
                 <div className={styles.arrow}>
-                    <Arrow />
+                    <ArrowDownIcon />
                 </div>
             </button>
             {dropdownIsOpen && (
@@ -42,7 +42,7 @@ export const Dropdown = ({ items, selectedItem, name, width, onSelect }: Dropdow
                     <div className={clsx(styles.dropdownItem, styles.dropdownName)}>
                         {name}{' '}
                         <div className={styles.arrow}>
-                            <Arrow />
+                            <ArrowDownIcon />
                         </div>
                     </div>
                     {items.map((item) => (

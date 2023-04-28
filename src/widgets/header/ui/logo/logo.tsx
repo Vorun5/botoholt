@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { ReactComponent as LogoImg } from 'shared/assets/icons/logo.svg'
+import { LogoIcon } from 'shared/assets/icons'
 
 export const Logo = () => {
     return (
         <Link to="/">
-            <LogoImg />
+            <LogoIcon />
         </Link>
     )
 }

@@ -1,0 +1,30 @@
+.close {
+    display: none;
+}
+
+.background {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: floralwhite;
+}
+
+.wrapper {
+    width: 600px;
+    height: 600px;
+    background-color: red;
+}
+
+.header {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+
+    &Title {
+        font-weight: bold;
+        font-size: var(--bh-big-title-text-size);
+        color: var(--bh-text-color);
+    }
+}
+
+.footer {
+}

@@ -3,20 +3,23 @@ import { ReactNode, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from 'features'
-import { ReactComponent as ApprovalIcon } from 'shared/assets/icons/approval.svg'
-import { ReactComponent as CommandsIcons } from 'shared/assets/icons/commands.svg'
-import { ReactComponent as CustomerSupportIcon } from 'shared/assets/icons/customer-support.svg'
-import { ReactComponent as DashboardIcon } from 'shared/assets/icons/dashboard.svg'
-import { ReactComponent as DotsIcon } from 'shared/assets/icons/dots.svg'
-import { ReactComponent as IntegrationsIcons } from 'shared/assets/icons/Integrations.svg'
-import { ReactComponent as LanguageIcon } from 'shared/assets/icons/language.svg'
-import { ReactComponent as LogoIcon } from 'shared/assets/icons/logo.svg'
-import { ReactComponent as LogoutIcon } from 'shared/assets/icons/logout.svg'
-import { ReactComponent as MoonIcon } from 'shared/assets/icons/moon.svg'
-import { ReactComponent as SongQueueIcon } from 'shared/assets/icons/song-queue.svg'
-import { ReactComponent as CloseIcon } from 'shared/assets/icons/status-not-ok.svg'
-import { ReactComponent as SunIcon } from 'shared/assets/icons/sun.svg'
+import {
+    ApprovalIcon,
+    CommandsIcons,
+    CustomerSupportIcon,
+    DashboardIcon,
+    DotsIcon,
+    IntegrationsIcons,
+    LanguageIcon,
+    LogoIcon,
+    LogoutIcon,
+    MoonIcon,
+    SongQueueIcon,
+    CloseIcon,
+    SunIcon,
+} from 'shared/assets/icons'
 import { useMediaQuery, useOnClickOutside } from 'shared/lib/hooks'
+
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 

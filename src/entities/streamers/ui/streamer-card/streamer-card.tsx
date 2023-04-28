@@ -1,12 +1,10 @@
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { ReactComponent as Approval } from 'shared/assets/icons/approval.svg'
+import { ApprovalIcon } from 'shared/assets/icons'
 import { Streamer } from 'shared/types'
 import { Avatar } from 'shared/ui'
 import { StreamerSocialMedias } from '../streamer-social-medias/streamer-social-medias'
 import styles from './streamer-card.module.scss'
-
-
 
 type Degree = 'thousands' | 'none'
 
@@ -52,7 +50,7 @@ export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) 
                             <h3 className={styles.infoName}>
                                 {streamer.name}
                                 {streamer.type === 'partner' && (
-                                    <Approval width={18} height={18} style={{ marginLeft: '7px' }} />
+                                    <ApprovalIcon width={18} height={18} style={{ marginLeft: '7px' }} />
                                 )}
                             </h3>
                             <p>

@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { ReactComponent as MoonIcon } from 'shared/assets/icons/moon.svg'
-import { ReactComponent as SunIcon } from 'shared/assets/icons/sun.svg'
+import { MoonIcon, SunIcon } from 'shared/assets/icons'
 import { useTheme } from '../lib/useTheme'
 import styles from './theme-switcher.module.scss'
 

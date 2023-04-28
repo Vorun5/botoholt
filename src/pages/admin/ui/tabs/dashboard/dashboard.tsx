@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ReactComponent as StatusNotOk } from 'shared/assets/icons/status-not-ok.svg'
-import { ReactComponent as StatusOk } from 'shared/assets/icons/status-ok.svg'
+import { StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
 import { Button, ButtonIcon, ButtonText, Card, CardDescription, CardTitle } from 'shared/ui'
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
 import styles from './dashboard.module.scss'
@@ -31,7 +30,7 @@ export const Dashboard = () => {
                             </Button>
                             <Button style="green" borderRadius="50%" width="50px" height="50px" alignment="center">
                                 <ButtonIcon margin="none">
-                                    <StatusOk />
+                                    <StatusOkIcon />
                                 </ButtonIcon>
                             </Button>
                         </div>
@@ -48,7 +47,7 @@ export const Dashboard = () => {
                             </Button>
                             <Button style="red" borderRadius="50%" width="50px" height="50px" alignment="center">
                                 <ButtonIcon margin="none">
-                                    <StatusNotOk />
+                                    <StatusNotOkIcon />
                                 </ButtonIcon>
                             </Button>
                         </div>
