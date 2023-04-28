@@ -1,38 +1,61 @@
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { CloseIcon } from 'shared/assets/icons'
-import { Button } from 'shared/ui'
+import { useOnClickOutside } from 'shared/lib/hooks'
+import { Button, ButtonIcon } from 'shared/ui'
 import styles from './modal.module.scss'
 
 interface ModalHeaderProps {
     children: ReactNode
-    onChange: () => void
+    hide: () => void
 }
 
-export const ModalHeader = ({ children, onChange }: ModalHeaderProps) => {
+export const ModalHeader = ({ children, hide }: ModalHeaderProps) => {
     return (
         <div className={styles.header}>
             <h1 className={styles.headerTitle}>{children}</h1>
-            <Button width="46px" height="46px" borderRadius="50%" onClick={onChange}>
-                <CloseIcon />
+            <Button width="46px" height="46px" borderRadius="50%" onClick={hide}>
+                <ButtonIcon margin="none">
+                    <CloseIcon width="22px" height="22px" />
+                </ButtonIcon>
             </Button>
         </div>
     )
 }
 
-export const ModalFooter = () => {
-    return <div className={styles.footer}></div>
+export const ModalDivider = () => {
+    return <div className={styles.divider} />
 }
 
-interface ModalProps {
-    open: boolean
+interface ModalFooterProps {
     children: ReactNode
 }
 
-export const Modal = ({ children, open }: ModalProps) => {
-    return (
+export const ModalFooter = ({ children }: ModalFooterProps) => {
+    return <div className={styles.footer}>{children}</div>
+}
+
+interface ModalProps {
+    isShown: boolean
+    hide: () => void
+    padding?: boolean
+    children: ReactNode
+}
+
+export const Modal = ({ children, isShown, hide, padding = true }: ModalProps) => {
+    const ref = useRef(null)
+    useOnClickOutside(ref, hide)
+
+    const modal = (
         <div className={clsx(styles.background, !open && styles.close)}>
-            <div className={styles.wrapper}>{children}</div>
+            <div ref={ref} className={clsx(styles.wrapper, padding && styles.wrapperPadding)}>
+                {children}
+            </div>
         </div>
     )
+
+    isShown ? document.body.classList.add('modal-show') : document.body.classList.remove('modal-show')
+
+    return isShown ? createPortal(modal, document.body) : <></>
 }

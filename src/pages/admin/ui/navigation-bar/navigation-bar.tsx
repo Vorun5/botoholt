@@ -18,9 +18,19 @@ import {
     CloseIcon,
     SunIcon,
 } from 'shared/assets/icons'
-import { useMediaQuery, useOnClickOutside } from 'shared/lib/hooks'
+import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
 
-import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove } from 'shared/ui'
+import {
+    Avatar,
+    Button,
+    ButtonIcon,
+    ButtonText,
+    CreatedWithLove,
+    Modal,
+    ModalDivider,
+    ModalFooter,
+    ModalHeader,
+} from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {
@@ -80,6 +90,10 @@ export const NavigationBar = () => {
     }
 
     const [theme, handleChange] = useTheme()
+    const { isShown, toggle } = useModal()
+    const hide = () => {
+        if (isShown) toggle()
+    }
 
     return (
         <nav ref={navRef}>
@@ -168,7 +182,19 @@ export const NavigationBar = () => {
                                 {t('header.change-theme')}
                             </Tab>
                         )}
-                        <Tab onClick={tabButtonHandler} icon={<LanguageIcon />}>
+                        <Modal hide={hide} isShown={isShown}>
+                            <ModalHeader hide={hide}>New command</ModalHeader>
+                            Какой-то текст
+                            <ModalDivider />
+                            <ModalFooter>Footer</ModalFooter>
+                        </Modal>
+                        <Tab
+                            onClick={() => {
+                                tabButtonHandler()
+                                toggle()
+                            }}
+                            icon={<LanguageIcon />}
+                        >
                             {t('admin-page.nav.language')}
                         </Tab>
                         <Link to="/admin/support">

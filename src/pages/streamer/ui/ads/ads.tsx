@@ -16,7 +16,7 @@ interface AdsProps {
 
 export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
     const { t } = useTranslation()
-    const toastTools = useToast()
+    const toastTools = useToast()!
     const adsRef = useRef<HTMLDivElement>(null)
     const { width } = useElementSize(adsRef)
 

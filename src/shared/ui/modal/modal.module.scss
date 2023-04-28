@@ -3,28 +3,55 @@
 }
 
 .background {
+    z-index: 3;
+    position: absolute;
+    top: 0;
     min-width: 100vw;
     min-height: 100vh;
-    background-color: floralwhite;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+
+    @media (pointer: fine) {
+    }
 }
 
 .wrapper {
-    width: 600px;
-    height: 600px;
-    background-color: red;
+    font-size: var(--bh-text-size);
+    color: var(--bh-text-color);
+    background-color: var(--bh-background-color);
+    max-width: 1048px;
+    border-radius: 45px;
+    border: 1px solid var(--bh-outside-color);
+    margin-bottom: 50px;
+
+    &Padding {
+        padding: 40px;
+    }
 }
 
 .header {
-    width: 100%;
     justify-content: space-between;
     display: flex;
+    margin-bottom: 40px;
 
     &Title {
+        margin-right: 24px;
         font-weight: bold;
         font-size: var(--bh-big-title-text-size);
         color: var(--bh-text-color);
     }
 }
 
+.divider {
+    border: 1px solid var(--bh-outside-color);
+    margin: 3rem 0;
+}
+
 .footer {
+    width: 100%;
 }
