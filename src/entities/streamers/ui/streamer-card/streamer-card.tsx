@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { ApprovalIcon } from 'shared/assets/icons'
-import { Streamer } from 'shared/types'
+import { Streamer, StreamerSocialMedia } from 'shared/types'
 import { Avatar } from 'shared/ui'
 import { StreamerSocialMedias } from '../streamer-social-medias/streamer-social-medias'
 import styles from './streamer-card.module.scss'
@@ -24,12 +24,27 @@ interface StreamerCardProps {
     title?: string
     streamer: Streamer
     className?: string
+    short?: boolean
 }
 
-export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) => {
+export const StreamerCard = ({ title, streamer, className, short = false }: StreamerCardProps) => {
     const { t } = useTranslation()
     const [followers, degree] = getNumberFollowersAndDegree(streamer.followers)
     const isOnline = streamer.streamInfo !== null
+
+    const twitchUrl = `https://twitch.tv/${streamer.login}`
+
+    let socialMedias: StreamerSocialMedia[] = [
+        {
+            domain: 'twitch',
+            id: '1',
+            title: 'Twitch',
+            url: twitchUrl,
+        },
+    ]
+
+    if (streamer.socialMedias && streamer.socialMedias.length)
+        socialMedias = [...socialMedias, ...streamer.socialMedias]
 
     return (
         <div className={clsx(styles.streamer, className)}>
@@ -48,10 +63,12 @@ export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) 
                         </div>
                         <div className={styles.infoMain}>
                             <h3 className={styles.infoName}>
-                                {streamer.name}
-                                {streamer.type === 'partner' && (
-                                    <ApprovalIcon width={18} height={18} style={{ marginLeft: '7px' }} />
-                                )}
+                                <a href={twitchUrl} target="_blank">
+                                    {streamer.name}
+                                    {streamer.type === 'partner' && (
+                                        <ApprovalIcon width={18} height={18} style={{ marginLeft: '7px' }} />
+                                    )}
+                                </a>
                             </h3>
                             <p>
                                 {followers}
@@ -72,14 +89,7 @@ export const StreamerCard = ({ title, streamer, className }: StreamerCardProps) 
                 </div>
             </div>
 
-            {streamer.socialMedias && streamer.socialMedias.length && (
-                <StreamerSocialMedias
-                    socialMedias={[
-                        { domain: 'twitch', id: '1', title: 'Twitch', url: `https://twitch.tv/${streamer.login}` },
-                        ...streamer.socialMedias,
-                    ]}
-                />
-            )}
+            {!short && <StreamerSocialMedias socialMedias={socialMedias} />}
         </div>
     )
 }

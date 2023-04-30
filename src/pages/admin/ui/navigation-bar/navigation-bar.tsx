@@ -27,6 +27,7 @@ import {
     ButtonText,
     CreatedWithLove,
     Modal,
+    ModalContent,
     ModalDivider,
     ModalFooter,
     ModalHeader,
@@ -83,16 +84,16 @@ export const NavigationBar = () => {
         setIsOpen(false)
     })
     const navButtonHandler = () => setIsOpen(!isOpen)
-    const tabButtonHandler = () => {
+    const hideNavigation = () => {
         if (!isDesktop && isOpen) {
             setIsOpen(false)
         }
     }
 
-    const [theme, handleChange] = useTheme()
-    const { isShown, toggle } = useModal()
-    const hide = () => {
-        if (isShown) toggle()
+    const [theme, toggleTheme] = useTheme()
+    const [langModalIsShown, setLangModalIsShown] = useModal()
+    const hideLangModal = () => {
+        if (langModalIsShown) setLangModalIsShown()
     }
 
     return (
@@ -130,7 +131,7 @@ export const NavigationBar = () => {
                         <h5 className={styles.tabsTitle}>{t('admin-page.nav.menu')}</h5>
                         <Link to="/admin">
                             <Tab
-                                onClick={tabButtonHandler}
+                                onClick={hideNavigation}
                                 selected={pathname === '/admin' || pathname === '/admin/'}
                                 icon={<DashboardIcon />}
                             >
@@ -139,7 +140,7 @@ export const NavigationBar = () => {
                         </Link>
                         <Link to="/admin/commands">
                             <Tab
-                                onClick={tabButtonHandler}
+                                onClick={hideNavigation}
                                 selected={pathname.includes('/admin/commands')}
                                 icon={<CommandsIcons />}
                             >
@@ -148,7 +149,7 @@ export const NavigationBar = () => {
                         </Link>
                         <Link to="/admin/song-queue">
                             <Tab
-                                onClick={tabButtonHandler}
+                                onClick={hideNavigation}
                                 selected={pathname.includes('/admin/song-queue')}
                                 icon={<SongQueueIcon />}
                             >
@@ -157,7 +158,7 @@ export const NavigationBar = () => {
                         </Link>
                         <Link to="/admin/integrations">
                             <Tab
-                                onClick={tabButtonHandler}
+                                onClick={hideNavigation}
                                 selected={pathname.includes('/admin/integrations')}
                                 icon={<IntegrationsIcons />}
                             >
@@ -167,10 +168,7 @@ export const NavigationBar = () => {
                         <h5 className={styles.tabsTitle}>{t('admin-page.nav.setting')}</h5>
                         {!isDesktop && (
                             <Tab
-                                onClick={() => {
-                                    handleChange(theme === 'dark' ? 'light' : 'dark')
-                                    tabButtonHandler()
-                                }}
+                                onClick={() => toggleTheme(theme === 'dark' ? 'light' : 'dark')}
                                 icon={
                                     theme === 'dark' ? (
                                         <MoonIcon width="22px" height="22px" />
@@ -182,16 +180,63 @@ export const NavigationBar = () => {
                                 {t('header.change-theme')}
                             </Tab>
                         )}
-                        <Modal hide={hide} isShown={isShown}>
-                            <ModalHeader hide={hide}>New command</ModalHeader>
-                            Какой-то текст
+                        <Modal hide={hideLangModal} isShown={langModalIsShown}>
+                            <ModalHeader hide={hideLangModal}>Добавление команды</ModalHeader>
+                            <ModalContent>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic
+                                reiciendis cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit
+                                repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam
+                                voluptatum vero earum animi minus unde reprehenderit repellendus beatae! Doloribus totam
+                                ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus
+                                unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
+                                cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus
+                                beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero
+                                earum animi minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum
+                                debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus
+                                unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
+                                ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
+                                cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus
+                                beatae! Doloribus totam ex dolore ipsum debitis?
+                            </ModalContent>
                             <ModalDivider />
                             <ModalFooter>Footer</ModalFooter>
                         </Modal>
                         <Tab
                             onClick={() => {
-                                tabButtonHandler()
-                                toggle()
+                                hideNavigation()
+                                setLangModalIsShown()
                             }}
                             icon={<LanguageIcon />}
                         >
@@ -199,14 +244,14 @@ export const NavigationBar = () => {
                         </Tab>
                         <Link to="/admin/support">
                             <Tab
-                                onClick={tabButtonHandler}
+                                onClick={hideNavigation}
                                 selected={pathname.includes('/admin/support')}
                                 icon={<CustomerSupportIcon />}
                             >
                                 {t('admin-page.nav.support')}
                             </Tab>
                         </Link>
-                        <Tab onClick={tabButtonHandler} icon={<LogoutIcon />}>
+                        <Tab onClick={hideNavigation} icon={<LogoutIcon />}>
                             {t('admin-page.nav.sign-out')}
                         </Tab>
                     </div>

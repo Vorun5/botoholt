@@ -36,6 +36,10 @@ export const ModalFooter = ({ children }: ModalFooterProps) => {
     return <div className={styles.footer}>{children}</div>
 }
 
+export const ModalContent = ({ children }: { children: ReactNode }) => {
+    return <div className={styles.content}>{children}</div>
+}
+
 interface ModalProps {
     isShown: boolean
     hide: () => void
@@ -56,6 +60,10 @@ export const Modal = ({ children, isShown, hide, padding = true }: ModalProps) =
     )
 
     isShown ? document.body.classList.add('modal-show') : document.body.classList.remove('modal-show')
+
+    // isShown
+    //     ? document.getElementById('root')?.classList.add('modal-show')
+    //     : document.getElementById('root')?.classList.remove('modal-show')
 
     return isShown ? createPortal(modal, document.body) : <></>
 }
