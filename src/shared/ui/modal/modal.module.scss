@@ -1,11 +1,13 @@
+body {
+    --bh-modal-padding: 24px;
+}
+
 .close {
     display: none;
 }
 
 .background {
     z-index: 3;
-    position: absolute;
-    top: 0;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
@@ -16,70 +18,82 @@
 }
 
 .wrapper {
+    margin: 0 10px;
     font-size: var(--bh-text-size);
     color: var(--bh-text-color);
     background-color: var(--bh-background-color);
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 40px);
     max-width: 1048px;
-    border-radius: 1rem;
     border: 1px solid var(--bh-outside-color);
-    margin: 30px 1rem 70px 1rem;
-
-    &Padding {
-        padding: 24px;
-    }
+    padding: var(--bh-modal-padding) 0;
+    border-radius: var(--bh-modal-padding);
 }
 
 .header {
     justify-content: space-between;
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
+    padding: 0 var(--bh-modal-padding) 20px var(--bh-modal-padding);
 
     &Title {
+        word-break: break-all;
         margin-right: 24px;
         font-weight: bold;
-        font-size: var(--bh-title-text-size);
+        font-size: var(--bh-small-title-text-size);
         color: var(--bh-text-color);
     }
 }
 
 .content {
-    max-height: 500px;
-    overflow-y: scroll;
-}
+    overflow: auto;
+    padding: 0 var(--bh-modal-padding);
 
-.divider {
-    border: 1px solid var(--bh-outside-color);
-    margin: 3rem 0;
+    &HideScroll {
+        @media (pointer: fine) {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+        }
+    }
 }
 
 .footer {
-    width: 100%;
+    text-align: center;
+    width: calc(100% - var(--bh-modal-padding) - var(--bh-modal-padding));
+    margin: 0 var(--bh-modal-padding);
+
+    &Divider {
+        margin: 20px 0 var(--bh-modal-padding) 0;
+        border-bottom: 2px solid var(--bh-outside-color);
+    }
 }
 
 @media (min-width: 600px) {
-    .wrapper {
-        border-radius: 32px;
-
-        &Padding {
-            margin: 30px 50px 70px 50px;
-            padding: 32px;
+    .header {
+        &Title {
+            font-size: var(--bh-big-title-text-size);
         }
+    }
+
+    .wrapper {
+        margin: 0 30px;
+    }
+
+    body {
+        --bh-modal-padding: 28px;
     }
 }
 
 @media (min-width: 1100px) {
     .wrapper {
-        border-radius: 45px;
-
-        &Padding {
-            margin: 50px 50px 80px 50px;
-            padding: 40px;
-        }
+        margin: 0 50px;
     }
 
-    .header {
-        font-size: var(--bh-big-title-text-size);
+    body {
+        --bh-modal-padding: 36px;
     }
 }

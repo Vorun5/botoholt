@@ -20,18 +20,7 @@ import {
 } from 'shared/assets/icons'
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
 
-import {
-    Avatar,
-    Button,
-    ButtonIcon,
-    ButtonText,
-    CreatedWithLove,
-    Modal,
-    ModalContent,
-    ModalDivider,
-    ModalFooter,
-    ModalHeader,
-} from 'shared/ui'
+import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Modal } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {
@@ -77,7 +66,7 @@ export const NavigationBar = () => {
     const pathname = useLocation().pathname
 
     const isDesktop = useMediaQuery('(min-width: 1100px)')
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const navRef = useRef(null)
     useOnClickOutside(navRef, () => {
         if (isDesktop || !isOpen) return
@@ -180,58 +169,98 @@ export const NavigationBar = () => {
                                 {t('header.change-theme')}
                             </Tab>
                         )}
-                        <Modal hide={hideLangModal} isShown={langModalIsShown}>
-                            <ModalHeader hide={hideLangModal}>Добавление команды</ModalHeader>
-                            <ModalContent>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic
-                                reiciendis cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit
-                                repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam
-                                voluptatum vero earum animi minus unde reprehenderit repellendus beatae! Doloribus totam
-                                ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus
-                                unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
-                                ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
-                                cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus
-                                beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero
-                                earum animi minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum
-                                debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus
-                                unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
-                                ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
-                                cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus
-                                beatae! Doloribus totam ex dolore ipsum debitis?
-                            </ModalContent>
-                            <ModalDivider />
-                            <ModalFooter>Footer</ModalFooter>
+                        <Modal
+                            hide={hideLangModal}
+                            isShown={langModalIsShown}
+                            footerDivider
+                            title='VERYLONGTITLEWHY?'
+                            footerContent={
+                                <>
+                                    <Button style="default">
+                                        <ButtonText>Click</ButtonText>
+                                    </Button>
+                                    <Button style="red">
+                                        <ButtonText>Click 2</ButtonText>
+                                    </Button>
+                                </>
+                            }
+                        >
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
+                            cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
+                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi
+                            minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
+                            ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque.
+                            Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
+                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi
+                            minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
+                            ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque.
+                            Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
+                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus unde
+                            reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor
+                            sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam
+                            voluptatum vero earum animi minus unde reprehenderit repellendus beatae! Doloribus totam ex
+                            dolore ipsum debitis?
                         </Modal>
                         <Tab
                             onClick={() => {

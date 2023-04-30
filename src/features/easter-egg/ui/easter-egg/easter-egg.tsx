@@ -21,6 +21,7 @@ import Meow from '../emotes/Meow.gif'
 import OkaygeBusiness from '../emotes/OkaygeBusiness.png'
 import OMEGALOG from '../emotes/OMEGALOG.png'
 import peepoArt from '../emotes/peepoArt.png'
+import Perry from '../emotes/perryRun.gif'
 import Pog from '../emotes/Pog.png'
 import PoroGP from '../emotes/PoroGP.png'
 import PoroSex from '../emotes/PoroSex.png'
@@ -47,6 +48,7 @@ export const EasterEgg = () => {
 
     // prettier-ignore
     const bigs: [string,  readonly(JSX.Element | string)[]][] = [
+    ['Perry_Cl', [ <Nickname nickname='Perry_Cl' key={1}/> , <Emote src={Perry} alt='perryRun' key={2} />]],
     ['Iron_Meow', [<Emote src={Meow} alt='Meow' key={1} />, <Nickname nickname="Iron_Meow" key={2} />]],
     ['TheAwkwardRabbit_', [<Nickname nickname="TheAwkwardRabbit_" key={1} />, <Emote src={BigEmote} alt='Big' key={2} />]],
     ['kimonoska', [<Nickname nickname="kimonoska" key={1} />, <Emote src={Kimonoska} alt='kimonoska' key={2} />]],

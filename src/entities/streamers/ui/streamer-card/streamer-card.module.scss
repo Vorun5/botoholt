@@ -55,12 +55,11 @@
     }
 
     &Name {
-        display: flex;
-        align-items: center;
         margin-bottom: 6px;
         word-break: break-all;
 
-        & a {
+        & a,
+        span {
             color: var(--text-color);
             font-size: var(--secondary-text-size);
             font-weight: bold;

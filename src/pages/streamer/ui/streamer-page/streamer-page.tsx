@@ -10,6 +10,7 @@ import {
     loadStreamerTopDjs,
     loadStreamerTopSongs,
     selectStreamer,
+    selectStreamerCurrentSong,
 } from 'entities/streamer-song-data'
 import { useInterval, useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
@@ -23,10 +24,15 @@ export const StreamerPage = () => {
     const { streamerName } = useParams()
     const login = streamerName || ''
     const streamer = useSelector(selectStreamer)
+    const song = useSelector(selectStreamerCurrentSong)
 
     useEffect(() => {
-        window.document.title = `${streamer.data.name ? streamer.data.name : login} - Botoholt`
-    }, [streamer])
+        if (song.isPlaying && song.name !== null) {
+            window.document.title = song.name
+        } else {
+            window.document.title = `${streamer.data.name ? streamer.data.name : login} - Botoholt`
+        }
+    }, [streamer, song])
 
     useEffect(() => {
         dispatch(loadStreamer(login))

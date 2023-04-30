@@ -20,14 +20,30 @@ const getNumberFollowersAndDegree = (followers: number): [string, Degree] => {
     return [result, degree]
 }
 
+const StreamerName = ({ children }: { children: Streamer }) => {
+    return (
+        <>
+            {children.name}
+            {children.type === 'partner' && <ApprovalIcon width={18} height={18} style={{ marginLeft: '7px' }} />}
+        </>
+    )
+}
+
 interface StreamerCardProps {
     title?: string
     streamer: Streamer
     className?: string
     short?: boolean
+    twitchLinkActive?: boolean
 }
 
-export const StreamerCard = ({ title, streamer, className, short = false }: StreamerCardProps) => {
+export const StreamerCard = ({
+    title,
+    streamer,
+    className,
+    short = false,
+    twitchLinkActive = true,
+}: StreamerCardProps) => {
     const { t } = useTranslation()
     const [followers, degree] = getNumberFollowersAndDegree(streamer.followers)
     const isOnline = streamer.streamInfo !== null
@@ -63,12 +79,15 @@ export const StreamerCard = ({ title, streamer, className, short = false }: Stre
                         </div>
                         <div className={styles.infoMain}>
                             <h3 className={styles.infoName}>
-                                <a href={twitchUrl} target="_blank">
-                                    {streamer.name}
-                                    {streamer.type === 'partner' && (
-                                        <ApprovalIcon width={18} height={18} style={{ marginLeft: '7px' }} />
-                                    )}
-                                </a>
+                                {twitchLinkActive ? (
+                                    <a href={twitchUrl} target="_blank">
+                                        <StreamerName>{streamer}</StreamerName>
+                                    </a>
+                                ) : (
+                                    <span>
+                                        <StreamerName>{streamer}</StreamerName>
+                                    </span>
+                                )}
                             </h3>
                             <p>
                                 {followers}
