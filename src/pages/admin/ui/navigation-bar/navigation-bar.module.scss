@@ -65,16 +65,20 @@
     }
 
     @media (min-width: 1100px) {
-        height: auto;
         overflow: visible;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         position: static;
         width: 300px;
+        height: 100%;
 
         &Tabs {
             height: 100%;
+        }
+
+        &Creators {
+            margin: 70px 0 50px 0;
         }
     }
 }
@@ -118,10 +122,9 @@
     margin-bottom: 4px;
 }
 
-
 .changeLang {
     height: 230px;
-    
+
     &Footer {
         display: inline-block;
         text-align: center;
@@ -129,7 +132,7 @@
 
     &Title {
         color: var(--bh-text-color);
-        display: flex; 
+        display: flex;
         align-items: center;
         margin-bottom: 16px;
 

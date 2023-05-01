@@ -10,22 +10,20 @@ interface CardDescriptionProps {
     className?: string
 }
 
-export const CardDescription = ({ style = 'default', children, className }: CardDescriptionProps) => {
-    return (
-        <h3
-            className={clsx(
-                styles.cardDescription,
-                style === 'green' && styles.cardDescriptionGreen,
-                style === 'orange' && styles.cardDescriptionOrange,
-                style === 'blue' && styles.cardDescriptionBlue,
-                style === 'red' && styles.cardDescriptionRed,
-                className,
-            )}
-        >
-            {children}
-        </h3>
-    )
-}
+export const CardDescription = ({ style = 'default', children, className }: CardDescriptionProps) => (
+    <h3
+        className={clsx(
+            styles.cardDescription,
+            style === 'green' && styles.cardDescriptionGreen,
+            style === 'orange' && styles.cardDescriptionOrange,
+            style === 'blue' && styles.cardDescriptionBlue,
+            style === 'red' && styles.cardDescriptionRed,
+            className,
+        )}
+    >
+        {children}
+    </h3>
+)
 
 interface CardTitleProps {
     style?: Style
@@ -33,24 +31,24 @@ interface CardTitleProps {
     className?: string
 }
 
-export const CardTitle = ({ style = 'default', children, className }: CardTitleProps) => {
-    return (
-        <h4
-            className={clsx(
-                styles.cardTitle,
-                style === 'green' && styles.cardTitleGreen,
-                style === 'orange' && styles.cardTitleOrange,
-                style === 'blue' && styles.cardTitleBlue,
-                className,
-            )}
-        >
-            {children}
-        </h4>
-    )
-}
+export const CardTitle = ({ style = 'default', children, className }: CardTitleProps) => (
+    <h4
+        className={clsx(
+            styles.cardTitle,
+            style === 'green' && styles.cardTitleGreen,
+            style === 'orange' && styles.cardTitleOrange,
+            style === 'blue' && styles.cardTitleBlue,
+            className,
+        )}
+    >
+        {children}
+    </h4>
+)
+
+export const CardDivider = () => <div className={styles.cardDivider} />
 
 interface CardProps {
-    padding?: 'normal' | 'none'
+    padding?: 'normal' | 'big' | 'none'
     borderRadius?: string
     children?: ReactNode
     height?: string
@@ -67,20 +65,19 @@ export const Card = ({
     className,
     width,
     height,
-}: CardProps) => {
-    return (
-        <div
-            className={clsx(
-                styles.card,
-                style === 'green' && styles.cardGreen,
-                style === 'orange' && styles.cardOrange,
-                style === 'blue' && styles.cardBlue,
-                padding === 'normal' && styles.cardPaddingNormal,
-                className,
-            )}
-            style={{ borderRadius: borderRadius, height: height, width: width }}
-        >
-            {children}
-        </div>
-    )
-}
+}: CardProps) => (
+    <div
+        className={clsx(
+            styles.card,
+            style === 'green' && styles.cardGreen,
+            style === 'orange' && styles.cardOrange,
+            style === 'blue' && styles.cardBlue,
+            padding === 'normal' && styles.cardPaddingNormal,
+            padding === 'big' && styles.cardPaddingBig,
+            className,
+        )}
+        style={{ borderRadius: borderRadius, height: height, width: width }}
+    >
+        {children}
+    </div>
+)

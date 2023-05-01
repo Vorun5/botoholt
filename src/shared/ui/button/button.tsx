@@ -12,7 +12,7 @@ export const ButtonText = ({ children, className }: ButtonTextProps) => {
 }
 
 interface ButtonIconProps {
-    children: ReactNode
+    children?: ReactNode
     margin?: 'left' | 'right' | 'none'
     className?: string
 }
@@ -36,7 +36,7 @@ interface ButtonProps {
     style?: 'default' | 'blue' | 'fill-blue' | 'green' | 'red' | 'fill-red' | 'transparent'
     alignment?: 'center' | 'left' | 'right'
     borderRadius?: string
-    children: ReactNode
+    children?: ReactNode
     onClick?: () => void
     height?: string
     width?: string

@@ -1,0 +1,36 @@
+.page {
+    &Content {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+}
+
+.card {
+    width: 100%;
+    min-width: 300px;
+
+    @media (min-width: 800px) {
+        max-width: 380px;
+    }
+
+    @media (min-width: 900px) {
+        max-width: 410px;
+    }
+
+    @media (min-width: 1100px) {
+        max-width: 490px;
+    }
+}
+
+.card {
+    &Title {
+        display: flex;
+        align-items: center;
+
+        & span {
+            margin-left: 10px;
+        }
+    }
+}

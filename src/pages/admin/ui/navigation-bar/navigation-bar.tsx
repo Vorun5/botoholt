@@ -95,6 +95,7 @@ const ChangeLanguage = ({ hideNavigation }: { hideNavigation: () => void }) => {
             <Modal
                 className={styles.changeLang}
                 hideScroll
+                expandedWidth
                 hide={hideLangModal}
                 isShown={langModalIsShown}
                 footerDivider

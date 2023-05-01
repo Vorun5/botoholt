@@ -27,15 +27,22 @@ export const ALPage = ({ children, background }: ALPageProps) => {
 }
 
 export const ALPageContent = ({ children, className }: ALProps) => {
-    return <div className={clsx(className)}>{children}</div>
+    return <div className={clsx(styles.pageContent, className)}>{children}</div>
 }
 
-export const ALPageHeader = ({ children }: ALProps) => {
+interface ALHeaderProps extends ALProps {
+    description?: string
+}
+
+export const ALPageHeader = ({ description, children }: ALHeaderProps) => {
     const isDesktop = useMediaQuery('(min-width: 1100px)')
 
     return (
         <header className={styles.header}>
-            <h1 className={styles.headerTitle}>{children}</h1>
+            <div>
+                <h1 className={styles.headerTitle}>{children}</h1>
+                {description && <span className={styles.headerDescription}>{description}</span>}
+            </div>
             {isDesktop && (
                 <div className={styles.headerSetting}>
                     <div className={styles.headerSettingsTheme}>

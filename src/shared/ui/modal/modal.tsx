@@ -15,7 +15,8 @@ interface ModalProps {
     title?: string
     footerContent?: ReactNode
     hideScroll?: boolean
-    children: ReactNode
+    expandedWidth?: boolean
+    children?: ReactNode
 }
 
 export const Modal = ({
@@ -28,6 +29,7 @@ export const Modal = ({
     title,
     className,
     hideScroll = false,
+    expandedWidth = false,
 }: ModalProps) => {
     const ref = useRef(null)
     useOnClickOutside(ref, hide)
@@ -44,7 +46,7 @@ export const Modal = ({
                 top: `${window.scrollY}px`,
             }}
         >
-            <div ref={ref} className={styles.wrapper}>
+            <div ref={ref} className={clsx(styles.wrapper, expandedWidth && styles.wrapperExpandedWidth)}>
                 {title && (
                     <>
                         <div className={styles.header}>

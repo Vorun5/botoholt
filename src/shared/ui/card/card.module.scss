@@ -2,6 +2,10 @@
     background-color: var(--bh-primary-background-color);
     border: 1px solid var(--bh-outside-color);
     border-radius: var(--bh-card-border-radius);
+    font-size: var(--bh-big-text-size);
+    color: var(--bh-text-color);
+    font-weight: bold;
+    line-height: 1.5;
 
     &Blue {
         border-color: var(--bh-blue-06);
@@ -21,6 +25,18 @@
     &Padding {
         &Normal {
             padding: 30px;
+
+            .cardTitle {
+                margin: 8px 0;
+            }
+        }
+
+        &Big {
+            padding: 40px;
+
+            .cardTitle {
+                margin: 16px 0;
+            }
         }
     }
 
@@ -47,11 +63,17 @@
     }
 
     &Title {
-        font-weight: 500;
+        line-height: 1;
+        display: inline-block;
+        font-weight: bold;
         color: var(--bh-text-color);
         font-size: var(--bh-title-text-size);
-        display: inline-block;
-        margin: 8px 0;
+
+        & span {
+            font-weight: bold;
+            color: var(--bh-text-color);
+            font-size: var(--bh-title-text-size);
+        }
 
         &Blue {
             color: var(--bh-blue);
@@ -64,5 +86,11 @@
         &Orange {
             color: var(--bh-orange);
         }
+    }
+
+    &Divider {
+        margin: 24px 0;
+        width: 100%;
+        border: 1px solid var(--bh-outside-color);
     }
 }
