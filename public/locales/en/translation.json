@@ -113,6 +113,13 @@
         "commands": {},
         "song-queue": {},
         "integrations": {},
-        "support": {}
+        "support": {},
+        "languages": {
+            "title": "Switch language",
+            "site": "Site language",
+            "site-label": "Select site language",
+            "bot": "Bot language",
+            "bot-label": "Select bot language"
+        }
     }
 }

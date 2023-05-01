@@ -10,6 +10,7 @@ interface ModalProps {
     isShown: boolean
     hide: () => void
     className?: string
+    headerDivider?: boolean
     footerDivider?: boolean
     title?: string
     footerContent?: ReactNode
@@ -22,6 +23,7 @@ export const Modal = ({
     isShown,
     hide,
     footerDivider = false,
+    headerDivider = false,
     footerContent,
     title,
     className,
@@ -31,8 +33,8 @@ export const Modal = ({
     useOnClickOutside(ref, hide)
 
     const contentHeight = `calc(100vh - 40px - 20px - 72px - ${title ? '120px' : '0px'} - ${
-        footerContent ? '100px' : '0px'
-    }`
+        footerContent ? '80px' : '0px'
+    } - ${headerDivider ? '30px' : '0px'}`
 
     const modal = (
         <div
@@ -42,19 +44,22 @@ export const Modal = ({
                 top: `${window.scrollY}px`,
             }}
         >
-            <div ref={ref} className={clsx(styles.wrapper, className)}>
+            <div ref={ref} className={styles.wrapper}>
                 {title && (
-                    <div className={styles.header}>
-                        <h1 className={styles.headerTitle}>{title}</h1>
-                        <Button width="46px" height="46px" borderRadius="50%" onClick={hide}>
-                            <ButtonIcon margin="none">
-                                <CloseIcon width="22px" height="22px" />
-                            </ButtonIcon>
-                        </Button>
-                    </div>
+                    <>
+                        <div className={styles.header}>
+                            <h1 className={styles.headerTitle}>{title}</h1>
+                            <Button width="46px" height="46px" borderRadius="50%" onClick={hide}>
+                                <ButtonIcon margin="none">
+                                    <CloseIcon width="22px" height="22px" />
+                                </ButtonIcon>
+                            </Button>
+                        </div>
+                        {headerDivider && <div className={styles.headerDivider} />}
+                    </>
                 )}
                 <div
-                    className={clsx(styles.content, hideScroll && styles.contentHideScroll)}
+                    className={clsx(styles.content, hideScroll && styles.contentHideScroll, className)}
                     style={{
                         maxHeight: contentHeight,
                     }}

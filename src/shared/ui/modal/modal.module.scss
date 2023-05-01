@@ -36,11 +36,18 @@ body {
     padding: 0 var(--bh-modal-padding) 20px var(--bh-modal-padding);
 
     &Title {
-        word-break: break-all;
+        line-height: 1.2;
         margin-right: 24px;
         font-weight: bold;
         font-size: var(--bh-small-title-text-size);
         color: var(--bh-text-color);
+    }
+
+    &Divider {
+        height: 10px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bh-outside-color);
     }
 }
 
@@ -75,6 +82,7 @@ body {
 @media (min-width: 600px) {
     .header {
         &Title {
+            margin-right: 32px;
             font-size: var(--bh-big-title-text-size);
         }
     }

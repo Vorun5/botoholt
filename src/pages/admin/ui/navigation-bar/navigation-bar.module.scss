@@ -117,3 +117,26 @@
     height: 54px;
     margin-bottom: 4px;
 }
+
+
+.changeLang {
+    height: 230px;
+    
+    &Footer {
+        display: inline-block;
+        text-align: center;
+    }
+
+    &Title {
+        color: var(--bh-text-color);
+        display: flex; 
+        align-items: center;
+        margin-bottom: 16px;
+
+        & span {
+            font-size: var(--bh-small-title-text-size);
+            font-weight: bold;
+            margin-left: 16px;
+        }
+    }
+}

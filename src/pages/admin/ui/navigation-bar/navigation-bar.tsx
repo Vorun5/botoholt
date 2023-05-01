@@ -19,8 +19,7 @@ import {
     SunIcon,
 } from 'shared/assets/icons'
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
-
-import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Modal } from 'shared/ui'
+import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {
@@ -60,6 +59,72 @@ const NavButton = ({
     )
 }
 
+const ChangeLanguage = ({ hideNavigation }: { hideNavigation: () => void }) => {
+    const { t, i18n } = useTranslation()
+    const [langModalIsShown, setLangModalIsShown] = useModal()
+    const hideLangModal = () => {
+        if (langModalIsShown) setLangModalIsShown()
+    }
+
+    const languages = ['Русский', 'English']
+
+    const getLangByCode = (code: string) => {
+        switch (code) {
+            case 'ru':
+                return 'Русский'
+            case 'en':
+                return 'English'
+            default:
+                return 'English'
+        }
+    }
+
+    const getCodeByLang = (lang: string) => {
+        switch (lang) {
+            case 'Русский':
+                return 'ru'
+            case 'English':
+                return 'en'
+            default:
+                return 'en'
+        }
+    }
+
+    return (
+        <>
+            <Modal
+                className={styles.changeLang}
+                hideScroll
+                hide={hideLangModal}
+                isShown={langModalIsShown}
+                footerDivider
+                headerDivider
+                title={t('admin-page.languages.title') ?? ''}
+            >
+                <div className={styles.changeLangTitle}>
+                    <LanguageIcon />
+                    <span>{t('admin-page.languages.site')}</span>
+                </div>
+                <Dropdown
+                    label={t('admin-page.languages.site-label') ?? ''}
+                    selectedItem={getLangByCode(i18n.language)}
+                    items={languages}
+                    onSelect={(lang) => i18n.changeLanguage(getCodeByLang(lang))}
+                />
+            </Modal>
+            <Tab
+                onClick={() => {
+                    hideNavigation()
+                    setLangModalIsShown()
+                }}
+                icon={<LanguageIcon />}
+            >
+                {t('admin-page.nav.language')}
+            </Tab>
+        </>
+    )
+}
+
 export const NavigationBar = () => {
     const { t } = useTranslation()
     const approval = true
@@ -80,10 +145,6 @@ export const NavigationBar = () => {
     }
 
     const [theme, toggleTheme] = useTheme()
-    const [langModalIsShown, setLangModalIsShown] = useModal()
-    const hideLangModal = () => {
-        if (langModalIsShown) setLangModalIsShown()
-    }
 
     return (
         <nav ref={navRef}>
@@ -169,108 +230,7 @@ export const NavigationBar = () => {
                                 {t('header.change-theme')}
                             </Tab>
                         )}
-                        <Modal
-                            hide={hideLangModal}
-                            isShown={langModalIsShown}
-                            footerDivider
-                            title='VERYLONGTITLEWHY?'
-                            footerContent={
-                                <>
-                                    <Button style="default">
-                                        <ButtonText>Click</ButtonText>
-                                    </Button>
-                                    <Button style="red">
-                                        <ButtonText>Click 2</ButtonText>
-                                    </Button>
-                                </>
-                            }
-                        >
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis
-                            cumque. Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
-                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi
-                            minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
-                            ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque.
-                            Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
-                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi
-                            minus unde reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem
-                            ipsum dolor sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque.
-                            Vel aperiam voluptatum vero earum animi minus unde reprehenderit repellendus beatae!
-                            Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            Corporis quibusdam hic reiciendis cumque. Vel aperiam voluptatum vero earum animi minus unde
-                            reprehenderit repellendus beatae! Doloribus totam ex dolore ipsum debitis? Lorem ipsum dolor
-                            sit amet consectetur adipisicing elit. Corporis quibusdam hic reiciendis cumque. Vel aperiam
-                            voluptatum vero earum animi minus unde reprehenderit repellendus beatae! Doloribus totam ex
-                            dolore ipsum debitis?
-                        </Modal>
-                        <Tab
-                            onClick={() => {
-                                hideNavigation()
-                                setLangModalIsShown()
-                            }}
-                            icon={<LanguageIcon />}
-                        >
-                            {t('admin-page.nav.language')}
-                        </Tab>
+                        <ChangeLanguage hideNavigation={hideNavigation} />
                         <Link to="/admin/support">
                             <Tab
                                 onClick={hideNavigation}

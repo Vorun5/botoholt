@@ -110,17 +110,16 @@
             "da-status-connected": "Donation Alerts подключен",
             "da-status-not-connected": "Donation Alerts не подключен"
         },
-        "commands": {
-            "": "Команды"
-        },
-        "song-queue": {
-            "": "Очередь песен"
-        },
-        "integrations": {
-            "": "Интеграции"
-        },
-        "support": {
-            "": "Техподдержка"
+        "commands": {},
+        "song-queue": {},
+        "integrations": {},
+        "support": {},
+        "languages": {
+            "title": "Смена языка",
+            "site": "Язык сайта",
+            "site-label": "Выберите язык сайта",
+            "bot": "Язык бота",
+            "bot-label": "Выберите язык бота"
         }
     }
 }
