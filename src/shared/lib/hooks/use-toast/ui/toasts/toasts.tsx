@@ -12,7 +12,7 @@ export const Toasts = ({ toasts }: { toasts: ToastProps[] }) => {
     const bottomToasts = toasts.filter((toast) => toast.position === 'bottom').reverse()
 
     return createPortal(
-        <div>
+        <div className={styles.toastsWrapper}>
             {
                 <div className={clsx(styles.toasts, styles.toastsTop)}>
                     {topToasts.map((toast) => (

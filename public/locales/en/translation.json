@@ -90,6 +90,9 @@
     "welcome": "Welcome",
     "connect": "To plug",
     "disable": "Disable",
+    "dont-show-link": "Don't show the link to anyone",
+    "insert-link": "Insert link",
+    "save-changes": "Save changes",
     "admin-page": {
         "nav": {
             "menu": "Menu",
@@ -112,7 +115,18 @@
         },
         "commands": {},
         "song-queue": {},
-        "integrations": {},
+        "integrations": {
+            "page-description": "On this page you can connect various platforms",
+            "connected": "Connected",
+            "not-connected": "Not connected",
+            "da": {
+                "title": "Connection Donation Alerts",
+                "action": "Paste the link to the widget with Donation Alerts",
+                "message": "Connect Donation Alerts to edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
+                "clue": "To find the link to the widget, go to the DA website - go to",
+                "clue-path": "Widgets > Media sharing."
+            }
+        },
         "support": {},
         "languages": {
             "title": "Switch language",

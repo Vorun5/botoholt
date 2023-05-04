@@ -1,5 +1,6 @@
 body {
     --bh-modal-padding: 24px;
+    --bh-container-modal-padding: 10px;
 }
 
 .close {
@@ -37,7 +38,7 @@ body {
     justify-content: space-between;
     display: flex;
     align-items: center;
-    padding: 0 var(--bh-modal-padding) 20px var(--bh-modal-padding);
+    padding: 0 var(--bh-container-modal-padding) 20px var(--bh-container-modal-padding);
 
     &Title {
         line-height: 1.2;
@@ -57,7 +58,7 @@ body {
 
 .content {
     overflow: auto;
-    padding: 0 var(--bh-modal-padding);
+    padding: 0 var(--bh-container-modal-padding);
 
     &HideScroll {
         @media (pointer: fine) {
@@ -74,7 +75,7 @@ body {
 
 .footer {
     text-align: center;
-    width: calc(100% - var(--bh-modal-padding) - var(--bh-modal-padding));
+    width: calc(100% - var(--bh-container-modal-padding) - var(--bh-container-modal-padding));
     margin: 0 var(--bh-modal-padding);
 
     &Divider {
@@ -82,6 +83,14 @@ body {
         border-bottom: 2px solid var(--bh-outside-color);
     }
 }
+
+
+@media (min-width: 420px) {
+    body {
+        --bh-container-modal-padding: 24px;
+    }
+}
+
 
 @media (min-width: 600px) {
     .header {
@@ -97,6 +106,7 @@ body {
 
     body {
         --bh-modal-padding: 28px;
+        --bh-container-modal-padding: 28px;
     }
 }
 
@@ -107,5 +117,6 @@ body {
 
     body {
         --bh-modal-padding: 36px;
+        --bh-container-modal-padding: 36px;
     }
 }

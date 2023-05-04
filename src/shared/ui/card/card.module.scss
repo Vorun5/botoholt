@@ -22,6 +22,12 @@
         background-color: var(--bh-orange-008);
     }
 
+
+    &Red {
+        border-color: var(--bh-red-06);
+        background-color: var(--bh-red-008);
+    }
+
     &Padding {
         &Normal {
             padding: 30px;
@@ -30,6 +36,15 @@
                 margin: 8px 0;
             }
         }
+
+        &Small {
+            padding: 16px 24px;
+
+            .cardTitle {
+                margin: 8px 0;
+            }
+        }
+
 
         &Big {
             padding: 40px;

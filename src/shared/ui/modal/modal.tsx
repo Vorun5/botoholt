@@ -34,7 +34,7 @@ export const Modal = ({
     const ref = useRef(null)
     useOnClickOutside(ref, hide)
 
-    const contentHeight = `calc(100vh - 40px - 20px - 72px - ${title ? '120px' : '0px'} - ${
+    const contentHeight = `calc(100vh - 40px - 20px - 72px - ${title ? '100px' : '0px'} - ${
         footerContent ? '80px' : '0px'
     } - ${headerDivider ? '30px' : '0px'}`
 

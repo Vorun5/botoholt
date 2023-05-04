@@ -48,12 +48,12 @@ export const CardTitle = ({ style = 'default', children, className }: CardTitleP
 export const CardDivider = () => <div className={styles.cardDivider} />
 
 interface CardProps {
-    padding?: 'normal' | 'big' | 'none'
+    padding?: 'normal' | 'big' | 'none' | 'small'
     borderRadius?: string
     children?: ReactNode
     height?: string
     width?: string
-    style?: 'default' | 'green' | 'blue' | 'orange'
+    style?: 'default' | 'green' | 'blue' | 'orange' | 'red'
     className?: string
 }
 
@@ -72,8 +72,10 @@ export const Card = ({
             style === 'green' && styles.cardGreen,
             style === 'orange' && styles.cardOrange,
             style === 'blue' && styles.cardBlue,
+            style === 'red' && styles.cardRed,
             padding === 'normal' && styles.cardPaddingNormal,
             padding === 'big' && styles.cardPaddingBig,
+            padding === 'small' && styles.cardPaddingSmall,
             className,
         )}
         style={{ borderRadius: borderRadius, height: height, width: width }}
