@@ -60,6 +60,8 @@
         justify-content: center;
 
         & span {
+            position: relative;
+            top: -2px;
             margin-left: 12px;
         }
     }

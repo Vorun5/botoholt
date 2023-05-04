@@ -1,9 +1,168 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
-import { Button, ButtonIcon, ButtonText, Card, CardDescription, CardTitle } from 'shared/ui'
+import { Link } from 'react-router-dom'
+import { HyperinkIcon, StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
+import {
+    Button,
+    ButtonIcon,
+    ButtonText,
+    Card,
+    CardDescription,
+    CardDivider,
+    CardExpanded,
+    CardFooter,
+    CardTitle,
+} from 'shared/ui'
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+import { Emote, TopEmotes } from '../../top-emotes/top-emotes'
 import styles from './dashboard.module.scss'
+
+const emotes: Emote[] = [
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+    {
+        name: 'catJam',
+        number: 1,
+        source: 'BetterTTV',
+        url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
+        amount: 95734,
+    },
+    {
+        name: 'AYAYA',
+        number: 2,
+        source: 'FrankerFaceZ',
+        url: 'https://cdn.frankerfacez.com/emoticon/162146/4',
+        amount: 58348,
+    },
+    {
+        name: 'Okayge',
+        source: '7TV',
+        url: 'https://cdn.7tv.app/emote/60bcb44f7229037ee386d1ab/2x.webp',
+        number: 3,
+        amount: 43294,
+    },
+]
+
+interface HyperinkButtonProps {
+    to: string
+    children?: string
+}
+
+export const HyperinkButton = ({ to, children }: HyperinkButtonProps) => {
+    return (
+        <Link to={to}>
+            <Button>
+                <ButtonText>{children}</ButtonText>
+                <ButtonIcon margin="left">
+                    <HyperinkIcon />
+                </ButtonIcon>
+            </Button>
+        </Link>
+    )
+}
 
 export const Dashboard = () => {
     const { t } = useTranslation()
@@ -35,7 +194,6 @@ export const Dashboard = () => {
                             </Button>
                         </div>
                     </Card>
-
                     <Card className={styles.status}>
                         <CardDescription style="red">{t('admin-page.dashboard.da-status')}</CardDescription>
                         <CardTitle className={styles.statusText}>
@@ -53,7 +211,59 @@ export const Dashboard = () => {
                         </div>
                     </Card>
                 </div>
-                <Card className={styles.emotes}></Card>
+                <Card className={styles.emotes}>
+                    <CardDescription>смайлики канала</CardDescription>
+                    <CardTitle>Топ смайликов</CardTitle>
+                    <CardDescription textTransform="none">
+                        Топ часто используемых BetterTTV, 7TV и FrankerFaceZ смайликов в чате
+                    </CardDescription>
+                    <CardDivider />
+                    <CardExpanded>
+                        <TopEmotes height="270px" emotes={emotes} />
+                    </CardExpanded>
+                </Card>
+                <div className={styles.streamInfo}>
+                    <Card style="blue" width="328px" className={styles.streamInfoCard}>
+                        <CardDescription style="blue">категория</CardDescription>
+                        <div className={styles.streamInfoCardTitle}>
+                            <CardTitle style="blue">League of Legends</CardTitle>
+                        </div>
+                        <CardDescription>название стрима</CardDescription>
+                        <span>
+                            GIGACHAD стрим! доигрываем мундо! постримим штрафной часок до 4 по мск! ЗАВТРА КОРЕЯ в 11 ПО
+                            МСК
+                        </span>
+                    </Card>
+                    <Card style="orange" width="328px" className={styles.streamInfoCard}>
+                        <CardDescription style="orange">15.03.2023 - 22.03.2023</CardDescription>
+                        <div className={styles.streamInfoCardTitle}>
+                            <CardTitle style="orange">Статистика</CardTitle>
+                        </div>
+                        <CardDescription>количество сообщений</CardDescription>
+                        <CardTitle>32 414</CardTitle>
+                        <CardDescription>заказано музыки за все время</CardDescription>
+                        <CardTitle>1 231</CardTitle>
+                    </Card>
+                </div>
+                <Card style="green" className={styles.song}>
+                    <CardDescription style="green">Последняя заказанная песня</CardDescription>
+                    <CardTitle style="green">
+                        <a href="https://www.youtube.com/watch?v=I2fgSE2paT8" target="_blank">
+                            Weeknd & Кино (Виктор Цой) — Закрой за мной дверь (Blinding Lights) Mashup by Openlabel
+                        </a>
+                    </CardTitle>
+                    <CardExpanded>
+                        <CardDescription className={styles.songSender}>
+                            заказ от: бом бом & piter parker
+                        </CardDescription>
+                    </CardExpanded>
+                    <CardFooter className={styles.songFooter}>
+                        <HyperinkButton to="/admin/song-queue">Очередь</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">История песен</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">Топ диджеев</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">Топ песен</HyperinkButton>
+                    </CardFooter>
+                </Card>
             </ALPageContent>
         </>
     )

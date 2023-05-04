@@ -1,0 +1,38 @@
+.emotes {
+    overflow-y: auto;
+}
+
+.emote {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Info {
+        display: flex;
+        align-items: center;
+    }
+
+    &Number {
+        color: var(--bh-text-color-06);
+        margin: 0 30px;
+    }
+
+    &Name {
+        display: inline-block;
+        margin-bottom: 5px;
+        color: var(--bh-orange);
+        font-size: var(--bh-text-size);
+    }
+
+    &Source {
+        font-weight: normal;
+        color: var(--bh-text-color-06);
+    }
+
+    &Amount {
+        padding: 0 30px;
+        font-weight: normal;
+        color: var(--bh-text-color-06);
+    }
+}

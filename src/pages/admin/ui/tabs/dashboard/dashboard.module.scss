@@ -1,13 +1,22 @@
 .page {
     &Content {
         display: flex;
+        flex-wrap: wrap;
+        row-gap: 30px;
+        column-gap: 30px;
     }
+}
+
+.statuses {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    column-gap: 30px;
 }
 
 .status {
     width: 470px;
     height: 220px;
-    margin-bottom: 2rem;
 
     &Text {
         height: 78px;
@@ -25,6 +34,43 @@
 }
 
 .emotes {
-    margin-left: 2rem;
-    width: 100%;
+    overflow: hidden;
+    flex: auto;
+    // width: max-content;
+    height: 472px;
+}
+
+.streamInfo {
+    display: flex;
+    row-gap: 30px;
+    column-gap: 30px;
+}
+
+.streamInfoCard {
+    font-weight: normal;
+
+    &Title {
+        margin-bottom: 1rem;
+    }
+
+    & span {
+        margin-top: 8px;
+    }
+}
+
+.song {
+    flex: auto;
+    width: min-content;
+
+    &Sender {
+        margin-top: 8px;
+    }
+
+    &Footer {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 12px;
+        column-gap: 12px;
+    }
 }

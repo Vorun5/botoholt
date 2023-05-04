@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { ReactNode } from 'react'
+import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import styles from './button.module.scss'
 
 interface ButtonTextProps {
-    children: string
+    children?: string
     className?: string
 }
 
@@ -42,6 +43,7 @@ interface ButtonProps {
     width?: string
     padding?: 'big' | 'normal' | 'small'
     border?: boolean
+    loading?: boolean
     className?: string
 }
 
@@ -56,6 +58,7 @@ export const Button = ({
     width,
     padding = 'normal',
     border = false,
+    loading = false,
 }: ButtonProps) => {
     return (
         <button
@@ -75,7 +78,7 @@ export const Button = ({
                 className,
             )}
             type="button"
-            onClick={onClick}
+            onClick={loading ? undefined : onClick}
             style={{
                 borderRadius: borderRadius,
                 justifyContent: alignment,
@@ -83,7 +86,13 @@ export const Button = ({
                 width: width,
             }}
         >
-            {children}
+            {loading ? (
+                <ButtonIcon margin="none">
+                    <img width={30} height={30} src={LoadingGif} alt="loading" />
+                </ButtonIcon>
+            ) : (
+                children
+            )}
         </button>
     )
 }

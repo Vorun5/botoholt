@@ -7,10 +7,16 @@ type Style = 'default' | 'green' | 'blue' | 'orange'
 interface CardDescriptionProps {
     style?: 'default' | 'green' | 'blue' | 'orange' | 'red'
     children: ReactNode
+    textTransform?: 'none' | 'uppercase'
     className?: string
 }
 
-export const CardDescription = ({ style = 'default', children, className }: CardDescriptionProps) => (
+export const CardDescription = ({
+    style = 'default',
+    textTransform = 'uppercase',
+    children,
+    className,
+}: CardDescriptionProps) => (
     <h3
         className={clsx(
             styles.cardDescription,
@@ -20,6 +26,9 @@ export const CardDescription = ({ style = 'default', children, className }: Card
             style === 'red' && styles.cardDescriptionRed,
             className,
         )}
+        style={{
+            textTransform: textTransform,
+        }}
     >
         {children}
     </h3>
@@ -27,7 +36,7 @@ export const CardDescription = ({ style = 'default', children, className }: Card
 
 interface CardTitleProps {
     style?: Style
-    children: ReactNode
+    children?: ReactNode
     className?: string
 }
 
@@ -46,6 +55,19 @@ export const CardTitle = ({ style = 'default', children, className }: CardTitleP
 )
 
 export const CardDivider = () => <div className={styles.cardDivider} />
+
+export const CardExpanded = ({ children }: { children?: ReactNode }) => (
+    <div className={styles.cardExpanded}>{children}</div>
+)
+
+interface CardFooterProps {
+    className?: string
+    children?: ReactNode
+}
+
+export const CardFooter = ({ children, className }: CardFooterProps) => (
+    <div className={clsx(styles.cardFooter, className)}>{children}</div>
+)
 
 interface CardProps {
     padding?: 'normal' | 'big' | 'none' | 'small'

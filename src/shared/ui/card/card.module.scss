@@ -1,4 +1,6 @@
 .card {
+    display: flex;
+    flex-direction: column;
     background-color: var(--bh-primary-background-color);
     border: 1px solid var(--bh-outside-color);
     border-radius: var(--bh-card-border-radius);
@@ -22,7 +24,6 @@
         background-color: var(--bh-orange-008);
     }
 
-
     &Red {
         border-color: var(--bh-red-06);
         background-color: var(--bh-red-008);
@@ -45,7 +46,6 @@
             }
         }
 
-
         &Big {
             padding: 40px;
 
@@ -56,9 +56,10 @@
     }
 
     &Description {
+        font-weight: normal;
+        flex-shrink: 0;
         font-size: var(--bh-small-text-size);
         color: var(--bh-description-text-color);
-        text-transform: uppercase;
 
         &Red {
             color: var(--bh-red);
@@ -78,32 +79,57 @@
     }
 
     &Title {
+        flex-shrink: 0;
         line-height: 1;
         display: inline-block;
         font-weight: bold;
         color: var(--bh-text-color);
         font-size: var(--bh-title-text-size);
 
-        & span {
+        & span,
+        a {
             font-weight: bold;
             color: var(--bh-text-color);
             font-size: var(--bh-title-text-size);
         }
 
+        & a:hover {
+            text-decoration: underline;
+        }
+
         &Blue {
             color: var(--bh-blue);
+            & a {
+                color: var(--bh-blue);
+            }
         }
 
         &Green {
             color: var(--bh-green);
+            & a {
+                color: var(--bh-green);
+            }
         }
 
         &Orange {
             color: var(--bh-orange);
+            & a {
+                color: var(--bh-orange);
+            }
         }
     }
 
+    &Expanded {
+        height: 100%;
+        flex-shrink: 1;
+    }
+
+    &Footer {
+        flex-shrink: 0;
+    }
+
     &Divider {
+        flex-shrink: 0;
         margin: 24px 0;
         width: 100%;
         border: 1px solid var(--bh-outside-color);
