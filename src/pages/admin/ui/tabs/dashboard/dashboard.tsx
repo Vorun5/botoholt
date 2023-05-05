@@ -19,7 +19,7 @@ import styles from './dashboard.module.scss'
 
 const emotes: Emote[] = [
     {
-        name: 'catJam',
+        name: 'LOLFORSENOMEGALULWHATKEKBRUHBRUHBRUHBRUHBRUHBRUHBRUH',
         number: 1,
         source: 'BetterTTV',
         url: 'https://cdn.betterttv.net/emote/5f899609473f4802fe47046f/2x.webp',
@@ -180,12 +180,14 @@ export const Dashboard = () => {
                 <div className={styles.statuses}>
                     <Card className={styles.status}>
                         <CardDescription style="green">{t('admin-page.dashboard.bot-status')}</CardDescription>
-                        <CardTitle className={styles.statusText}>
-                            {t('admin-page.dashboard.bot-status-connected')}
-                        </CardTitle>
+                        <CardExpanded>
+                            <CardTitle className={styles.statusText}>
+                                {t('admin-page.dashboard.bot-status-connected')}
+                            </CardTitle>
+                        </CardExpanded>
                         <div className={styles.statusButtons}>
                             <Button padding="big">
-                                <ButtonText>{t('disable')}</ButtonText>
+                                <ButtonText>{t('disable')!}</ButtonText>
                             </Button>
                             <Button style="green" borderRadius="50%" width="50px" height="50px" alignment="center">
                                 <ButtonIcon margin="none">
@@ -196,12 +198,14 @@ export const Dashboard = () => {
                     </Card>
                     <Card className={styles.status}>
                         <CardDescription style="red">{t('admin-page.dashboard.da-status')}</CardDescription>
-                        <CardTitle className={styles.statusText}>
-                            {t('admin-page.dashboard.da-status-not-connected')}
-                        </CardTitle>
+                        <CardExpanded>
+                            <CardTitle className={styles.statusText}>
+                                {t('admin-page.dashboard.da-status-not-connected')}
+                            </CardTitle>
+                        </CardExpanded>
                         <div className={styles.statusButtons}>
                             <Button style="green" padding="big">
-                                <ButtonText>{t('connect')}</ButtonText>
+                                <ButtonText>{t('connect')!}</ButtonText>
                             </Button>
                             <Button style="red" borderRadius="50%" width="50px" height="50px" alignment="center">
                                 <ButtonIcon margin="none">
@@ -219,22 +223,26 @@ export const Dashboard = () => {
                     </CardDescription>
                     <CardDivider />
                     <CardExpanded>
-                        <TopEmotes height="270px" emotes={emotes} />
+                        <div className={styles.emotesTopWrapper}>
+                            <TopEmotes emotes={emotes} />
+                        </div>
                     </CardExpanded>
                 </Card>
                 <div className={styles.streamInfo}>
-                    <Card style="blue" width="328px" className={styles.streamInfoCard}>
+                    <Card style="blue" className={styles.streamInfoCard}>
                         <CardDescription style="blue">категория</CardDescription>
-                        <div className={styles.streamInfoCardTitle}>
-                            <CardTitle style="blue">League of Legends</CardTitle>
-                        </div>
+                        <CardExpanded>
+                            <CardTitle className={styles.streamInfoCardTitle} style="blue">
+                                League of Legends daksdk adksk aksd
+                            </CardTitle>
+                        </CardExpanded>
                         <CardDescription>название стрима</CardDescription>
                         <span>
                             GIGACHAD стрим! доигрываем мундо! постримим штрафной часок до 4 по мск! ЗАВТРА КОРЕЯ в 11 ПО
                             МСК
                         </span>
                     </Card>
-                    <Card style="orange" width="328px" className={styles.streamInfoCard}>
+                    <Card style="orange" className={styles.streamInfoCard}>
                         <CardDescription style="orange">15.03.2023 - 22.03.2023</CardDescription>
                         <div className={styles.streamInfoCardTitle}>
                             <CardTitle style="orange">Статистика</CardTitle>

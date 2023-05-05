@@ -31,7 +31,7 @@
 
     &Padding {
         &Normal {
-            padding: 30px;
+            padding: 24px;
 
             .cardTitle {
                 margin: 8px 0;
@@ -39,7 +39,7 @@
         }
 
         &Small {
-            padding: 16px 24px;
+            padding: 12px 18px;
 
             .cardTitle {
                 margin: 8px 0;
@@ -47,7 +47,7 @@
         }
 
         &Big {
-            padding: 40px;
+            padding: 32px;
 
             .cardTitle {
                 margin: 16px 0;
@@ -130,8 +130,30 @@
 
     &Divider {
         flex-shrink: 0;
-        margin: 24px 0;
+        margin: 16px 0;
         width: 100%;
         border: 1px solid var(--bh-outside-color);
+    }
+}
+
+@media (min-width: 400px) {
+    .card {
+        &Divider {
+            margin: 24px 0;
+        }
+
+        &Padding {
+            &Normal {
+                padding: 30px;
+            }
+
+            &Small {
+                padding: 16px 24px;
+            }
+
+            &Big {
+                padding: 40px;
+            }
+        }
     }
 }

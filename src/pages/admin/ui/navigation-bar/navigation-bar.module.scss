@@ -2,12 +2,16 @@
     position: absolute;
     z-index: 2;
     top: 1rem;
-    left: 24px;
+    left: 10px;
     transition: all 0.2s;
 
     &Open {
         top: 1rem;
         left: calc(300px - 12px - 50px);
+    }
+
+    @media (min-width: 500px) {
+        left: 24px;
     }
 }
 

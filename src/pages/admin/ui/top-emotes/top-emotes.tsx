@@ -10,12 +10,11 @@ export interface Emote {
 
 interface TopEmotesProps {
     emotes: Emote[]
-    height?: string
 }
 
-export const TopEmotes = ({ emotes, height }: TopEmotesProps) => {
+export const TopEmotes = ({ emotes }: TopEmotesProps) => {
     return (
-        <div className={styles.emotes} style={{ height: height }}>
+        <div className={styles.emotes}>
             {emotes.map((emote, index) => (
                 <div key={index} className={styles.emote}>
                     <div className={styles.emoteInfo}>
