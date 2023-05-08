@@ -69,7 +69,7 @@ export const CardFooter = ({ children, className }: CardFooterProps) => (
     <div className={clsx(styles.cardFooter, className)}>{children}</div>
 )
 
-interface CardProps {
+export interface CardProps {
     padding?: 'normal' | 'big' | 'none' | 'small'
     borderRadius?: string
     children?: ReactNode

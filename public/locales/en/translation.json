@@ -22,6 +22,7 @@
     "streamer-not-found": "{{login}} is not connected to Botoholt",
     "page-not-found": "Page not found",
     "song-card": {
+        "last-song": "Last ordered song",
         "playing": "Now playing:",
         "not-playing": "Songs on pause. Last song:",
         "by": "Order from: ",
@@ -106,6 +107,15 @@
             "sign-out": "Sign out"
         },
         "dashboard": {
+            "stream": {
+                "category": "Category",
+                "title": "Stream title"
+            },
+            "statistic": {
+                "title": "Statistics",
+                "number-of-messages": "Number of messages",
+                "number-of-ordered-songs": "Number of ordered songs"
+            },
             "bot-status": "Bot status",
             "bot-status-connected": "Bot is working properly",
             "bot-status-not-connected": "Bot not connected",
@@ -127,7 +137,16 @@
                 "clue-path": "Widgets > Media sharing."
             }
         },
-        "support": {},
+        "support": {
+            "description": "If you have any problems while using Botoholt, you can find the answer to your question or describe your problem in the discord",
+            "discord": {
+                "title": "The list does not answer my question, who should I contact?",
+                "description": "If the list does not answer your question, then write to Urbinholt in discord"
+            },
+            "faq": {
+                "description": "Frequently asked questions"
+            }
+        },
         "languages": {
             "title": "Switch language",
             "site": "Site language",
@@ -135,5 +154,10 @@
             "bot": "Bot language",
             "bot-label": "Select bot language"
         }
+    },
+    "top-emotes": {
+        "channel-emotes": "Channel emotes",
+        "top-emotes": "Top emotes",
+        "description": "Top frequently used BetterTTV, 7TV and FrankerFaceZ emotes in chat"
     }
 }

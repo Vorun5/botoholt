@@ -148,7 +148,7 @@ const emotes: Emote[] = [
 
 interface HyperinkButtonProps {
     to: string
-    children?: string
+    children: string
 }
 
 export const HyperinkButton = ({ to, children }: HyperinkButtonProps) => {
@@ -170,6 +170,16 @@ export const Dashboard = () => {
     useEffect(() => {
         window.document.title = t('admin-page.nav.dashboard')
     }, [])
+
+    const stream = {
+        title: 'GIGACHAD стрим! доигрываем мундо! постримим штрафной часок до 4 по мск! ЗАВТРА КОРЕЯ в 11 ПО МСК',
+        category: 'League of Legends',
+    }
+    const song = {
+        name: 'Weeknd & Кино (Виктор Цой) — Закрой за мной дверь (Blinding Lights) Mashup by Openlabel',
+        link: 'https://www.youtube.com/watch?v=I2fgSE2paT8',
+        sender: 'БОМ БОМ & PITER PARKER',
+    }
 
     return (
         <>
@@ -216,11 +226,9 @@ export const Dashboard = () => {
                     </Card>
                 </div>
                 <Card className={styles.emotes}>
-                    <CardDescription>смайлики канала</CardDescription>
-                    <CardTitle>Топ смайликов</CardTitle>
-                    <CardDescription textTransform="none">
-                        Топ часто используемых BetterTTV, 7TV и FrankerFaceZ смайликов в чате
-                    </CardDescription>
+                    <CardDescription>{t('top-emotes.channel-emotes')}</CardDescription>
+                    <CardTitle>{t('top-emotes.top-emotes')}</CardTitle>
+                    <CardDescription textTransform="none">{t('top-emotes.description')}</CardDescription>
                     <CardDivider />
                     <CardExpanded>
                         <div className={styles.emotesTopWrapper}>
@@ -230,46 +238,43 @@ export const Dashboard = () => {
                 </Card>
                 <div className={styles.streamInfo}>
                     <Card style="blue" className={styles.streamInfoCard}>
-                        <CardDescription style="blue">категория</CardDescription>
+                        <CardDescription style="blue">{t('admin-page.dashboard.stream.category')}</CardDescription>
                         <CardExpanded>
                             <CardTitle className={styles.streamInfoCardTitle} style="blue">
-                                League of Legends daksdk adksk aksd
+                                {stream.category}
                             </CardTitle>
                         </CardExpanded>
-                        <CardDescription>название стрима</CardDescription>
-                        <span>
-                            GIGACHAD стрим! доигрываем мундо! постримим штрафной часок до 4 по мск! ЗАВТРА КОРЕЯ в 11 ПО
-                            МСК
-                        </span>
+                        <CardDescription>{t('admin-page.dashboard.stream.title')}</CardDescription>
+                        <span>{stream.title}</span>
                     </Card>
                     <Card style="orange" className={styles.streamInfoCard}>
                         <CardDescription style="orange">15.03.2023 - 22.03.2023</CardDescription>
                         <div className={styles.streamInfoCardTitle}>
-                            <CardTitle style="orange">Статистика</CardTitle>
+                            <CardTitle style="orange">{t('admin-page.dashboard.statistic.title')}</CardTitle>
                         </div>
-                        <CardDescription>количество сообщений</CardDescription>
+                        <CardDescription>{t('admin-page.dashboard.statistic.number-of-messages')}</CardDescription>
                         <CardTitle>32 414</CardTitle>
-                        <CardDescription>заказано музыки за все время</CardDescription>
+                        <CardDescription>{t('admin-page.dashboard.statistic.number-of-ordered-songs')}</CardDescription>
                         <CardTitle>1 231</CardTitle>
                     </Card>
                 </div>
                 <Card style="green" className={styles.song}>
-                    <CardDescription style="green">Последняя заказанная песня</CardDescription>
+                    <CardDescription style="green">{t('song-card.last-song')}</CardDescription>
                     <CardTitle style="green">
-                        <a href="https://www.youtube.com/watch?v=I2fgSE2paT8" target="_blank">
-                            Weeknd & Кино (Виктор Цой) — Закрой за мной дверь (Blinding Lights) Mashup by Openlabel
+                        <a href={song.link} target="_blank">
+                            {song.name}
                         </a>
                     </CardTitle>
                     <CardExpanded>
                         <CardDescription className={styles.songSender}>
-                            заказ от: бом бом & piter parker
+                            {t('song-card.by')} {song.sender}
                         </CardDescription>
                     </CardExpanded>
                     <CardFooter className={styles.songFooter}>
-                        <HyperinkButton to="/admin/song-queue">Очередь</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">История песен</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">Топ диджеев</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">Топ песен</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.queue')}</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.history')}</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.top-djs')}</HyperinkButton>
+                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.top-songs')}</HyperinkButton>
                     </CardFooter>
                 </Card>
             </ALPageContent>
