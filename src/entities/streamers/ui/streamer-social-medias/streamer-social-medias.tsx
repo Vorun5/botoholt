@@ -85,6 +85,7 @@ export const StreamerSocialMedias = ({ socialMedias }: StreamerSocialMediasProps
                             style={{ left: `${index * (100 / sliderCount) + scrollIndex * (100 / sliderCount)}%` }}
                         >
                             <a
+                                title={socialMedia.title}
                                 href={socialMedia.url}
                                 target="_blank"
                                 rel="noreferrer"

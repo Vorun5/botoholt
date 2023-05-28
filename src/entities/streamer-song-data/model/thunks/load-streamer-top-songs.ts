@@ -4,7 +4,7 @@ import { Period, StreamerTopSong } from 'shared/types'
 import { StreamerSongDataSlice } from '../type'
 
 export const loadStreamerTopSongs = createAsyncThunk<
-    StreamerTopSong[],
+    { list: StreamerTopSong[]; total: number },
     { login: string; period: Period },
     { state: { streamerSongData: StreamerSongDataSlice }; rejectValue: string }
 >(

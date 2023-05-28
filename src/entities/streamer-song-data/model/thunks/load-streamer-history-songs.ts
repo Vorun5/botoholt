@@ -4,7 +4,7 @@ import { StreamerHistorySong } from 'shared/types'
 import { StreamerSongDataSlice } from '../type'
 
 export const loadStreamerHistorySongs = createAsyncThunk<
-    StreamerHistorySong[],
+    { list: StreamerHistorySong[]; total: number },
     string,
     { state: { streamerSongData: StreamerSongDataSlice }; rejectValue: string }
 >(

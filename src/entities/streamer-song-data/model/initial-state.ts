@@ -33,17 +33,20 @@ export const initialState: StreamerSongDataSlice = {
         status: 'idle',
         error: null,
         list: [],
+        total: 0,
     },
     topDjs: {
         status: 'idle',
         error: null,
         period: 'week',
         list: [],
+        total: 0,
     },
     topSongs: {
         status: 'idle',
         error: null,
         period: 'week',
         list: [],
+        total: 0,
     },
 }
