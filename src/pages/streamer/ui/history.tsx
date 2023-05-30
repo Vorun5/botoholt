@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { SONG_LIMIT, loadStreamerHistorySongs, selectStreamerHistorySongs } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { capitalize } from 'shared/lib/helpers'
-import { useInterval } from 'shared/lib/hooks'
 import i18n from 'shared/lib/i18n/i18n'
 import { useAppDispatch } from 'shared/lib/store'
 import { StreamerHistorySong } from 'shared/types'
@@ -15,12 +14,36 @@ import { ListStatusNotification } from './list-status-notification/list-status-n
 
 export const History = () => {
     const { t } = useTranslation()
+    const [searchParams, setSearchParams] = useSearchParams()
     const history = useSelector(selectStreamerHistorySongs)
-
-    // TODO: move search logic to redux
+    const total = Math.ceil(history.total / SONG_LIMIT)
+    const dispatch = useAppDispatch()
     const [historyList, setHistoryList] = useState<StreamerHistorySong[]>(history.list)
     const [searchStr, setSearchStr] = useState('')
-    const [from, setFrom] = useState(0)
+    const { streamerName } = useParams()
+    const login = streamerName || ''
+
+    useEffect(() => {
+        const pageParam = searchParams.get('page')
+        let page = 1
+        if (history.from != -1) {
+            page = history.from / SONG_LIMIT + 1
+            setSearchParams({ page: page.toString() })
+            return
+        }
+        if (pageParam !== null) {
+            try {
+                page = Number.parseInt(pageParam)
+                if (Number.isNaN(page) || page < 1) {
+                    page = 1
+                    setSearchParams({ page: '1' })
+                }
+            } catch {
+                console.log('Failed to parse page number')
+            }
+        }
+        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: (page - 1) * SONG_LIMIT }))
+    }, [])
 
     const search = (str: string) => {
         setSearchStr(str)
@@ -38,20 +61,9 @@ export const History = () => {
         search(searchStr)
     }, [history])
 
-    const { streamerName } = useParams()
-    const login = streamerName || ''
-    useEffect(() => {
-        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: from }))
-    }, [from])
-
-    const dispatch = useAppDispatch()
-    const updateInfo = useCallback(() => {
-        console.log('Update history')
-    }, [dispatch])
-    useInterval(updateInfo)
-
     const changePage = (page: number) => {
-        setFrom((page - 1) * SONG_LIMIT)
+        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: SONG_LIMIT * (page - 1) }))
+        setSearchParams({ page: page.toString() })
     }
 
     return (
@@ -86,16 +98,12 @@ export const History = () => {
                                     songName={song.name}
                                     songLink={song.link}
                                     sender={song.sender}
-                                    number={index + 1 + history.from}
+                                    number={history.list.findIndex((i) => i === song) + 1 + history.from}
                                     extraInfo={`${formatDateTime} ${capitalize(formatDateWeek)}`}
                                 />
                             )
                         })}
-                        <Pagination
-                            total={Math.ceil(history.total / SONG_LIMIT)}
-                            page={history.from / SONG_LIMIT + 1}
-                            changePage={changePage}
-                        />
+                        <Pagination total={total} page={history.from / SONG_LIMIT + 1} changePage={changePage} />
                     </>
                 )}
             </SongDataList>

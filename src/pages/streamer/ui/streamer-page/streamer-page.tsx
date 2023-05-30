@@ -6,7 +6,6 @@ import { Footer, Header } from 'widgets'
 import {
     SONG_LIMIT,
     loadStreamer,
-    loadStreamerHistorySongs,
     loadStreamerQueue,
     loadStreamerTopDjs,
     loadStreamerTopSongs,
@@ -38,7 +37,6 @@ export const StreamerPage = () => {
     useEffect(() => {
         dispatch(loadStreamer(login))
         dispatch(loadStreamerQueue(login))
-        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: 0 }))
     }, [dispatch, streamerName])
 
     const [tab, period] = useNav(login)

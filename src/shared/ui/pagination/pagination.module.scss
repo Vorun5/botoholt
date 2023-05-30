@@ -37,13 +37,14 @@
     align-items: center;
 
     &Label {
+        color: var(--bh-text-color);
         font-weight: bold;
         font-size: var(--bh-text-size);
         margin-right: 10px;
     }
 
     &Input {
-        max-width: 100px;
+        max-width: 85px;
         border-radius: 5px;
     
         & input {
