@@ -14,3 +14,4 @@ export { Card, CardTitle, CardDescription, CardDivider, CardExpanded, CardFooter
 export type { CardProps } from './card/card'
 export { Modal } from './modal/modal'
 export { InputField, PasswordFiled } from './input-field/input-field'
+export { Pagination } from './pagination/pagination'

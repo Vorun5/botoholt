@@ -1,9 +1,10 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useNav } from 'pages/streamer/lib'
 import { Footer, Header } from 'widgets'
 import {
+    SONG_LIMIT,
     loadStreamer,
     loadStreamerHistorySongs,
     loadStreamerQueue,
@@ -12,7 +13,7 @@ import {
     selectStreamer,
     selectStreamerCurrentSong,
 } from 'entities/streamer-song-data'
-import { useInterval, useMediaQuery } from 'shared/lib/hooks'
+import { useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
@@ -37,20 +38,16 @@ export const StreamerPage = () => {
     useEffect(() => {
         dispatch(loadStreamer(login))
         dispatch(loadStreamerQueue(login))
-        dispatch(loadStreamerHistorySongs(login))
+        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: 0 }))
     }, [dispatch, streamerName])
-
-    const updateInfo = useCallback(() => {
-        dispatch(loadStreamerQueue(login))
-        dispatch(loadStreamerHistorySongs(login))
-    }, [dispatch, streamerName])
-    useInterval(updateInfo)
 
     const [tab, period] = useNav(login)
 
     useEffect(() => {
-        if (tab === 'top-djs') dispatch(loadStreamerTopDjs({ login: login, period: period }))
-        if (tab === 'top-songs') dispatch(loadStreamerTopSongs({ login: login, period: period }))
+        if (tab === 'top-djs')
+            dispatch(loadStreamerTopDjs({ login: login, period: period, limit: SONG_LIMIT, from: 0 }))
+        if (tab === 'top-songs')
+            dispatch(loadStreamerTopSongs({ login: login, period: period, limit: SONG_LIMIT, from: 0 }))
     }, [period, tab])
 
     const isDesktop = useMediaQuery('(min-width: 1400px)')

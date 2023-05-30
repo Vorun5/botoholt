@@ -48,6 +48,7 @@ const streamerSongDataSlice = createSlice({
                 state.history.status = 'received'
                 state.history.list = action.payload.list
                 state.history.total = action.payload.total
+                state.history.from = action.payload.from
             })
             // Top Djs
             .addCase(loadStreamerTopDjs.pending, (state) => {
@@ -62,6 +63,7 @@ const streamerSongDataSlice = createSlice({
                 state.topDjs.status = 'received'
                 state.topDjs.list = action.payload.list
                 state.topDjs.total = action.payload.total
+                state.topDjs.from = action.payload.from
             })
             // Top songs
             .addCase(loadStreamerTopSongs.pending, (state) => {
@@ -76,6 +78,7 @@ const streamerSongDataSlice = createSlice({
                 state.topSongs.status = 'received'
                 state.topSongs.list = action.payload.list
                 state.topSongs.total = action.payload.total
+                state.topDjs.from = action.payload.from
             })
     },
 })

@@ -9,7 +9,7 @@ interface InputFieldProps {
     onSubmit?: () => void
     onClickButton?: () => void
     icon?: ReactNode
-    type?: 'search' | 'password' | 'text'
+    type?: 'search' | 'password' | 'text' | 'number'
     name?: string
     placeholder?: string
     className?: string
@@ -44,9 +44,11 @@ export const InputField = ({
                     onSubmit()
                 }}
             />
-            <button type="button" onClick={onClickButton ? onClickButton : onSubmit}>
-                {icon}
-            </button>
+            {icon && (
+                <button type="button" onClick={onClickButton ? onClickButton : onSubmit}>
+                    {icon}
+                </button>
+            )}
         </div>
     )
 }

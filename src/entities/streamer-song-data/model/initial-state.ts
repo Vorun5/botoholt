@@ -34,6 +34,7 @@ export const initialState: StreamerSongDataSlice = {
         error: null,
         list: [],
         total: 0,
+        from: 0,
     },
     topDjs: {
         status: 'idle',
@@ -41,6 +42,7 @@ export const initialState: StreamerSongDataSlice = {
         period: 'week',
         list: [],
         total: 0,
+        from: 0,
     },
     topSongs: {
         status: 'idle',
@@ -48,5 +50,6 @@ export const initialState: StreamerSongDataSlice = {
         period: 'week',
         list: [],
         total: 0,
+        from: 0,
     },
 }

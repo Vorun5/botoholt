@@ -1,12 +1,5 @@
-import {
-    Status,
-    Streamer,
-    StreamerHistorySong,
-    StreamerQueue,
-    StreamerTopDj,
-    StreamerTopSong,
-} from 'shared/types';
-import { Period } from 'shared/types';
+import { Status, Streamer, StreamerHistorySong, StreamerQueue, StreamerTopDj, StreamerTopSong } from 'shared/types'
+import { Period } from 'shared/types'
 
 export type StreamerSongDataSlice = {
     streamer: {
@@ -24,6 +17,7 @@ export type StreamerSongDataSlice = {
         status: Status
         list: StreamerHistorySong[]
         total: number
+        from: number
     }
     topSongs: {
         error: string | null
@@ -31,6 +25,7 @@ export type StreamerSongDataSlice = {
         period: Period
         list: StreamerTopSong[]
         total: number
+        from: number
     }
     topDjs: {
         error: string | null
@@ -38,5 +33,6 @@ export type StreamerSongDataSlice = {
         period: Period
         list: StreamerTopDj[]
         total: number
+        from: number
     }
 }

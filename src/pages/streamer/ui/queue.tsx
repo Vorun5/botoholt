@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { selectStreamerQueue } from 'entities/streamer-song-data'
+import { useParams } from 'react-router-dom'
+import { loadStreamerQueue, selectStreamerQueue } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
+import { useInterval } from 'shared/lib/hooks'
+import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
@@ -30,6 +33,15 @@ export const Queue = () => {
         setQueueList(queue.list)
         search(searchStr)
     }, [queue])
+
+    const { streamerName } = useParams()
+    const login = streamerName || ''
+    const dispatch = useAppDispatch()
+    const updateInfo = useCallback(() => {
+        console.log('Update queue')
+        dispatch(loadStreamerQueue(login))
+    }, [dispatch])
+    useInterval(updateInfo)
 
     return (
         <>
