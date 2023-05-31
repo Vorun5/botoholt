@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams, useSearchParams } from 'react-router-dom'
@@ -61,13 +61,16 @@ export const History = () => {
         search(searchStr)
     }, [history])
 
+    const ref = useRef<HTMLDivElement>(null)
     const changePage = (page: number) => {
+        window.scrollTo(0, ref.current!.offsetTop - 20)
         dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: SONG_LIMIT * (page - 1) }))
         setSearchParams({ page: page.toString() })
     }
 
     return (
         <>
+            <div ref={ref} />
             <SongDataList title={t('streamer-page.tab-titles.history')} searchFun={search}>
                 {history.status === 'loading' && <Loading />}
                 {history.status === 'rejected' && <ErrorMessage>{history.error}</ErrorMessage>}

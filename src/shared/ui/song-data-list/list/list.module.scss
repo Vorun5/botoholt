@@ -4,8 +4,20 @@
         color: var(--text-color);
         font-weight: bold;
         font-size: var(--secondary-text-size);
+
+        & a {
+            cursor: pointer;
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            transition: 0.1s color;
+
+            &:hover {
+                color: #8f00ff;
+            }
+        }
     }
-    
+
     &Items {
         margin-top: 1rem;
     }
