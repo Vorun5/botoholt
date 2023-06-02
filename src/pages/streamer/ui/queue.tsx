@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { loadStreamerQueue, selectStreamerQueue } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
+import { HyperinkIcon } from 'shared/assets/icons'
 import { useInterval } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
+import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
-import { HyperinkIcon } from 'shared/assets/icons'
 
 export const Queue = () => {
     const { t } = useTranslation()
@@ -51,26 +52,15 @@ export const Queue = () => {
             .reduce((accumulator, songDuration) => accumulator + songDuration)
     }
 
-    let ytPlaylistLink = ''
-    if (queueList.length !== 0) {
-        for (const song of queueList) {
-            const url = new URL(song.link)
-            const id = url.searchParams.get('v')
-            if (id !== null) {
-                ytPlaylistLink = ytPlaylistLink + id + ','
-            }
-        }
-        if (ytPlaylistLink.length !== 0) {
-            ytPlaylistLink = 'https://www.youtube.com/watch_videos?video_ids=' + ytPlaylistLink.slice(0, -1)
-        }
-    }
-
+    const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
+    console.log(ytPlaylistLink)
+    
     return (
         <>
             <SongDataList
                 title={
                     <>
-                        {ytPlaylistLink.length !== 0 ? (
+                        {ytPlaylistLink !== null ? (
                             <a
                                 target="_blank"
                                 href={ytPlaylistLink}

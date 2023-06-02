@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectStreamerTopSongs } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
+import { Period } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList } from 'shared/ui'
 import { TopListItem } from 'shared/ui'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-export const TopSongs = () => {
+export const TopSongs = ({ period }: { period: Period }) => {
     const { t } = useTranslation()
     const topSongs = useSelector(selectStreamerTopSongs)
 

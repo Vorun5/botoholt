@@ -21,7 +21,7 @@ export const StreamerPageDesktop = ({ streamer, tab, period }: StreamerPageProps
                             <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
                         </div>
                         <div className={styles.list}>
-                            <SongList />
+                            <SongList period={period} />
                         </div>
                     </div>
                 </div>

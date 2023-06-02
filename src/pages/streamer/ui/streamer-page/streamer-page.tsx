@@ -6,8 +6,8 @@ import { Footer, Header } from 'widgets'
 import {
     SONG_LIMIT,
     loadStreamer,
+    loadStreamerHistorySongs,
     loadStreamerQueue,
-    loadStreamerTopDjs,
     loadStreamerTopSongs,
     selectStreamer,
     selectStreamerCurrentSong,
@@ -35,6 +35,9 @@ export const StreamerPage = () => {
     }, [streamer, song])
 
     useEffect(() => {
+        if (streamer.data.login.length !== 0 && streamer.data.login.toLowerCase() !== login.toLowerCase()) {
+            dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: 0 }))
+        }
         dispatch(loadStreamer(login))
         dispatch(loadStreamerQueue(login))
     }, [dispatch, streamerName])
@@ -42,8 +45,6 @@ export const StreamerPage = () => {
     const [tab, period] = useNav(login)
 
     useEffect(() => {
-        if (tab === 'top-djs')
-            dispatch(loadStreamerTopDjs({ login: login, period: period, limit: SONG_LIMIT, from: 0 }))
         if (tab === 'top-songs')
             dispatch(loadStreamerTopSongs({ login: login, period: period, limit: SONG_LIMIT, from: 0 }))
     }, [period, tab])

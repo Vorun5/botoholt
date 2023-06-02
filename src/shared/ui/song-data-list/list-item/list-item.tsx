@@ -5,7 +5,7 @@ import styles from './list-item.module.scss'
 
 export interface ListItemProps {
     number: number
-    extraInfo: string
+    extraInfo: ReactNode
     children: ReactNode
 }
 

@@ -35,6 +35,8 @@ export const Pagination = ({ changePage, page, total }: PaginationProps) => {
         setGoto(page)
     }, [page])
 
+    if (total <= 1) return <></>
+    
     return (
         <div className={styles.paginationContainer}>
             <div className={styles.pagination}>
@@ -52,12 +54,14 @@ export const Pagination = ({ changePage, page, total }: PaginationProps) => {
                     1
                 </PageButton>
                 {end && <PageButton>...</PageButton>}
-                <PageButton
-                    active={!(page === 1 || page === total)}
-                    onClick={() => changePage(page === 1 ? 2 : page === total ? total - 1 : page)}
-                >
-                    {page === 1 ? 2 : page === total ? total - 1 : page}
-                </PageButton>
+                {total !== 2 && (
+                    <PageButton
+                        active={!(page === 1 || page === total)}
+                        onClick={() => changePage(page === 1 ? 2 : page === total ? total - 1 : page)}
+                    >
+                        {page === 1 ? 2 : page === total ? total - 1 : page}
+                    </PageButton>
+                )}
                 {!end && <PageButton>...</PageButton>}
                 <PageButton active={page === total} onClick={() => changePage(total)}>
                     {total}

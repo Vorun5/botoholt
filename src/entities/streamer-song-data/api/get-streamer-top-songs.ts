@@ -5,6 +5,7 @@ export const getStreamerTopSongs = async (login: string, period: Period, limit: 
     const response = await api
         .get(`${login}/songs/top/${period}?limit=${limit}&from=${from}`)
         .json<(StreamerTopSongDto | StreamerSongListTotalDto)[]>()
+        
     const list = response.slice(0, -1) as StreamerTopSongDto[]
     const total = response[response.length - 1] as StreamerSongListTotalDto
 
