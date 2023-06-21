@@ -4,7 +4,7 @@ import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import styles from './button.module.scss'
 
 interface ButtonTextProps {
-    children?: string
+    children: string
     className?: string
 }
 

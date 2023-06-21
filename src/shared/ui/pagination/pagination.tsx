@@ -21,7 +21,7 @@ interface PageButtonProps {
 const PageButton = ({ children, active = false, onClick }: PageButtonProps) => {
     return (
         <Button style={active ? 'fill-blue' : 'default'} className={styles.pageBth} onClick={onClick}>
-            <ButtonText>{children?.toString()}</ButtonText>
+            <ButtonText>{children?.toString() ?? ''}</ButtonText>
         </Button>
     )
 }
@@ -36,7 +36,7 @@ export const Pagination = ({ changePage, page, total }: PaginationProps) => {
     }, [page])
 
     if (total <= 1) return <></>
-    
+
     return (
         <div className={styles.paginationContainer}>
             <div className={styles.pagination}>
