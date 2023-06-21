@@ -1,0 +1,79 @@
+.table {
+    padding: 40px 0;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--bh-primary-background-color);
+    border: 1px solid var(--bh-outside-color);
+
+    &InputContainer {
+        width: 100%;
+        max-width: 230px;
+        margin: 0 40px 40px 40px;
+    }
+}
+
+.headlines {
+    border: 1px solid var(--bh-outside-color);
+    border-left: none;
+    border-right: none;
+    display: flex;
+}
+
+.command {
+    display: flex;
+}
+
+.cell {
+    padding: 25px 16px;
+
+    &Name {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--bh-text-color-04);
+    }
+
+    &Text {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--bh-text-color);
+    }
+
+    &:nth-child(1) {
+        width: 103px;
+        flex-shrink: 0;
+    }
+
+    &:nth-child(2) {
+        width: 200px;
+        flex-shrink: 0;
+    }
+
+    &:nth-child(3) {
+        width: 100%;
+        max-width: 320px;
+        min-width: 150px;
+        flex-shrink: 1;
+    }
+
+    &:nth-child(4) {
+        width: 100%;
+        min-width: 320px;
+        min-width: 150px;
+        flex-shrink: 1;
+    }
+
+    &:nth-child(5) {
+        width: 150px;
+        flex-shrink: 0;
+    }
+
+    &:nth-child(6) {
+        width: 80px;
+        flex-shrink: 0;
+    }
+
+    &:nth-child(7) {
+        width: 170px;
+        flex-shrink: 0;
+    }
+}

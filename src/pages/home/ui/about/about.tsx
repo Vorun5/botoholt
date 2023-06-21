@@ -12,7 +12,7 @@ export const About = () => {
                 <span className={styles.aboutIndent} />
                 {t('about-botoholt-text-1')}
                 <br /> <span className={styles.aboutIndent} /> {t('about-botoholt-text-2')}
-                <CopiedText>Urbinholt#0640</CopiedText>
+                <CopiedText>Urbinholt</CopiedText>
                 {t('about-botoholt-text-3')}
             </p>
         </div>

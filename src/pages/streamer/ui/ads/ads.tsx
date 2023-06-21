@@ -49,7 +49,7 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                                     children: (
                                         <span className={styles.toastText}>
                                             {t('connect-bot-text-1')}
-                                            <CopiedText>Urbinholt#0640</CopiedText>
+                                            <CopiedText>Urbinholt</CopiedText>
                                             {t('connect-bot-text-2')}
                                         </span>
                                     ),

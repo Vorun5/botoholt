@@ -138,3 +138,7 @@ body[data-theme='dark'] {
         --secondary-text-size: 24px;
     }
 }
+
+html {
+    font-size: var(--primary-text-size);
+}

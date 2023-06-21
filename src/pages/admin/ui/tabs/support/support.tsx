@@ -50,7 +50,7 @@ export const Support = () => {
                             height="53px"
                             onClick={() => window.open('https://discordapp.com/users/127927922643304448/')}
                         >
-                            <ButtonText>Urbinholt#0640</ButtonText>
+                            <ButtonText>Urbinholt</ButtonText>
                             <ButtonIcon margin="left">
                                 <DiscordIcon width={33} height={25} fill="white" />
                             </ButtonIcon>
