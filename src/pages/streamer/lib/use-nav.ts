@@ -4,10 +4,11 @@ import { ALL_AVAILABLE_PERIODS, Period } from 'shared/types'
 
 export type StreamerPageTab = 'queue' | 'history' | 'top-songs' | 'top-djs'
 
-export const useNav = (login: string): [StreamerPageTab, Period] => {
+export const useNav = (login: string): [StreamerPageTab, Period, number] => {
     const location = useLocation()
     const [tab, setTab] = useState<StreamerPageTab>('queue')
     const [period, setPeriod] = useState<Period>('week')
+    const [page, setPage] = useState(-1)
     const [searchParams, _] = useSearchParams()
 
     const getStreamerPageTab = useCallback(() => {
@@ -33,6 +34,25 @@ export const useNav = (login: string): [StreamerPageTab, Period] => {
         return searchPeriod as Period
     }, [searchParams])
 
+    const getPageFromSearchParams = useCallback(() => {
+        const pageParam = searchParams.get('page')
+        let pageValue = -1
+
+        if (pageParam !== null) {
+            try {
+                pageValue = Number.parseInt(pageParam)
+                if (Number.isNaN(pageValue) || pageValue < 1) {
+                    return -1
+                }
+            } catch {
+                console.log('Failed to parse page number')
+                return -1
+            }
+        }
+
+        return pageValue
+    }, [searchParams])
+
     useEffect(() => {
         getStreamerPageTab()
     }, [location])
@@ -41,5 +61,9 @@ export const useNav = (login: string): [StreamerPageTab, Period] => {
         setPeriod(getPeriodFromSearchParams())
     }, [getPeriodFromSearchParams, searchParams])
 
-    return [tab, period]
+    useEffect(() => {
+        setPage(getPageFromSearchParams())
+    }, [getPageFromSearchParams, searchParams])
+
+    return [tab, period, page]
 }

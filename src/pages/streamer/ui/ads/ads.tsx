@@ -31,7 +31,7 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                     <ButtonIcon>
                         <DAIcon height="19px" width="17px" />
                     </ButtonIcon>
-                    <ButtonText>{t('support-streamer-bth')}</ButtonText>
+                    <ButtonText>{t('support-streamer-bth') ?? ''}</ButtonText>
                 </Button>
             </Banner>
             <Banner className={styles.banner}>
@@ -62,7 +62,7 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                     <ButtonIcon>
                         <StarIcon height="18px" width="20px" />
                     </ButtonIcon>
-                    <ButtonText>{t('connect-bot-bth')}</ButtonText>
+                    <ButtonText>{t('connect-bot-bth') ?? ''}</ButtonText>
                 </Button>
             </Banner>
         </div>

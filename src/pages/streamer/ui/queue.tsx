@@ -15,8 +15,6 @@ import { ListStatusNotification } from './list-status-notification/list-status-n
 export const Queue = () => {
     const { t } = useTranslation()
     const queue = useSelector(selectStreamerQueue)
-
-    // TODO: move search logic to redux
     const [queueList, setQueueList] = useState<StreamerQueueSong[]>(queue.list)
     const [searchStr, setSearchStr] = useState('')
 
@@ -54,7 +52,7 @@ export const Queue = () => {
 
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
     console.log(ytPlaylistLink)
-    
+
     return (
         <>
             <SongDataList

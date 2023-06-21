@@ -3,11 +3,9 @@ import { SONG_LIMIT } from 'entities/streamer-song-data'
 export const usePageSearchParam = ({
     from,
     searchParams,
-    setSearchParams,
 }: {
     from: number
     searchParams: URLSearchParams
-    setSearchParams: any
 }) => {
     const pageParam = searchParams.get('page')
     let page = 1

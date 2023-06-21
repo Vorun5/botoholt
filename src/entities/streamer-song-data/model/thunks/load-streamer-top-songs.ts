@@ -13,7 +13,7 @@ export const loadStreamerTopSongs = createAsyncThunk<
     async (params: LoadParamWithPeriodType, { rejectWithValue }) => {
         try {
             const streamerTopSongs = await getStreamerTopSongs(params.login, params.period, params.limit, params.from)
-
+                        
             return streamerTopSongs
         } catch (error) {
             if (error instanceof Error) return rejectWithValue(error.message)

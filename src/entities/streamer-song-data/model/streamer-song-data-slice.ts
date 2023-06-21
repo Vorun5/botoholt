@@ -72,13 +72,13 @@ const streamerSongDataSlice = createSlice({
             })
             .addCase(loadStreamerTopSongs.rejected, (state, action) => {
                 state.topSongs.status = 'rejected'
-                state.topSongs.error = action.payload || 'Cannot load streamer top djs'
+                state.topSongs.error = action.payload || 'Cannot load streamer top songs'
             })
             .addCase(loadStreamerTopSongs.fulfilled, (state, action) => {
                 state.topSongs.status = 'received'
                 state.topSongs.list = action.payload.list
                 state.topSongs.total = action.payload.total
-                state.topDjs.from = action.payload.from
+                state.topSongs.from = action.payload.from
             })
     },
 })

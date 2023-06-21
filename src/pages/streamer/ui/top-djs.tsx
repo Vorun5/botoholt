@@ -1,39 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { SONG_LIMIT, loadStreamerTopDjs, selectStreamerTopDjs } from 'entities/streamer-song-data'
+import { useSearchParams } from 'react-router-dom'
+import { SONG_LIMIT, selectStreamerTopDjs } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
-import { useAppDispatch } from 'shared/lib/store'
 import { Period } from 'shared/types'
 import { ErrorMessage, Loading, Pagination, SongDataList, TopListItem } from 'shared/ui'
-import { usePageSearchParam, usePeriodSearchParam } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-export const TopDjs = ({}: { period: Period }) => {
+export const TopDjs = ({ period }: { period: Period }) => {
     const { t } = useTranslation()
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [_, setSearchParams] = useSearchParams()
     const topDjs = useSelector(selectStreamerTopDjs)
     const total = Math.ceil(topDjs.total / SONG_LIMIT)
-
-    // TODO: move search logic to redux
     const [topDjsList, setTopDjsList] = useState(topDjs.list)
     const [searchStr, setSearchStr] = useState('')
-    const dispatch = useAppDispatch()
     const ref = useRef<HTMLDivElement>(null)
-    const { streamerName } = useParams()
-    const login = streamerName || ''
-    const period = usePeriodSearchParam()
-
-    useEffect(() => {
-        let page = usePageSearchParam({
-            from: topDjs.from,
-            searchParams,
-            setSearchParams,
-        })
-        setSearchParams({ period: period, page: page.toString() })
-        dispatch(loadStreamerTopDjs({ login, limit: SONG_LIMIT, from: SONG_LIMIT * (page - 1), period }))
-    }, [period])
 
     const search = (str: string) => {
         setSearchStr(str)
@@ -47,7 +29,6 @@ export const TopDjs = ({}: { period: Period }) => {
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        dispatch(loadStreamerTopDjs({ login, limit: SONG_LIMIT, from: SONG_LIMIT * (page - 1), period }))
         setSearchParams({ period: period, page: page.toString() })
     }
 

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { MoonIcon, SunIcon } from 'shared/assets/icons'
-import { useTheme } from '../lib/useTheme'
+import { useTheme } from '../lib/use-theme'
 import styles from './theme-switcher.module.scss'
 
 export const ThemeSwitcher = ({ short = false }: { short?: boolean }) => {

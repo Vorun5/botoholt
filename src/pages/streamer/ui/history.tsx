@@ -31,7 +31,6 @@ export const History = () => {
         let page = usePageSearchParam({
             from: history.from,
             searchParams,
-            setSearchParams,
         })
         setSearchParams({ page: page.toString() })
         dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: (page - 1) * SONG_LIMIT }))
