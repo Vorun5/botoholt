@@ -8,7 +8,7 @@
         overflow-x: auto;
 
         &::-webkit-scrollbar {
-            height: 5px;
+            height: 8px;
         }
         @media (pointer: coarse) {
             -ms-overflow-style: none;
@@ -32,7 +32,7 @@
     }
     
     &::-webkit-scrollbar {
-        height: 5px;
+        height: 8px;
     }
 
     @media (pointer: coarse) {

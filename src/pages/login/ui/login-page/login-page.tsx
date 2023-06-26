@@ -34,7 +34,7 @@ export const LoginPage = () => {
                             type="button"
                             className={styles.loginBth}
                             onClick={() => {
-                                // TODO
+                                window.open('https://dev.bho.lt/api/v1/admin/auth/twitch')
                             }}
                         >
                             <span className={styles.loginBthText}>

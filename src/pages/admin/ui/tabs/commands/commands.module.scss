@@ -1,6 +1,6 @@
 .pageContent {
     @media (min-width: 1100px) {
-        width: calc(100vw - 390px);
+        width: calc(100vw - 400px);
     }
 }
 
@@ -8,7 +8,7 @@
     display: flex;
     margin-bottom: 20px;
     overflow-x: auto;
-    
+
     &::-webkit-scrollbar {
         height: 5px;
     }
