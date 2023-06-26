@@ -241,7 +241,13 @@ export const NavigationBar = () => {
                                 {t('admin-page.nav.support')}
                             </Tab>
                         </Link>
-                        <Tab onClick={hideNavigation} icon={<LogoutIcon />}>
+                        <Tab
+                            onClick={() => {
+                                hideNavigation()
+                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/logout'
+                            }}
+                            icon={<LogoutIcon />}
+                        >
                             {t('admin-page.nav.sign-out')}
                         </Tab>
                     </div>
