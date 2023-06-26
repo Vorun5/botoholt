@@ -1,0 +1,58 @@
+.pageContent {
+    @media (min-width: 1100px) {
+        width: calc(100vw - 390px);
+    }
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    @media (pointer: coarse) {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    }
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px;
+    color: var(--bh-text-color-06);
+    font-weight: bold;
+    font-size: var(--bh-large-text-size);
+    transition: color 0.3s;
+    border-bottom: 3px solid transparent;
+
+    &Focus {
+        cursor: normal;
+        color: var(--bh-text-color);
+        border-bottom-color: var(--bh-blue);
+    }
+
+    &:hover {
+        color: var(--bh-text-color);
+        border-bottom: 3px solid var(--bh-blue);
+    }
+}
+
+.commands {
+    padding: 40px 0;
+    border-radius: 10px;
+    background-color: var(--bh-primary-background-color);
+    border: 1px solid var(--bh-outside-color);
+}
+
+.field {
+    max-width: 230px;
+    margin: 0 40px 40px 40px;
+}

@@ -1,4 +1,4 @@
-import { SearchField } from 'shared/ui'
+import { Command } from 'shared/types'
 import { CommandTableItem } from './command-table-item'
 import styles from './command-table.module.scss'
 
@@ -10,13 +10,10 @@ const CellName = ({ children }: { children: string }) => {
     )
 }
 
-export const CommandTable = () => {
+export const CommandTable = ({ commands }: { commands: Command[] }) => {
     return (
-        <div className={styles.table}>
-            <div className={styles.tableInputContainer}>
-                <SearchField plasholder="Поиск по командам" name="commands" onChange={() => {}} />
-            </div>
-            <div className={styles.headlines}>
+        <div className={styles.commands}>
+            <div className={styles.commandsHeadlines}>
                 <CellName>Статус</CellName>
                 <CellName>Тип</CellName>
                 <CellName>Команда</CellName>
@@ -25,14 +22,11 @@ export const CommandTable = () => {
                 <CellName>CD</CellName>
                 <CellName>Действие</CellName>
             </div>
-            <CommandTableItem
-                access="Випы"
-                answer="Показывает текущий трек"
-                cd="15s"
-                commands={['!s', '!song', '!ы', '!трек']}
-                status={false}
-                type="Длительность очереди"
-            />
+            <div className={styles.commandsItems}>
+                {commands.map((command, index) => (
+                    <CommandTableItem key={index} focus={(index + 1) / 2 === 1} command={command} />
+                ))}
+            </div>
         </div>
     )
 }

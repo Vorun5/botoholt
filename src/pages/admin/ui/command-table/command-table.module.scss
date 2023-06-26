@@ -1,30 +1,58 @@
-.table {
-    padding: 40px 0;
-    width: 100%;
-    border-radius: 10px;
-    background-color: var(--bh-primary-background-color);
-    border: 1px solid var(--bh-outside-color);
+.commands {
+    &Headlines {
+        overflow: hidden;
+        border: 1px solid var(--bh-outside-color);
+        border-left: none;
+        border-right: none;
+        display: flex;
+        overflow-x: auto;
 
-    &InputContainer {
-        width: 100%;
-        max-width: 230px;
-        margin: 0 40px 40px 40px;
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+        @media (pointer: coarse) {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+    
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+        }
     }
-}
-
-.headlines {
-    border: 1px solid var(--bh-outside-color);
-    border-left: none;
-    border-right: none;
-    display: flex;
 }
 
 .command {
     display: flex;
+    align-items: center;
+    overflow-x: auto;
+
+    &Focus {
+        background-color: var(--bh-background-color);
+    }
+    
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    @media (pointer: coarse) {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    }
+
+    &Actions {
+        display: flex;
+        column-gap: 10px;
+    }
 }
 
 .cell {
-    padding: 25px 16px;
+    padding: 20px 16px;
 
     &Name {
         font-size: 1rem;
@@ -51,14 +79,14 @@
     &:nth-child(3) {
         width: 100%;
         max-width: 320px;
-        min-width: 150px;
+        min-width: 250px;
         flex-shrink: 1;
     }
 
     &:nth-child(4) {
         width: 100%;
         min-width: 320px;
-        min-width: 150px;
+        min-width: 320px;
         flex-shrink: 1;
     }
 
@@ -75,5 +103,31 @@
     &:nth-child(7) {
         width: 170px;
         flex-shrink: 0;
+    }
+}
+
+.commandTags {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    column-gap: 6px;
+}
+
+.commandTag {
+    max-width: 100%;
+    padding: 6px 16px;
+    display: inline-flex;
+    justify-self: center;
+    align-items: center;
+    border: 1px solid var(--bh-text-color-04);
+    border-radius: 24px;
+    background-color: var(--bh-primary-background-color-04);
+
+    &Name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1rem;
+        color: var(--bh-text-color);
     }
 }

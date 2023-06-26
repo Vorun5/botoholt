@@ -1,5 +1,8 @@
+import clsx from 'clsx'
 import { ReactNode } from 'react'
-import { Button, ButtonText, Toggle } from 'shared/ui'
+import { EditIcon, InfoIcon } from 'shared/assets/icons'
+import { Command } from 'shared/types'
+import { Button, ButtonIcon, Toggle } from 'shared/ui'
 import styles from './command-table.module.scss'
 
 const Cell = ({ children }: { children: ReactNode }) => {
@@ -10,30 +13,49 @@ const Cell = ({ children }: { children: ReactNode }) => {
     )
 }
 
-interface CommandTableItemProps {
-    status: boolean
-    type: 'Текущий трек' | 'Последний трек' | 'Длительность очереди' | 'Доступные команды'
-    commands: string[]
-    answer: string
-    access: 'Всем' | 'Подписчики' | 'Випы' | 'Модераторы' | 'Никто'
-    cd: string
+const CommandTag = ({ children }: { children: string }) => {
+    return (
+        <div className={styles.commandTag}>
+            <span className={styles.commandTagName}>{children}</span>
+        </div>
+    )
 }
 
-export const CommandTableItem = ({ status, type, commands, answer, access, cd }: CommandTableItemProps) => {
+export interface CommandTableItemProps {
+    focus: boolean
+    command: Command
+}
+
+export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
     return (
-        <div className={styles.command}>
+        <div className={clsx(styles.command, focus && styles.commandFocus)}>
             <Cell>
-                <Toggle checked={status} />
+                <Toggle checked={command.status} onChange={() => {}} />
             </Cell>
-            <Cell>{type}</Cell>
-            <Cell>{commands.map((command) => command + ' ')}</Cell>
-            <Cell>{answer}</Cell>
-            <Cell>{access}</Cell>
-            <Cell>{cd}</Cell>
+            <Cell>{command.type}</Cell>
             <Cell>
-                <Button>
-                    <ButtonText>Ааа</ButtonText>
-                </Button>
+                <div className={styles.commandTags}>
+                    {command.commands.map((command, index) => (
+                        <CommandTag key={index}>{command}</CommandTag>
+                    ))}
+                </div>
+            </Cell>
+            <Cell>{command.answer}</Cell>
+            <Cell>{command.access}</Cell>
+            <Cell>{command.cdInSeconds.toString()}сек</Cell>
+            <Cell>
+                <div className={styles.commandActions}>
+                    <Button width="66px" border padding="small">
+                        <ButtonIcon margin="none">
+                            <EditIcon />
+                        </ButtonIcon>
+                    </Button>
+                    <Button width="66px" border padding="small">
+                        <ButtonIcon margin="none">
+                            <InfoIcon />
+                        </ButtonIcon>
+                    </Button>
+                </div>
             </Cell>
         </div>
     )
