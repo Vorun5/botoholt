@@ -23,7 +23,9 @@ export const AdminPage = () => {
 
     const fetch = async () => {
         const respone = await api.get('admin/auth/twitch/callback')
+        const respone2 = await api.get('admin/auth/twitch')
         console.log(respone.headers.get('Set-Cookie'))
+        console.log(respone2.headers.get('Set-Cookie'));
         setCookie(respone.headers.get('Set-Cookie') ?? '')
     }
 
