@@ -35,7 +35,6 @@ export const LoginPage = () => {
                             className={styles.loginBth}
                             onClick={() => {
                                 window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/twitch'
-                                // windows.location = 'https://dev.bho.lt/api/v1/admin/auth/twitch'
                             }}
                         >
                             <span className={styles.loginBthText}>
