@@ -1,34 +1,46 @@
 .item {
     margin: 5px 0;
     border-radius: 5px;
-    background-color: var(--background-color);
     padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.1s;
 
-    &:hover {
-        background-color: var(--accent-background-color);
-    }
-
     &Info {
         font-size: calc(var(--primary-text-size) + 2px);
         white-space: nowrap;
-        margin: 0 1.5rem;
         color: var(--neutral-text-color);
         line-height: 1.4;
         text-align: right;
     }
 
     &Compact {
-        & .itemInfo {
-            margin: 0 1rem;
+        padding: 1rem 5px;
+
+        .itemImg {
+            display: none;
         }
     }
 
     &Content {
         width: 100%;
         text-align: left;
+        margin: 0 10px 0 20px;
+    }
+
+    &Img {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        max-width: 120px;
+        margin-right: 20px;
+        background-color: var(--bh-blue);
+        border-radius: 5px;
+        overflow: hidden;
+
+        & img {
+            width: 100%;
+        }
     }
 }

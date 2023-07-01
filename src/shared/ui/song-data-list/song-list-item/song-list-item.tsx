@@ -13,7 +13,7 @@ export const SongListItem = ({ number, extraInfo, songName, songLink, sender }: 
     const { t } = useTranslation()
 
     return (
-        <ListItem number={number} extraInfo={extraInfo}>
+        <ListItem number={number} extraInfo={extraInfo} ytLideoLink={songLink}>
             <ListItemName link={songLink}>{songName}</ListItemName>
             <span className={styles.sender}>
                 {t('song-card.by')}

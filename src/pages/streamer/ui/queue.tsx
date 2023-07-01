@@ -51,7 +51,6 @@ export const Queue = () => {
     }
 
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
-    console.log(ytPlaylistLink)
 
     return (
         <>

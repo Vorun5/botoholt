@@ -21,6 +21,7 @@ import {
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
+import { AdminAuth } from 'shared/types'
 
 interface TabProps {
     selected?: boolean
@@ -126,9 +127,9 @@ const ChangeLanguage = ({ hideNavigation }: { hideNavigation: () => void }) => {
     )
 }
 
-export const NavigationBar = () => {
+export const NavigationBar = ({ authData }: { authData: AdminAuth }) => {
     const { t } = useTranslation()
-    const approval = true
+    const approval = authData.type === 'partner'
     const pathname = useLocation().pathname
 
     const isDesktop = useMediaQuery('(min-width: 1100px)')
@@ -168,13 +169,8 @@ export const NavigationBar = () => {
                     </div>
 
                     <div className={clsx(styles.navigationUser, styles.user)}>
-                        <Avatar
-                            size="44px"
-                            isOnline
-                            image="https://i.pinimg.com/originals/9b/b4/05/9bb4059a23af5ff46d090e0b1515036d.jpg"
-                            alt="EvangelionAyanamiRei"
-                        />
-                        <span className={styles.userName}>EvangelionAyanamiRei</span>
+                        <Avatar size="44px" isOnline image={authData.image} alt={authData.name} />
+                        <span className={styles.userName}>{authData.name}</span>
                         {approval && <ApprovalIcon className={styles.userApproval} />}
                     </div>
 

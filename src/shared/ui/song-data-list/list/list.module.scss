@@ -1,4 +1,8 @@
 .list {
+    background-color: var(--bh-primary-background-color);
+    border-radius: 5px;
+    padding: 24px 40px;
+
     &Title {
         margin-bottom: 1rem;
         color: var(--text-color);
