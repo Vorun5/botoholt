@@ -1,7 +1,15 @@
 .list {
     background-color: var(--bh-primary-background-color);
     border-radius: 5px;
-    padding: 24px 40px;
+    padding: 24px 12px;
+
+    @media (min-width: 520px) {
+        padding: 24px 20px;
+    }
+
+    @media (min-width: 1100px) {
+        padding: 24px 40px;
+    }
 
     &Title {
         margin-bottom: 1rem;

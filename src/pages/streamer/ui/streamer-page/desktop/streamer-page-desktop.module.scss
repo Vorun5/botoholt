@@ -47,11 +47,8 @@
     }
 
     &Right {
-        border-radius: 5px;
-        margin-left: 1rem;
-        background-color: var(--background-color);
-        padding: 2rem;
-        width: calc(100% - (360px + 2rem));
+        margin-left: 34px;
+        width: calc(100% - (360px + 34px));
     }
 
     @media (min-width: 1200px) {
@@ -60,7 +57,7 @@
         }
 
         &Right {
-            width: calc(100% - (400px + 2rem));
+            width: calc(100% - (400px + 34px));
         }
     }
 
@@ -70,7 +67,7 @@
         }
 
         &Right {
-            width: calc(100% - (440px + 2rem));
+            width: calc(100% - (440px + 34px));
         }
     }
 }
