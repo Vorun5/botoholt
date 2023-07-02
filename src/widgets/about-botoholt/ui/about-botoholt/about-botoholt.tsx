@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ConnectIcon, NoteIcon, SupportIcon } from 'shared/assets/icons'
 import { useElementSize, useMediaQuery } from 'shared/lib/hooks'
+import { CopiedText } from 'shared/ui'
 import { InfoCard } from '../info-card/info-card'
 import styles from './about-botoholt.module.scss'
 
@@ -18,11 +19,13 @@ export const AboutBotoholt = () => {
                 {t('about.botoholt-text')}
             </InfoCard>
             <InfoCard mobile={isMobile} icon={<ConnectIcon />} title={t('about.connect')}>
-                {t('about.connect-text')}
+                {t('about.connect-text-2')}
+                <CopiedText>Urbinholt</CopiedText>
+                {t('in-discord')}
             </InfoCard>
             <InfoCard mobile={isMobile} icon={<SupportIcon />} title={t('about.support')}>
                 {t('about.support-text')}
-                <a href="https://fantalks.io/r/botoholt">{t('about.support-link-text')}</a>
+                <a href="https://boosty.to/urbinholt/donate">{t('about.support-link-text')}</a>
             </InfoCard>
         </div>
     )

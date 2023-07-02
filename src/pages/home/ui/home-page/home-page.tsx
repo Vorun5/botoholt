@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Footer, Header, StreamerList } from 'widgets'
+import { AboutBotoholt, Footer, Header, StreamerList } from 'widgets'
+import { TwitchIcon } from 'shared/assets/icons/social'
 import { Page, PageContent } from 'shared/ui'
-import { About } from '../about/about'
 import styles from './home-page.module.scss'
 
 export const HomePage = () => {
@@ -17,8 +17,20 @@ export const HomePage = () => {
             <Page>
                 <Header />
                 <PageContent>
-                    <About />
-                    <h1 className={styles.streamersTitle}>{t('top-streamers')}</h1>
+                    <span className={styles.title}>{t('about-botoholt')}</span>
+                    <AboutBotoholt />
+                    <span className={styles.title}>
+                        <TwitchIcon
+                            style={{
+                                position: 'relative',
+                                top: '6px',
+                            }}
+                            width="32px"
+                            height="32px"
+                            color="#673AB7"
+                        />{' '}
+                        {t('top-streamers')}
+                    </span>
                     <StreamerList />
                 </PageContent>
                 <Footer />

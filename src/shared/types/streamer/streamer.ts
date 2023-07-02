@@ -7,6 +7,7 @@ export interface Streamer {
     name: string
     type: StreamerType
     image: string
+    backgroundImage: string
     streamInfo: StreamInfo | null
     description: string
     donationAlerts: string

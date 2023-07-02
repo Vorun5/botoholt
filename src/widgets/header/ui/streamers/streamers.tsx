@@ -20,7 +20,6 @@ export const Streamers = () => {
                         image={streamer.image}
                         alt={streamer.name}
                         isOnline={streamer.streamInfo !== null}
-                        showCircleIndicator
                         size="60px"
                     />
                 </Link>

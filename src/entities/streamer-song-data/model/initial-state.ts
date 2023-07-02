@@ -14,6 +14,7 @@ export const initialState: StreamerSongDataSlice = {
             socialMedias: null,
             streamInfo: null,
             type: 'affiliate',
+            backgroundImage: ''
         },
     },
     queue: {

@@ -19,9 +19,10 @@ import {
     SunIcon,
 } from 'shared/assets/icons'
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
+import { AdminAuth } from 'shared/types'
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
-import { AdminAuth } from 'shared/types'
+
 
 interface TabProps {
     selected?: boolean

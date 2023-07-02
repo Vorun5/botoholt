@@ -1,17 +1,3 @@
-// .ads {
-//     width: 320px;
-//     height: 550px;
-//     margin: 0 1rem 2rem 0;
-//     position: sticky;
-//     top: 1rem;
-// }
-
-@media (min-width: 1700px) {
-    // .ads {
-    //     width: 340px;
-    // }
-}
-
 .card {
     height: 600px;
 }
@@ -33,8 +19,6 @@
     display: flex;
 
     &Left {
-        position: sticky;
-        top: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

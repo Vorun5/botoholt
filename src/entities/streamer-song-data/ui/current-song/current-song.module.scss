@@ -107,18 +107,21 @@
     }
 
     &Sender {
+        font-size: 1rem;
         white-space: pre-wrap;
         line-height: 1.2;
         width: 100%;
         margin-right: 20px;
 
         & span {
+            font-size: 1rem;
             color: var(--bh-text-color);
             font-weight: bold;
         }
     }
 
     &Duration {
+        font-size: 1rem;
         white-space: nowrap;
     }
 }

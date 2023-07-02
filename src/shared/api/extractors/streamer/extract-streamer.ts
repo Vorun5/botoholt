@@ -10,7 +10,11 @@ export const extractStreamer = (streamer: StreamerDto): Streamer => ({
     donationAlerts: streamer.daLink,
     followers: streamer.followersCount,
     image: streamer.profile_image_url,
+    backgroundImage: streamer.offline_image_url,
     type: streamer.broadcaster_type,
-    socialMedias: streamer.socialMedias && streamer.socialMedias.length ? extractStreamerSocialMedias(streamer.socialMedias) : null,
+    socialMedias:
+        streamer.socialMedias && streamer.socialMedias.length
+            ? extractStreamerSocialMedias(streamer.socialMedias)
+            : null,
     streamInfo: streamer.streamInfo ? extractStreamInfo(streamer.streamInfo) : null,
 })

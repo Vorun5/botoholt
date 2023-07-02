@@ -83,6 +83,7 @@ body[data-theme='light'] {
     --bh-background-color: #ffffff;
     --bh-primary-background-color: #ebebeb;
     --bh-secondary-background-color: rgba(0, 0, 0, 0.1);
+    --bh-primary-background-color-rgb: 255, 255, 255;
     --bh-primary-background-color-04: rgba(255, 255, 255, 0.4);
     --bh-outside-color: rgba(0, 0, 0, 0.1);
     --bh-text-color: #000000;
@@ -94,6 +95,7 @@ body[data-theme='light'] {
 body[data-theme='dark'] {
     --bh-background-color: #0e0e10;
     --bh-primary-background-color: #141415;
+    --bh-primary-background-color-rgb: 0, 0, 0;
     --bh-primary-background-color-04: rgba(0, 0, 0, 0.4);
     --bh-secondary-background-color: rgba(255, 255, 255, 0.1);
     --bh-outside-color: rgba(255, 255, 255, 0.1);

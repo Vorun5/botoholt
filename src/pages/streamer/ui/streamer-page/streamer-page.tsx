@@ -66,10 +66,7 @@ export const StreamerPage = () => {
                 {streamer.status === 'received' && (
                     <>
                         {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
-                        {
-                            isTablet && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />
-                            //  <StreamerPageTablet tab={tab} period={period} streamer={streamer} />
-                        }
+                        {isTablet && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
                         {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
                     </>
                 )}

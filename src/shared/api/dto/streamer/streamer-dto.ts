@@ -7,6 +7,7 @@ export interface StreamerDto {
     display_name: string
     broadcaster_type: StreamerType
     profile_image_url: string
+    offline_image_url: string
     streamInfo?: StreamInfoDto
     description: string
     daLink: string
