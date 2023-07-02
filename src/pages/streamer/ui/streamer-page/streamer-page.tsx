@@ -17,7 +17,6 @@ import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
-import { StreamerPageTablet } from './tablet/streamer-page-tablet'
 
 export const StreamerPage = () => {
     const dispatch = useAppDispatch()
@@ -67,7 +66,10 @@ export const StreamerPage = () => {
                 {streamer.status === 'received' && (
                     <>
                         {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
-                        {isTablet && <StreamerPageTablet tab={tab} period={period} streamer={streamer} />}
+                        {
+                            isTablet && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />
+                            //  <StreamerPageTablet tab={tab} period={period} streamer={streamer} />
+                        }
                         {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
                     </>
                 )}

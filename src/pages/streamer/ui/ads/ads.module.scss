@@ -1,53 +1,45 @@
 .ads {
+    padding: 0 1px;
     display: flex;
-
-    & div {
-        height: 100%;
-    }
+    column-gap: 30px;
+    row-gap: 16px;
+    flex-grow: 1;
 
     &Compact {
-        flex-direction: column;
-
-        & .banner {
-            margin-bottom: 1rem;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
+        .banner {
+            flex-wrap: wrap;
         }
     }
 
-    &Normal {
-        flex-direction: row;
-        align-items: center;
-
-        & .banner {
-            height: 300px;
-            margin-right: 1rem;
-
-            &:last-child {
-                margin-right: 0;
-            }
+    &Small {
+        flex-direction: column;
+        .banner {
+            flex-wrap: wrap;
         }
     }
 }
 
 .banner {
+    padding: 16px 24px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    row-gap: 20px;
+    column-gap: 20px;
 
     &Emote {
-        height: 6rem;
+        height: 64px;
     }
 
     &Text {
-        font-size: var(--secondary-text-size);
-        display: block;
-        margin: 1rem 0;
+        min-width: 170px;
+        max-width: 260px;
+        font-size: var(--bh-text-size);
+        color: var(--bh-text-color);
+        line-height: 1.2;
     }
 
     &Bth {
+        width: 100%;
         height: 60px;
         padding: 0 16px;
         border-radius: 5px;
@@ -66,8 +58,8 @@
     }
 
     &:nth-child(2) .bannerBth {
-        background-color: #4759FF;
- 
+        background-color: #4759ff;
+
         &:hover {
             background-color: #4656e9;
         }
@@ -76,5 +68,5 @@
 
 .toastText {
     line-height: 1.8;
-    font-size: var(--secondary-text-size);
+    font-size: var(--bh-large-text-size);
 }

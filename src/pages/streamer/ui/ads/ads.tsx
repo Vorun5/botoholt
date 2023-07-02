@@ -21,12 +21,18 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
     const { width } = useElementSize(adsRef)
 
     return (
-        <div ref={adsRef} className={clsx(styles.ads, width < 500 ? styles.adsCompact : styles.adsNormal, className)}>
+        <div
+            ref={adsRef}
+            className={clsx(
+                styles.ads,
+                width > 650 && width < 1200 && styles.adsCompact,
+                width <= 650 && styles.adsSmall,
+                className,
+            )}
+        >
             <Banner className={styles.banner} style="secondary">
-                <div>
-                    <img className={styles.bannerEmote} src={Money} alt="Money" />
-                    <span className={styles.bannerText}>{t('support-streamer')}</span>
-                </div>
+                <img className={styles.bannerEmote} src={Money} alt="Money" />
+                <span className={styles.bannerText}>{t('support-streamer')}</span>
                 <Button className={styles.bannerBth} onClick={() => window.open(donationAlertsLink)}>
                     <ButtonIcon>
                         <DAIcon height="19px" width="17px" />
@@ -35,10 +41,8 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                 </Button>
             </Banner>
             <Banner className={styles.banner}>
-                <div>
-                    <img className={styles.bannerEmote} src={EZ} alt="EZ" />
-                    <span className={styles.bannerText}>{t('connect-bot')}</span>
-                </div>
+                <img className={styles.bannerEmote} src={EZ} alt="EZ" />
+                <span className={styles.bannerText}>{t('connect-bot')}</span>
                 <Button
                     className={styles.bannerBth}
                     onClick={() => {

@@ -1,12 +1,27 @@
 import clsx from 'clsx'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useElementSize } from 'shared/lib/hooks'
 import { Period } from 'shared/types'
-import { LinkButton } from '../link-button'
-import { TabButton } from '../tab-button/tab-button'
+import { Button, ButtonText } from 'shared/ui'
 import styles from './navigation.module.scss'
+
+interface LinkButtonProps {
+    url: string
+    children: string
+    isActive?: boolean
+}
+
+export const LinkButton = ({ children, url, isActive: active }: LinkButtonProps) => {
+    return (
+        <Link to={url}>
+            <Button style={active ? 'fill-blue' : 'default'} padding="small" className={styles.navBth}>
+                <ButtonText>{children}</ButtonText>
+            </Button>
+        </Link>
+    )
+}
 
 interface NavigationProps {
     period?: Period
@@ -24,33 +39,45 @@ export const Navigation = ({ period, tab, className, login }: NavigationProps) =
     const redirect = (str: string): string => `/${login.toLowerCase()}${str}`
 
     return (
-        <div ref={ref} className={clsx(styles.nav, width < 970 && styles.navCompact, className)}>
-            <div className={styles.navTabs}>
-                <LinkButton active={tab === 'queue'} url={redirect('')}>
+        <div ref={ref} className={clsx(styles.nav, width < 1100 && styles.navCompact, className)}>
+            <div>
+                <LinkButton isActive={tab === 'queue'} url={redirect('')}>
                     {t('streamer-page.tabs.queue')}
                 </LinkButton>
-                <LinkButton active={tab === 'history'} url={redirect('/h')}>
+                <LinkButton isActive={tab === 'history'} url={redirect('/h')}>
                     {t('streamer-page.tabs.history')}
                 </LinkButton>
-                <LinkButton active={tab === 'top-djs'} url={redirect('/top/djs')}>
+                <LinkButton isActive={tab === 'top-djs'} url={redirect('/top/djs')}>
                     {t('streamer-page.tabs.top-djs')}
                 </LinkButton>
-                <LinkButton active={tab === 'top-songs'} url={redirect('/top/songs')}>
+                <LinkButton isActive={tab === 'top-songs'} url={redirect('/top/songs')}>
                     {t('streamer-page.tabs.top-songs')}
                 </LinkButton>
             </div>
             {((period && tab === 'top-djs') || tab === 'top-songs') && (
-                <div className={styles.navPeriods}>
+                <div>
                     <span className={styles.navTitle}>{t('streamer-page.filter')}</span>
-                    <TabButton active={period === 'week'} onClick={() => setSearchParams({ period: 'week' })}>
-                        {t('streamer-page.tabs.filters.week')}
-                    </TabButton>
-                    <TabButton active={period === 'month'} onClick={() => setSearchParams({ period: 'month' })}>
-                        {t('streamer-page.tabs.filters.month')}
-                    </TabButton>
-                    <TabButton active={period === 'alltime'} onClick={() => setSearchParams({ period: 'alltime' })}>
-                        {t('streamer-page.tabs.filters.all-time')}
-                    </TabButton>
+                    <Button
+                        className={styles.navBth}
+                        style={period === 'week' ? 'fill-blue' : 'default'}
+                        onClick={() => setSearchParams({ period: 'week' })}
+                    >
+                        <ButtonText>{t('streamer-page.tabs.filters.week')}</ButtonText>
+                    </Button>
+                    <Button
+                        className={styles.navBth}
+                        style={period === 'month' ? 'fill-blue' : 'default'}
+                        onClick={() => setSearchParams({ period: 'month' })}
+                    >
+                        <ButtonText>{t('streamer-page.tabs.filters.month')}</ButtonText>
+                    </Button>
+                    <Button
+                        className={styles.navBth}
+                        style={period === 'alltime' ? 'fill-blue' : 'default'}
+                        onClick={() => setSearchParams({ period: 'alltime' })}
+                    >
+                        <ButtonText>{t('streamer-page.tabs.filters.all-time')}</ButtonText>
+                    </Button>
                 </div>
             )}
         </div>

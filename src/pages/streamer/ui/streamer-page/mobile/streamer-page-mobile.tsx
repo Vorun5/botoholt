@@ -10,8 +10,8 @@ export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps)
     return (
         <>
             <StreamerCard streamer={streamer.data} />
-            <CurrentSong />
-            <Navigation className={styles.nav} tab={tab} period={period} login={streamer.data.login} />
+            <CurrentSong className={styles.song} />
+            <Navigation tab={tab} period={period} login={streamer.data.login} />
             <SongList period={period} />
             <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
         </>

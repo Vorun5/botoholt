@@ -1,13 +1,15 @@
 .search {
     position: relative;
+    max-width: 320px;
 
     &Field {
+        font-size: var(--bh-text-size);
         display: block;
         width: calc(100% - 2rem);
-        padding: 10px 1rem;
-        height: 20px;
-        color: var(--neutral-text-color);
-        background-color: var(--accent-background-color);
+        padding: 10px 24px;
+        height: 26px;
+        color: var(--bh-description-text-color);
+        background-color: var(--bh-outside-color);
         border: none;
         border-radius: 5px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -16,14 +18,14 @@
         -moz-appearance: none;
 
         &::placeholder {
-            color: var(--neutral-text-color);
+            color: var(--bh-description-text-colo);
             font-weight: bold;
         }
 
         &:focus {
-            color: var(--text-color);
-            background-color: var(--accent-background-color);
-            box-shadow: 0 0 0 0.1rem var(--primary-text-color);
+            color: var(--bh-text-color);
+            background-color: var(--bh-outside-color);
+            box-shadow: 0 0 0 0.1rem var(--bh-blue);
         }
     }
 

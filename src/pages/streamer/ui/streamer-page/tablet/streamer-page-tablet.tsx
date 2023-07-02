@@ -17,8 +17,8 @@ export const StreamerPageTablet = ({ streamer, tab, period }: StreamerPageProps)
                     </div>
                 </div>
                 <div className={styles.wrapperRight}>
-                    <Navigation className={styles.nav} tab={tab} period={period} login={streamer.data.login} />
                     <CurrentSong className={styles.song} center={false} />
+                    <Navigation tab={tab} period={period} login={streamer.data.login} />
                     <SongList period={period} />
                 </div>
             </div>

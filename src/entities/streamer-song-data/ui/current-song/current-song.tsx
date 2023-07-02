@@ -70,7 +70,7 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
                             {t('song-card.empty')}
                         </span>
                     ) : (
-                        <div>
+                        <div style={{width: '100%'}}>
                             <div className={styles.songNameContainer}>
                                 <img
                                     src={song.isPlaying ? danceEmote : PoroSad}
