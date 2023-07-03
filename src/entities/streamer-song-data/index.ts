@@ -13,3 +13,4 @@ export {
     loadStreamerTopSongs,
 } from './model'
 export { CurrentSong } from './ui'
+export { SONG_LIMIT } from './const'

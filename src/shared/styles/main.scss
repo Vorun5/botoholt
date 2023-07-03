@@ -2,9 +2,11 @@
 @import url(./variables.scss);
 @import url(./fonts.scss);
 
-body.modal-show {
+.modal-show {
     overflow: hidden;
 }
+
+// body
 
 /* scrollbar styles only for desktop */
 @media (pointer: fine) {

@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { SVGProps, useRef, useState } from 'react'
-import { ReactComponent as ArrowLeftIcon } from 'shared/assets/icons/arrow-left.svg'
-import { ReactComponent as ArrowRightIcon } from 'shared/assets/icons/arrow-right.svg'
+import { ArrowLeftIcon, ArrowRightIcon } from 'shared/assets/icons'
 import {
     OPGGIcon,
     DiscordIcon,
@@ -86,6 +85,7 @@ export const StreamerSocialMedias = ({ socialMedias }: StreamerSocialMediasProps
                             style={{ left: `${index * (100 / sliderCount) + scrollIndex * (100 / sliderCount)}%` }}
                         >
                             <a
+                                title={socialMedia.title}
                                 href={socialMedia.url}
                                 target="_blank"
                                 rel="noreferrer"

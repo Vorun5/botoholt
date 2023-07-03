@@ -1,7 +1,18 @@
 .toasts {
+    z-index: 10000;
     position: fixed;
     display: flex;
     flex-direction: column;
+    &:empty {
+        display: none;
+    }
+
+    &Wrapper {
+        &:empty {
+            display: none;
+        }
+    }
+
     &TopLeft {
         left: 1rem;
         top: 1rem;

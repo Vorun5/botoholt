@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { StreamerCard } from 'entities/streamers'
 import { Ads } from '../../ads/ads'
@@ -7,12 +8,14 @@ import { StreamerPageProps } from '../streamer-page.props'
 import styles from './streamer-page-mobile.module.scss'
 
 export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps) => {
+    const { t } = useTranslation()
+    
     return (
         <>
-            <StreamerCard streamer={streamer.data} />
-            <CurrentSong />
-            <Navigation className={styles.nav} tab={tab} period={period} login={streamer.data.login} />
-            <SongList />
+            <StreamerCard className={styles.card} title={t('streamer-card.title') ?? 'Информация о канале'} streamer={streamer.data} />
+            <CurrentSong className={styles.song} />
+            <Navigation tab={tab} period={period} login={streamer.data.login} />
+            <SongList period={period} />
             <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
         </>
     )

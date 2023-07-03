@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { StreamerCard } from 'entities/streamers'
 import { Ads } from '../../ads/ads'
@@ -7,21 +8,21 @@ import { StreamerPageProps } from '../streamer-page.props'
 import styles from './streamer-page-desktop.module.scss'
 
 export const StreamerPageDesktop = ({ streamer, tab, period }: StreamerPageProps) => {
+    const { t } = useTranslation()
+
     return (
         <>
             <div className={styles.wrapper}>
                 <div className={styles.wrapperLeft}>
-                    <StreamerCard streamer={streamer.data} />
+                    <StreamerCard title={t('streamer-card.title') ?? 'Информация о канале'} streamer={streamer.data} />
                 </div>
                 <div className={styles.wrapperRight}>
-                    <Navigation className={styles.nav} tab={tab} period={period} login={streamer.data.login} />
-                    <CurrentSong className={styles.song} center={false} />
+                    <CurrentSong center={false} />
+                    <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
+                    <Navigation tab={tab} period={period} login={streamer.data.login} />
                     <div className={styles.content}>
-                        <div>
-                            <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
-                        </div>
                         <div className={styles.list}>
-                            <SongList />
+                            <SongList period={period} />
                         </div>
                     </div>
                 </div>

@@ -13,13 +13,12 @@
     width: 100%;
 
     &List {
-        // TODO: automate repeat count
         display: grid;
         grid-template-columns: repeat(1, auto);
         grid-row-gap: 20px;
 
         @media (min-width: 768px) {
-            grid-template-columns: repeat(2, auto);
+            grid-template-columns: 1fr 1fr;
             grid-gap: 20px 20px;
         }
 
@@ -28,16 +27,16 @@
         }
 
         @media (min-width: 1900px) {
-            grid-template-columns: repeat(3, auto);
+            grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 40px 80px;
         }
 
         @media (min-width: 2400px) {
-            grid-template-columns: repeat(4, auto);
+            grid-template-columns: 1fr 1fr 1fr 1f;
         }
 
         @media (min-width: 3000px) {
-            grid-template-columns: repeat(5, auto);
+            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }
 }

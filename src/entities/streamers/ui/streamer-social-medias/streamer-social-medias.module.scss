@@ -9,8 +9,8 @@ body[data-theme='light'] {
 
 body[data-theme='dark'] {
     --sm-red: #331010;
-    --sm-purple: #36284c;
-    --sm-orange: #6a3b31;
+    --sm-purple: #2b1f2b87;
+    --sm-orange: #5e3d36;
     --sm-blue: #27344a;
     --sm-black: #393535;
     --sm-hover: var(--app-background-color);
@@ -40,11 +40,12 @@ body[data-theme='dark'] {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background-color: var(--primary-text-color);
+    background-color: var(--bh-blue);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: white;
 
     @media (min-width: 400px) {
         width: 28px;
@@ -65,7 +66,7 @@ body[data-theme='dark'] {
 }
 
 .arrowDisable {
-    background-color: var(--neutral-text-color);
+    background-color: var(--bh-outside-color);
     cursor: default;
 }
 
@@ -100,10 +101,10 @@ body[data-theme='dark'] {
         width: 100%;
         max-width: 440px;
         border-radius: 5px;
-        margin-top: 1rem;
+        margin: 1rem auto 0 auto;
         height: 60px;
         padding: 10px 5px;
-        background-color: var(--background-color);
+        background-color: var(--bh-primary-background-color);
         display: flex;
         align-items: center;
         justify-content: space-between;

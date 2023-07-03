@@ -14,6 +14,7 @@ export const initialState: StreamerSongDataSlice = {
             socialMedias: null,
             streamInfo: null,
             type: 'affiliate',
+            backgroundImage: ''
         },
     },
     queue: {
@@ -33,17 +34,23 @@ export const initialState: StreamerSongDataSlice = {
         status: 'idle',
         error: null,
         list: [],
+        total: -1,
+        from: -1,
     },
     topDjs: {
         status: 'idle',
         error: null,
         period: 'week',
         list: [],
+        total: -1,
+        from: -1,
     },
     topSongs: {
         status: 'idle',
         error: null,
         period: 'week',
         list: [],
+        total: -1,
+        from: -1,
     },
 }

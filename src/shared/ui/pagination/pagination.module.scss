@@ -1,0 +1,58 @@
+.pagination {
+    margin: 20px 10px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+
+    &Container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.arrowBth {
+    width: 26px;
+    height: 26px;
+    color: var(--bh-blue);
+    transition: 0.2s color;
+
+    &Disabled {
+        cursor: default;
+        color: var(--bh-outside-color);
+    }
+}
+
+.pageBth {
+    height: 30px;
+    min-width: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.goto {
+    display: flex;
+    align-items: center;
+
+    &Label {
+        color: var(--bh-text-color);
+        font-weight: bold;
+        font-size: var(--bh-text-size);
+        margin-right: 10px;
+    }
+
+    &Input {
+        max-width: 85px;
+        border-radius: 5px;
+    
+        & input {
+            padding: 15px 10px;
+        }
+    
+        & button {
+            padding: 15px;
+        }
+    }
+}

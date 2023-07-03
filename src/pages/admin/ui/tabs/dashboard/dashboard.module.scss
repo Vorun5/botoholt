@@ -1,0 +1,148 @@
+.page {
+    &Content {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        column-gap: 20px;
+    }
+}
+
+.statuses {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.status {
+    height: 100%;
+
+    &Text {
+        display: inline-block;
+        padding: 15px 0;
+    }
+
+    &Buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.status:last-child {
+    margin-bottom: 0;
+}
+
+.emotes {
+    order: 3;
+    overflow: hidden;
+    flex: auto;
+    height: 500px;
+    width: calc(100% - 500px);
+
+    &TopWrapper {
+        height: calc(100% - 135px);
+    }
+}
+
+.streamInfo {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.streamInfoCard {
+    font-weight: normal;
+
+    &Title {
+        margin-bottom: 1rem;
+    }
+
+    & span {
+        margin-top: 8px;
+    }
+}
+
+.song {
+    order: 4;
+    flex: auto;
+
+    &Sender {
+        margin-top: 8px;
+    }
+
+    &Footer {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 12px;
+        column-gap: 12px;
+    }
+}
+
+@media (min-width: 500px) {
+    .page {
+        &Content {
+            row-gap: 30px;
+            column-gap: 30px;
+        }
+    }
+
+    .statuses {
+        row-gap: 30px;
+        column-gap: 30px;
+    }
+
+    .streamInfo {
+        row-gap: 30px;
+        column-gap: 30px;
+    }
+}
+
+@media (min-width: 700px) {
+    .statuses {
+        width: calc(50% - 15px);
+    }
+
+    .streamInfo {
+        width: calc(50% - 15px);
+    }
+
+    .song {
+        min-width: 500px;
+        width: min-content;
+    }
+}
+
+@media (min-width: 1900px) {
+    .statuses {
+        order: 1;
+        width: auto;
+    }
+
+    .status {
+        width: 470px;
+    }
+
+    .streamInfo {
+        order: 3;
+        width: auto;
+        flex-direction: row;
+    }
+
+    .streamInfoCard {
+        width: 350px;
+    }
+
+    .emotes {
+        order: 2;
+    }
+
+    .song {
+        order: 4;
+    }
+}

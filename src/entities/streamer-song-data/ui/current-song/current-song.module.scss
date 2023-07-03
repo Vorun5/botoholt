@@ -1,12 +1,28 @@
 .song {
+    display: flex;
     text-align: left;
-    background-color: var(--accent-background-color);
-    border-radius: 5px;
     color: var(--text-color);
 
-    &Flex {
+    &Preview {
+        flex-shrink: 1;
+        display: inline-block;
+        min-width: 320px;
+        margin-right: 16px;
+
+        & img {
+            border-radius: 5px;
+            width: 100%;
+        }
+    }
+
+    &Info {
+        flex-shrink: 1;
+        width: 100%;
         display: flex;
         align-items: center;
+        background-color: var(--bh-primary-background-color);
+        border-radius: 5px;
+        padding: 15px 32px;
     }
 
     &Center .songFlex {
@@ -14,56 +30,55 @@
     }
 
     &Small {
-        padding: 1rem;
-
-        & .songEmote {
-            width: 80px;
-            height: 80px;
+        .songName {
+            font-size: var(--bh-small-title-text-size);
         }
 
-        & .songEmote {
-            margin-right: 1rem;
+        .songPreview {
+            display: none;
         }
     }
 
     &Compact {
-        padding: 1rem 2rem;
-
-        & .songEmote {
-            width: 100px;
-            height: 100px;
+        .songName {
+            font-size: var(--bh-small-title-text-size);
         }
 
-        & .songEmote {
-            margin-right: 1rem;
-        }
-    }
-
-    &Normal {
-        padding: 1rem 2rem;
-
-        & .songEmote {
-            width: 120px;
-            height: 120px;
+        .songPreview {
+            min-width: 240px;
         }
 
-        & .songEmote {
-            margin-right: 2rem;
+        .songInfo {
+            padding: 15px 24px;
         }
     }
 
     &Empty {
+        display: flex;
+        align-items: center;
         font-size: var(--secondary-text-size);
         font-weight: bold;
+
+        &Emote {
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+        }
     }
 
     &Status {
         display: inline-block;
         margin-bottom: 1rem;
+        color: var(--bh-text-color);
+        font-weight: bold;
+        font-size: var(--secondary-text-size);
     }
 
     &Emote {
-        margin-right: 1rem;
+        float: left;
+        height: 56px;
+        width: 56px;
+        margin-right: 10px;
     }
 
     &Name {
@@ -71,38 +86,42 @@
         line-height: 1.2;
         display: block;
         font-weight: bold;
-        font-size: var(--secondary-text-size);
-        color: var(--primary-text-color);
+        font-size: var(--bh-title-text-size);
+        color: var(--bh-blue);
+        color: var(--bh-text-color);
 
         &:hover {
             text-decoration-line: underline;
         }
+
+        &Container {
+            overflow: hidden;
+        }
     }
 
     &ExtraInfo {
+        color: var(--bh-text-color-06);
         margin-top: 1rem;
         display: flex;
         align-items: center;
     }
 
     &Sender {
+        font-size: 1rem;
         white-space: pre-wrap;
         line-height: 1.2;
         width: 100%;
-        margin: 0 20px 0 10px;
+        margin-right: 20px;
 
         & span {
+            font-size: 1rem;
+            color: var(--bh-text-color);
             font-weight: bold;
-        }
-
-        &Emote {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
         }
     }
 
     &Duration {
+        font-size: 1rem;
         white-space: nowrap;
     }
 }

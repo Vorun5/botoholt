@@ -1,0 +1,77 @@
+.page {
+    &Content {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 30px;
+
+        @media (min-width: 800px) {
+            column-gap: 30px;
+        }
+    }
+}
+
+.card {
+    width: 100%;
+    min-width: 300px;
+
+    @media (min-width: 800px) {
+        max-width: 380px;
+    }
+
+    @media (min-width: 900px) {
+        max-width: 410px;
+    }
+
+    @media (min-width: 1100px) {
+        max-width: 490px;
+    }
+}
+
+.card {
+    &Title {
+        display: flex;
+        align-items: center;
+
+        & span {
+            margin-left: 10px;
+        }
+    }
+}
+
+.daModal {
+    &Title {
+        & span {
+            position: relative;
+            top: -7px;
+            line-height: 1.2;
+            margin-left: 12px;
+            font-weight: bold;
+            color: var(--bh-text-color);
+            font-size: var(--bh-small-title-text-size);
+        }
+    }
+
+    &Warning {
+        margin: 10px 0 32px 0;
+        width: max-content;
+        font-size: var(--bh-small-text-size);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & span {
+            position: relative;
+            top: -2px;
+            margin-left: 12px;
+        }
+    }
+
+    &Clue {
+        display: inline-block;
+        padding-bottom: 10px;
+        line-height: 1.5;
+        & span {
+            color: var(--bh-green);
+        }
+    }
+}

@@ -1,1 +1,1 @@
-export { ThemeSwitcher } from './ui'
+export { ThemeSwitcher } from './ui/theme-switcher'

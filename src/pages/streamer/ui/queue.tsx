@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { selectStreamerQueue } from 'entities/streamer-song-data'
+import { useParams } from 'react-router-dom'
+import { loadStreamerQueue, selectStreamerQueue } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
+import { HyperinkIcon } from 'shared/assets/icons'
+import { useInterval } from 'shared/lib/hooks'
+import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
+import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
 export const Queue = () => {
     const { t } = useTranslation()
     const queue = useSelector(selectStreamerQueue)
-
-    // TODO: move search logic to redux
     const [queueList, setQueueList] = useState<StreamerQueueSong[]>(queue.list)
     const [searchStr, setSearchStr] = useState('')
 
@@ -31,9 +34,49 @@ export const Queue = () => {
         search(searchStr)
     }, [queue])
 
+    const { streamerName } = useParams()
+    const login = streamerName || ''
+    const dispatch = useAppDispatch()
+    const updateInfo = useCallback(() => {
+        console.log('Update queue')
+        dispatch(loadStreamerQueue(login))
+    }, [dispatch])
+    useInterval(updateInfo)
+
+    let queueTime = -1
+    if (queue.list.length !== 0) {
+        queueTime = queue.list
+            .map((song) => song.durationInSeconds - song.startFromInSeconds)
+            .reduce((accumulator, songDuration) => accumulator + songDuration)
+    }
+
+    const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
+
     return (
         <>
-            <SongDataList title={t('streamer-page.tab-titles.queue')} searchFun={search}>
+            <SongDataList
+                title={
+                    <>
+                        {ytPlaylistLink !== null ? (
+                            <a
+                                target="_blank"
+                                href={ytPlaylistLink}
+                                style={{
+                                    marginRight: '10px',
+                                }}
+                            >
+                                {t('streamer-page.tab-titles.queue')} <HyperinkIcon />
+                            </a>
+                        ) : (
+                            t('streamer-page.tab-titles.queue')
+                        )}
+                        {queueTime !== -1
+                            ? ` ~${Math.floor(queueTime / 60)}${t('minutes')} ${queueTime % 60}${t('seconds')}`
+                            : ''}
+                    </>
+                }
+                searchFun={search}
+            >
                 {queue.status === 'loading' && <Loading />}
                 {queue.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
                 {queue.status === 'received' && queue.list.length === 0 && (

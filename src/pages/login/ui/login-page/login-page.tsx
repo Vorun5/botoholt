@@ -1,15 +1,19 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AboutBotoholt } from 'widgets'
-import { useTheme } from 'features'
 import pepeD from 'shared/assets/emotes/pepeD.gif'
 import { TwitchIcon } from 'shared/assets/icons/social'
 import { useMediaQuery } from 'shared/lib/hooks'
+import { CreatedWithLove } from 'shared/ui'
 import styles from './login-page.module.scss'
 
 const Emote = () => <img draggable={false} src={pepeD} alt="pepeD" className={styles.loginEmote} />
 
 export const LoginPage = () => {
-    useTheme()
+    useEffect(() => {
+        window.document.title = 'Login'
+    }, [])
+
     const { t } = useTranslation()
     const isDesktop = useMediaQuery('(min-width: 767px)')
 
@@ -30,16 +34,21 @@ export const LoginPage = () => {
                             type="button"
                             className={styles.loginBth}
                             onClick={() => {
-                                // TODO
+                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/twitch'
                             }}
                         >
-                            <TwitchIcon className={styles.loginBthIcon} />
-                            <span className={styles.loginBthText}> {t('login-page.login.bth')}</span>
+                            <span className={styles.loginBthText}>
+                                <TwitchIcon className={styles.loginBthIcon} />
+                            </span>
+                            <span className={styles.loginBthText}>{t('login-page.login.bth')}</span>
                         </button>
                     </div>
                 </div>
                 <div className={styles.pageAbout}>
                     <AboutBotoholt />
+                </div>
+                <div className={styles.pageFooter}>
+                    <CreatedWithLove />
                 </div>
             </div>
         </div>

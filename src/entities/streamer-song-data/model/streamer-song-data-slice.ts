@@ -46,7 +46,9 @@ const streamerSongDataSlice = createSlice({
             })
             .addCase(loadStreamerHistorySongs.fulfilled, (state, action) => {
                 state.history.status = 'received'
-                state.history.list = action.payload
+                state.history.list = action.payload.list
+                state.history.total = action.payload.total
+                state.history.from = action.payload.from
             })
             // Top Djs
             .addCase(loadStreamerTopDjs.pending, (state) => {
@@ -59,7 +61,9 @@ const streamerSongDataSlice = createSlice({
             })
             .addCase(loadStreamerTopDjs.fulfilled, (state, action) => {
                 state.topDjs.status = 'received'
-                state.topDjs.list = action.payload
+                state.topDjs.list = action.payload.list
+                state.topDjs.total = action.payload.total
+                state.topDjs.from = action.payload.from
             })
             // Top songs
             .addCase(loadStreamerTopSongs.pending, (state) => {
@@ -68,11 +72,13 @@ const streamerSongDataSlice = createSlice({
             })
             .addCase(loadStreamerTopSongs.rejected, (state, action) => {
                 state.topSongs.status = 'rejected'
-                state.topSongs.error = action.payload || 'Cannot load streamer top djs'
+                state.topSongs.error = action.payload || 'Cannot load streamer top songs'
             })
             .addCase(loadStreamerTopSongs.fulfilled, (state, action) => {
                 state.topSongs.status = 'received'
-                state.topSongs.list = action.payload
+                state.topSongs.list = action.payload.list
+                state.topSongs.total = action.payload.total
+                state.topSongs.from = action.payload.from
             })
     },
 })

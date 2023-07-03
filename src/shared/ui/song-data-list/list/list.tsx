@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
-import { SearchField } from 'shared/ui'
-import styles from './list.module.scss'
+import { ReactNode } from 'react';
+import { SearchField } from 'shared/ui';
+import styles from './list.module.scss';
 
 interface ListProps {
-    title: string
+    title: ReactNode
     children: ReactNode
     searchFun: (str: string) => void
     searchStr?: string

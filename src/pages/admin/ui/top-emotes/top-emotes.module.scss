@@ -1,0 +1,55 @@
+.emotes {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.emote {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Info {
+        display: flex;
+        align-items: center;
+    }
+
+    &Number {
+        color: var(--bh-text-color-06);
+        margin: 0 15px;
+    }
+
+    &Name {
+        width: 90px;
+        word-wrap: break-word;
+        display: inline-block;
+        margin-bottom: 5px;
+        color: var(--bh-orange);
+        font-size: var(--bh-text-size);
+
+        @media (min-width: 450px) {
+            width: 150px;
+        }
+
+        @media (min-width: 600px) {
+            width: 250px;
+        }
+    }
+
+    &Source {
+        font-weight: normal;
+        color: var(--bh-text-color-06);
+    }
+
+    &Amount {
+        padding: 0 30px;
+        font-weight: normal;
+        color: var(--bh-text-color-06);
+    }
+
+    @media (min-width: 400px) {
+        &Number {
+            margin: 0 30px;
+        }
+    }
+}

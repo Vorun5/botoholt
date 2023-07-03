@@ -4,7 +4,7 @@ export const Page = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: var(--app-background-color);
+    background-color: var(--bh-background-color);
     padding: 20px 10px;
 
     @media (min-width: 360px) {

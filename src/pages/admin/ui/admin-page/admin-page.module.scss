@@ -1,0 +1,30 @@
+.notAuthorized {
+    text-align: center;
+
+    &Message {
+        color: var(--bh-text-color);
+        font-size: 2rem;
+    }
+
+    &Error {
+        font-size: 1rem;
+        color: var(--bh-red);
+    }
+}
+
+.login {
+    display: block;
+    margin: 1.5rem 0 1rem;
+    color: var(--bh-text-color);
+    font-size: 1.5rem;
+
+    &Link {
+        color: #673ab7;
+        font-size: 1.5rem;
+        transition: 0.2s color;
+
+        &:hover {
+            color: #8e5be5;
+        }
+    }
+}

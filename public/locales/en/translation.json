@@ -1,10 +1,9 @@
 {
+    "go-to": "Go to",
     "copied-to-clipboard": "Copied to clipboard",
     "failed-to-copy": "Failed to copy to clipboard💀",
     "about-botoholt": "About Botoholt",
-    "about-botoholt-text-1": "Music is an integral part of streaming, and if your musical taste is good enough, then the audience will probably be interested in what kind of songs you play. Botoholt was created in order to shazam tracks and write their names in the chat. And if you use DonationAlerts as a platform for donations and ordering music, then the audience, thanks to this tool, will be able to find out the exact name of the next remix gachi, their place in the order queue, the time before their song, view the entire queue, compete for a place in the top DJs And so on!",
-    "about-botoholt-text-2": "Join, it's absolutely free. To connect, you just need to write  ",
-    "about-botoholt-text-3": " in the discord!",
+    "in-discord": " in discord",
     "special-thanks": "Special thanks",
     "bigs-and-pigs": "Bigs and Pigs",
     "loading": "Loading...",
@@ -12,7 +11,7 @@
         "change-theme": "Change theme"
     },
     "creators": {
-        "create-with-love-by": "Created with 💖 by "
+        "create-with-love-by": "Created with love by "
     },
     "top-streamers": "Top streamers",
     "and": " and ",
@@ -22,6 +21,7 @@
     "streamer-not-found": "{{login}} is not connected to Botoholt",
     "page-not-found": "Page not found",
     "song-card": {
+        "last-song": "Last ordered song",
         "playing": "Now playing:",
         "not-playing": "Songs on pause. Last song:",
         "by": "Order from: ",
@@ -83,8 +83,81 @@
         "botoholt-text": "Botoholt is a handy bot for streamers that allows viewers to shazam tracks and more",
         "connect": "How to connect a bot?",
         "connect-text": "To connect and use our bot in the future, you just need to log in through Twitch",
+        "connect-text-2": "To connect and use our bot, you must write ",
         "support": "Support the project",
         "support-text": "If you want to support the authors of the project with a coin, then you can do ",
         "support-link-text": "it at this link"
+    },
+    "welcome": "Welcome",
+    "connect": "To plug",
+    "disable": "Disable",
+    "dont-show-link": "Don't show the link to anyone",
+    "insert-link": "Insert link",
+    "save-changes": "Save changes",
+    "admin-page": {
+        "nav": {
+            "menu": "Menu",
+            "dashboard": "Dashboard",
+            "commands": "Commands",
+            "song-queue": "Song queue",
+            "integrations": "Integrations",
+            "setting": "Settings",
+            "language": "Change language",
+            "support": "Customer support",
+            "sign-out": "Sign out"
+        },
+        "dashboard": {
+            "stream": {
+                "category": "Category",
+                "title": "Stream title"
+            },
+            "statistic": {
+                "title": "Statistics",
+                "number-of-messages": "Number of messages",
+                "number-of-ordered-songs": "Number of ordered songs"
+            },
+            "bot-status": "Bot status",
+            "bot-status-connected": "Bot is working properly",
+            "bot-status-not-connected": "Bot not connected",
+            "da-status": "Donation Alerts status",
+            "da-status-connected": "Donation Alerts connected",
+            "da-status-not-connected": "Donation Alerts not connected"
+        },
+        "commands": {},
+        "song-queue": {},
+        "integrations": {
+            "page-description": "On this page you can connect various platforms",
+            "connected": "Connected",
+            "not-connected": "Not connected",
+            "da": {
+                "title": "Connection Donation Alerts",
+                "action": "Paste the link to the widget with Donation Alerts",
+                "message": "Connect Donation Alerts to edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
+                "clue": "To find the link to the widget, go to the DA website - go to",
+                "clue-path": "Widgets > Media sharing."
+            }
+        },
+        "support": {
+            "description": "If you have any problems while using Botoholt, you can find the answer to your question or describe your problem in the discord",
+            "discord": {
+                "title": "The list does not answer my question, who should I contact?",
+                "description": "If the list does not answer your question, then write to Urbinholt in discord"
+            },
+            "faq": {
+                "description": "Frequently asked questions"
+            }
+        },
+        "languages": {
+            "title": "Switch language",
+            "site": "Site language",
+            "site-label": "Select site language",
+            "bot": "Bot language",
+            "bot-label": "Select bot language"
+        }
+    },
+    "top-emotes": {
+        "channel-emotes": "Channel emotes",
+        "top-emotes": "Top emotes",
+        "description": "Top frequently used BetterTTV, 7TV and FrankerFaceZ emotes in chat"
     }
 }

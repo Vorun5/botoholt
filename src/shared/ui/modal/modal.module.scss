@@ -1,0 +1,122 @@
+body {
+    --bh-modal-padding: 24px;
+    --bh-container-modal-padding: 10px;
+}
+
+.close {
+    display: none;
+}
+
+.background {
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    margin: 0 10px;
+    font-size: var(--bh-text-size);
+    color: var(--bh-text-color);
+    background-color: var(--bh-background-color);
+    max-height: calc(100vh - 40px);
+    max-width: 1048px;
+    border: 1px solid var(--bh-outside-color);
+    padding: var(--bh-modal-padding) 0;
+    border-radius: var(--bh-modal-padding);
+
+    &ExpandedWidth {
+        width: 100%;
+    }
+}
+
+.header {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--bh-container-modal-padding) 20px var(--bh-container-modal-padding);
+
+    &Title {
+        line-height: 1.2;
+        margin-right: 24px;
+        font-weight: bold;
+        font-size: var(--bh-small-title-text-size);
+        color: var(--bh-text-color);
+    }
+
+    &Divider {
+        height: 10px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bh-outside-color);
+    }
+}
+
+.content {
+    overflow: auto;
+    padding: 0 var(--bh-container-modal-padding);
+
+    &HideScroll {
+        @media (pointer: fine) {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+        }
+    }
+}
+
+.footer {
+    text-align: center;
+    width: calc(100% - var(--bh-container-modal-padding) - var(--bh-container-modal-padding));
+    margin: 0 var(--bh-modal-padding);
+
+    &Divider {
+        margin: 20px 0 var(--bh-modal-padding) 0;
+        border-bottom: 2px solid var(--bh-outside-color);
+    }
+}
+
+
+@media (min-width: 420px) {
+    body {
+        --bh-container-modal-padding: 24px;
+    }
+}
+
+
+@media (min-width: 600px) {
+    .header {
+        &Title {
+            margin-right: 32px;
+            font-size: var(--bh-big-title-text-size);
+        }
+    }
+
+    .wrapper {
+        margin: 0 30px;
+    }
+
+    body {
+        --bh-modal-padding: 28px;
+        --bh-container-modal-padding: 28px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .wrapper {
+        margin: 0 50px;
+    }
+
+    body {
+        --bh-modal-padding: 36px;
+        --bh-container-modal-padding: 36px;
+    }
+}

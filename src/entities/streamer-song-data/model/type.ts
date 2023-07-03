@@ -16,17 +16,23 @@ export type StreamerSongDataSlice = {
         error: string | null
         status: Status
         list: StreamerHistorySong[]
+        total: number
+        from: number
     }
     topSongs: {
         error: string | null
         status: Status
         period: Period
         list: StreamerTopSong[]
+        total: number
+        from: number
     }
     topDjs: {
         error: string | null
         status: Status
         period: Period
         list: StreamerTopDj[]
+        total: number
+        from: number
     }
 }

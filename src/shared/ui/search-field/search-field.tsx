@@ -1,22 +1,26 @@
+import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import styles from './search-field.module.scss'
 
 interface SearchFieldProps {
+    className?: string
+    plasholder?: string
+    name?: string
     value?: string
     onChange: (searchString: string) => void
 }
 
-export const SearchField = ({ value, onChange }: SearchFieldProps) => {
+export const SearchField = ({ value, onChange, className, plasholder, name }: SearchFieldProps) => {
     const { t } = useTranslation()
 
     return (
         <div className={styles.search}>
             <input
-                className={styles.searchField}
+                className={clsx(className, styles.searchField)}
                 type="search"
-                name="search"
+                name={name ?? 'search'}
                 value={value}
-                placeholder={t('search')!}
+                placeholder={plasholder ?? t('search')!}
                 onChange={(event) => onChange(event.target.value)}
             />
             <span className={styles.searchIcon}>

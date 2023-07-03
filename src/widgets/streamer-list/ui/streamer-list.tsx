@@ -20,7 +20,7 @@ export const StreamerList = () => {
                 <div className={styles.streamersList}>
                     {streamers.list.map((streamer) => (
                         <Link key={streamer.name} to={streamer.name.toLocaleLowerCase()}>
-                            <StreamerCard streamer={streamer} />
+                            <StreamerCard twitchLinkActive={false} short streamer={streamer} />
                         </Link>
                     ))}
                 </div>

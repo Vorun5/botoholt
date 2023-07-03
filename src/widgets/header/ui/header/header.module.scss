@@ -3,6 +3,10 @@
     justify-content: space-between;
     align-items: center;
 
+    &Wrapper {
+        z-index: 1000;
+    }
+
     &Settings {
         display: flex;
         align-items: center;
@@ -22,7 +26,7 @@
             border-radius: 10px 10px 0 0;
             height: 350px;
             width: 100%;
-            background-color: var(--accent-background-color);
+            background-color: var(--bh-background-color);
             transition: bottom 0.3s;
 
             &Open {
@@ -42,7 +46,7 @@
                 justify-content: center;
                 height: 88px;
                 border-radius: 5px;
-                background: var(--background-color);
+                background: var(--bh-primary-background-color);
             }
         }
     }

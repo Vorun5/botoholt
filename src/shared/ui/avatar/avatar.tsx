@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Children, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import styles from './avatar.module.scss'
 
 interface AvatarProps {
@@ -24,7 +24,7 @@ export const Avatar = ({ image, alt, children, isOnline, showCircleIndicator, si
         )}
     >
         {image ? (
-            <img className={styles.image} src={image} alt={alt} />
+            <img className={styles.image} src={image} alt={alt} draggable={false} />
         ) : (
             children && <div className={styles.avatarChild}>{children}</div>
         )}

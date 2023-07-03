@@ -14,9 +14,22 @@ body {
 
     --bh-background-color: #0e0e10;
     --bh-primary-background-color: #141415;
-    --bh-outside-color: rgb(255, 255, 255, 0.1);
+    --bh-outside-color: rgba(255, 255, 255, 0.1);
     --bh-text-color: #ffffff;
-    --bh-description-text-color: rgb(255, 255, 255, 0.4);
+    --bh-description-text-color: rgba(255, 255, 255, 0.4);
+
+    --bh-blue: #4759ff;
+    --bh-blue-06: rgba(71, 89, 255, 0.6);
+    --bh-blue-008: rgba(71, 89, 255, 0.08);
+    --bh-orange: #a53c01;
+    --bh-orange-06: rgba(165, 60, 1, 0.6);
+    --bh-orange-008: rgba(165, 60, 1, 0.08);
+    --bh-green: #01a52f;
+    --bh-green-06: rgba(1, 165, 47, 0.6);
+    --bh-green-008: rgba(1, 165, 47, 0.08);
+    --bh-red: #e43838;
+    --bh-red-06: rgba(228, 56, 56, 0.6);
+    --bh-red-008: rgba(228, 56, 56, 0.08);
 
     --bh-card-border-radius: 32px;
     --bh-bth-border-radius: 100px;
@@ -34,11 +47,11 @@ body {
     }
     @media (min-width: 900px) {
         --bh-big-title-text-size: 40px;
-        --bh-title-text-size: 32px;
+        --bh-title-text-size: 30px;
     }
     @media (min-width: 1700px) {
         --bh-big-title-text-size: 48px;
-        --bh-title-text-size: 34px;
+        --bh-title-text-size: 32px;
     }
 }
 
@@ -54,20 +67,56 @@ body[data-theme='light'] {
     --secondary-add-background-color: #ffefe5;
     --scroll-color: rgb(189, 189, 189);
 
-    --bh-background-color: #eaeaea;
-    --bh-primary-background-color: #ffffff;
-    --bh-outside-color: rbg(0, 0, 0, 0.1);
+    --bh-blue: #4759ff;
+    --bh-blue-06: rgba(71, 89, 255, 0.6);
+    --bh-blue-008: rgba(71, 89, 255, 0.08);
+    --bh-orange: #a53c01;
+    --bh-orange-06: rgba(165, 60, 1, 0.6);
+    --bh-orange-008: rgba(165, 60, 1, 0.08);
+    --bh-green: #01a52f;
+    --bh-green-06: rgba(1, 165, 47, 0.6);
+    --bh-green-008: rgba(1, 165, 47, 0.08);
+    --bh-red: #e43838;
+    --bh-red-06: rgba(228, 56, 56, 0.6);
+    --bh-red-008: rgba(228, 56, 56, 0.08);
+
+    --bh-background-color: #ffffff;
+    --bh-primary-background-color: #ebebeb;
+    --bh-secondary-background-color: rgba(0, 0, 0, 0.1);
+    --bh-primary-background-color-rgb: 255, 255, 255;
+    --bh-primary-background-color-04: rgba(255, 255, 255, 0.4);
+    --bh-outside-color: rgba(0, 0, 0, 0.1);
     --bh-text-color: #000000;
+    --bh-text-color-04: rgba(0, 0, 0, 0.4);
+    --bh-text-color-06: rgba(0, 0, 0, 0.6);
     --bh-description-text-color: rgb(0, 0, 0, 0.4);
 }
 
 body[data-theme='dark'] {
     --bh-background-color: #0e0e10;
     --bh-primary-background-color: #141415;
-    --bh-outside-color: rgb(255, 255, 255, 0.1);
+    --bh-primary-background-color-rgb: 0, 0, 0;
+    --bh-primary-background-color-04: rgba(0, 0, 0, 0.4);
+    --bh-secondary-background-color: rgba(255, 255, 255, 0.1);
+    --bh-outside-color: rgba(255, 255, 255, 0.1);
     --bh-text-color: #ffffff;
+    --bh-text-color-04: rgba(255, 255, 255, 0.4);
+    --bh-text-color-06: rgba(255, 255, 255, 0.6);
     --bh-description-text-color: rgb(255, 255, 255, 0.4);
- 
+
+    --bh-blue: #4759ff;
+    --bh-blue-06: rgba(71, 89, 255, 0.6);
+    --bh-blue-008: rgba(71, 89, 255, 0.08);
+    --bh-orange: #ff6838;
+    --bh-orange-06: rgba(255, 115, 71, 0.6);
+    --bh-orange-008: rgba(255, 115, 71, 0.08);
+    --bh-green: #a3ff47;
+    --bh-green-06: rgba(163, 255, 71, 0.6);
+    --bh-green-008: rgba(163, 255, 71, 0.08);
+    --bh-red: #fe2c2c;
+    --bh-red-06: rgba(255, 71, 71, 0.6);
+    --bh-red-008: rgba(255, 71, 71, 0.08);
+
     --primary-add-background-color: #172132;
     --secondary-add-background-color: #322117;
     --bth-color: #323237;
@@ -92,4 +141,8 @@ body[data-theme='dark'] {
         --primary-text-size: 16px;
         --secondary-text-size: 24px;
     }
+}
+
+html {
+    font-size: var(--primary-text-size);
 }

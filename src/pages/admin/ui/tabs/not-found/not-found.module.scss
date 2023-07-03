@@ -1,0 +1,12 @@
+.page {
+    height: calc(100% - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFount {
+    text-align: center;
+    font-size: var(--bh-title-text-size);
+    color: var(--bh-red);
+}
