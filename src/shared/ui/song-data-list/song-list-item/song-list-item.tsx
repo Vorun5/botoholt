@@ -22,3 +22,24 @@ export const SongListItem = ({ number, extraInfo, songName, songLink, sender }: 
         </ListItem>
     )
 }
+
+// export const SongListItem = memo(function SongListItem({
+//     number,
+//     extraInfo,
+//     songName,
+//     songLink,
+//     sender,
+// }: SongListItem) {
+//     const { t } = useTranslation()
+//     console.log(number);
+
+//     return (
+//         <ListItem number={number} extraInfo={extraInfo} ytLideoLink={songLink}>
+//             <ListItemName link={songLink}>{songName}</ListItemName>
+//             <span className={styles.sender}>
+//                 {t('song-card.by')}
+//                 <b>{sender}</b>
+//             </span>
+//         </ListItem>
+//     )
+// })

@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { loadStreamerQueue, selectStreamerQueue } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
+import { formatTime } from 'shared/lib/helpers'
 import { useInterval } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueueSong } from 'shared/types'
@@ -18,29 +19,24 @@ export const Queue = () => {
     const [queueList, setQueueList] = useState<StreamerQueueSong[]>(queue.list)
     const [searchStr, setSearchStr] = useState('')
 
-    const search = (str: string) => {
-        setSearchStr(str)
+    useMemo(() => {
         setQueueList(
             queue.list.filter(
                 (song) =>
-                    song.name.toLowerCase().includes(str.toLowerCase()) ||
-                    song.sender.toLowerCase().includes(str.toLowerCase()),
+                    song.name.toLowerCase().includes(searchStr.toLowerCase()) ||
+                    song.sender.toLowerCase().includes(searchStr.toLowerCase()),
             ),
         )
-    }
-
-    useEffect(() => {
-        setQueueList(queue.list)
-        search(searchStr)
-    }, [queue])
+    }, [queue.list, searchStr])
 
     const { streamerName } = useParams()
     const login = streamerName || ''
     const dispatch = useAppDispatch()
+
     const updateInfo = useCallback(() => {
-        console.log('Update queue')
         dispatch(loadStreamerQueue(login))
-    }, [dispatch])
+    }, [])
+
     useInterval(updateInfo)
 
     let queueTime = -1
@@ -75,7 +71,7 @@ export const Queue = () => {
                             : ''}
                     </>
                 }
-                searchFun={search}
+                searchFun={(str) => setSearchStr(str)}
             >
                 {queue.status === 'loading' && <Loading />}
                 {queue.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
@@ -95,8 +91,7 @@ export const Queue = () => {
                             songLink={song.link}
                             sender={song.sender}
                             number={queue.list.findIndex((i) => i === song) + 1}
-                            extraInfo={`${Math.floor(song.durationInSeconds! / 60)}${t('minutes')} 
-                                      ${song.durationInSeconds! % 60}${t('seconds')}`}
+                            extraInfo={formatTime(song.durationInSeconds - song.startFromInSeconds, t)}
                         />
                     ))}
             </SongDataList>

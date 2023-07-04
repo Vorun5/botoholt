@@ -1,2 +1,3 @@
 export { capitalize } from './capitalize'
-export {getVideoPreview} from './get-video-preview'
+export { formatTime } from './format-time'
+export { getVideoPreview } from './get-video-preview'

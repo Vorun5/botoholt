@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.9.3",
+        "@types/socket.io-client": "^3.0.0",
         "@types/styled-components": "^5.1.26",
         "clsx": "^1.2.1",
         "i18next": "^22.4.11",
@@ -21,6 +22,7 @@
         "react-i18next": "^12.2.0",
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.9.0",
+        "socket.io-client": "^4.7.1",
         "styled-components": "^5.3.8",
         "vite-plugin-svgr": "^2.4.0"
     },

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { io } from 'socket.io-client'
 import { useNav } from 'pages/streamer/lib'
 import { Footer, Header } from 'widgets'
 import {
@@ -55,6 +56,39 @@ export const StreamerPage = () => {
     const isTablet = useMediaQuery('(min-width: 900px)') && !isDesktop
     const isMobile = !isDesktop && !isTablet
 
+    useEffect(() => {
+        console.log('socket начало')
+
+        const socket = io('https://dev.bho.lt', { path: '/api/v1/socket', autoConnect: true })
+
+        socket.on('connect', () => {
+            console.log('Connected to server')
+        })
+
+        socket.emit('subscribe', 'urbinholt')
+
+        socket.on('message', (data) => {
+            console.log(data)
+
+            if (data == 'UPDATE') {
+                console.log('Йокерге')
+            }
+        })
+
+        if (socket.hasListeners('message')) {
+            console.log('Listener for message event is registered')
+        } else {
+            console.log('Listener for message event is not registered')
+        }
+
+        return () => {
+            socket.on('disconnect', () => {
+                console.log('disconnect')
+            })
+
+            socket.disconnect()
+        }
+    }, [])
     return (
         <Page>
             <Header />

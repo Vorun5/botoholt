@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
-import { getVideoPreview } from 'shared/lib/helpers'
+import { formatTime, getVideoPreview } from 'shared/lib/helpers'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
 import { StreamerQueue } from 'shared/types'
 import styles from './current-song.module.scss'
@@ -18,10 +18,11 @@ const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) 
                 {t('song-card.by')}
                 <span>{song.sender}</span>
             </span>
-            <span className={styles.songDuration}>
-                {`${Math.floor(song.durationInSeconds! / 60)}${t('minutes')} 
-                ${song.durationInSeconds! % 60}${t('seconds')}`}
-            </span>
+            {song.durationInSeconds !== null && (
+                <span className={styles.songDuration}>
+                    {formatTime(song.durationInSeconds - (song.startsFromInSeconds ?? 0), t)}
+                </span>
+            )}
         </div>
     )
 }
@@ -35,7 +36,7 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
     const { t } = useTranslation()
     const song = useSelector(selectStreamerCurrentSong)
 
-    const { danceEmote } = useDanceEmote()
+    const danceEmote = useDanceEmote()
 
     const songRef = useRef<HTMLDivElement>(null)
     const { width } = useElementSize(songRef)
@@ -70,7 +71,7 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
                             {t('song-card.empty')}
                         </span>
                     ) : (
-                        <div style={{width: '100%'}}>
+                        <div style={{ width: '100%' }}>
                             <div className={styles.songNameContainer}>
                                 <img
                                     src={song.isPlaying ? danceEmote : PoroSad}

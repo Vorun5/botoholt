@@ -14,5 +14,5 @@ export const useDanceEmote = () => {
         setDanceEmote(danceEmotes[Math.floor(Math.random() * danceEmotes.length)])
     }, [])
 
-    return { danceEmote }
+    return danceEmote
 }

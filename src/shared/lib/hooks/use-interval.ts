@@ -5,7 +5,7 @@ export const useInterval = (update: () => void) => {
     useEffect(() => {
         const timerID = setInterval(() => {
             update()
-        }, 15000)
+        }, 5000)
         return () => clearInterval(timerID)
     }, [update])
 }
