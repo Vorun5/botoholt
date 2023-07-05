@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { io } from 'socket.io-client'
 import { useNav } from 'pages/streamer/lib'
 import { Footer, Header } from 'widgets'
 import {
@@ -18,6 +17,7 @@ import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
+import { io } from 'socket.io-client'
 
 export const StreamerPage = () => {
     const dispatch = useAppDispatch()
@@ -65,7 +65,7 @@ export const StreamerPage = () => {
             console.log('Connected to server')
         })
 
-        socket.emit('subscribe', 'urbinholt')
+        socket.emit('subscribe', 'mobdyt')
 
         socket.on('message', (data) => {
             console.log(data)
@@ -89,6 +89,7 @@ export const StreamerPage = () => {
             socket.disconnect()
         }
     }, [])
+    
     return (
         <Page>
             <Header />
