@@ -1,8 +1,11 @@
 import clsx from 'clsx'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
+import { useParams } from 'react-router-dom'
+import { io } from 'socket.io-client'
+import { selectStreamer } from 'entities/streamer'
+import { loadStreamerQueue, selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
 import { formatTime, getVideoPreview } from 'shared/lib/helpers'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
@@ -42,6 +45,50 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
     const { width } = useElementSize(songRef)
 
     const preview = getVideoPreview(song.link ?? '')
+
+    const { streamerName } = useParams()
+    const login = streamerName || ''
+    const streamer = useSelector(selectStreamer)
+
+    useEffect(() => {
+        if (song.isPlaying && song.name !== null) {
+            window.document.title = song.name
+        } else {
+            window.document.title = `${streamer.streamer.name ? streamer.streamer.name : login} - Botoholt`
+        }
+    }, [streamer, song])
+
+    useEffect(() => {
+        const socket = io('https://dev.bho.lt', { path: '/api/v1/socket', autoConnect: true })
+
+        socket.on('connect', () => {
+            console.log('Connected to server')
+        })
+
+        socket.emit('subscribe', login)
+
+        socket.on('message', (data) => {
+            if (data.channel === login) {
+                console.log('Queue update')
+
+                loadStreamerQueue(login)
+            }
+        })
+
+        if (socket.hasListeners('message')) {
+            console.log('Listener for message event is registered')
+        } else {
+            console.log('Listener for message event is not registered')
+        }
+
+        return () => {
+            socket.on('disconnect', () => {
+                console.log('disconnect')
+            })
+
+            socket.disconnect()
+        }
+    }, [login])
 
     return (
         <>

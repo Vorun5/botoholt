@@ -3,36 +3,19 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useNav } from 'pages/streamer/lib'
 import { Footer, Header } from 'widgets'
-import {
-    SONG_LIMIT,
-    loadStreamer,
-    loadStreamerQueue,
-    loadStreamerTopDjs,
-    loadStreamerTopSongs,
-    selectStreamer,
-    selectStreamerCurrentSong,
-} from 'entities/streamer-song-data'
+import { loadStreamer, selectStreamer } from 'entities/streamer'
+import { SONG_LIMIT, loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs } from 'entities/streamer-song-data'
 import { useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
-import { io } from 'socket.io-client'
 
-export const StreamerPage = () => {
+const StreamerPageLogic = () => {
     const dispatch = useAppDispatch()
     const { streamerName } = useParams()
     const login = streamerName || ''
     const streamer = useSelector(selectStreamer)
-    const song = useSelector(selectStreamerCurrentSong)
-
-    useEffect(() => {
-        if (song.isPlaying && song.name !== null) {
-            window.document.title = song.name
-        } else {
-            window.document.title = `${streamer.data.name ? streamer.data.name : login} - Botoholt`
-        }
-    }, [streamer, song])
 
     useEffect(() => {
         dispatch(loadStreamer(login))
@@ -52,59 +35,33 @@ export const StreamerPage = () => {
         if (tab === 'top-djs') dispatch(loadStreamerTopDjs(dispatchParams))
     }, [period, tab, page])
 
-    const isDesktop = useMediaQuery('(min-width: 1400px)')
-    const isTablet = useMediaQuery('(min-width: 900px)') && !isDesktop
-    const isMobile = !isDesktop && !isTablet
+    const isDesktop = useMediaQuery('(min-width: 900px)')
+    const isMobile = !isDesktop
 
-    useEffect(() => {
-        console.log('socket начало')
-
-        const socket = io('https://dev.bho.lt', { path: '/api/v1/socket', autoConnect: true })
-
-        socket.on('connect', () => {
-            console.log('Connected to server')
-        })
-
-        socket.emit('subscribe', 'mobdyt')
-
-        socket.on('message', (data) => {
-            console.log(data)
-
-            if (data == 'UPDATE') {
-                console.log('Йокерге')
-            }
-        })
-
-        if (socket.hasListeners('message')) {
-            console.log('Listener for message event is registered')
-        } else {
-            console.log('Listener for message event is not registered')
-        }
-
-        return () => {
-            socket.on('disconnect', () => {
-                console.log('disconnect')
-            })
-
-            socket.disconnect()
-        }
-    }, [])
+    console.log('render streamer page');
     
+    return (
+        <>
+            <PageContentExpanded>
+                {streamer.status === 'loading' && <Loading />}
+                {streamer.status === 'rejected' && <ErrorMessage>{streamer.error}</ErrorMessage>}
+            </PageContentExpanded>
+            {streamer.status === 'received' && (
+                <>
+                    {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
+                    {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
+                </>
+            )}
+        </>
+    )
+}
+
+export const StreamerPage = () => {
     return (
         <Page>
             <Header />
             <PageContent>
-                <PageContentExpanded>
-                    {streamer.status === 'loading' && <Loading />}
-                    {streamer.status === 'rejected' && <ErrorMessage>{streamer.error}</ErrorMessage>}
-                </PageContentExpanded>
-                {streamer.status === 'received' && (
-                    <>
-                        {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
-                        {isTablet && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
-                        {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
-                    </>
-                )}
+                <StreamerPageLogic />
             </PageContent>
             <Footer />
         </Page>

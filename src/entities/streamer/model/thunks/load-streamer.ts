@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getStreamer } from 'entities/streamer-song-data/api/get-streamer'
+import { getStreamer } from 'entities/streamer/api/get-streamer'
+import { StreamerSlice } from 'entities/streamer/model/type'
 import { Streamer } from 'shared/types'
-import { StreamerSongDataSlice } from '../type'
 
 export const loadStreamer = createAsyncThunk<
     Streamer,
     string,
-    { state: { streamerSongData: StreamerSongDataSlice }; rejectValue: string }
+    { state: { streamer: StreamerSlice }; rejectValue: string }
 >(
-    'streamerSongData/loadStreamer',
+    'streamer/loadStreamer',
     async (login: string, { rejectWithValue }) => {
         try {
             const streamer = await getStreamer(login)
@@ -22,7 +22,7 @@ export const loadStreamer = createAsyncThunk<
     },
     {
         condition: (_, { getState }) => {
-            if (getState().streamerSongData.streamer.status === 'loading') {
+            if (getState().streamer.status === 'loading') {
                 return false
             }
         },

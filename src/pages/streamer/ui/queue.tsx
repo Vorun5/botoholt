@@ -1,13 +1,10 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { loadStreamerQueue, selectStreamerQueue } from 'entities/streamer-song-data'
+import { selectStreamerQueue } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { formatTime } from 'shared/lib/helpers'
-import { useInterval } from 'shared/lib/hooks'
-import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
 import { getYtPlaylistLink } from '../lib'
@@ -29,16 +26,6 @@ export const Queue = () => {
         )
     }, [queue.list, searchStr])
 
-    const { streamerName } = useParams()
-    const login = streamerName || ''
-    const dispatch = useAppDispatch()
-
-    const updateInfo = useCallback(() => {
-        dispatch(loadStreamerQueue(login))
-    }, [])
-
-    useInterval(updateInfo)
-
     let queueTime = -1
     if (queue.list.length !== 0) {
         queueTime = queue.list
@@ -48,6 +35,8 @@ export const Queue = () => {
 
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
 
+    console.log('render queue');
+    
     return (
         <>
             <SongDataList
@@ -66,9 +55,7 @@ export const Queue = () => {
                         ) : (
                             t('streamer-page.tab-titles.queue')
                         )}
-                        {queueTime !== -1
-                            ? ` ~${Math.floor(queueTime / 60)}${t('minutes')} ${queueTime % 60}${t('seconds')}`
-                            : ''}
+                        {queueTime !== -1 ? ` ~${formatTime(queueTime, t)}` : ''}
                     </>
                 }
                 searchFun={(str) => setSearchStr(str)}

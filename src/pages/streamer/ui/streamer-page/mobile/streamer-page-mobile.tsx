@@ -9,14 +9,18 @@ import styles from './streamer-page-mobile.module.scss'
 
 export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps) => {
     const { t } = useTranslation()
-    
+
     return (
         <>
-            <StreamerCard className={styles.card} title={t('streamer-card.title') ?? 'Информация о канале'} streamer={streamer.data} />
+            <StreamerCard
+                className={styles.card}
+                title={t('streamer-card.title') ?? 'Информация о канале'}
+                streamer={streamer.streamer}
+            />
             <CurrentSong className={styles.song} />
-            <Navigation tab={tab} period={period} login={streamer.data.login} />
+            <Navigation tab={tab} period={period} login={streamer.streamer.login} />
             <SongList period={period} />
-            <Ads className={styles.ads} donationAlertsLink={streamer.data.donationAlerts} />
+            <Ads className={styles.ads} donationAlertsLink={streamer.streamer.donationAlerts} />
         </>
     )
 }

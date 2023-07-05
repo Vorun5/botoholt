@@ -3,7 +3,7 @@ import { RootState } from 'shared/lib/store'
 export const selectStreamerCurrentSong = (state: RootState) => {
     const queueData = state.streamerSongData.queue.data
     const queue = state.streamerSongData.queue
-    
+
     return {
         status: queue.status,
         error: queue.error,
@@ -16,18 +16,15 @@ export const selectStreamerCurrentSong = (state: RootState) => {
     }
 }
 
-export const selectStreamer = (state: RootState) => ({...state.streamerSongData.streamer})
-
 export const selectStreamerHistorySongs = (state: RootState) => ({ ...state.streamerSongData.history })
 
 export const selectStreamerTopSongs = (state: RootState) => ({ ...state.streamerSongData.topSongs })
 
 export const selectStreamerTopDjs = (state: RootState) => ({ ...state.streamerSongData.topDjs })
 
-
 export const selectStreamerQueue = (state: RootState) => {
     const queue = state.streamerSongData.queue
-    
+
     return {
         status: queue.status,
         error: queue.error,

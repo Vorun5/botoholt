@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getStreamerTopDjs } from 'entities/streamer-song-data/api/get-streamer-top-djs'
+import { getStreamerTopDjs } from 'entities/streamer-song-data/api'
 import { StreamerTopDj } from 'shared/types'
 import { StreamerSongDataSlice } from '../type'
 import { LoadParamWithPeriodType } from './load-param-with-period-type'

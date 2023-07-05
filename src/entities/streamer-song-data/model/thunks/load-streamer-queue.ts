@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getStreamerQueue } from 'entities/streamer-song-data/api/get-streamer-queue';
+import { getStreamerQueue } from 'entities/streamer-song-data/api';
 import { StreamerQueue } from 'shared/types';
 import { StreamerSongDataSlice } from '../type';
 

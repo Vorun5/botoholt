@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getStreamerTopSongs } from 'entities/streamer-song-data/api/get-streamer-top-songs'
+import { getStreamerTopSongs } from 'entities/streamer-song-data/api'
 import { StreamerTopSong } from 'shared/types'
 import { StreamerSongDataSlice } from '../type'
 import { LoadParamWithPeriodType } from './load-param-with-period-type'
 
 export const loadStreamerTopSongs = createAsyncThunk<
-    { list: StreamerTopSong[]; total: number, from: number },
+    { list: StreamerTopSong[]; total: number; from: number },
     LoadParamWithPeriodType,
     { state: { streamerSongData: StreamerSongDataSlice }; rejectValue: string }
 >(
@@ -13,7 +13,7 @@ export const loadStreamerTopSongs = createAsyncThunk<
     async (params: LoadParamWithPeriodType, { rejectWithValue }) => {
         try {
             const streamerTopSongs = await getStreamerTopSongs(params.login, params.period, params.limit, params.from)
-                        
+
             return streamerTopSongs
         } catch (error) {
             if (error instanceof Error) return rejectWithValue(error.message)

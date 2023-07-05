@@ -5,14 +5,7 @@ export {
     selectStreamerHistorySongs,
     selectStreamerQueue,
     selectStreamerTopSongs,
-    selectStreamer,
     selectStreamerTopDjs,
 } from './streamer-song-data-selectors'
 
-export {
-    loadStreamer,
-    loadStreamerQueue,
-    loadStreamerHistorySongs,
-    loadStreamerTopDjs,
-    loadStreamerTopSongs,
-} from './thunks'
+export { loadStreamerQueue, loadStreamerHistorySongs, loadStreamerTopDjs, loadStreamerTopSongs } from './thunks'

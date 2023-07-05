@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { initialState } from './initial-state'
-import { loadStreamer, loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs } from './thunks'
-import { loadStreamerHistorySongs } from './thunks/load-streamer-history-songs'
+import { loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs, loadStreamerHistorySongs } from './thunks'
 
 const streamerSongDataSlice = createSlice({
     name: 'streamer-song-data',
@@ -9,19 +8,6 @@ const streamerSongDataSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // Streamer
-            .addCase(loadStreamer.pending, (state) => {
-                state.streamer.status = 'loading'
-                state.streamer.error = null
-            })
-            .addCase(loadStreamer.rejected, (state, action) => {
-                state.streamer.status = 'rejected'
-                state.streamer.error = action.payload || 'Cannot load streamer'
-            })
-            .addCase(loadStreamer.fulfilled, (state, action) => {
-                state.streamer.status = 'received'
-                state.streamer.data = action.payload
-            })
             // Queue
             .addCase(loadStreamerQueue.pending, (state) => {
                 if (state.queue === initialState.queue) state.queue.status = 'loading'

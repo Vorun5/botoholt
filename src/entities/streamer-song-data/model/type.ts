@@ -1,12 +1,7 @@
-import { Status, Streamer, StreamerHistorySong, StreamerQueue, StreamerTopDj, StreamerTopSong } from 'shared/types'
-import { Period } from 'shared/types'
+import { Status, StreamerHistorySong, StreamerQueue, StreamerTopDj, StreamerTopSong } from 'shared/types';
+import { Period } from 'shared/types';
 
 export type StreamerSongDataSlice = {
-    streamer: {
-        error: string | null
-        status: Status
-        data: Streamer
-    }
     queue: {
         error: string | null
         status: Status

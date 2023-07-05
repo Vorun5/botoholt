@@ -7,6 +7,10 @@ export interface QueueCommand extends Command {
                 answers: string[]
                 variables: string[]
             }
+            failure: {
+                answers: string[]
+                variables: string[]
+            }
         }
     }
 }

@@ -1,22 +1,6 @@
 import { StreamerSongDataSlice } from './type'
 
 export const initialState: StreamerSongDataSlice = {
-    streamer: {
-        status: 'idle',
-        error: null,
-        data: {
-            name: '',
-            description: '',
-            donationAlerts: '',
-            followers: 0,
-            image: '',
-            login: '',
-            socialMedias: null,
-            streamInfo: null,
-            type: 'affiliate',
-            backgroundImage: ''
-        },
-    },
     queue: {
         status: 'idle',
         error: null,

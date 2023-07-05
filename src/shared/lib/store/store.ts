@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { adminAuthReducer } from 'entities/admin-auth/model'
+import { adminAuthReducer } from 'entities/admin-auth'
+import { streamerReducer } from 'entities/streamer'
 import { streamerSongDataReducer } from 'entities/streamer-song-data'
 import { streamersReducer } from 'entities/streamers'
 
@@ -9,6 +10,7 @@ export const store = configureStore({
         streamers: streamersReducer,
         streamerSongData: streamerSongDataReducer,
         adminAuth: adminAuthReducer,
+        streamer: streamerReducer,
     },
     devTools: true,
 })

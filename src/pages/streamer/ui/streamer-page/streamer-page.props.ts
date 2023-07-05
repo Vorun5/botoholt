@@ -1,5 +1,5 @@
 import { StreamerPageTab } from "pages/streamer/lib/use-nav"
-import { selectStreamer } from "entities/streamer-song-data"
+import { selectStreamer } from "entities/streamer"
 import { Period } from "shared/types"
 
 export interface StreamerPageProps {
