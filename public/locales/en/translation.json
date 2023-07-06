@@ -18,6 +18,7 @@
     "thousands": "K ",
     "minutes": "m",
     "seconds": "s",
+    "seconds-2": "sec",
     "streamer-not-found": "{{login}} is not connected to Botoholt",
     "page-not-found": "Page not found",
     "song-card": {
@@ -94,6 +95,25 @@
     "dont-show-link": "Don't show the link to anyone",
     "insert-link": "Insert link",
     "save-changes": "Save changes",
+    "bot": {
+        "songs": {
+            "songProcess": "Current song",
+            "lastSong": "Last song",
+            "queueProcess": "Queue duration",
+            "whichProcess": "Place in line"
+        }
+    },
+    "commands": {
+        "custom-coomands": "Custom commands",
+        "default-coommands": "Default commands",
+        "search-by-command": "Search by commands",
+        "type": "Type",
+        "status": "Enabled",
+        "commands": "Commands",
+        "answer": "Answer",
+        "access": "Access",
+        "actions": "Actions"
+    },
     "admin-page": {
         "nav": {
             "menu": "Menu",

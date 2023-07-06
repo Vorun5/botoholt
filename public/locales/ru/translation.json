@@ -18,6 +18,7 @@
     "thousands": " тыс. ",
     "minutes": "м",
     "seconds": "с",
+    "seconds-2": "сек",
     "streamer-not-found": "{{login}} не подключен к Botoholt",
     "page-not-found": "Страница не найдена",
     "song-card": {
@@ -94,6 +95,25 @@
     "dont-show-link": "Никому не показывайте ссылку",
     "insert-link": "Вставьте ссылку",
     "save-changes": "Сохранить изменения",
+    "bot": {
+        "songs": {
+            "songProcess": "Текущий трек",
+            "lastSong": "Последний трек",
+            "queueProcess": "Длительность очереди",
+            "whichProcess": "Место в очереди"
+        }
+    },
+    "commands": {
+        "custom-coomands": "Кастомные команды",
+        "default-coommands": "Стандартные команды",
+        "search-by-command": "Поиск по командам",
+        "type": "Тип",
+        "status": "Статус",
+        "commands": "Команды",
+        "answer": "Ответ",
+        "access": "Доступ",
+        "actions": "Действия"
+    },
     "admin-page": {
         "nav": {
             "menu": "Меню",

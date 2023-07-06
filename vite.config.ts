@@ -1,4 +1,3 @@
-
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import eslint from 'vite-plugin-eslint'
@@ -14,6 +13,13 @@ export default defineConfig({
             features: '/src/features',
             widgets: '/src/widgets',
             pages: '/src/pages',
+        },
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                chunkFileNames: `js/[name].[contenthash].js`,
+            },
         },
     },
 })

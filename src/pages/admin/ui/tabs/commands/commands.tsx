@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { loadCommands, selectCommands } from 'entities/commands'
@@ -24,8 +24,21 @@ export const Commands = () => {
     }, [])
 
     const commands = useSelector(selectCommands)
+    const [searchStr, setSearchStr] = useState('')
+    const [filteredCommands, setFilteredCommands] = useState(commands.commands)
+    useMemo(() => {
+        if (!searchStr) {
+            setFilteredCommands(commands.commands)
+            return
+        }
+        setFilteredCommands(
+            commands.commands.filter((command) => {
+                if (command.aliases.includes(searchStr.trim())) return true
+                return false
+            }),
+        )
+    }, [searchStr, commands])
 
-    console.log(commands)
     return (
         <>
             <ALPageHeader>{t('admin-page.nav.commands')}</ALPageHeader>
@@ -36,23 +49,27 @@ export const Commands = () => {
                         className={clsx(styles.tab, tab === 'standard' && styles.tabFocus)}
                         onClick={() => setTab('standard')}
                     >
-                        Стандартные команды
+                        {t('commands.default-coommands')}
                     </button>
                     <button
                         type="button"
                         className={clsx(styles.tab, tab === 'custom' && styles.tabFocus)}
                         onClick={() => setTab('custom')}
                     >
-                        Кастомные команды
+                        {t('commands.custom-coomands')}
                     </button>
                 </div>
                 <div className={styles.commands}>
                     <div className={styles.field}>
-                        <SearchField plasholder="Поиск по командам" name="commands" onChange={() => {}} />
+                        <SearchField
+                            plasholder={t('commands.search-by-command') ?? 'Search by command'}
+                            name="commands"
+                            onChange={(str) => setSearchStr(str)}
+                        />
                     </div>
                     {(commands.status === 'loading' || commands.status === 'idle') && <Loading />}
                     {commands.status === 'rejected' && <ErrorMessage title="Error">{commands.error}</ErrorMessage>}
-                    {commands.status === 'received' && <CommandTable commands={commands.commands} />}
+                    {commands.status === 'received' && <CommandTable commands={filteredCommands} />}
                 </div>
             </ALPageContent>
         </>

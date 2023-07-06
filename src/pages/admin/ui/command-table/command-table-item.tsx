@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { EditIcon, InfoIcon } from 'shared/assets/icons'
 import { Command } from 'shared/types'
 import { Button, ButtonIcon, Toggle } from 'shared/ui'
@@ -27,12 +28,14 @@ export interface CommandTableItemProps {
 }
 
 export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
+    const { t } = useTranslation()
+
     return (
         <div className={clsx(styles.command, focus && styles.commandFocus)}>
             <Cell>
                 <Toggle checked={command.enabled} onChange={() => {}} />
             </Cell>
-            <Cell>{command.function}</Cell>
+            <Cell>{t(command.function)}</Cell>
             <Cell>
                 <div className={styles.commandTags}>
                     {command.aliases.map((alias, index) => (
@@ -40,9 +43,11 @@ export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
                     ))}
                 </div>
             </Cell>
-            <Cell>{'Answer'}</Cell>
-            <Cell>{'Доступ'}</Cell>
-            <Cell>{command.cooldown.toString()}сек</Cell>
+            {/* <Cell>{'Answer'}</Cell>
+            <Cell>{'Доступ'}</Cell> */}
+            <Cell>
+                {command.cooldown.toString()} {t('seconds-2')}
+            </Cell>
             <Cell>
                 <div className={styles.commandActions}>
                     <Button width="66px" border padding="small">
