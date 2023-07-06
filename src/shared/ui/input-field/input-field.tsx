@@ -15,6 +15,7 @@ interface InputFieldProps {
     className?: string
     width?: string
     pattern?: string
+    defaultValue?: string
 }
 
 export const InputField = ({
@@ -29,12 +30,14 @@ export const InputField = ({
     className,
     width,
     pattern,
+    defaultValue,
 }: InputFieldProps) => {
     return (
         <div className={clsx(styles.field, className)} style={{ maxWidth: width }}>
             <input
                 pattern={pattern}
                 type={type}
+                defaultValue={defaultValue}
                 name={name}
                 value={value}
                 placeholder={placeholder}

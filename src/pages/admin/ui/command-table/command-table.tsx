@@ -1,5 +1,7 @@
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Command } from 'shared/types'
+import { Command, isSongCommand } from 'shared/types'
+import { EditSongCommand } from '../modal-edit/edit-song-command'
 import { CommandTableItem } from './command-table-item'
 import styles from './command-table.module.scss'
 
@@ -14,22 +16,43 @@ const CellName = ({ children }: { children: string }) => {
 export const CommandTable = ({ commands }: { commands: Command[] }) => {
     const { t } = useTranslation()
 
+    const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
+    const changedСommand = useRef<Command | null>(null)
+
+    const saveChanges = (command: Command) => {
+        changedСommand.current = command
+    }
+
+    const hide = () => setCurrentEditCommand(null)
+
     return (
-        <div className={styles.commands}>
-            <div className={styles.commandsHeadlines}>
-                <CellName>{t('commands.status')}</CellName>
-                <CellName>{t('commands.type')}</CellName>
-                <CellName>{t('commands.commands')}</CellName>
-                {/* <CellName>{t('commands.answer')}</CellName>
-                <CellName>{t('commands.access')}</CellName> */}
-                <CellName>CD</CellName>
-                <CellName>{t('commands.actions')}</CellName>
+        <>
+            <div className={styles.commands}>
+                <div className={styles.commandsHeadlines}>
+                    <CellName>{t('commands.status')}</CellName>
+                    <CellName>{t('commands.type')}</CellName>
+                    <CellName>{t('commands.commands')}</CellName>
+                    {/*
+                    <CellName>{t('commands.answer')}</CellName>
+                    <CellName>{t('commands.access')}</CellName> 
+                    */}
+                    <CellName>CD</CellName>
+                    <CellName>{t('commands.actions')}</CellName>
+                </div>
+                <div className={styles.commandsItems}>
+                    {commands.map((command, index) => (
+                        <CommandTableItem
+                            key={command.function}
+                            focus={(index + 1) % 2 === 1}
+                            command={command}
+                            onEdit={() => setCurrentEditCommand(command)}
+                        />
+                    ))}
+                </div>
             </div>
-            <div className={styles.commandsItems}>
-                {commands.map((command, index) => (
-                    <CommandTableItem key={command.function} focus={(index + 1) % 2 === 1} command={command} />
-                ))}
-            </div>
-        </div>
+            {currentEditCommand && (
+                <>{isSongCommand(currentEditCommand) && <EditSongCommand hide={hide} command={currentEditCommand} />}</>
+            )}
+        </>
     )
 }

@@ -25,9 +25,10 @@ const CommandTag = ({ children }: { children: string }) => {
 export interface CommandTableItemProps {
     focus: boolean
     command: Command
+    onEdit: () => void
 }
 
-export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
+export const CommandTableItem = ({ focus, command, onEdit }: CommandTableItemProps) => {
     const { t } = useTranslation()
 
     return (
@@ -43,14 +44,16 @@ export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
                     ))}
                 </div>
             </Cell>
-            {/* <Cell>{'Answer'}</Cell>
-            <Cell>{'Доступ'}</Cell> */}
+            {/* 
+            <Cell>{'Answer'}</Cell>
+            <Cell>{'Доступ'}</Cell>
+            */}
             <Cell>
                 {command.cooldown.toString()} {t('seconds-2')}
             </Cell>
             <Cell>
                 <div className={styles.commandActions}>
-                    <Button width="66px" border padding="small">
+                    <Button width="66px" border padding="small" onClick={onEdit}>
                         <ButtonIcon margin="none">
                             <EditIcon />
                         </ButtonIcon>

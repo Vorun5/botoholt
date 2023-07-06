@@ -1,0 +1,179 @@
+.footerBth {
+    margin: 0 auto;
+}
+
+.generalSetting {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 70px;
+    row-gap: 20px;
+}
+
+.title {
+    display: block;
+    color: var(--bh-text-color);
+    font-size: var(--bh-small-title-text-size);
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    display: block;
+    color: var(--bh-text-color);
+    font-size: var(--bh-big-text-size);
+    font-weight: bold;
+    margin: 3rem 0 1rem 0;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--bh-text-color-06);
+}
+
+.divider {
+    margin: 2rem 0;
+    width: 100%;
+    border: 1px solid var(--bh-outside-color);
+}
+
+.responseScripts {
+    margin-bottom: 3rem;
+}
+
+.list {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 16px;
+    padding-bottom: 5px;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+    @media (pointer: coarse) {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+    }
+    &Item {
+        white-space: nowrap;
+    }
+}
+
+.commands {
+    &List {
+        margin-top: 40px;
+    }
+
+    &Add {
+        margin-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        &Field {
+            min-width: 200px;
+            & input {
+                border-radius: 50px;
+            }
+        }
+
+        &Bth {
+            min-width: 200px;
+        }
+    }
+}
+
+.answers {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    &Field {
+        padding: 1rem;
+        font-size: 1rem;
+        color: var(--bh-text-color);
+        background-color: transparent;
+        border-radius: 8px;
+        border: 1px solid var(--bh-outside-color);
+        min-height: 200px;
+        width: 100%;
+        line-height: 1.5;
+        letter-spacing: 1px;
+
+        &Container {
+            position: relative;
+            min-height: 200px;
+            height: max-content;
+            width: 100%;
+        }
+
+        &Counter {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            font-size: 1rem;
+            color: var(--bh-text-color-06);
+        }
+    }
+
+    &Actions {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}
+
+.variables {
+    max-width: 100%;
+    background-color: var(--bh-background-color);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--bh-outside-color);
+
+    &Title {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--bh-text-color);
+        display: block;
+    }
+
+    &Description {
+        display: block;
+        margin: 12px 0;
+    }
+
+    &List {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    &Item {
+        white-space: nowrap;
+    }
+}
+
+@media (min-width: 1100px) {
+    .answers {
+        flex-direction: row;
+
+        &Field {
+            &Container {
+                width: calc(100% - 400px - 16px);
+            }
+        }
+    }
+    .variables {
+        max-width: 400px;
+    }
+}
