@@ -8,7 +8,7 @@ export const loadStreamer = createAsyncThunk<
     string,
     { state: { streamer: StreamerSlice }; rejectValue: string }
 >(
-    'streamer/loadStreamer',
+    'streamer/load',
     async (login: string, { rejectWithValue }) => {
         try {
             const streamer = await getStreamer(login)

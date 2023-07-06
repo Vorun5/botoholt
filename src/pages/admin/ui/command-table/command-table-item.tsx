@@ -30,19 +30,19 @@ export const CommandTableItem = ({ focus, command }: CommandTableItemProps) => {
     return (
         <div className={clsx(styles.command, focus && styles.commandFocus)}>
             <Cell>
-                <Toggle checked={command.status} onChange={() => {}} />
+                <Toggle checked={command.enabled} onChange={() => {}} />
             </Cell>
-            <Cell>{command.type}</Cell>
+            <Cell>{command.function}</Cell>
             <Cell>
                 <div className={styles.commandTags}>
-                    {command.commands.map((command, index) => (
-                        <CommandTag key={index}>{command}</CommandTag>
+                    {command.aliases.map((alias, index) => (
+                        <CommandTag key={index}>{alias}</CommandTag>
                     ))}
                 </div>
             </Cell>
-            <Cell>{command.answer}</Cell>
-            <Cell>{command.access}</Cell>
-            <Cell>{command.cdInSeconds.toString()}сек</Cell>
+            <Cell>{'Answer'}</Cell>
+            <Cell>{'Доступ'}</Cell>
+            <Cell>{command.cooldown.toString()}сек</Cell>
             <Cell>
                 <div className={styles.commandActions}>
                     <Button width="66px" border padding="small">
