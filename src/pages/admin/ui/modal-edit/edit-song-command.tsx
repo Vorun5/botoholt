@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { SongCommand } from 'shared/types'
-import { AnswersSetting, getAnswersWithId, getChangedAnswers, removeAnswerByIndex } from './answers-setting'
+import { AnswersSetting, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
@@ -12,6 +13,7 @@ interface EditSongCommandProps {
 }
 
 export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
+    const { t } = useTranslation()
     const [cooldown, setCooldown] = useState(command.cooldown)
     const [enabled, setEnabled] = useState(command.enabled)
     const [commands, setCommands] = useState(command.aliases)
@@ -27,35 +29,32 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
                 setCooldown={(newCd) => setCooldown(newCd)}
                 setEnabled={() => setEnabled(!enabled)}
             />
-            <ResponseScripts />
-            <AnswersSetting
-                title={'Ответы при успешном шазаминге песни'}
-                answers={shazamSuccess}
-                variables={command.answers.shazamAnswers.success.variables}
-                addAnswer={(newAnswer) => setShazamSuccess([...shazamSuccess, newAnswer])}
-                removeAnswer={(index) => setShazamSuccess(removeAnswerByIndex(shazamSuccess, index))}
-                changeAnwer={(index, value) => setShazamSuccess(getChangedAnswers(shazamSuccess, index, value))}
-            />
-            <AnswersSetting
-                title={'Ответы при провальном шазаминге песни'}
-                answers={shazamFailure}
-                variables={command.answers.shazamAnswers.failure.variables}
-                addAnswer={(newAnswer) => setShazamFailure([...shazamFailure, newAnswer])}
-                removeAnswer={(index) => setShazamFailure(removeAnswerByIndex(shazamFailure, index))}
-                changeAnwer={(index, value) => setShazamFailure(getChangedAnswers(shazamFailure, index, value))}
-            />
-            <AnswersSetting
-                title={'Ответы если песня играет в DonationAlerts'}
-                answers={daSuccess}
-                variables={command.answers.daAnswers.success.variables}
-                addAnswer={(newAnswer) => setDaSuccess([...daSuccess, newAnswer])}
-                removeAnswer={(index) => setDaSuccess(removeAnswerByIndex(daSuccess, index))}
-                changeAnwer={(index, value) => setDaSuccess(getChangedAnswers(daSuccess, index, value))}
-            />
             <CommandsSetting
                 commands={commands}
                 addCommand={(command) => setCommands([...commands, command])}
                 removeCommand={(command) => setCommands(commands.filter((c) => c !== command))}
+            />
+            <ResponseScripts />
+            <AnswersSetting
+                title={t('edit-commands.titles.success-shazam')}
+                titleStyle="green"
+                answers={shazamSuccess}
+                variables={command.answers.shazamAnswers.success.variables}
+                setAnswers={(newAnswers) => setShazamSuccess(newAnswers)}
+            />
+            <AnswersSetting
+                title={t('edit-commands.titles.failure-shazam')}
+                titleStyle="red"
+                answers={shazamFailure}
+                variables={command.answers.shazamAnswers.failure.variables}
+                setAnswers={(newAnswers) => setShazamFailure(newAnswers)}
+            />
+            <AnswersSetting
+                title={t('edit-commands.titles.success-da-song')}
+                titleStyle="green"
+                answers={daSuccess}
+                variables={command.answers.daAnswers.success.variables}
+                setAnswers={(newAnswers) => setDaSuccess(newAnswers)}
             />
         </CommandEditModalWrapper>
     )

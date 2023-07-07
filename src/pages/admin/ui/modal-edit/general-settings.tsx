@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { InputField, Toggle } from 'shared/ui'
 import styles from './modal-edit.module.scss'
 
@@ -9,11 +10,13 @@ interface GeneralSettingProps {
 }
 
 export const GeneralSettings = ({ enabled, setEnabled, cooldown, setCooldown }: GeneralSettingProps) => {
+    const { t } = useTranslation()
+
     return (
         <>
             <div className={styles.generalSetting}>
                 <div className={styles.field}>
-                    <span className={styles.title}>Статус</span>
+                    <span className={styles.title}>{t('commands.status')}</span>
                     <Toggle checked={enabled} onChange={setEnabled} />
                 </div>
                 <div className={styles.field}>

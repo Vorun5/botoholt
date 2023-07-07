@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { nanoid } from 'nanoid'
 import { ReactNode, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, ButtonText } from 'shared/ui'
 import styles from './modal-edit.module.scss'
 
@@ -33,29 +34,30 @@ export const removeAnswerByIndex = (answers: Answer[], index: number): Answer[] 
 
 interface AnswersSettingPorps {
     answers: Answer[]
+    setAnswers: (newAnswers: Answer[]) => void
     variables: string[]
-    changeAnwer: (index: number, newAnswerValue: string) => void
-    addAnswer: (newAnswer: Answer) => void
-    removeAnswer: (index: number) => void
+    titleStyle?: 'red' | 'green'
     title?: ReactNode
 }
 
 const MAX_LENGTH = 350
 
-export const AnswersSetting = ({
-    title,
-    answers,
-    variables,
-    addAnswer,
-    removeAnswer,
-    changeAnwer,
-}: AnswersSettingPorps) => {
+export const AnswersSetting = ({ titleStyle, title, answers, variables, setAnswers }: AnswersSettingPorps) => {
+    const { t } = useTranslation()
     const [selectedAnswer, setSelectedAnswer] = useState(0)
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
     return (
         <>
-            <span className={styles.subtitle}>{title}</span>
+            <span
+                className={clsx(
+                    styles.answersTitle,
+                    titleStyle === 'red' && styles.answersTitleRed,
+                    titleStyle === 'green' && styles.answersTitleGreen,
+                )}
+            >
+                {title}
+            </span>
             <div className={styles.list}>
                 {answers.map((answer, index) => (
                     <Button
@@ -66,7 +68,7 @@ export const AnswersSetting = ({
                         border
                         onClick={() => setSelectedAnswer(index)}
                     >
-                        <ButtonText>{`Ответ ${index + 1}`}</ButtonText>
+                        <ButtonText>{`${t('answer')} ${index + 1}`}</ButtonText>
                     </Button>
                 ))}
             </div>
@@ -78,28 +80,37 @@ export const AnswersSetting = ({
                         ref={textAreaRef}
                         maxLength={MAX_LENGTH}
                         name="command-answer"
-                        placeholder="Ответ бота"
+                        placeholder={t('bot-answer') ?? 'Bot answer...'}
                         value={answers[selectedAnswer].value}
-                        onChange={(event) => changeAnwer(selectedAnswer, event.target.value)}
+                        onChange={(event) => setAnswers(getChangedAnswers(answers, selectedAnswer, event.target.value))}
                     />
                     <span className={styles.answersFieldCounter}>
                         {answers[selectedAnswer].value.length}/{MAX_LENGTH}
                     </span>
                 </div>
                 <div className={styles.variables}>
-                    <span className={styles.variablesTitle}>Переменные</span>
+                    <span className={styles.variablesTitle}>{t('variables')}</span>
                     <span className={clsx(styles.variablesDescription, styles.description)}>
-                        Чтобы использовать просто перетащите в текстовое поле
+                        {t('variables-description')}
                     </span>
                     <div className={styles.variablesList}>
                         {variables.map((variable) => (
                             <Button
                                 key={variable}
-                                style="blue"
+                                style="orange"
                                 padding="small"
                                 border
                                 onClick={() => {
-                                    changeAnwer(selectedAnswer, `${answers[selectedAnswer].value} ${variable} `)
+                                    const charLeft = MAX_LENGTH - answers[selectedAnswer].value.length
+                                    if (charLeft >= variable.length) {
+                                        setAnswers(
+                                            getChangedAnswers(
+                                                answers,
+                                                selectedAnswer,
+                                                `${answers[selectedAnswer].value} ${variable} `,
+                                            ),
+                                        )
+                                    }
                                     if (textAreaRef.current) textAreaRef.current.focus()
                                 }}
                             >
@@ -116,14 +127,17 @@ export const AnswersSetting = ({
                         style="fill-blue"
                         padding="big"
                         onClick={() => {
-                            addAnswer({
-                                value: `Ответ ${answers.length + 1}`,
-                                id: nanoid(),
-                            })
+                            setAnswers([
+                                ...answers,
+                                {
+                                    value: '',
+                                    id: nanoid(),
+                                },
+                            ])
                             setSelectedAnswer(answers.length)
                         }}
                     >
-                        <ButtonText>Добавить ответ</ButtonText>
+                        <ButtonText>{t('add-answer')}</ButtonText>
                     </Button>
                 )}
                 {answers.length > 1 && (
@@ -133,10 +147,10 @@ export const AnswersSetting = ({
                         onClick={() => {
                             if (answers.length <= 1) return
                             setSelectedAnswer(0)
-                            removeAnswer(selectedAnswer)
+                            setAnswers(removeAnswerByIndex(answers, selectedAnswer))
                         }}
                     >
-                        <ButtonText>Удалить ответ</ButtonText>
+                        <ButtonText>{t('delete-answer')}</ButtonText>
                     </Button>
                 )}
             </div>

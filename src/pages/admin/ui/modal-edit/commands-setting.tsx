@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AddIcon, DeleteIcon } from 'shared/assets/icons'
 import { Button, ButtonIcon, ButtonText, InputField } from 'shared/ui'
 import styles from './modal-edit.module.scss'
@@ -18,6 +19,7 @@ const getNewCommand = (str: string) => {
 }
 
 export const CommandsSetting = ({ commands, addCommand, removeCommand }: CommandsSettingProps) => {
+    const { t } = useTranslation()
     const [input, setInput] = useState('')
 
     const localAddCommand = () => {
@@ -30,12 +32,9 @@ export const CommandsSetting = ({ commands, addCommand, removeCommand }: Command
 
     return (
         <>
-            <div className={styles.divider} />
             <div className={styles.commadns}>
-                <span className={styles.title}>Команды</span>
-                <span className={styles.description}>
-                    Добавьте ключевые названия для команды (минимум 1, максимум 10)
-                </span>
+                <span className={styles.title}>{t('commands.commands')}</span>
+                <span className={styles.description}>{t('edit-commands.commands.description')}</span>
                 <div className={clsx(styles.commandsList, styles.list)}>
                     {commands.map((command) => (
                         <Button
@@ -64,13 +63,19 @@ export const CommandsSetting = ({ commands, addCommand, removeCommand }: Command
                     <div className={styles.commandsAdd}>
                         <InputField
                             value={input}
-                            placeholder="!ВведитеКоманду"
+                            placeholder={t('edit-commands.commands.placeholder') ?? '!EnterCommand'}
                             className={styles.commandsAddField}
                             onChange={(event) => setInput(event.target.value)}
                             onSubmit={localAddCommand}
                         />
-                        <Button className={styles.commandsAddBth} padding="big" style='fill-blue' onClick={localAddCommand}>
-                            <ButtonText>Добавить команду</ButtonText>
+                        <Button
+                            className={styles.commandsAddBth}
+                            padding="small"
+                            height="50px"
+                            style="fill-blue"
+                            onClick={localAddCommand}
+                        >
+                            <ButtonText>{t('edit-commands.commands.add')}</ButtonText>
                             <ButtonIcon margin="left">
                                 <AddIcon
                                     style={{
@@ -83,6 +88,7 @@ export const CommandsSetting = ({ commands, addCommand, removeCommand }: Command
                     </div>
                 )}
             </div>
+            <div className={styles.divider} />
         </>
     )
 }

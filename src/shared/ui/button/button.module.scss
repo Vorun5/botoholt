@@ -176,6 +176,28 @@
         }
     }
 
+    &Orange {
+        &:hover {
+            background-color: var(--bh-orange-008);
+
+            .bthText {
+                color: var(--bh-orange);
+            }
+
+            .bthIcon {
+                color: var(--bh-orange);
+            }
+        }
+
+        .bthText {
+            color: var(--bh-orange);
+        }
+
+        .bthIcon {
+            color: var(--bh-orange);
+        }
+    }
+
     &Padding {
         &Big {
             padding: 16px 28px;

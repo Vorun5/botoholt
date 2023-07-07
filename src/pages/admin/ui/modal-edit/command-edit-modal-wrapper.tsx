@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, ButtonText, Modal } from 'shared/ui'
 import styles from './modal-edit.module.scss'
 
@@ -9,15 +10,17 @@ interface CommandEditModalWrapperProps {
 }
 
 export const CommandEditModalWrapper = ({ hide, saveChanges, children }: CommandEditModalWrapperProps) => {
+    const { t } = useTranslation()
+
     return (
         <Modal
             isShown
             hide={hide}
-            title="Редактирование"
+            title={t('edit-commands.title') ?? 'Editing'}
             footerDivider
             footerContent={
                 <Button className={styles.footerBth} onClick={saveChanges} padding="big" style="fill-blue">
-                    <ButtonText>Сохранить изменения</ButtonText>
+                    <ButtonText>{t('save-changes')}</ButtonText>
                 </Button>
             }
             headerDivider

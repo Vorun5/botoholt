@@ -34,7 +34,7 @@ export const ButtonIcon = ({ children, margin = 'right', className }: ButtonIcon
 }
 
 interface ButtonProps {
-    style?: 'default' | 'blue' | 'fill-blue' | 'green' | 'red' | 'fill-red' | 'transparent'
+    style?: 'default' | 'blue' | 'fill-blue' | 'green' | 'red' | 'fill-red' | 'orange' |  'transparent'
     alignment?: 'center' | 'left' | 'right'
     borderRadius?: string
     children?: ReactNode
@@ -71,6 +71,7 @@ export const Button = ({
                 style === 'green' && styles.bthGreen,
                 style === 'fill-red' && styles.bthFillRed,
                 style === 'red' && styles.bthRed,
+                style === 'orange' && styles.bthOrange,
                 padding === 'big' && styles.bthPaddingBig,
                 padding === 'normal' && styles.bthPaddingNormal,
                 padding === 'small' && styles.bthPaddingSmall,

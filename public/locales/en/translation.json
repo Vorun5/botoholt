@@ -114,6 +114,31 @@
         "access": "Access",
         "actions": "Actions"
     },
+    "answer": "Answer",
+    "add-answer": "Add answer",
+    "delete-answer": "Delete answer",
+    "bot-answer": "Bot answer...",
+    "variables": "Variables",
+    "variables-description": "To use just click on the desired variable or write by hand",
+    "edit-commands": {
+        "titles": {
+            "success-shazam": "Answers when the song is successfully shazam",
+            "failure-shazam": "Answers when a song fails shazam",
+            "success-da-song": "Answers if the song plays in DonationAlerts"
+        },
+        "title": "Editing",
+        "scenarios": {
+            "title": "Response Scenarios",
+            "text-1": "Answer variations will be activated randomly.",
+            "text-2": "Be aware that the variables you use may have different lengths.",
+            "text-3": "Therefore, we do not recommend using more than one copy of a variable in one response, otherwise the message may be cut off (the maximum length of a message in twitch chat is 500 characters)"
+        },
+        "commands": {
+            "add": "Add command",
+            "placeholder": "!EnterCommand",
+            "description": "Add key names for the team (minimum 1, maximum 10)"
+        }
+    },
     "admin-page": {
         "nav": {
             "menu": "Menu",

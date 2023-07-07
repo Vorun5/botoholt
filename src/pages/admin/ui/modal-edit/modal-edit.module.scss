@@ -17,18 +17,11 @@
     margin-bottom: 12px;
 }
 
-.subtitle {
-    display: block;
-    color: var(--bh-text-color);
-    font-size: var(--bh-big-text-size);
-    font-weight: bold;
-    margin: 3rem 0 1rem 0;
-}
-
 .description {
     font-size: 1rem;
     margin-bottom: 10px;
     color: var(--bh-text-color-06);
+    line-height: 1.5;
 }
 
 .divider {
@@ -97,6 +90,22 @@
     gap: 16px;
     flex-wrap: wrap;
 
+    &Title {
+        display: block;
+        color: var(--bh-text-color);
+        font-size: var(--bh-big-text-size);
+        font-weight: bold;
+        margin: 3rem 0 1rem 0;
+
+        &Red {
+            color: var(--bh-red);
+        }
+
+        &Green {
+            color: var(--bh-green);
+        }
+    }
+
     &Field {
         padding: 1rem;
         font-size: 1rem;
@@ -104,14 +113,14 @@
         background-color: transparent;
         border-radius: 8px;
         border: 1px solid var(--bh-outside-color);
-        min-height: 200px;
+        min-height: 210px;
         width: 100%;
         line-height: 1.5;
         letter-spacing: 1px;
 
         &Container {
             position: relative;
-            min-height: 200px;
+            min-height: 210px;
             height: max-content;
             width: 100%;
         }
