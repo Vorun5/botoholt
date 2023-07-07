@@ -7,8 +7,7 @@ import styles from './modal-edit.module.scss'
 
 interface CommandsSettingProps {
     commands: string[]
-    addCommand: (command: string) => void
-    removeCommand: (command: string) => void
+    setCommands: (newCommands: string[]) => void
 }
 
 const getNewCommand = (str: string) => {
@@ -18,7 +17,7 @@ const getNewCommand = (str: string) => {
     return command
 }
 
-export const CommandsSetting = ({ commands, addCommand, removeCommand }: CommandsSettingProps) => {
+export const CommandsSetting = ({ commands, setCommands }: CommandsSettingProps) => {
     const { t } = useTranslation()
     const [input, setInput] = useState('')
 
@@ -27,7 +26,7 @@ export const CommandsSetting = ({ commands, addCommand, removeCommand }: Command
         if (!newCommand) return
         setInput('')
         if (commands.includes(newCommand)) return
-        addCommand(newCommand)
+        setCommands([...commands, newCommand])
     }
 
     return (
@@ -43,7 +42,7 @@ export const CommandsSetting = ({ commands, addCommand, removeCommand }: Command
                             border
                             style="blue"
                             onClick={() => {
-                                if (commands.length > 1) removeCommand(command)
+                                if (commands.length > 1) setCommands(commands.filter((c) => c !== command))
                             }}
                             className={styles.listItem}
                         >

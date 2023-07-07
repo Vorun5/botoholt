@@ -1,9 +1,11 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Command, isSongCommand } from 'shared/types'
+import { Command, isLastSongCommand, isQueueCommand, isSongCommand } from 'shared/types'
 import { EditSongCommand } from '../modal-edit/edit-song-command'
 import { CommandTableItem } from './command-table-item'
 import styles from './command-table.module.scss'
+import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
+import { EditQueueCommand } from '../modal-edit/edit-queue-command'
 
 const CellName = ({ children }: { children: string }) => {
     return (
@@ -51,7 +53,15 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                 </div>
             </div>
             {currentEditCommand && (
-                <>{isSongCommand(currentEditCommand) && <EditSongCommand hide={hide} command={currentEditCommand} />}</>
+                <>
+                    {isSongCommand(currentEditCommand) && <EditSongCommand hide={hide} command={currentEditCommand} />}
+                    {isLastSongCommand(currentEditCommand) && (
+                        <EditLastSongCommand hide={hide} command={currentEditCommand} />
+                    )}
+                    {isQueueCommand(currentEditCommand) && (
+                        <EditQueueCommand hide={hide} command={currentEditCommand} />
+                    )}
+                </>
             )}
         </>
     )

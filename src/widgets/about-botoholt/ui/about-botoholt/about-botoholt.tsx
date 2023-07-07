@@ -25,7 +25,7 @@ export const AboutBotoholt = () => {
             </InfoCard>
             <InfoCard mobile={isMobile} icon={<SupportIcon />} title={t('about.support')}>
                 {t('about.support-text')}
-                <a href="https://boosty.to/urbinholt/donate">{t('about.support-link-text')}</a>
+                <a href="https://boosty.to/botoholt/donate">{t('about.support-link-text')}</a>
             </InfoCard>
         </div>
     )

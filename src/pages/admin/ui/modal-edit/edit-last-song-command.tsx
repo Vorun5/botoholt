@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SongCommand } from 'shared/types'
+import { LastSongCommand } from 'shared/types'
 import { AnswersSetting, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
 import { ResponseScripts } from './response-scripts'
 
-interface EditSongCommandProps {
+interface EditLastSongCommandProps {
     hide: () => void
-    command: SongCommand
+    command: LastSongCommand
 }
 
-export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
+export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps) => {
     const { t } = useTranslation()
     const [cooldown, setCooldown] = useState(command.cooldown)
     const [enabled, setEnabled] = useState(command.enabled)
@@ -32,25 +32,25 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
             <CommandsSetting commands={commands} setCommands={(newCommands) => setCommands(newCommands)} />
             <ResponseScripts />
             <AnswersSetting
-                title={t('edit-commands.titles.success-shazam')}
+                title={'Ответ для последней игравшей песни, если она была зашазамлена'}
                 titleStyle="green"
                 answers={shazamSuccess}
                 variables={command.answers.shazamAnswers.success.variables}
                 setAnswers={(newAnswers) => setShazamSuccess(newAnswers)}
             />
             <AnswersSetting
-                title={t('edit-commands.titles.failure-shazam')}
-                titleStyle="red"
-                answers={shazamFailure}
-                variables={command.answers.shazamAnswers.failure.variables}
-                setAnswers={(newAnswers) => setShazamFailure(newAnswers)}
-            />
-            <AnswersSetting
-                title={t('edit-commands.titles.success-da-song')}
+                title={'Ответ для последней игравшей песни, если она была играла в DanationAlerts'}
                 titleStyle="green"
                 answers={daSuccess}
                 variables={command.answers.daAnswers.success.variables}
                 setAnswers={(newAnswers) => setDaSuccess(newAnswers)}
+            />
+            <AnswersSetting
+                title={'Ответ для неудачного распознования последней игравшей песни'}
+                titleStyle="red"
+                answers={shazamFailure}
+                variables={command.answers.shazamAnswers.failure.variables}
+                setAnswers={(newAnswers) => setShazamFailure(newAnswers)}
             />
         </CommandEditModalWrapper>
     )

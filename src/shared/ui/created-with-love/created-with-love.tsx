@@ -14,7 +14,7 @@ export const CreatedWithLove = () => {
                 {t('and')}
                 <a href="https://www.twitch.tv/montagerr_">@montagerr_</a>
             </p>
-            <a href="https://boosty.to/urbinholt/donate" className={styles.support}>
+            <a href="https://boosty.to/botoholt/donate" className={styles.support}>
                 {t('support')}
             </a>
         </div>
