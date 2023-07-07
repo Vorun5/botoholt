@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
 import { loadStreamerQueue, selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
+import { apiUrl } from 'shared/api/api'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
 import { formatTime, getVideoPreview } from 'shared/lib/helpers'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueue } from 'shared/types'
 import styles from './current-song.module.scss'
-import { apiUrl } from 'shared/api/api'
 
 const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) => {
     const { t } = useTranslation()
