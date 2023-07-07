@@ -31,14 +31,14 @@ export const EditQueueCommand = ({ command, hide }: EditQueueCommandProps) => {
             <CommandsSetting commands={commands} setCommands={(newCommands) => setCommands(newCommands)} />
             <ResponseScripts />
             <AnswersSetting
-                title={'Ответ если очередь песен не пуста'}
+                title={t('edit-commands.titles.queue-success')}
                 titleStyle="green"
                 answers={daSuccess}
                 variables={command.answers.daAnswers.success.variables}
                 setAnswers={(newAnswers) => setDaSuccess(newAnswers)}
             />
             <AnswersSetting
-                title={'Ответ если очередь пуста и песни на паузе'}
+                title={t('edit-commands.titles.queue-faliure')}
                 titleStyle="red"
                 answers={daFailure}
                 variables={command.answers.daAnswers.failure.variables}

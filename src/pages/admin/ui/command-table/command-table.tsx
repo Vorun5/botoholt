@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Command, isLastSongCommand, isQueueCommand, isSongCommand } from 'shared/types'
-import { EditSongCommand } from '../modal-edit/edit-song-command'
-import { CommandTableItem } from './command-table-item'
-import styles from './command-table.module.scss'
+import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types'
 import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
 import { EditQueueCommand } from '../modal-edit/edit-queue-command'
+import { EditSongCommand } from '../modal-edit/edit-song-command'
+import { EditWhichCommand } from '../modal-edit/edit-which-command'
+import { CommandTableItem } from './command-table-item'
+import styles from './command-table.module.scss'
 
 const CellName = ({ children }: { children: string }) => {
     return (
@@ -60,6 +61,9 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                     )}
                     {isQueueCommand(currentEditCommand) && (
                         <EditQueueCommand hide={hide} command={currentEditCommand} />
+                    )}
+                    {isWhichCommand(currentEditCommand) && (
+                        <EditWhichCommand hide={hide} command={currentEditCommand} />
                     )}
                 </>
             )}

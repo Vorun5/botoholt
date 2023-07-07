@@ -10,6 +10,7 @@ import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueue } from 'shared/types'
 import styles from './current-song.module.scss'
+import { apiUrl } from 'shared/api/api'
 
 const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) => {
     const { t } = useTranslation()
@@ -57,7 +58,7 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
 
     useEffect(() => {
         const login = streamerName.toLocaleLowerCase()
-        const socket = io('https://dev.bho.lt', { path: '/api/v1/socket', autoConnect: true })
+        const socket = io(apiUrl.origin, { path: `${apiUrl.pathname}socket`, autoConnect: true })
 
         socket.on('connect', () => {
             console.log('CONNECTED TO', login)

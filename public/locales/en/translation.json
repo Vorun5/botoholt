@@ -124,7 +124,14 @@
         "titles": {
             "success-shazam": "Answers when the song is successfully shazam",
             "failure-shazam": "Answers when a song fails shazam",
-            "success-da-song": "Answers if the song plays in DonationAlerts"
+            "success-da-song": "Answers if the song plays in DonationAlerts",
+            "last-success-shazam": "Answer for last playing song if it was shazamed",
+            "last-success-da": "Answer for the last song played if it was played in DonationAlerts",
+            "last-faliure": "Answer for failing to determine the last song played",
+            "queue-success": "Answer if the song queue is not empty",
+            "queue-faliure": "Answer if the queue is empty and the songs are paused",
+            "which-success": "Answer upon successful determination of the place in the queue of songs",
+            "which-faliure": "Answer when determining the place in the queue of songs is unsuccessful"
         },
         "title": "Editing",
         "scenarios": {
