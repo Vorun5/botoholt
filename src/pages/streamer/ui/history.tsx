@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { SONG_LIMIT, loadStreamerHistorySongs, selectStreamerHistorySongs } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
@@ -14,7 +14,12 @@ import { SongDataList, SongListItem } from 'shared/ui/song-data-list'
 import { getYtPlaylistLink, usePageSearchParam } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-export const History = () => {
+interface HistoryProps {
+    streamerName: string
+}
+
+export const History = ({ streamerName }: HistoryProps) => {
+    const login = streamerName.toLocaleLowerCase()
     const { t } = useTranslation()
     const [searchParams, setSearchParams] = useSearchParams()
     const history = useSelector(selectStreamerHistorySongs)
@@ -24,8 +29,6 @@ export const History = () => {
     const ytPlaylistLink = getYtPlaylistLink(historyList.map((song) => song.link))
     const [searchStr, setSearchStr] = useState('')
     const ref = useRef<HTMLDivElement>(null)
-    const { streamerName } = useParams()
-    const login = streamerName || ''
 
     useEffect(() => {
         let page = usePageSearchParam({
@@ -33,7 +36,13 @@ export const History = () => {
             searchParams,
         })
         setSearchParams({ page: page.toString() })
-        dispatch(loadStreamerHistorySongs({ login: login, limit: SONG_LIMIT, from: (page - 1) * SONG_LIMIT }))
+        dispatch(
+            loadStreamerHistorySongs({
+                login: login,
+                limit: SONG_LIMIT,
+                from: (page - 1) * SONG_LIMIT,
+            }),
+        )
     }, [])
 
     const search = (str: string) => {

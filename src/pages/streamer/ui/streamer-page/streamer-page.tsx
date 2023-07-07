@@ -38,18 +38,16 @@ const StreamerPageLogic = () => {
     const isDesktop = useMediaQuery('(min-width: 900px)')
     const isMobile = !isDesktop
 
-    console.log('render streamer page');
-    
     return (
         <>
             <PageContentExpanded>
                 {streamer.status === 'loading' && <Loading />}
                 {streamer.status === 'rejected' && <ErrorMessage>{streamer.error}</ErrorMessage>}
             </PageContentExpanded>
-            {streamer.status === 'received' && (
+            {streamer.status === 'received' && streamer.streamer.name.length !== 0 && (
                 <>
-                    {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} />}
-                    {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} />}
+                    {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer.streamer} />}
+                    {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer.streamer} />}
                 </>
             )}
         </>

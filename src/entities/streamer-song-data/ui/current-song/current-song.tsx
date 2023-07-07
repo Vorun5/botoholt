@@ -2,13 +2,12 @@ import clsx from 'clsx'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { io } from 'socket.io-client'
-import { selectStreamer } from 'entities/streamer'
 import { loadStreamerQueue, selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
 import { formatTime, getVideoPreview } from 'shared/lib/helpers'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
+import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueue } from 'shared/types'
 import styles from './current-song.module.scss'
 
@@ -32,11 +31,13 @@ const CurrentSongExtraInfo = ({ song }: { song: Omit<StreamerQueue, 'queue'> }) 
 
 interface CurrentSongProps {
     className?: string
+    streamerName: string
     center?: boolean
 }
 
-export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
+export const CurrentSong = ({ center = true, className, streamerName }: CurrentSongProps) => {
     const { t } = useTranslation()
+    const dispatch = useAppDispatch()
     const song = useSelector(selectStreamerCurrentSong)
 
     const danceEmote = useDanceEmote()
@@ -46,49 +47,39 @@ export const CurrentSong = ({ center = true, className }: CurrentSongProps) => {
 
     const preview = getVideoPreview(song.link ?? '')
 
-    const { streamerName } = useParams()
-    const login = streamerName || ''
-    const streamer = useSelector(selectStreamer)
-
     useEffect(() => {
         if (song.isPlaying && song.name !== null) {
             window.document.title = song.name
         } else {
-            window.document.title = `${streamer.streamer.name ? streamer.streamer.name : login} - Botoholt`
+            window.document.title = `${streamerName} - Botoholt`
         }
-    }, [streamer, song])
+    }, [streamerName, song])
 
     useEffect(() => {
+        const login = streamerName.toLocaleLowerCase()
         const socket = io('https://dev.bho.lt', { path: '/api/v1/socket', autoConnect: true })
 
         socket.on('connect', () => {
-            console.log('Connected to server')
+            console.log('CONNECTED TO', login)
         })
 
         socket.emit('subscribe', login)
 
         socket.on('message', (data) => {
             if (data.channel === login) {
-                console.log('Queue update')
-
-                loadStreamerQueue(login)
+                console.log('UPDATE', data.channel)
+                dispatch(loadStreamerQueue(data.channel))
             }
         })
 
-        if (socket.hasListeners('message')) {
-            console.log('Listener for message event is registered')
-        } else {
-            console.log('Listener for message event is not registered')
-        }
-
         return () => {
             socket.on('disconnect', () => {
-                console.log('disconnect')
+                console.log('DISCONNECT', login)
             })
 
             socket.disconnect()
         }
-    }, [login])
+    }, [streamerName])
 
     return (
         <>

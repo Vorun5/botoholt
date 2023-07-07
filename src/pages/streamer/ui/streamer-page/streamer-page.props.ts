@@ -1,9 +1,8 @@
 import { StreamerPageTab } from "pages/streamer/lib/use-nav"
-import { selectStreamer } from "entities/streamer"
-import { Period } from "shared/types"
+import { Period, Streamer } from "shared/types"
 
 export interface StreamerPageProps {
     tab: StreamerPageTab
     period: Period
-    streamer: ReturnType<typeof selectStreamer>
+    streamer: Streamer
 }

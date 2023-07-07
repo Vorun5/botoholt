@@ -15,12 +15,12 @@ export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps)
             <StreamerCard
                 className={styles.card}
                 title={t('streamer-card.title') ?? 'Информация о канале'}
-                streamer={streamer.streamer}
+                streamer={streamer}
             />
-            <CurrentSong className={styles.song} />
-            <Navigation tab={tab} period={period} login={streamer.streamer.login} />
-            <SongList period={period} />
-            <Ads className={styles.ads} donationAlertsLink={streamer.streamer.donationAlerts} />
+            <CurrentSong className={styles.song} streamerName={streamer.name} />
+            <Navigation tab={tab} period={period} login={streamer.name.toLocaleLowerCase()} />
+            <SongList period={period} streamerName={streamer.name} />
+            <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
         </>
     )
 }

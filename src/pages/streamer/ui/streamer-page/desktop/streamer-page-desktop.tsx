@@ -14,15 +14,15 @@ export const StreamerPageDesktop = ({ streamer, tab, period }: StreamerPageProps
         <>
             <div className={styles.wrapper}>
                 <div className={styles.wrapperLeft}>
-                    <StreamerCard title={t('streamer-card.title') ?? 'Channel info'} streamer={streamer.streamer} />
+                    <StreamerCard title={t('streamer-card.title') ?? 'Channel info'} streamer={streamer} />
                 </div>
                 <div className={styles.wrapperRight}>
-                    <CurrentSong center={false} />
-                    <Ads className={styles.ads} donationAlertsLink={streamer.streamer.donationAlerts} />
-                    <Navigation tab={tab} period={period} login={streamer.streamer.login} />
+                    <CurrentSong center={false} streamerName={streamer.name} />
+                    <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
+                    <Navigation tab={tab} period={period} login={streamer.login} />
                     <div className={styles.content}>
                         <div className={styles.list}>
-                            <SongList period={period} />
+                            <SongList period={period} streamerName={streamer.name} />
                         </div>
                     </div>
                 </div>

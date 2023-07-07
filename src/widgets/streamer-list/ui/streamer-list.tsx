@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { StreamerCard } from 'entities/streamers'
 import { selectStreamers } from 'entities/streamers'
-import { Loading } from 'shared/ui'
+import { ErrorMessage, Loading } from 'shared/ui'
 import styles from './streamer-list.module.scss'
 
 export const StreamerList = () => {
@@ -15,7 +15,7 @@ export const StreamerList = () => {
                     <Loading />
                 </div>
             )}
-            {streamers.status === 'rejected' && <span>Error!</span>}
+            {streamers.status === 'rejected' && <ErrorMessage>{streamers.error}</ErrorMessage>}
             {streamers.status === 'received' && (
                 <div className={styles.streamersList}>
                     {streamers.list.map((streamer) => (
