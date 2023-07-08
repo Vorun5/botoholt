@@ -9,7 +9,7 @@ import { AdminAuth } from 'shared/types'
 import { Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { ALPage, ALPageWrapper } from '../admin-layout/admin-layout'
 import { NavigationBar } from '../navigation-bar/navigation-bar'
-import { Commands, Dashboard, Integrations, NotFound, SongQueue, Support } from '../tabs'
+import { Commands, Dashboard, Integrations, NotFound, Songs, Support } from '../tabs'
 import styles from './admin-page.module.scss'
 
 export const AdminPage = () => {
@@ -71,7 +71,7 @@ export const AdminPage = () => {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/commands" element={<Commands />} />
                         <Route path="/integrations" element={<Integrations />} />
-                        <Route path="/song-queue" element={<SongQueue />} />
+                        <Route path="/song-queue" element={<Songs streamer={auth.auth} />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

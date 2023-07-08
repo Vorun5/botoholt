@@ -1,12 +1,6 @@
-import { SONG_LIMIT } from 'entities/streamer-song-data'
+import { SONG_LIMIT } from 'entities/streamer-song-data';
 
-export const usePageSearchParam = ({
-    from,
-    searchParams,
-}: {
-    from: number
-    searchParams: URLSearchParams
-}) => {
+export const usePageSearchParam = ({ from, searchParams }: { from: number; searchParams: URLSearchParams }) => {
     const pageParam = searchParams.get('page')
     let page = 1
     if (from != -1) {
