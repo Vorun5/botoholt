@@ -5,15 +5,14 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useElementSize } from 'shared/lib/hooks'
 import { Period } from 'shared/types'
 import { Button, ButtonText } from 'shared/ui'
-import styles from './navigation.module.scss'
+import styles from './song-list-navigation.module.scss'
 
 interface LinkButtonProps {
     url: string
     children: string
     isActive?: boolean
 }
-
-export const LinkButton = ({ children, url, isActive: active }: LinkButtonProps) => {
+const LinkButton = ({ children, url, isActive: active }: LinkButtonProps) => {
     return (
         <Link to={url}>
             <Button style={active ? 'fill-blue' : 'default'} padding="small" className={styles.navBth}>
@@ -23,20 +22,21 @@ export const LinkButton = ({ children, url, isActive: active }: LinkButtonProps)
     )
 }
 
-interface NavigationProps {
+interface SongListNavigationProps {
     period?: Period
     login: string
     tab: 'queue' | 'history' | 'top-songs' | 'top-djs'
     className?: string
+    baseUrlForRedirect: string
 }
 
-export const Navigation = ({ period, tab, className, login }: NavigationProps) => {
+export const SongListNavigation = ({ period, tab, className, login, baseUrlForRedirect }: SongListNavigationProps) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
     const ref = useRef<HTMLDivElement>(null)
     const { width } = useElementSize(ref)
 
-    const redirect = (str: string): string => `/${login.toLowerCase()}${str}`
+    const redirect = (str: string): string => `${baseUrlForRedirect}${str}`
 
     return (
         <div ref={ref} className={clsx(styles.nav, width < 1100 && styles.navCompact, className)}>

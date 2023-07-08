@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useNav } from 'pages/streamer/lib'
 import { Footer, Header } from 'widgets'
+import { useSongListNav } from 'widgets/song-list'
 import { loadStreamer, selectStreamer } from 'entities/streamer'
 import { SONG_LIMIT, loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs } from 'entities/streamer-song-data'
 import { useMediaQuery } from 'shared/lib/hooks'
@@ -22,7 +22,7 @@ const StreamerPageLogic = () => {
         dispatch(loadStreamerQueue(login))
     }, [dispatch, streamerName])
 
-    const [tab, period, page] = useNav(login)
+    const [tab, period, page] = useSongListNav(login, login.toLowerCase())
 
     useEffect(() => {
         const dispatchParams = {

@@ -176,7 +176,11 @@
             "da-status-not-connected": "Donation Alerts not connected"
         },
         "commands": {},
-        "song-queue": {},
+        "songs": {
+            "description": "On this page you can see the queue and history of custom songs, as well as top DJs and top songs",
+            "pause": "Pause",
+            "skip": "Skip"
+        },
         "integrations": {
             "page-description": "On this page you can connect various platforms",
             "connected": "Connected",

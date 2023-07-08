@@ -4,7 +4,7 @@ import { ALL_AVAILABLE_PERIODS, Period } from 'shared/types'
 
 export type StreamerPageTab = 'queue' | 'history' | 'top-songs' | 'top-djs'
 
-export const useNav = (login: string): [StreamerPageTab, Period, number] => {
+export const useSongListNav = (login: string, baseUrl?: string): [StreamerPageTab, Period, number] => {
     const location = useLocation()
     const [tab, setTab] = useState<StreamerPageTab>('queue')
     const [period, setPeriod] = useState<Period>('week')
@@ -13,8 +13,7 @@ export const useNav = (login: string): [StreamerPageTab, Period, number] => {
 
     const getStreamerPageTab = useCallback(() => {
         const pathname = location.pathname.toLowerCase()
-        const base = login.toLocaleLowerCase()
-
+        const base = baseUrl ?? ''
         if (pathname === '/' + base || pathname === '/' + base + '/') {
             setTab('queue')
             return

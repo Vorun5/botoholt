@@ -23,7 +23,6 @@ import { AdminAuth } from 'shared/types'
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
 import styles from './navigation-bar.module.scss'
 
-
 interface TabProps {
     selected?: boolean
     onClick?: () => void
@@ -195,10 +194,10 @@ export const NavigationBar = ({ authData }: { authData: AdminAuth }) => {
                                 {t('admin-page.nav.commands')}
                             </Tab>
                         </Link>
-                        <Link to="/admin/song-queue">
+                        <Link to="/admin/songs">
                             <Tab
                                 onClick={hideNavigation}
-                                selected={pathname.includes('/admin/song-queue')}
+                                selected={pathname.includes('/admin/songs')}
                                 icon={<SongQueueIcon />}
                             >
                                 {t('admin-page.nav.song-queue')}

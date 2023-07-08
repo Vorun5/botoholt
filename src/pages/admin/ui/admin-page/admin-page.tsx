@@ -71,7 +71,7 @@ export const AdminPage = () => {
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/commands" element={<Commands />} />
                         <Route path="/integrations" element={<Integrations />} />
-                        <Route path="/song-queue" element={<Songs streamer={auth.auth} />} />
+                        <Route path="/songs/*" element={<Songs streamer={auth.auth} />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
