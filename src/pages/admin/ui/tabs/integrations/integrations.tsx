@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { DangerIcon } from 'shared/assets/icons'
 import { DonationAlertsIcon, TwitchIcon } from 'shared/assets/icons/social'
 import { useToast } from 'shared/lib/hooks'
+import { AdminAuth } from 'shared/types'
 import {
     Button,
     ButtonText,
@@ -88,7 +89,11 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
     )
 }
 
-export const Integrations = () => {
+interface IntegrationsProps {
+    streamer: AdminAuth
+}
+
+export const Integrations = ({ streamer }: IntegrationsProps) => {
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -110,7 +115,7 @@ export const Integrations = () => {
                         <TwitchIcon color="#673AB7" />
                         <span>Twitch</span>
                     </CardTitle>
-                    <CardExpanded>Smurf_tv</CardExpanded>
+                    <CardExpanded>{streamer.name}</CardExpanded>
                     <CardFooter>
                         <CardDivider />
                         <Button height="52px">

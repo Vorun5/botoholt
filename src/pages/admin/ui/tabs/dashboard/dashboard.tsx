@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { HyperinkIcon, StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
+import { AdminAuth } from 'shared/types'
 import {
     Button,
     ButtonIcon,
@@ -164,7 +165,11 @@ export const HyperinkButton = ({ to, children }: HyperinkButtonProps) => {
     )
 }
 
-export const Dashboard = () => {
+interface DashboardProps {
+    streamer: AdminAuth
+}
+
+export const Dashboard = ({ streamer }: DashboardProps) => {
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -172,8 +177,8 @@ export const Dashboard = () => {
     }, [])
 
     const stream = {
-        title: 'GIGACHAD стрим! доигрываем мундо! постримим штрафной часок до 4 по мск! ЗАВТРА КОРЕЯ в 11 ПО МСК',
-        category: 'League of Legends',
+        title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        category: 'Just chatting',
     }
     const song = {
         name: 'Weeknd & Кино (Виктор Цой) — Закрой за мной дверь (Blinding Lights) Mashup by Openlabel',
@@ -184,7 +189,7 @@ export const Dashboard = () => {
     return (
         <>
             <ALPageHeader>
-                <span>{t('welcome')},</span> Smurf_tv!
+                <span>{t('welcome')},</span> {streamer.name}
             </ALPageHeader>
             <ALPageContent className={styles.pageContent}>
                 <div className={styles.statuses}>
@@ -245,7 +250,7 @@ export const Dashboard = () => {
                             </CardTitle>
                         </CardExpanded>
                         <CardDescription>{t('admin-page.dashboard.stream.title')}</CardDescription>
-                        <span>{stream.title}</span>
+                        <span className={styles.streamInfoCardStreamTitle}>{stream.title}</span>
                     </Card>
                     <Card style="orange" className={styles.streamInfoCard}>
                         <CardDescription style="orange">15.03.2023 - 22.03.2023</CardDescription>

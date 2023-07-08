@@ -51,13 +51,13 @@ export const Commands = () => {
                     >
                         {t('commands.default-coommands')}
                     </button>
-                    <button
+                    {/* <button
                         type="button"
                         className={clsx(styles.tab, tab === 'custom' && styles.tabFocus)}
                         onClick={() => setTab('custom')}
                     >
                         {t('commands.custom-coomands')}
-                    </button>
+                    </button> */}
                 </div>
                 <div className={styles.commands}>
                     <div className={styles.field}>

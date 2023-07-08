@@ -11,8 +11,6 @@ export const loadCommands = createAsyncThunk<
     'commands/load',
     async (_, { rejectWithValue }) => {
         try {
-            console.log('load commands');
-            
             const commands = await getCommands()
 
             return commands

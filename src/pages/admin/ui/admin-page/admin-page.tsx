@@ -68,9 +68,9 @@ export const AdminPage = () => {
                 <NavigationBar authData={auth.auth} />
                 <ALPage>
                     <Routes>
-                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/" element={<Dashboard streamer={auth.auth} />} />
                         <Route path="/commands" element={<Commands />} />
-                        <Route path="/integrations" element={<Integrations />} />
+                        <Route path="/integrations" element={<Integrations streamer={auth.auth} />} />
                         <Route path="/songs/*" element={<Songs streamer={auth.auth} />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="*" element={<NotFound />} />
