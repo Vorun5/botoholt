@@ -120,7 +120,10 @@
     "bot-answer": "Bot answer...",
     "variables": "Variables",
     "variables-description": "To use just click on the desired variable or write by hand",
+    "no-change": "No change",
     "edit-commands": {
+        "command-cahnged": "<{{commandName}}> command changed successfully",
+        "failed-command-changed": "Failed to change command <{{commandName}}> (Error: {{error}})",
         "titles": {
             "success-shazam": "Answers when the song is successfully shazam",
             "failure-shazam": "Answers when a song fails shazam",

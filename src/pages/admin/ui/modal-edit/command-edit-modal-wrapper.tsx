@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { changeCommand, selectCommandСhange } from 'entities/commands'
@@ -30,7 +30,9 @@ export const CommandEditModalWrapper = ({
     const changesSavedToast = () => {
         if (toast)
             toast.addToast(
-                { text: `Команда "${commandName}" успешно изменена!` },
+                {
+                    text: t('edit-commands.command-cahnged', { commandName }) ?? 'Successful change',
+                },
                 { status: 'success', position: 'top-right', delayInSeconds: 3 },
             )
     }
@@ -38,7 +40,9 @@ export const CommandEditModalWrapper = ({
     const changesNotSavedToast = (error: string) => {
         if (toast)
             toast.addToast(
-                { text: `Не удалось изменить команду (Error: ${error})` },
+                {
+                    text: t('edit-commands.failed-command-cahnged', { commandName, error }) ?? 'Failed to change',
+                },
                 { status: 'error', position: 'top-right', delayInSeconds: 3 },
             )
     }
@@ -46,15 +50,16 @@ export const CommandEditModalWrapper = ({
     const onClick = () => {
         const newCommand = getNewCommand()
         if (!newCommand) {
-            if (toast) toast.addToast({ text: 'Ничего не изменилось' }, { position: 'top-right', delayInSeconds: 3 })
+            if (toast)
+                toast.addToast({ text: t('no-change') ?? 'No change' }, { position: 'top-right', delayInSeconds: 3 })
             return
         }
         dispatch(changeCommand(newCommand))
     }
 
-    const isMounted = useRef(false)
+    const [isMounted, setIsMounted] = useState(false)
     useEffect(() => {
-        if (isMounted.current) {
+        if (isMounted) {
             setLoadingChanges(commandChanges.status === 'loading')
             if (commandChanges.status === 'rejected') changesNotSavedToast(commandChanges.error ?? '')
             if (commandChanges.status === 'received') {
@@ -62,7 +67,7 @@ export const CommandEditModalWrapper = ({
                 hide()
             }
         } else {
-            isMounted.current = true
+            setIsMounted(true)
         }
     }, [commandChanges])
 

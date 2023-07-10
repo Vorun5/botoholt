@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { isEqual } from 'underscore'
 import { LastSongCommand } from 'shared/types'
-import { AnswersSetting, getAnswersWithId } from './answers-setting'
+import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
@@ -21,8 +22,37 @@ export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps)
     const [shazamFailure, setShazamFailure] = useState(getAnswersWithId(command.answers.shazamAnswers.failure.answers))
     const [daSuccess, setDaSuccess] = useState(getAnswersWithId(command.answers.daAnswers.success.answers))
 
+    const getNewCommand = () => {
+        const newCommand: LastSongCommand = {
+            ...command,
+            enabled,
+            cooldown,
+            aliases: commands,
+            answers: {
+                shazamAnswers: {
+                    success: {
+                        ...command.answers.shazamAnswers.success,
+                        answers: getAnswers(daSuccess, 'daSuccess'),
+                    },
+                    failure: {
+                        ...command.answers.shazamAnswers.failure,
+                        answers: getAnswers(shazamFailure, 'daFailure'),
+                    },
+                },
+                daAnswers: {
+                    success: {
+                        ...command.answers.daAnswers.success,
+                        answers: getAnswers(daSuccess, 'daSuccess'),
+                    },
+                },
+            },
+        }
+        if (isEqual(newCommand, command)) return null
+        return newCommand
+    }
+
     return (
-        <CommandEditModalWrapper getNewCommand={() => {}} hide={hide}>
+        <CommandEditModalWrapper commandName={t(command.function)} getNewCommand={getNewCommand} hide={hide}>
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

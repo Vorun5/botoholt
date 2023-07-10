@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { nanoid } from 'nanoid'
 import { ReactNode, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { compact, isEmpty } from 'underscore'
 import { Button, ButtonText } from 'shared/ui'
 import styles from './modal-edit.module.scss'
 
@@ -17,8 +18,10 @@ export const getAnswersWithId = (answers: string[]): Answer[] => {
     }))
 }
 
-export const getAnswersWithoutId = (answersWithId: { value: string; id: string }[]) => {
-    return answersWithId.map((answerWithId) => answerWithId.value)
+export const getAnswers = (answersWithId: { value: string; id: string }[], defaultAnswer: string) => {
+    const newAnswers = compact(answersWithId.map((answerWithId) => answerWithId.value))
+    if (isEmpty(newAnswers)) return [defaultAnswer]
+    return newAnswers
 }
 
 const getChangedAnswers = (answers: Answer[], index: number, newAnswerValue: string): Answer[] => {

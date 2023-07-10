@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { isEqual } from 'underscore'
 import { QueueCommand } from 'shared/types'
-import { AnswersSetting, getAnswersWithId } from './answers-setting'
+import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
@@ -20,8 +21,31 @@ export const EditQueueCommand = ({ command, hide }: EditQueueCommandProps) => {
     const [daSuccess, setDaSuccess] = useState(getAnswersWithId(command.answers.daAnswers.success.answers))
     const [daFailure, setDaFailure] = useState(getAnswersWithId(command.answers.daAnswers.failure.answers))
 
+    const getNewCommand = () => {
+        const newCommand: QueueCommand = {
+            ...command,
+            enabled,
+            cooldown,
+            aliases: commands,
+            answers: {
+                daAnswers: {
+                    success: {
+                        ...command.answers.daAnswers.success,
+                        answers: getAnswers(daSuccess, 'daSuccess'),
+                    },
+                    failure: {
+                        ...command.answers.daAnswers.failure,
+                        answers: getAnswers(daFailure, 'daFailure'),
+                    },
+                },
+            },
+        }
+        if (isEqual(newCommand, command)) return null
+        return newCommand
+    }
+
     return (
-        <CommandEditModalWrapper getNewCommand={() => {}} hide={hide}>
+        <CommandEditModalWrapper commandName={t(command.function)} getNewCommand={getNewCommand} hide={hide}>
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

@@ -27,11 +27,10 @@ export const GeneralSettings = ({ enabled, setEnabled, cooldown, setCooldown }: 
                         defaultValue={cooldown.toString()}
                         placeholder="Cooldown"
                         onChange={(event) => {
-                            const newCD = Number(event.target.value)
-
-                            if (newCD >= 10) {
-                                setCooldown(newCD)
-                            }
+                            let newCd = Number(event.target.value)
+                            if (newCd > 10) newCd = 10
+                            if (newCd < 18_000) newCd = 18000
+                            setCooldown(newCd)
                         }}
                     />
                 </div>

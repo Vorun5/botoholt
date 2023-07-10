@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import _ from 'underscore'
-import { useToast } from 'shared/lib/hooks'
+import { isEqual } from 'underscore'
 import { SongCommand } from 'shared/types'
-import { AnswersSetting, getAnswersWithId, getAnswersWithoutId } from './answers-setting'
+import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
@@ -16,7 +15,6 @@ interface EditSongCommandProps {
 
 export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
     const { t } = useTranslation()
-    const toast = useToast()
     const [cooldown, setCooldown] = useState(command.cooldown)
     const [enabled, setEnabled] = useState(command.enabled)
     const [commands, setCommands] = useState(command.aliases)
@@ -34,22 +32,22 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
                 shazamAnswers: {
                     success: {
                         ...command.answers.shazamAnswers.success,
-                        answers: getAnswersWithoutId(shazamSuccess),
+                        answers: getAnswers(shazamSuccess, 'shazamSuccess'),
                     },
                     failure: {
                         ...command.answers.shazamAnswers.failure,
-                        answers: getAnswersWithoutId(shazamFailure),
+                        answers: getAnswers(shazamFailure, 'shazamFailure'),
                     },
                 },
                 daAnswers: {
                     success: {
                         ...command.answers.daAnswers.success,
-                        answers: getAnswersWithoutId(daSuccess),
+                        answers: getAnswers(daSuccess, 'daSuccess'),
                     },
                 },
             },
         }
-        if (_.isEqual(newCommand, command)) return null
+        if (isEqual(newCommand, command)) return null
         return newCommand
     }
 
