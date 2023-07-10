@@ -22,7 +22,7 @@ export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps)
     const [daSuccess, setDaSuccess] = useState(getAnswersWithId(command.answers.daAnswers.success.answers))
 
     return (
-        <CommandEditModalWrapper saveChanges={() => {}} hide={hide}>
+        <CommandEditModalWrapper getNewCommand={() => {}} hide={hide}>
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

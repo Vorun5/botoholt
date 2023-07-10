@@ -17,7 +17,11 @@ export const getAnswersWithId = (answers: string[]): Answer[] => {
     }))
 }
 
-export const getChangedAnswers = (answers: Answer[], index: number, newAnswerValue: string): Answer[] => {
+export const getAnswersWithoutId = (answersWithId: { value: string; id: string }[]) => {
+    return answersWithId.map((answerWithId) => answerWithId.value)
+}
+
+const getChangedAnswers = (answers: Answer[], index: number, newAnswerValue: string): Answer[] => {
     return answers.map((answer, i) =>
         index === i
             ? {
@@ -27,8 +31,7 @@ export const getChangedAnswers = (answers: Answer[], index: number, newAnswerVal
             : answer,
     )
 }
-
-export const removeAnswerByIndex = (answers: Answer[], index: number): Answer[] => {
+const removeAnswerByIndex = (answers: Answer[], index: number): Answer[] => {
     return answers.filter((_, i) => i !== index)
 }
 

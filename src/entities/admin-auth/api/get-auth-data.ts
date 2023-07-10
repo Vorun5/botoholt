@@ -17,7 +17,7 @@ export const getAuthData = async () => {
             pubsub: false,
         },
     }
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 200));
     return extractAdminAuth(authDataDto)
     
     const response = await api.get('admin').json<AdminAuthDto>()

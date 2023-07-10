@@ -21,7 +21,7 @@ export const EditWhichCommand = ({ command, hide }: EditWhichCommandProps) => {
     const [daFailure, setDaFailure] = useState(getAnswersWithId(command.answers.daAnswers.failure.answers))
 
     return (
-        <CommandEditModalWrapper saveChanges={() => {}} hide={hide}>
+        <CommandEditModalWrapper getNewCommand={() => {}} hide={hide}>
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

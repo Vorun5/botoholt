@@ -4,10 +4,10 @@ import { useToast } from '../../use-toast'
 import styles from './toast.module.scss'
 
 export type ToastPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top' | 'bottom'
-export type ToastStatus = 'success' | 'error'
+export type ToastStatus = 'success' | 'error' | 'default'
 
 export type ToastProps = {
-    id: number
+    id: string
     delayInSeconds?: number
     title?: string
     text?: string
@@ -16,7 +16,7 @@ export type ToastProps = {
     children?: ReactNode
 }
 
-export const Toast = ({ text, title, id, status = 'success', delayInSeconds, children }: ToastProps) => {
+export const Toast = ({ text, title, id, status = 'default', delayInSeconds, children }: ToastProps) => {
     const toastTools = useToast()
 
     if (delayInSeconds) {
@@ -34,7 +34,13 @@ export const Toast = ({ text, title, id, status = 'success', delayInSeconds, chi
     }
 
     return (
-        <div className={clsx(styles.toast, status === 'error' && styles.toastError)}>
+        <div
+            className={clsx(
+                styles.toast,
+                status === 'error' && styles.toastError,
+                status === 'success' && styles.toastSuccess,
+            )}
+        >
             {(title || !delayInSeconds) && (
                 <div className={styles.toastHeader}>
                     <h3 className={styles.toastTitle}>{title}</h3>

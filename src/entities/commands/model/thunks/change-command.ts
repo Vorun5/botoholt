@@ -1,17 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getCommands } from 'entities/commands/api'
+import { setCommand } from 'entities/commands/api'
 import { AllPossibleCommandType } from 'shared/types'
 import { CommandsSlice } from '../type'
 
-export const loadCommands = createAsyncThunk<
-    AllPossibleCommandType[],
-    undefined,
+export const changeCommand = createAsyncThunk<
+    AllPossibleCommandType,
+    AllPossibleCommandType,
     { state: { commands: CommandsSlice }; rejectValue: string }
 >(
-    'commands/load',
-    async (_, { rejectWithValue }) => {
+    'commands/change',
+    async (command, { rejectWithValue }) => {
         try {
-            const commands = await getCommands()
+            const commands = await setCommand(command)
 
             return commands
         } catch (error) {

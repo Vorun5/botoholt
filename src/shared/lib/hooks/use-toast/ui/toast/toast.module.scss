@@ -24,11 +24,19 @@
         max-width: 700px;
     }
 
-    &Error {
-        border-color: red;
+    &Success {
+        border-color: var(--bh-green);
 
         &Title {
-            color: red;
+            color: var(--bh-green);
+        }
+    }
+
+    &Error {
+        border-color: var(--bh-red);
+
+        &Title {
+            color: var(--bh-red);
         }
     }
 

@@ -276,10 +276,10 @@ export const Dashboard = ({ streamer }: DashboardProps) => {
                         </CardDescription>
                     </CardExpanded>
                     <CardFooter className={styles.songFooter}>
-                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.queue')}</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.history')}</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.top-djs')}</HyperinkButton>
-                        <HyperinkButton to="/admin/song-queue">{t('streamer-page.tabs.top-songs')}</HyperinkButton>
+                        <HyperinkButton to="/admin/songs">{t('streamer-page.tabs.queue')}</HyperinkButton>
+                        <HyperinkButton to="/admin/songs/h">{t('streamer-page.tabs.history')}</HyperinkButton>
+                        <HyperinkButton to="/admin/songs/top/djs">{t('streamer-page.tabs.top-djs')}</HyperinkButton>
+                        <HyperinkButton to="/admin/songs/top/songs">{t('streamer-page.tabs.top-songs')}</HyperinkButton>
                     </CardFooter>
                 </Card>
             </ALPageContent>

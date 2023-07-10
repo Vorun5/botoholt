@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import _ from 'underscore'
+import { useToast } from 'shared/lib/hooks'
 import { SongCommand } from 'shared/types'
-import { AnswersSetting, getAnswersWithId } from './answers-setting'
+import { AnswersSetting, getAnswersWithId, getAnswersWithoutId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
@@ -14,6 +16,7 @@ interface EditSongCommandProps {
 
 export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
     const { t } = useTranslation()
+    const toast = useToast()
     const [cooldown, setCooldown] = useState(command.cooldown)
     const [enabled, setEnabled] = useState(command.enabled)
     const [commands, setCommands] = useState(command.aliases)
@@ -21,8 +24,37 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
     const [shazamFailure, setShazamFailure] = useState(getAnswersWithId(command.answers.shazamAnswers.failure.answers))
     const [daSuccess, setDaSuccess] = useState(getAnswersWithId(command.answers.daAnswers.success.answers))
 
+    const getNewCommand = () => {
+        const newCommand: SongCommand = {
+            ...command,
+            enabled,
+            cooldown,
+            aliases: commands,
+            answers: {
+                shazamAnswers: {
+                    success: {
+                        ...command.answers.shazamAnswers.success,
+                        answers: getAnswersWithoutId(shazamSuccess),
+                    },
+                    failure: {
+                        ...command.answers.shazamAnswers.failure,
+                        answers: getAnswersWithoutId(shazamFailure),
+                    },
+                },
+                daAnswers: {
+                    success: {
+                        ...command.answers.daAnswers.success,
+                        answers: getAnswersWithoutId(daSuccess),
+                    },
+                },
+            },
+        }
+        if (_.isEqual(newCommand, command)) return null
+        return newCommand
+    }
+
     return (
-        <CommandEditModalWrapper saveChanges={() => {}} hide={hide}>
+        <CommandEditModalWrapper commandName={t(command.function)} getNewCommand={getNewCommand} hide={hide}>
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

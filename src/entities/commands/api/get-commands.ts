@@ -1,9 +1,10 @@
-import { api } from 'shared/api';
-import { Commands } from 'shared/types';
+import { api } from 'shared/api'
+import { AllPossibleCommandType } from 'shared/types'
 
 export const getCommands = async () => {
-    const commands: Commands = [
+    const commands: AllPossibleCommandType[] = [
         {
+            _id: 'a',
             function: 'bot.songs.songProcess',
             aliases: ['!s', '!song', '!песня'],
             cooldown: 10,
@@ -38,6 +39,7 @@ export const getCommands = async () => {
             },
         },
         {
+            _id: 'b',
             function: 'bot.songs.whichProcess',
             aliases: ['!который', '!which'],
             cooldown: 10,
@@ -58,6 +60,7 @@ export const getCommands = async () => {
             },
         },
         {
+            _id: 'c',
             function: 'bot.songs.queueProcess',
             aliases: ['!q', '!queue', '!очередь'],
             cooldown: 10,
@@ -78,6 +81,7 @@ export const getCommands = async () => {
             },
         },
         {
+            _id: 'd',
             function: 'bot.songs.lastSong',
             aliases: ['!last', '!последний'],
             cooldown: 10,
@@ -102,10 +106,10 @@ export const getCommands = async () => {
             },
         },
     ]
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 200))
     return commands
 
-    const response = await api.get('admin/commands').json<Commands>()
+    const response = await api.get('admin/commands').json<AllPossibleCommandType[]>()
 
     return response
 }

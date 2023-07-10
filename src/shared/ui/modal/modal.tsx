@@ -34,7 +34,13 @@ export const Modal = ({
     dontHide = false,
 }: ModalProps) => {
     const ref = useRef(null)
-    useOnClickOutside(ref, dontHide ? () => {} : hide)
+    const onHide = () => {
+        if (dontHide) return
+        document.body.classList.remove('modal-show')
+        hide()
+    }
+
+    useOnClickOutside(ref, onHide)
 
     const contentHeight = `calc(100vh - 40px - 20px - 72px - ${title ? '100px' : '0px'} - ${
         footerContent ? '80px' : '0px'
@@ -53,7 +59,7 @@ export const Modal = ({
                     <>
                         <div className={styles.header}>
                             <h1 className={styles.headerTitle}>{title}</h1>
-                            <Button width="46px" height="46px" borderRadius="50%" onClick={dontHide ? () => {} : hide}>
+                            <Button width="46px" height="46px" borderRadius="50%" onClick={onHide}>
                                 <ButtonIcon margin="none">
                                     <CloseIcon width="22px" height="22px" />
                                 </ButtonIcon>

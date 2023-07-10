@@ -1,3 +1,3 @@
 export { commandsReducer } from './model/commands-slice'
-export { selectCommands } from './model/commands-selectors'
-export { loadCommands } from './model/thunks'
+export { selectCommands, selectCommandСhange } from './model/commands-selectors'
+export { loadCommands, changeCommand } from './model/thunks'
