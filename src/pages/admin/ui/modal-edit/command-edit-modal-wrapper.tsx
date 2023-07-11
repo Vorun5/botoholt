@@ -41,7 +41,7 @@ export const CommandEditModalWrapper = ({
         if (toast)
             toast.addToast(
                 {
-                    text: t('edit-commands.failed-command-cahnged', { commandName, error }) ?? 'Failed to change',
+                    text: t('edit-commands.failed-command-changed', { commandName, error }) ?? 'Failed to change',
                 },
                 { status: 'error', position: 'top-right', delayInSeconds: 3 },
             )
@@ -65,6 +65,7 @@ export const CommandEditModalWrapper = ({
             if (commandChanges.status === 'received') {
                 changesSavedToast()
                 hide()
+                document.body.classList.remove('modal-show')
             }
         } else {
             setIsMounted(true)

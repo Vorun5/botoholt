@@ -147,3 +147,23 @@
         }
     }
 }
+
+.singOut {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &Text {
+        display: block;
+        margin-top: 1rem;
+        font-size: 2rem;
+    }
+
+    &Footer {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+}

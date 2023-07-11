@@ -1,4 +1,6 @@
 {
+    "yes": "Yes",
+    "no": "No",
     "go-to": "Go to",
     "copied-to-clipboard": "Copied to clipboard",
     "failed-to-copy": "Failed to copy to clipboard💀",
@@ -112,7 +114,12 @@
         "commands": "Commands",
         "answer": "Answer",
         "access": "Access",
-        "actions": "Actions"
+        "actions": "Actions",
+        "add": "Add command",
+        "empty": {
+            "title": "At the moment, the list of custom commands is empty",
+            "text": "Create your first custom command by clicking on the 'Add command' button"
+        }
     },
     "answer": "Answer",
     "add-answer": "Add answer",
@@ -212,7 +219,8 @@
             "site-label": "Select site language",
             "bot": "Bot language",
             "bot-label": "Select bot language"
-        }
+        },
+        "sing-out": "Are you sure to sing out"
     },
     "top-emotes": {
         "channel-emotes": "Channel emotes",

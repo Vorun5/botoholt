@@ -28,8 +28,8 @@ export const GeneralSettings = ({ enabled, setEnabled, cooldown, setCooldown }: 
                         placeholder="Cooldown"
                         onChange={(event) => {
                             let newCd = Number(event.target.value)
-                            if (newCd > 10) newCd = 10
-                            if (newCd < 18_000) newCd = 18000
+                            if (newCd < 10) newCd = 10
+                            if (newCd > 18_000) newCd = 18000
                             setCooldown(newCd)
                         }}
                     />

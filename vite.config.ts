@@ -15,11 +15,4 @@ export default defineConfig({
             pages: '/src/pages',
         },
     },
-    build: {
-        rollupOptions: {
-            output: {
-                chunkFileNames: `js/[name].[contenthash].js`,
-            },
-        },
-    },
 })

@@ -3,6 +3,7 @@ import { ReactNode, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from 'features'
+import D from 'shared/assets/emotes/D.png'
 import {
     ApprovalIcon,
     CommandsIcons,
@@ -127,6 +128,61 @@ const ChangeLanguage = ({ hideNavigation }: { hideNavigation: () => void }) => {
     )
 }
 
+const SignOut = ({ hideNavigation }: { hideNavigation: () => void }) => {
+    const { t } = useTranslation()
+    const [singOutModalIsShown, setSingOutModalIsShown] = useModal()
+    const hideSingOutModal = () => {
+        if (singOutModalIsShown) setSingOutModalIsShown()
+    }
+
+    return (
+        <>
+            <Modal
+                className={styles.changeLang}
+                hideScroll
+                expandedWidth
+                hide={hideSingOutModal}
+                isShown={singOutModalIsShown}
+                footerDivider
+                headerDivider
+                title={t('admin-page.nav.sign-out') ?? 'Sing Out'}
+                footerContent={
+                    <div className={styles.singOutFooter}>
+                        <Button
+                            style="red"
+                            border
+                            padding="big"
+                            onClick={() => {
+                                hideNavigation()
+                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/logout'
+                            }}
+                        >
+                            <ButtonText>{t('yes')}</ButtonText>
+                        </Button>
+                        <Button border onClick={() => setSingOutModalIsShown()}>
+                            <ButtonText>{t('no')}</ButtonText>
+                        </Button>
+                    </div>
+                }
+            >
+                <div className={styles.singOut}>
+                    <img src={D} alt="" width={112} height={112} className={styles.singOutEmote} />
+                    <span className={styles.singOutText}>{t('admin-page.sing-out')}</span>
+                </div>
+            </Modal>
+            <Tab
+                onClick={() => {
+                    hideNavigation()
+                    setSingOutModalIsShown()
+                }}
+                icon={<LogoutIcon />}
+            >
+                {t('admin-page.nav.sign-out')}
+            </Tab>
+        </>
+    )
+}
+
 export const NavigationBar = ({ authData }: { authData: AdminAuth }) => {
     const { t } = useTranslation()
     const approval = authData.type === 'partner'
@@ -237,15 +293,7 @@ export const NavigationBar = ({ authData }: { authData: AdminAuth }) => {
                                 {t('admin-page.nav.support')}
                             </Tab>
                         </Link>
-                        <Tab
-                            onClick={() => {
-                                hideNavigation()
-                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/logout'
-                            }}
-                            icon={<LogoutIcon />}
-                        >
-                            {t('admin-page.nav.sign-out')}
-                        </Tab>
+                        <SignOut hideNavigation={hideNavigation} />
                     </div>
                 </div>
                 <div className={styles.navigationCreators}>

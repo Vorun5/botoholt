@@ -50,9 +50,37 @@
     border-radius: 10px;
     background-color: var(--bh-primary-background-color);
     border: 1px solid var(--bh-outside-color);
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
+
+.addCommand {
+    margin: 0 40px 20px 40px;
 }
 
 .field {
     max-width: 230px;
     margin: 0 40px 40px 40px;
+}
+
+.empty {
+    text-align: center;
+
+    &Title {
+        display: block;
+        margin: 16px 0;
+        color: var(--bh-text-color);
+        font-weight: bold;
+        font-size: var(--bh-large-text-size);
+    }
+
+    &Text {
+        display: block;
+        color: var(--bh-text-color);
+        font-size: 1rem;
+    }
 }

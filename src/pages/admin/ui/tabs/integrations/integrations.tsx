@@ -1,10 +1,10 @@
-import clsx from 'clsx'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { DangerIcon } from 'shared/assets/icons'
-import { DonationAlertsIcon, TwitchIcon } from 'shared/assets/icons/social'
-import { useToast } from 'shared/lib/hooks'
-import { AdminAuth } from 'shared/types'
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { DangerIcon } from 'shared/assets/icons';
+import { DonationAlertsIcon } from 'shared/assets/icons/social';
+import { useToast } from 'shared/lib/hooks';
+import { AdminAuth } from 'shared/types';
 import {
     Button,
     ButtonText,
@@ -16,9 +16,9 @@ import {
     CardTitle,
     Modal,
     PasswordFiled,
-} from 'shared/ui'
-import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
-import styles from './integrations.module.scss'
+} from 'shared/ui';
+import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout';
+import styles from './integrations.module.scss';
 
 interface DaModalProps {
     hide: () => void
@@ -109,7 +109,7 @@ export const Integrations = ({ streamer }: IntegrationsProps) => {
                 {t('admin-page.nav.integrations')}
             </ALPageHeader>
             <ALPageContent className={styles.pageContent}>
-                <Card className={styles.card} padding="big">
+                {/* <Card className={styles.card} padding="big">
                     <CardDescription style="green">{t('admin-page.integrations.connected')}</CardDescription>
                     <CardTitle className={clsx(styles.cardTitle)}>
                         <TwitchIcon color="#673AB7" />
@@ -122,7 +122,7 @@ export const Integrations = ({ streamer }: IntegrationsProps) => {
                             <ButtonText>{t('disable')}</ButtonText>
                         </Button>
                     </CardFooter>
-                </Card>
+                </Card> */}
                 <DaModal hide={hideDaModal} isShown={daModalIsShown} />
                 <Card className={styles.card} padding="big">
                     <CardDescription style="red">{t('admin-page.integrations.not-connected')}</CardDescription>
