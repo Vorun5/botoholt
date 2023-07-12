@@ -106,18 +106,41 @@ export const AnswersSetting = ({ titleStyle, title, answers, variables, setAnswe
                                 style="orange"
                                 padding="small"
                                 border
-                                onClick={() => {
-                                    const charLeft = MAX_LENGTH - answers[selectedAnswer].value.length
-                                    if (charLeft >= variable.length) {
-                                        setAnswers(
-                                            getChangedAnswers(
-                                                answers,
-                                                selectedAnswer,
-                                                `${answers[selectedAnswer].value} ${variable} `,
-                                            ),
-                                        )
+                                onClick={(event) => {
+                                    event.preventDefault()
+                                    const value = answers[selectedAnswer].value
+                                    const possible = MAX_LENGTH - value.length >= variable.length + 2
+                                    const textarea = textAreaRef.current
+                                    if (possible && textarea) {
+                                        const startPos = textarea.selectionStart
+                                        const endPos = textarea.selectionEnd
+                                        if ((startPos && endPos) || startPos === 0) {
+                                            setAnswers(
+                                                getChangedAnswers(
+                                                    answers,
+                                                    selectedAnswer,
+                                                    `${value.substring(0, startPos)} ${variable} ${value.substring(
+                                                        endPos,
+                                                        value.length,
+                                                    )}`.trim(),
+                                                ),
+                                            )
+                                            setTimeout(() => {
+                                                const newPos = startPos + variable.length + 1
+                                                textarea.focus()
+                                                textarea.setSelectionRange(newPos, newPos)
+                                            }, 0)
+                                        } else {
+                                            setAnswers(
+                                                getChangedAnswers(
+                                                    answers,
+                                                    selectedAnswer,
+                                                    `${value} ${variable}`.trim(),
+                                                ),
+                                            )
+                                            textarea.focus()
+                                        }
                                     }
-                                    if (textAreaRef.current) textAreaRef.current.focus()
                                 }}
                             >
                                 <ButtonText>{variable}</ButtonText>

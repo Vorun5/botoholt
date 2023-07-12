@@ -1,12 +1,12 @@
-import { useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types'
-import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
-import { EditQueueCommand } from '../modal-edit/edit-queue-command'
-import { EditSongCommand } from '../modal-edit/edit-song-command'
-import { EditWhichCommand } from '../modal-edit/edit-which-command'
-import { CommandTableItem } from './command-table-item'
-import styles from './command-table.module.scss'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types';
+import { EditLastSongCommand } from '../modal-edit/edit-last-song-command';
+import { EditQueueCommand } from '../modal-edit/edit-queue-command';
+import { EditSongCommand } from '../modal-edit/edit-song-command';
+import { EditWhichCommand } from '../modal-edit/edit-which-command';
+import { CommandTableItem } from './command-table-item';
+import styles from './command-table.module.scss';
 
 const CellName = ({ children }: { children: string }) => {
     return (
@@ -20,13 +20,9 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
     const { t } = useTranslation()
 
     const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
-    const changedСommand = useRef<Command | null>(null)
-
-    const saveChanges = (command: Command) => {
-        changedСommand.current = command
-    }
-
     const hide = () => setCurrentEditCommand(null)
+
+    // createPortal(document.body, <div></div>)
 
     return (
         <>

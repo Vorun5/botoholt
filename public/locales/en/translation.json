@@ -1,4 +1,6 @@
 {
+    "exit": "Exit",
+    "cancel": "Cancel",
     "yes": "Yes",
     "no": "No",
     "go-to": "Go to",
@@ -154,6 +156,10 @@
             "add": "Add command",
             "placeholder": "!EnterCommand",
             "description": "Add key names for the team (minimum 1, maximum 10)"
+        },
+        "warning": {
+            "title": "You have not saved your changes!",
+            "text": "Are you sure you want to exit without saving your changes?"
         }
     },
     "admin-page": {
@@ -220,7 +226,7 @@
             "bot": "Bot language",
             "bot-label": "Select bot language"
         },
-        "sing-out": "Are you sure to sing out"
+        "sing-out": "Are you sure to sing out?"
     },
     "top-emotes": {
         "channel-emotes": "Channel emotes",

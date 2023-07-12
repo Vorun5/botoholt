@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import styles from './button.module.scss'
 
@@ -34,11 +34,11 @@ export const ButtonIcon = ({ children, margin = 'right', className }: ButtonIcon
 }
 
 interface ButtonProps {
-    style?: 'default' | 'blue' | 'fill-blue' | 'green' | 'red' | 'fill-red' | 'orange' |  'transparent'
+    style?: 'default' | 'blue' | 'fill-blue' | 'green' | 'red' | 'fill-red' | 'orange' | 'transparent'
     alignment?: 'center' | 'left' | 'right'
     borderRadius?: string
     children?: ReactNode
-    onClick?: () => void
+    onClick?: MouseEventHandler<HTMLButtonElement>
     height?: string
     width?: string
     padding?: 'big' | 'normal' | 'small'
