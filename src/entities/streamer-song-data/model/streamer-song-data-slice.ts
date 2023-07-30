@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { initialState } from './initial-state'
-import { loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs, loadStreamerHistorySongs } from './thunks'
+import { loadStreamerHistorySongs, loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs } from './thunks'
 
 const streamerSongDataSlice = createSlice({
     name: 'streamer-song-data',

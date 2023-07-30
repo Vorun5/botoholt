@@ -1,6 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import { getStreamerHistory } from 'entities/streamer-song-data/api'
 import { StreamerHistorySong } from 'shared/types'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+
 import { StreamerSongDataSlice } from '../type'
 import { LoadParamType } from './load-param-type'
 

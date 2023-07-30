@@ -1,5 +1,6 @@
+import { CSSProperties, ReactNode } from 'react'
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+
 import styles from './card.module.scss'
 
 type Style = 'default' | 'green' | 'blue' | 'orange'
@@ -77,20 +78,25 @@ export interface CardProps {
     width?: string
     style?: 'default' | 'green' | 'blue' | 'orange' | 'red'
     className?: string
+    skeleton?: boolean
+    s?: CSSProperties
 }
 
 export const Card = ({
     padding = 'normal',
     style = 'default',
+    skeleton = false,
     borderRadius,
     children,
     className,
     width,
     height,
+    s,
 }: CardProps) => (
     <div
         className={clsx(
             styles.card,
+            skeleton && 'skeleton',
             style === 'green' && styles.cardGreen,
             style === 'orange' && styles.cardOrange,
             style === 'blue' && styles.cardBlue,
@@ -100,7 +106,7 @@ export const Card = ({
             padding === 'small' && styles.cardPaddingSmall,
             className,
         )}
-        style={{ borderRadius: borderRadius, height: height, width: width }}
+        style={{ borderRadius: borderRadius, height: height, width: width, ...s }}
     >
         {children}
     </div>

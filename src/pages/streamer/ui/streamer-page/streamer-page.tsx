@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { Footer, Header } from 'widgets'
 import { useSongListNav } from 'widgets/song-list'
 import { loadStreamer, selectStreamer } from 'entities/streamer'
-import { SONG_LIMIT, loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs } from 'entities/streamer-song-data'
+import { loadStreamerQueue, loadStreamerTopDjs, loadStreamerTopSongs, SONG_LIMIT } from 'entities/streamer-song-data'
 import { useMediaQuery } from 'shared/lib/hooks'
 import { useAppDispatch } from 'shared/lib/store'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
 

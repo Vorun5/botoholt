@@ -9,6 +9,7 @@ export interface StreamerDto {
     profile_image_url: string
     offline_image_url: string
     streamInfo?: StreamInfoDto
+    channelInfo?: StreamInfoDto
     description: string
     daLink: string
     followersCount: number

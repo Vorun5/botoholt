@@ -85,7 +85,6 @@ export const CommandEditModalWrapper = ({
                 title={t('edit-commands.warning.title') ?? 'Exit?'}
                 hide={() => setShowWarning(false)}
                 footerDivider
-                headerDivider
                 footerContent={
                     <div className={styles.warningActions}>
                         <Button style="green" height="50px" onClick={() => setShowWarning(false)}>

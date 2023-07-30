@@ -1,12 +1,15 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types';
-import { EditLastSongCommand } from '../modal-edit/edit-last-song-command';
-import { EditQueueCommand } from '../modal-edit/edit-queue-command';
-import { EditSongCommand } from '../modal-edit/edit-song-command';
-import { EditWhichCommand } from '../modal-edit/edit-which-command';
-import { CommandTableItem } from './command-table-item';
-import styles from './command-table.module.scss';
+import clsx from 'clsx'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { selectCommandСhange } from 'entities/commands'
+import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types'
+import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
+import { EditQueueCommand } from '../modal-edit/edit-queue-command'
+import { EditSongCommand } from '../modal-edit/edit-song-command'
+import { EditWhichCommand } from '../modal-edit/edit-which-command'
+import { CommandTableItem } from './command-table-item'
+import styles from './command-table.module.scss'
 
 const CellName = ({ children }: { children: string }) => {
     return (
@@ -18,15 +21,20 @@ const CellName = ({ children }: { children: string }) => {
 
 export const CommandTable = ({ commands }: { commands: Command[] }) => {
     const { t } = useTranslation()
+    const commandChanges = useSelector(selectCommandСhange)
 
     const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
     const hide = () => setCurrentEditCommand(null)
 
-    // createPortal(document.body, <div></div>)
-
     return (
         <>
             <div className={styles.commands}>
+                <div
+                    className={clsx(
+                        styles.commandsOverlay,
+                        commandChanges.status === 'loading' && styles.commandsOverlayActive,
+                    )}
+                ></div>
                 <div className={styles.commandsHeadlines}>
                     <CellName>{t('commands.status')}</CellName>
                     <CellName>{t('commands.type')}</CellName>

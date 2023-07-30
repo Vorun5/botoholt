@@ -1,6 +1,6 @@
 
 export interface AdminServicesDto {
     botoholt: boolean,
-    api: boolean,
+    da_api: boolean,
     pubsub: boolean
 }

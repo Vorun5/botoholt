@@ -16,6 +16,7 @@ body {
     --bh-primary-background-color: #141415;
     --bh-outside-color: rgba(255, 255, 255, 0.1);
     --bh-text-color: #ffffff;
+    --bh-text-color-rgb: 255, 255, 255;
     --bh-description-text-color: rgba(255, 255, 255, 0.4);
 
     --bh-blue: #4759ff;
@@ -87,6 +88,7 @@ body[data-theme='light'] {
     --bh-primary-background-color-04: rgba(255, 255, 255, 0.4);
     --bh-outside-color: rgba(0, 0, 0, 0.1);
     --bh-text-color: #000000;
+    --bh-text-color-rgb: 0, 0, 0;
     --bh-text-color-04: rgba(0, 0, 0, 0.4);
     --bh-text-color-06: rgba(0, 0, 0, 0.6);
     --bh-description-text-color: rgb(0, 0, 0, 0.4);
@@ -100,6 +102,7 @@ body[data-theme='dark'] {
     --bh-secondary-background-color: rgba(255, 255, 255, 0.1);
     --bh-outside-color: rgba(255, 255, 255, 0.1);
     --bh-text-color: #ffffff;
+    --bh-text-color-rgb: 255, 255, 255;
     --bh-text-color-04: rgba(255, 255, 255, 0.4);
     --bh-text-color-06: rgba(255, 255, 255, 0.6);
     --bh-description-text-color: rgb(255, 255, 255, 0.4);

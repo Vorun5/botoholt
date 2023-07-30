@@ -1,5 +1,4 @@
 {
-    "extends": ["@feature-sliced/eslint-config/rules/import-order"],
     "parser": "@typescript-eslint/parser",
     "settings": {
         "import/resolver": {
@@ -8,8 +7,43 @@
             }
         }
     },
+    "plugins": ["simple-import-sort"],
     "rules": {
-        // feature-sliced/import-order
-        "import/order": "warn" // ~ 1,
-    }
+        "simple-import-sort/imports": "warn",
+        "simple-import-sort/exports": "warn"
+    },
+    "overrides": [
+        {
+            "files": ["**/*.js", "**/*.ts", "**/*.tsx"],
+            "rules": {
+                "simple-import-sort/imports": [
+                    "warn",
+                    {
+                        "groups": [
+                            // `react` first, `next` second, then packages starting with a character
+                            [
+                                "^react$",
+                                "^next",
+                                "^app",
+                                "^pages",
+                                "^widgets",
+                                "^features",
+                                "^entities",
+                                "^shared",
+                                "^@",
+                                "^~",
+                                "^[a-z]"
+                            ],
+                            // Imports starting with `../` and `./`
+                            ["^\\.\\.(?!/?$)", "^\\.\\./?$", "^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                            // Style imports
+                            ["^.+\\.s?css$"],
+                            // Side effect imports
+                            ["^\\u0000"]
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }

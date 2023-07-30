@@ -1,4 +1,6 @@
 .commands {
+    position: relative;
+
     &Headlines {
         overflow: hidden;
         border: 1px solid var(--bh-outside-color);
@@ -18,6 +20,19 @@
                 width: 0;
                 height: 0;
             }
+        }
+    }
+
+    &Overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        &Active {
+            display: block;
         }
     }
 }

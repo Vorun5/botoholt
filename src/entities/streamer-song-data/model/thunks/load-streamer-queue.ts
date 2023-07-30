@@ -1,6 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getStreamerQueue } from 'entities/streamer-song-data/api';
 import { StreamerQueue } from 'shared/types';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { StreamerSongDataSlice } from '../type';
 
 export const loadStreamerQueue = createAsyncThunk<

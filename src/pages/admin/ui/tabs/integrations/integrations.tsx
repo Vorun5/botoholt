@@ -1,10 +1,8 @@
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { DangerIcon } from 'shared/assets/icons';
-import { DonationAlertsIcon } from 'shared/assets/icons/social';
-import { useToast } from 'shared/lib/hooks';
-import { AdminAuth } from 'shared/types';
+import { useEffect, useState } from 'react'
+import { DangerIcon } from 'shared/assets/icons'
+import { DonationAlertsIcon } from 'shared/assets/icons/social'
+import { useToast } from 'shared/lib/hooks'
+import { AdminAuth } from 'shared/types'
 import {
     Button,
     ButtonText,
@@ -16,9 +14,13 @@ import {
     CardTitle,
     Modal,
     PasswordFiled,
-} from 'shared/ui';
-import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout';
-import styles from './integrations.module.scss';
+} from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
+import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+
+import styles from './integrations.module.scss'
 
 interface DaModalProps {
     hide: () => void
@@ -33,14 +35,22 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
 
     const onSave = () => {
         if (daLink.length === 0) {
-            if (toast) toast.addToast({ children: 'Insert link dumb' }, { status: 'error', delayInSeconds: 3 })
+            if (toast)
+                toast.addToast(
+                    { children: t('insert-link') },
+                    { status: 'error', delayInSeconds: 3, position: 'top-right' },
+                )
             return
         }
 
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
-            if (toast) toast.addToast({ children: `Link: ${daLink}` }, { status: 'success', delayInSeconds: 3 })
+            if (toast)
+                toast.addToast(
+                    { children: t('link-saved"') },
+                    { status: 'success', delayInSeconds: 3, position: 'top-right' },
+                )
         }, 3000)
     }
 

@@ -9,6 +9,7 @@ export interface Streamer {
     image: string
     backgroundImage: string
     streamInfo: StreamInfo | null
+    channelInfo: StreamInfo | null
     description: string
     donationAlerts: string
     followers: number
