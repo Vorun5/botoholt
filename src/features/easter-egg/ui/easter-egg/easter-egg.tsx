@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 
 import { Emote } from '../emote/emote'
 import AYAYA from '../emotes/AYAYA.png'
@@ -30,18 +29,18 @@ import { Nickname } from '../nickname/nickname'
 
 import styles from './easter-egg.module.scss'
 
-const Title = styled.span`
-    margin-top: 15px;
-    color: var(--secondary-text-color);
-`
-const Big = styled.div`
-    display: flex;
-    margin: 5px 0;
-    color: var(--text-color);
-    font-size: var(--primary-text-size);
-    align-items: center;
-    justify-content: center;
-`
+interface Props {
+    children: ReactNode
+}
+
+const Title = ({ children }: Props) => {
+    return <span className={styles.title}>{children}</span>
+}
+
+const Big = ({ children }: Props) => {
+    return <div className={styles.big}>{children}</div>
+}
+
 export const EasterEgg = () => {
     const { t } = useTranslation()
     const [isEasterEggOpen, setEasterEggOpen] = useState(false)
