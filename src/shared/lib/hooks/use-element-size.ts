@@ -1,4 +1,4 @@
-import { useState, RefObject, useCallback, useEffect } from 'react'
+import { RefObject, useCallback, useEffect, useState } from 'react'
 
 export const useElementSize = <T extends HTMLElement>(elementRef?: RefObject<T>) => {
     const [elementSize, setElementSize] = useState({

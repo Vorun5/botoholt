@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
-import { loadAuthData } from 'entities/admin-auth'
+import { useAuthDataQeury } from 'entities/admin-auth'
 import { HyperinkIcon } from 'shared/assets/icons'
-import { RootState, useAppDispatch } from 'shared/lib/store'
 import { Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 import { ALPage, ALPageWrapper } from '../admin-layout/admin-layout'
@@ -34,36 +31,30 @@ const NotAuth = ({ error }: { error: string | null }) => {
 }
 
 export const AdminPage = () => {
-    const dispatch = useAppDispatch()
+    const { data: auth, isLoading, isError, isSuccess, fetchStatus } = useAuthDataQeury()
 
-    const auth = useSelector((state: RootState) => state.adminAuth)
-
-    useEffect(() => {
-        dispatch(loadAuthData())
-    }, [])
-
-    if (auth.status !== 'received')
+    if (!isSuccess)
         return (
             <Page>
                 <PageContent>
                     <PageContentExpanded>
-                        {auth.status === 'loading' && <Loading />}
-                        {auth.status === 'rejected' && <NotAuth error={auth.error} />}
+                        {isLoading && <Loading />}
+                        {isError && <NotAuth error={`Error status: ${fetchStatus}`} />}
                     </PageContentExpanded>
                 </PageContent>
             </Page>
         )
 
-    if (auth.auth !== null)
+    if (isSuccess)
         return (
             <ALPageWrapper>
-                <NavigationBar authData={auth.auth} />
+                <NavigationBar authData={auth} />
                 <ALPage>
                     <Routes>
-                        <Route path="/" element={<Dashboard streamer={auth.auth} />} />
+                        <Route path="/" element={<Dashboard streamer={auth} />} />
                         <Route path="/commands" element={<Commands />} />
-                        <Route path="/integrations" element={<Integrations streamer={auth.auth} />} />
-                        <Route path="/songs/*" element={<Songs streamer={auth.auth} />} />
+                        <Route path="/integrations" element={<Integrations streamer={auth} />} />
+                        <Route path="/songs/*" element={<Songs streamer={auth} />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

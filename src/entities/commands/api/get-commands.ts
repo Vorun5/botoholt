@@ -1,4 +1,3 @@
-import { api } from 'shared/api'
 import { AllPossibleCommandType } from 'shared/types'
 
 export const getCommands = async () => {
@@ -109,7 +108,4 @@ export const getCommands = async () => {
     await new Promise((resolve) => setTimeout(resolve, 200))
     return commands
 
-    const response = await api.get('admin/commands').json<AllPossibleCommandType[]>()
-
-    return response
 }

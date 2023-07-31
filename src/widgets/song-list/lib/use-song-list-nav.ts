@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { SONG_LIMIT } from 'entities/streamer-song-data'
 import { ALL_AVAILABLE_PERIODS, Period } from 'shared/types'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export type StreamerPageTab = 'queue' | 'history' | 'top-songs' | 'top-djs'
 
-export const useSongListNav = (login: string, baseUrl?: string): [StreamerPageTab, Period, number] => {
+export const useSongListNav = (
+    login: string,
+    baseUrl?: string,
+): { tab: StreamerPageTab; period: Period; page: number; from: number } => {
     const location = useLocation()
     const [tab, setTab] = useState<StreamerPageTab>('queue')
     const [period, setPeriod] = useState<Period>('week')
@@ -14,7 +18,7 @@ export const useSongListNav = (login: string, baseUrl?: string): [StreamerPageTa
     const getStreamerPageTab = useCallback(() => {
         const pathname = location.pathname.toLowerCase()
         const base = baseUrl ?? ''
-        if (pathname === '/' + base || pathname === '/' + base + '/') {
+        if (pathname === '/' + base || pathname === '/' + base + '/' || pathname === base + '/' || pathname === base) {
             setTab('queue')
             return
         }
@@ -64,5 +68,10 @@ export const useSongListNav = (login: string, baseUrl?: string): [StreamerPageTa
         setPage(getPageFromSearchParams())
     }, [getPageFromSearchParams, searchParams])
 
-    return [tab, period, page]
+    return {
+        tab,
+        period,
+        page,
+        from: page === -1 ? 0 : (page - 1) * SONG_LIMIT,
+    }
 }

@@ -1,12 +1,14 @@
-import { useTranslation } from 'react-i18next'
 import { SongList, SongListNavigation } from 'widgets/song-list'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { StreamerCard } from 'entities/streamers'
+import { useTranslation } from 'react-i18next'
+
 import { Ads } from '../../ads/ads'
 import { StreamerPageProps } from '../streamer-page.props'
+
 import styles from './streamer-page-desktop.module.scss'
 
-export const StreamerPageDesktop = ({ streamer, tab, period }: StreamerPageProps) => {
+export const StreamerPageDesktop = ({ streamer, tab, period, from }: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -19,14 +21,14 @@ export const StreamerPageDesktop = ({ streamer, tab, period }: StreamerPageProps
                     <CurrentSong center={false} streamerName={streamer.name} />
                     <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
                     <SongListNavigation
-                        tab={tab}
-                        period={period}
                         login={streamer.login}
                         baseUrlForRedirect={`/${streamer.login}`}
+                        tab={tab}
+                        period={period}
                     />
                     <div className={styles.content}>
                         <div className={styles.list}>
-                            <SongList period={period} streamerName={streamer.name} />
+                            <SongList tab={tab} period={period} streamerName={streamer.name} from={from} />
                         </div>
                     </div>
                 </div>

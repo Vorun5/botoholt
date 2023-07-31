@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { AboutBotoholt } from 'widgets'
 import pepeD from 'shared/assets/emotes/pepeD.gif'
 import { TwitchIcon } from 'shared/assets/icons/social'
 import { useMediaQuery } from 'shared/lib/hooks'
 import { CreatedWithLove } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import styles from './login-page.module.scss'
 
 const Emote = () => <img draggable={false} src={pepeD} alt="pepeD" className={styles.loginEmote} />

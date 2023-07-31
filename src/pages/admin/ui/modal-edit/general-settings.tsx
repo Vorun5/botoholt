@@ -1,5 +1,6 @@
-import { useTranslation } from 'react-i18next'
 import { InputField, Toggle } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import styles from './modal-edit.module.scss'
 
 interface GeneralSettingProps {

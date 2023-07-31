@@ -1,5 +1,6 @@
 import { Footer, Header } from 'widgets'
 import { Page, PageContent, PageContentExpanded } from 'shared/ui'
+
 import styles from './not-found.module.scss'
 
 export const NotFound = () => {

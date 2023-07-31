@@ -1,9 +1,11 @@
-import clsx from 'clsx'
-import { useTranslation } from 'react-i18next'
 import { ApprovalIcon } from 'shared/assets/icons'
 import { Streamer, StreamerSocialMedia } from 'shared/types'
 import { Avatar } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import { StreamerSocialMedias } from '../streamer-social-medias/streamer-social-medias'
+
 import styles from './streamer-card.module.scss'
 
 type Degree = 'thousands' | 'none'

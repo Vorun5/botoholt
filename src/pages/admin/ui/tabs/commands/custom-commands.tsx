@@ -1,8 +1,10 @@
-import { useTranslation } from 'react-i18next'
-import { isEmpty } from 'underscore'
 import Sadge from 'shared/assets/emotes/Sadge.gif'
 import { Command } from 'shared/types'
+import { useTranslation } from 'react-i18next'
+import { isEmpty } from 'underscore'
+
 import { CommandTable } from '../../command-table/command-table'
+
 import styles from './commands.module.scss'
 
 interface CustomCommandsProps {

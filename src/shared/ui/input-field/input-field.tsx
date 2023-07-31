@@ -1,6 +1,7 @@
-import clsx from 'clsx'
 import { ChangeEvent, ReactNode, useState } from 'react'
 import { EyeCloseIcon, EyeOpenIcon } from 'shared/assets/icons'
+import clsx from 'clsx'
+
 import styles from './input-field.module.scss'
 
 interface InputFieldProps {

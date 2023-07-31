@@ -1,4 +1,5 @@
 import { StreamerType } from 'shared/types'
+
 import { AdminServicesDto } from './admin-services-dto'
 
 export interface AdminAuthDto {

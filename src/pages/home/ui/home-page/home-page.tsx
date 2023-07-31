@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { AboutBotoholt, Footer, Header, StreamerList } from 'widgets'
 import { TwitchIcon } from 'shared/assets/icons/social'
 import { Page, PageContent } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import styles from './home-page.module.scss'
 
 export const HomePage = () => {

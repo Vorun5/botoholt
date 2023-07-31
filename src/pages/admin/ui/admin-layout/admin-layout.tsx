@@ -1,7 +1,8 @@
-import clsx from 'clsx'
 import { ReactNode } from 'react'
 import { ThemeSwitcher } from 'features'
 import { useMediaQuery } from 'shared/lib/hooks'
+import clsx from 'clsx'
+
 import styles from './admin-layout.module.scss'
 
 interface ALProps {

@@ -1,4 +1,5 @@
 import { MutableRefObject, useState } from 'react'
+
 import { useOnClickOutside } from './use-on-click-outside'
 
 export const useModalSwitch = (

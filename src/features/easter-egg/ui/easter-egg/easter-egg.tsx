@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { Emote } from '../emote/emote'
 
+import { Emote } from '../emote/emote'
 import AYAYA from '../emotes/AYAYA.png'
 import AYAYA2 from '../emotes/AYAYA2.png'
 import BearBite from '../emotes/BearBite.gif'
@@ -26,8 +26,8 @@ import Pog from '../emotes/Pog.png'
 import PoroGP from '../emotes/PoroGP.png'
 import PoroSex from '../emotes/PoroSex.png'
 import YEP from '../emotes/YEPP.png'
-
 import { Nickname } from '../nickname/nickname'
+
 import styles from './easter-egg.module.scss'
 
 const Title = styled.span`

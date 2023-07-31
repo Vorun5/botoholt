@@ -1,15 +1,9 @@
 import { useEffect } from 'react'
-import { loadStreamer, selectStreamer } from 'entities/streamer'
-import {
-    loadStreamerHistorySongs,
-    loadStreamerQueue,
-    selectStreamerHistorySongs,
-    selectStreamerQueue,
-} from 'entities/streamer-song-data'
+import { useStreamerQuery } from 'entities/streamer'
+import { useStreamerHistoryQuery, useStreamerQueueQuery } from 'entities/streamer-song-data'
 import { AdminServicesDto } from 'shared/api'
 import { apiUrl } from 'shared/api/api'
 import { HyperinkIcon, StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
-import { useAppDispatch } from 'shared/lib/store'
 import { AdminAuth } from 'shared/types'
 import {
     Button,
@@ -24,7 +18,6 @@ import {
     ErrorMessage,
 } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { io } from 'socket.io-client'
 
@@ -186,12 +179,7 @@ interface DashboardProps {
 
 const StreamInfo = ({ login }: { login: string }) => {
     const { t } = useTranslation()
-    const dispatch = useAppDispatch()
-    const streamer = useSelector(selectStreamer)
-
-    useEffect(() => {
-        dispatch(loadStreamer(login))
-    }, [dispatch, login])
+    const { data: streamer, isSuccess, isLoading, fetchStatus, isError } = useStreamerQuery(login)
 
     const stream = {
         title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -202,13 +190,13 @@ const StreamInfo = ({ login }: { login: string }) => {
         <Card
             style="blue"
             className={styles.streamInfoCard}
-            skeleton={streamer.status === 'loading'}
+            skeleton={isLoading}
             s={{
                 minHeight: '225px',
             }}
         >
-            {streamer.status === 'rejected' && <ErrorMessage>{streamer.error}</ErrorMessage>}
-            {streamer.status === 'received' && (
+            {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
+            {isSuccess && (
                 <>
                     <CardDescription style="blue">{t('admin-page.dashboard.stream.category')}</CardDescription>
                     <CardExpanded>
@@ -226,20 +214,22 @@ const StreamInfo = ({ login }: { login: string }) => {
 
 const LastOrderSong = ({ login }: { login: string }) => {
     const { t } = useTranslation()
-    const dispatch = useAppDispatch()
-    const queue = useSelector(selectStreamerQueue)
-    const history = useSelector(selectStreamerHistorySongs)
-
-    useEffect(() => {
-        dispatch(loadStreamerQueue(login))
-        dispatch(
-            loadStreamerHistorySongs({
-                login,
-                from: 0,
-                limit: 1,
-            }),
-        )
-    }, [])
+    const {
+        data: queue,
+        isSuccess: isQueueSuccess,
+        isError: isQueueError,
+        isLoading: isQueueLodading,
+        fetchStatus: queueFetchStatus,
+    } = useStreamerQueueQuery(login)
+    const {
+        data: history,
+        isSuccess: isHistorySuccess,
+        isError: isHistoryError,
+    } = useStreamerHistoryQuery({
+        login,
+        from: 0,
+        total: 1,
+    })
 
     useEffect(() => {
         const socket = io(apiUrl.origin, { path: `${apiUrl.pathname}socket`, autoConnect: true })
@@ -253,14 +243,7 @@ const LastOrderSong = ({ login }: { login: string }) => {
         socket.on('message', (data) => {
             if (data.channel === login) {
                 console.log('UPDATE', data.channel)
-                dispatch(loadStreamerQueue(data.channel))
-                dispatch(
-                    loadStreamerHistorySongs({
-                        login,
-                        from: 0,
-                        limit: 1,
-                    }),
-                )
+                // refresh
             }
         })
 
@@ -272,23 +255,23 @@ const LastOrderSong = ({ login }: { login: string }) => {
             socket.disconnect()
         }
     }, [login])
-    let song = null
-    if (queue.list.length !== 0) {
-        song = queue.list[queue.list.length - 1]
-    } else if (history.list.length !== 0) {
-        song = history.list[0]
+
+    const getLastSong = () => {
+        if (isQueueSuccess && queue.queue.length !== 0) return queue.queue[queue.queue.length - 1]
+        if (isHistorySuccess && history.list.length !== 0) return history.list[0]
     }
 
+    const song = getLastSong()
     return (
         <Card
             style="green"
             className={styles.song}
-            skeleton={queue.status === 'loading'}
+            skeleton={isQueueLodading}
             s={{
                 minHeight: '225px',
             }}
         >
-            {queue.status === 'rejected' && history.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
+            {isQueueError && isHistoryError && <ErrorMessage>{`Error status: ${queueFetchStatus}`}</ErrorMessage>}
             {song && (
                 <>
                     <CardDescription style="green">{t('song-card.last-song')}</CardDescription>

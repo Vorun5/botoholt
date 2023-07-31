@@ -1,12 +1,13 @@
-import clsx from 'clsx'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import EZ from 'shared/assets/emotes/EZ.png'
 import Money from 'shared/assets/emotes/money.gif'
 import { DAIcon, StarIcon } from 'shared/assets/icons'
 import { useElementSize } from 'shared/lib/hooks'
 import { useToast } from 'shared/lib/hooks'
 import { Banner, Button, ButtonIcon, ButtonText, CopiedText } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import styles from './ads.module.scss'
 
 interface AdsProps {

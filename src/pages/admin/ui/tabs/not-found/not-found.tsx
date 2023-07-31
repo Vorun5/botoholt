@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+
 import styles from './not-found.module.scss'
 
 export const NotFound = () => {

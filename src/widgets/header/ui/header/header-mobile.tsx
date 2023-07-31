@@ -1,11 +1,13 @@
-import clsx from 'clsx'
 import { useRef } from 'react'
 import { LanguageSwitcher } from 'features/language-switcher'
 import { ThemeSwitcher } from 'features/theme-switcher'
 import { useModalSwitch } from 'shared/lib/hooks'
 import { CreatedWithLove, PageHeader } from 'shared/ui'
+import clsx from 'clsx'
+
 import { Burger } from '../burger/burger'
 import { Logo } from '../logo/logo'
+
 import styles from './header.module.scss'
 
 

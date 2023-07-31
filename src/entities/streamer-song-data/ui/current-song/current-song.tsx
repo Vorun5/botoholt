@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { loadStreamerQueue, selectStreamerCurrentSong } from 'entities/streamer-song-data/model'
+import { useStreamerQueueQuery } from 'entities/streamer-song-data/hooks'
 import { apiUrl } from 'shared/api/api'
 import PoroSad from 'shared/assets/emotes/PoroSad.png'
 import { formatTime, getVideoPreview } from 'shared/lib/helpers'
 import { useDanceEmote, useElementSize } from 'shared/lib/hooks'
-import { useAppDispatch } from 'shared/lib/store'
 import { StreamerQueue } from 'shared/types'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
 
 import styles from './current-song.module.scss'
@@ -39,23 +37,19 @@ interface CurrentSongProps {
 
 export const CurrentSong = ({ center = true, className, streamerName }: CurrentSongProps) => {
     const { t } = useTranslation()
-    const dispatch = useAppDispatch()
-    const song = useSelector(selectStreamerCurrentSong)
-
+    const login = streamerName.toLocaleLowerCase()
+    const { data: queue, isSuccess, refetch } = useStreamerQueueQuery(login)
     const danceEmote = useDanceEmote()
-
     const songRef = useRef<HTMLDivElement>(null)
     const { width } = useElementSize(songRef)
 
-    const preview = getVideoPreview(song.link ?? '')
-
     useEffect(() => {
-        if (song.isPlaying && song.name !== null) {
-            window.document.title = song.name
+        if (isSuccess && queue.isPlaying && queue.name !== null) {
+            window.document.title = queue.name
         } else {
             window.document.title = `${streamerName} - Botoholt`
         }
-    }, [streamerName, song])
+    }, [streamerName, queue])
 
     useEffect(() => {
         const login = streamerName.toLocaleLowerCase()
@@ -70,7 +64,7 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
         socket.on('message', (data) => {
             if (data.channel === login) {
                 console.log('UPDATE', data.channel)
-                dispatch(loadStreamerQueue(data.channel))
+                // refetch()
             }
         })
 
@@ -83,10 +77,13 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
         }
     }, [streamerName])
 
+    if (!isSuccess) return <></>
+    const preview = getVideoPreview(queue.link ?? '')
+
     return (
         <>
             <span className={styles.songStatus}>
-                {song.isPlaying ? t('song-card.playing') : t('song-card.not-playing')}
+                {queue.isPlaying ? t('song-card.playing') : t('song-card.not-playing')}
             </span>
             <div
                 ref={songRef}
@@ -100,12 +97,12 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
                 )}
             >
                 {preview && (
-                    <a className={styles.songPreview} href={song.link ?? ''} target="_blank">
+                    <a className={styles.songPreview} href={queue.link ?? ''} target="_blank">
                         <img src={preview} alt="" />
                     </a>
                 )}
                 <div className={styles.songInfo}>
-                    {song.name === null ? (
+                    {queue.name === null ? (
                         <span className={styles.songEmpty}>
                             <img src={PoroSad} alt={'PoroSad'} className={styles.songEmptyEmote} />
                             {t('song-card.empty')}
@@ -114,26 +111,26 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
                         <div style={{ width: '100%' }}>
                             <div className={styles.songNameContainer}>
                                 <img
-                                    src={song.isPlaying ? danceEmote : PoroSad}
-                                    alt={song.isPlaying ? 'Dance emote' : 'PoroSad'}
+                                    src={queue.isPlaying ? danceEmote : PoroSad}
+                                    alt={queue.isPlaying ? 'Dance emote' : 'PoroSad'}
                                     className={styles.songEmote}
                                 />
                                 <p>
                                     <a
                                         className={styles.songName}
                                         href={
-                                            song.link != null
-                                                ? song!.link
+                                            queue.link != null
+                                                ? queue!.link
                                                 : 'https://www.youtube.com/watch?v=UhvaUwtGyH4'
                                         }
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        {song.name}
+                                        {queue.name}
                                     </a>
                                 </p>
                             </div>
-                            <CurrentSongExtraInfo song={song} />
+                            <CurrentSongExtraInfo song={queue} />
                         </div>
                     )}
                 </div>

@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { SongCommand } from 'shared/types'
 import { useTranslation } from 'react-i18next'
 import { isEqual } from 'underscore'
-import { SongCommand } from 'shared/types'
+
 import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'

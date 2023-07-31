@@ -1,14 +1,15 @@
-import clsx from 'clsx'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { selectCommandСhange } from 'entities/commands'
+import { useAdminCommandsMutation } from 'entities/commands'
 import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
 import { EditQueueCommand } from '../modal-edit/edit-queue-command'
 import { EditSongCommand } from '../modal-edit/edit-song-command'
 import { EditWhichCommand } from '../modal-edit/edit-which-command'
 import { CommandTableItem } from './command-table-item'
+
 import styles from './command-table.module.scss'
 
 const CellName = ({ children }: { children: string }) => {
@@ -21,20 +22,16 @@ const CellName = ({ children }: { children: string }) => {
 
 export const CommandTable = ({ commands }: { commands: Command[] }) => {
     const { t } = useTranslation()
-    const commandChanges = useSelector(selectCommandСhange)
 
     const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
     const hide = () => setCurrentEditCommand(null)
 
+    const { mutate: toggleCommand, isLoading } = useAdminCommandsMutation()
+
     return (
         <>
             <div className={styles.commands}>
-                <div
-                    className={clsx(
-                        styles.commandsOverlay,
-                        commandChanges.status === 'loading' && styles.commandsOverlayActive,
-                    )}
-                ></div>
+                <div className={clsx(styles.commandsOverlay, isLoading && styles.commandsOverlayActive)}></div>
                 <div className={styles.commandsHeadlines}>
                     <CellName>{t('commands.status')}</CellName>
                     <CellName>{t('commands.type')}</CellName>
@@ -50,6 +47,7 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                     {commands.map((command, index) => (
                         <CommandTableItem
                             key={command.function}
+                            toggle={() => toggleCommand({ ...command, enabled: !command.enabled })}
                             focus={(index + 1) % 2 === 1}
                             command={command}
                             onEdit={() => setCurrentEditCommand(command)}
@@ -70,7 +68,7 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                         <EditWhichCommand hide={hide} command={currentEditCommand} />
                     )}
                 </>
-            )}
+        )}
         </>
     )
 }

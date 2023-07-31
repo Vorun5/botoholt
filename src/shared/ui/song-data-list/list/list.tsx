@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SearchField } from 'shared/ui';
+
 import styles from './list.module.scss';
 
 interface ListProps {

@@ -1,9 +1,10 @@
-import clsx from 'clsx'
 import { ReactNode, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { CloseIcon } from 'shared/assets/icons'
 import { useOnClickOutside } from 'shared/lib/hooks'
 import { Button, ButtonIcon } from 'shared/ui'
+import clsx from 'clsx'
+import { createPortal } from 'react-dom'
+
 import styles from './modal.module.scss'
 
 interface ModalProps {

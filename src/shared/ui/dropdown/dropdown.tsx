@@ -1,7 +1,8 @@
-import clsx from 'clsx'
 import { useRef, useState } from 'react'
 import { ArrowDownIcon } from 'shared/assets/icons'
 import { useOnClickOutside } from 'shared/lib/hooks'
+import clsx from 'clsx'
+
 import styles from './dropdown.module.scss'
 
 interface DropdownProps {

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import styles from './error-message.module.scss';
 
 export const ErrorMessage = ({ title, children }: { title?: string; children: ReactNode }) => {

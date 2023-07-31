@@ -1,5 +1,6 @@
 import { StreamerQueueDto } from 'shared/api/dto'
 import { StreamerQueue } from 'shared/types'
+
 import { extractStreamQueueSong } from './extract-streamer-queue-song'
 
 export const extractStreamQueue = (streamerQueue: StreamerQueueDto): StreamerQueue => ({

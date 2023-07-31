@@ -1,4 +1,5 @@
 import { Command } from 'shared/types'
+
 import { CommandTable } from '../../command-table/command-table'
 
 interface DefaultCommandsProps {

@@ -1,15 +1,15 @@
-import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { loadCommands, selectCommands } from 'entities/commands'
+import { useAdminCommandsQuery } from 'entities/commands'
 import { AddIcon } from 'shared/assets/icons'
-import { useAppDispatch } from 'shared/lib/store'
 import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
-import styles from './commands.module.scss'
 import { CustomCommands } from './custom-commands'
 import { DefaultCommands } from './default-commands'
+
+import styles from './commands.module.scss'
 
 export const Commands = () => {
     const { t } = useTranslation()
@@ -19,22 +19,14 @@ export const Commands = () => {
         window.document.title = t('admin-page.nav.commands')
     }, [])
 
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        dispatch(loadCommands())
-    }, [])
-
-    const commands = useSelector(selectCommands)
+    const { data: commands, isError, isSuccess, isLoading, fetchStatus } = useAdminCommandsQuery()
     const [searchStr, setSearchStr] = useState('')
-    const [filteredCommands, setFilteredCommands] = useState(commands.commands)
+    const [filteredCommands, setFilteredCommands] = useState(isSuccess ? commands : [])
     useMemo(() => {
-        if (!searchStr) {
-            setFilteredCommands(commands.commands)
-            return
-        }
+        if (!isSuccess) return
+        if (!searchStr) return setFilteredCommands(commands)
         setFilteredCommands(
-            commands.commands.filter((command) => {
+            commands.filter((command) => {
                 if (command.aliases.includes(searchStr.trim())) return true
                 return false
             }),
@@ -84,9 +76,9 @@ export const Commands = () => {
                             </Button>
                         )}
                     </div>
-                    {(commands.status === 'loading' || commands.status === 'idle') && <Loading />}
-                    {commands.status === 'rejected' && <ErrorMessage title="Error">{commands.error}</ErrorMessage>}
-                    {commands.status === 'received' && (
+                    {isLoading && <Loading />}
+                    {isError && <ErrorMessage title="Error">{`Error status ${fetchStatus}`}</ErrorMessage>}
+                    {isSuccess && (
                         <>
                             {tab === 'standard' && <DefaultCommands commands={filteredCommands} />}
                             {tab === 'custom' && <CustomCommands commands={[]} />}

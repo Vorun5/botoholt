@@ -1,9 +1,10 @@
+import { ReactNode, useRef, useState } from 'react'
+import { Button, ButtonText } from 'shared/ui'
 import clsx from 'clsx'
 import { nanoid } from 'nanoid'
-import { ReactNode, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { compact, isEmpty } from 'underscore'
-import { Button, ButtonText } from 'shared/ui'
+
 import styles from './modal-edit.module.scss'
 
 interface Answer {

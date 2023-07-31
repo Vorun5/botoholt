@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+
 import styles from './modal-edit.module.scss'
 
 export const ResponseScripts = () => {

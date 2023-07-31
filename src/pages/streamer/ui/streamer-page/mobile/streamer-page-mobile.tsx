@@ -1,12 +1,14 @@
-import { useTranslation } from 'react-i18next'
 import { SongList, SongListNavigation } from 'widgets/song-list'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { StreamerCard } from 'entities/streamers'
+import { useTranslation } from 'react-i18next'
+
 import { Ads } from '../../ads/ads'
 import { StreamerPageProps } from '../streamer-page.props'
+
 import styles from './streamer-page-mobile.module.scss'
 
-export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps) => {
+export const StreamerPageMobile = ({ streamer, tab, period, from }: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -23,7 +25,7 @@ export const StreamerPageMobile = ({ streamer, tab, period }: StreamerPageProps)
                 login={streamer.login}
                 baseUrlForRedirect={`/${streamer.login}`}
             />
-            <SongList period={period} streamerName={streamer.name} />
+            <SongList period={period} tab={tab} streamerName={streamer.name} from={from} />
             <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
         </>
     )

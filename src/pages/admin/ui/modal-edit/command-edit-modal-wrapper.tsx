@@ -1,12 +1,11 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { changeCommand, selectCommandСhange } from 'entities/commands'
+import { useAdminCommandsMutation } from 'entities/commands'
 import D from 'shared/assets/emotes/D.png'
 import { useToast } from 'shared/lib/hooks'
-import { useAppDispatch } from 'shared/lib/store'
 import { AllPossibleCommandType } from 'shared/types'
 import { Button, ButtonText, Modal } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import styles from './modal-edit.module.scss'
 interface CommandEditModalWrapperProps {
     hide: () => void
@@ -21,11 +20,9 @@ export const CommandEditModalWrapper = ({
     children,
     commandName,
 }: CommandEditModalWrapperProps) => {
-    const dispatch = useAppDispatch()
     const { t } = useTranslation()
     const toast = useToast()
-    const [loadingChanges, setLoadingChanges] = useState(false)
-    const commandChanges = useSelector(selectCommandСhange)
+    const { mutate: changeCommand, isLoading, isSuccess, isError, error } = useAdminCommandsMutation()
 
     const changesSavedToast = () => {
         if (toast)
@@ -54,7 +51,7 @@ export const CommandEditModalWrapper = ({
                 toast.addToast({ text: t('no-change') ?? 'No change' }, { position: 'top-right', delayInSeconds: 3 })
             return
         }
-        dispatch(changeCommand(newCommand))
+        changeCommand(newCommand)
     }
 
     const localHide = () => {
@@ -65,16 +62,15 @@ export const CommandEditModalWrapper = ({
     const [isMounted, setIsMounted] = useState(false)
     useEffect(() => {
         if (isMounted) {
-            setLoadingChanges(commandChanges.status === 'loading')
-            if (commandChanges.status === 'rejected') changesNotSavedToast(commandChanges.error ?? '')
-            if (commandChanges.status === 'received') {
+            if (isError) changesNotSavedToast(error instanceof Error ? error.message : 'Unknown error')
+            if (isSuccess) {
                 changesSavedToast()
                 localHide()
             }
         } else {
             setIsMounted(true)
         }
-    }, [commandChanges])
+    }, [isSuccess, isError])
 
     const [showWarning, setShowWarning] = useState(false)
 
@@ -103,7 +99,7 @@ export const CommandEditModalWrapper = ({
             </Modal>
             <Modal
                 isShown
-                dontHide={loadingChanges || showWarning}
+                dontHide={isLoading || showWarning}
                 hide={() => {
                     const newCommand = getNewCommand()
                     if (newCommand) {
@@ -116,7 +112,7 @@ export const CommandEditModalWrapper = ({
                 footerDivider
                 footerContent={
                     <Button
-                        loading={loadingChanges}
+                        loading={isLoading}
                         className={styles.footerBth}
                         onClick={onClick}
                         padding="big"

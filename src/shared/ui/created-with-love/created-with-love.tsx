@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+
 import styles from './created-with-love.module.scss'
 
 export const CreatedWithLove = () => {

@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { CopyIcon } from 'shared/assets/icons'
 import { useCopyToClipboard } from 'shared/lib/hooks'
 import { useToast } from 'shared/lib/hooks'
+import { useTranslation } from 'react-i18next'
+
 import styles from './copied-text.module.scss'
 
 export const CopiedText = ({ children }: { children: string }) => {

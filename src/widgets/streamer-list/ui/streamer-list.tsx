@@ -1,24 +1,23 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { StreamerCard } from 'entities/streamers'
-import { selectStreamers } from 'entities/streamers'
+import { StreamerCard, useStreamersQuery } from 'entities/streamers'
 import { ErrorMessage, Loading } from 'shared/ui'
+import { Link } from 'react-router-dom'
+
 import styles from './streamer-list.module.scss'
 
 export const StreamerList = () => {
-    const streamers = useSelector(selectStreamers)
+    const { data: streamers, isLoading, isError, isSuccess, fetchStatus } = useStreamersQuery()
 
     return (
         <div className={styles.streamers}>
-            {streamers.status === 'loading' && (
+            {isLoading && (
                 <div className={styles.loadingWrapper}>
                     <Loading />
                 </div>
             )}
-            {streamers.status === 'rejected' && <ErrorMessage>{streamers.error}</ErrorMessage>}
-            {streamers.status === 'received' && (
+            {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
+            {isSuccess && (
                 <div className={styles.streamersList}>
-                    {streamers.list.map((streamer) => (
+                    {streamers.map((streamer) => (
                         <Link key={streamer.name} to={streamer.name.toLocaleLowerCase()}>
                             <StreamerCard twitchLinkActive={false} short streamer={streamer} />
                         </Link>

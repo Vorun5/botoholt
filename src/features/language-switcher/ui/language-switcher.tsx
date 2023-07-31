@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+
 import styles from './language-switcher.module.scss'
 
 export const LanguageSwitcher = () => {

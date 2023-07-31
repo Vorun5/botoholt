@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom'
 import { AdminPage, HomePage, LoginPage, NotFound, StreamerPage } from 'pages'
 import { useTheme } from 'features'
+import { Route, Routes } from 'react-router-dom'
 
 export const App = () => {
     useTheme()

@@ -1,11 +1,10 @@
-import clsx from 'clsx'
 import { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
-import { changeCommand } from 'entities/commands'
 import { EditIcon, InfoIcon } from 'shared/assets/icons'
-import { useAppDispatch } from 'shared/lib/store'
 import { Command } from 'shared/types'
 import { Button, ButtonIcon, Toggle } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import styles from './command-table.module.scss'
 
 const Cell = ({ children }: { children: ReactNode }) => {
@@ -28,15 +27,11 @@ export interface CommandTableItemProps {
     focus: boolean
     command: Command
     onEdit: () => void
+    toggle: () => void
 }
 
-export const CommandTableItem = ({ focus, command, onEdit }: CommandTableItemProps) => {
+export const CommandTableItem = ({ focus, command, onEdit, toggle }: CommandTableItemProps) => {
     const { t } = useTranslation()
-    const dispatch = useAppDispatch()
-
-    const toggle = () => {
-        dispatch(changeCommand({ ...command, enabled: !command.enabled }))
-    }
 
     return (
         <div className={clsx(styles.command, focus && styles.commandFocus)}>

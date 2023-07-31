@@ -1,19 +1,13 @@
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { SongList, SongListNavigation, useSongListNav } from 'widgets/song-list'
-import { loadStreamer } from 'entities/streamer'
-import {
-    CurrentSong,
-    SONG_LIMIT,
-    loadStreamerQueue,
-    loadStreamerTopDjs,
-    loadStreamerTopSongs,
-} from 'entities/streamer-song-data'
+import { CurrentSong } from 'entities/streamer-song-data'
 import { PauseIcon, SkipIcon } from 'shared/assets/icons'
-import { useAppDispatch } from 'shared/lib/store'
 import { AdminAuth } from 'shared/types'
 import { Button, ButtonIcon, ButtonText } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+
 import styles from './songs.module.scss'
 
 interface SongsProps {
@@ -26,28 +20,7 @@ export const Songs = ({ streamer }: SongsProps) => {
     useEffect(() => {
         window.document.title = t('admin-page.nav.song-queue')
     }, [])
-
-    // START | logic from streamer page
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        dispatch(loadStreamer(streamer.login))
-        dispatch(loadStreamerQueue(streamer.login))
-    }, [dispatch, streamer])
-
-    const [tab, period, page] = useSongListNav(streamer.login, 'admin/songs')
-
-    useEffect(() => {
-        const dispatchParams = {
-            login: streamer.login,
-            period: period,
-            limit: SONG_LIMIT,
-            from: page === -1 ? 0 : (page - 1) * SONG_LIMIT,
-        }
-        if (tab === 'top-songs') dispatch(loadStreamerTopSongs(dispatchParams))
-        if (tab === 'top-djs') dispatch(loadStreamerTopDjs(dispatchParams))
-    }, [period, tab, page])
-    // logic from streamer page | END
+    const { tab, period, page, from } = useSongListNav(streamer.login, 'admin/songs')
 
     return (
         <>
@@ -86,7 +59,7 @@ export const Songs = ({ streamer }: SongsProps) => {
                     login={streamer.login}
                     baseUrlForRedirect={`/admin/songs`}
                 />
-                <SongList period={period} streamerName={streamer.name} />
+                <SongList period={period} streamerName={streamer.name} from={from} tab={tab} />
             </ALPageContent>
         </>
     )

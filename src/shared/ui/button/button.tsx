@@ -1,6 +1,7 @@
-import clsx from 'clsx'
 import { MouseEventHandler, ReactNode } from 'react'
 import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
+import clsx from 'clsx'
+
 import styles from './button.module.scss'
 
 interface ButtonTextProps {

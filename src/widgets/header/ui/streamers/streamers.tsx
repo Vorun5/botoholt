@@ -1,16 +1,19 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { selectStreamers } from 'entities/streamers'
+import { useStreamersQuery } from 'entities/streamers'
 import { Avatar } from 'shared/ui'
+import { Link } from 'react-router-dom'
+
 import styles from './streamers.module.scss'
 
 const MAX_STREAMERS_SHOWING = 4
 
 export const Streamers = () => {
-    const streamers = useSelector(selectStreamers)
-    const count = streamers.list.length - MAX_STREAMERS_SHOWING
+    const { data: streamers, isLoading, isError } = useStreamersQuery()
+    
+    if (isLoading || isError) return <></>
+
+    const count = streamers.length - MAX_STREAMERS_SHOWING
     const viewSteamers =
-        streamers.list.length > MAX_STREAMERS_SHOWING ? streamers.list.slice(0, MAX_STREAMERS_SHOWING) : streamers.list
+        streamers.length > MAX_STREAMERS_SHOWING ? streamers.slice(0, MAX_STREAMERS_SHOWING) : streamers
 
     return (
         <div className={styles.streamers}>

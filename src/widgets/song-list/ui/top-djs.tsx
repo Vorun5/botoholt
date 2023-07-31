@@ -1,28 +1,36 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
-import { SONG_LIMIT, selectStreamerTopDjs } from 'entities/streamer-song-data'
+import { SONG_LIMIT, useStreamerTopDjsQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { Period } from 'shared/types'
 import { ErrorMessage, Loading, Pagination, SongDataList, TopListItem } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
+
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-export const TopDjs = ({ period }: { period: Period }) => {
+export const TopDjs = ({ period, from, login }: { period: Period; login: string; from: number }) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const topDjs = useSelector(selectStreamerTopDjs)
-    const total = Math.ceil(topDjs.total / SONG_LIMIT)
-    const [topDjsList, setTopDjsList] = useState(topDjs.list)
+    const {
+        data: topDjs,
+        isLoading,
+        isError,
+        isSuccess,
+        fetchStatus,
+    } = useStreamerTopDjsQuery({ login, period, from, total: SONG_LIMIT })
+
+    const [topDjsList, setTopDjsList] = useState(isSuccess ? topDjs.list : [])
     const [searchStr, setSearchStr] = useState('')
     const ref = useRef<HTMLDivElement>(null)
 
     const search = (str: string) => {
+        if (!isSuccess) return
         setSearchStr(str)
         setTopDjsList(topDjs.list.filter((dj) => dj.name.toLowerCase().includes(str.toLowerCase())))
     }
 
     useEffect(() => {
+        if (!isSuccess) return
         setTopDjsList(topDjs.list)
         search(searchStr)
     }, [topDjs])
@@ -36,9 +44,9 @@ export const TopDjs = ({ period }: { period: Period }) => {
         <>
             <div ref={ref} />
             <SongDataList title={t('streamer-page.tab-titles.top-djs')} searchFun={search}>
-                {topDjs.status === 'loading' && <Loading />}
-                {topDjs.status === 'rejected' && <ErrorMessage>{topDjs.error}</ErrorMessage>}
-                {topDjs.status === 'received' && topDjs.list.length === 0 && (
+                {isLoading && <Loading />}
+                {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
+                {isSuccess && topDjs.list.length === 0 && (
                     <ListStatusNotification
                         emote={INSANECAT}
                         altEmote="INSANECAT"
@@ -46,7 +54,7 @@ export const TopDjs = ({ period }: { period: Period }) => {
                         text={t('streamer-page.list-is-empty.fix')}
                     />
                 )}
-                {topDjs.status === 'received' && (
+                {isSuccess && (
                     <>
                         {topDjsList.map((dj, index) => (
                             <TopListItem
@@ -56,7 +64,11 @@ export const TopDjs = ({ period }: { period: Period }) => {
                                 number={topDjs.list.findIndex((i) => i === dj) + 1 + topDjs.from}
                             />
                         ))}
-                        <Pagination total={total} page={topDjs.from / SONG_LIMIT + 1} changePage={changePage} />
+                        <Pagination
+                            total={Math.ceil(topDjs.total / SONG_LIMIT)}
+                            page={topDjs.from / SONG_LIMIT + 1}
+                            changePage={changePage}
+                        />
                     </>
                 )}
             </SongDataList>

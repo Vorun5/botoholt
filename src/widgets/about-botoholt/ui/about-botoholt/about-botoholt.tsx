@@ -1,10 +1,12 @@
-import clsx from 'clsx'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { ConnectIcon, NoteIcon, SupportIcon } from 'shared/assets/icons'
 import { useElementSize, useMediaQuery } from 'shared/lib/hooks'
 import { CopiedText } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import { InfoCard } from '../info-card/info-card'
+
 import styles from './about-botoholt.module.scss'
 
 export const AboutBotoholt = () => {

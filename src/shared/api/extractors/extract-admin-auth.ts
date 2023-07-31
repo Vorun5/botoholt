@@ -1,4 +1,5 @@
 import { AdminAuth } from 'shared/types'
+
 import { AdminAuthDto } from '../dto'
 
 export const extractAdminAuth = (adminAuth: AdminAuthDto): AdminAuth => ({

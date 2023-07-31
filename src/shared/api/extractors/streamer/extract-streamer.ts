@@ -1,5 +1,6 @@
 import { StreamerDto } from 'shared/api'
 import { Streamer } from 'shared/types'
+
 import { extractStreamInfo } from './extract-stream-info'
 import { extractStreamerSocialMedias } from './extract-streamer-social-medias'
 

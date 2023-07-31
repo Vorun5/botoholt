@@ -1,23 +1,35 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
 import { ToastProvider } from 'shared/lib/hooks'
-import { store } from 'shared/lib/store'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+
 import { App } from './app'
+
 import 'shared/styles/main.scss'
+
 import 'shared/lib/i18n/i18n'
 
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            cacheTime: 1000 * 5, // время кэширования - 5 секунд
+        },
+    },
+})
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
+    // <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
         <ToastProvider>
-            <Provider store={store}>
-                <React.Suspense>
-                    <BrowserRouter>
-                        <App />
-                    </BrowserRouter>
-                </React.Suspense>
-            </Provider>
+            <React.Suspense>
+                <BrowserRouter>
+                    <App />
+                    <ReactQueryDevtools initialIsOpen={false} />
+                </BrowserRouter>
+            </React.Suspense>
         </ToastProvider>
-    </React.StrictMode>,
+    </QueryClientProvider>,
+    // </React.StrictMode>
 )

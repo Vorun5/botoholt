@@ -1,6 +1,8 @@
-import clsx from 'clsx'
 import { ReactNode, useEffect } from 'react'
+import clsx from 'clsx'
+
 import { useToast } from '../../use-toast'
+
 import styles from './toast.module.scss'
 
 export type ToastPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top' | 'bottom'

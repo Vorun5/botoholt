@@ -1,8 +1,10 @@
 import { ReactNode, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { DiscordIcon } from 'shared/assets/icons'
 import { Avatar, Button, ButtonIcon, ButtonText, Card, CardDescription, CardProps, CardTitle } from 'shared/ui'
+import { useTranslation } from 'react-i18next'
+
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+
 import styles from './support.module.scss'
 
 interface QuestionProps extends Pick<CardProps, 'style'> {

@@ -1,51 +1,41 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
-import { SONG_LIMIT, loadStreamerHistorySongs, selectStreamerHistorySongs } from 'entities/streamer-song-data'
+import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { capitalize } from 'shared/lib/helpers'
 import i18n from 'shared/lib/i18n/i18n'
-import { useAppDispatch } from 'shared/lib/store'
 import { StreamerHistorySong } from 'shared/types'
 import { ErrorMessage, Loading, Pagination } from 'shared/ui'
 import { SongDataList, SongListItem } from 'shared/ui/song-data-list'
-import { getYtPlaylistLink, usePageSearchParam } from '../lib'
+import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
+
+import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-interface HistoryProps {
-    streamerName: string
-}
-
-export const History = ({ streamerName }: HistoryProps) => {
+export const History = ({ login: streamerName, from }: { login: string; from: number }) => {
     const login = streamerName.toLocaleLowerCase()
     const { t } = useTranslation()
-    const [searchParams, setSearchParams] = useSearchParams()
-    const history = useSelector(selectStreamerHistorySongs)
-    const total = Math.ceil(history.total / SONG_LIMIT)
-    const dispatch = useAppDispatch()
-    const [historyList, setHistoryList] = useState<StreamerHistorySong[]>(history.list)
+    const [_, setSearchParams] = useSearchParams()
+    const {
+        data: history,
+        isSuccess,
+        isLoading,
+        isError,
+        fetchStatus,
+    } = useStreamerHistoryQuery({
+        login,
+        from: from,
+        total: SONG_LIMIT,
+    })
+
+    const [historyList, setHistoryList] = useState<StreamerHistorySong[]>(isSuccess ? history.list : [])
     const ytPlaylistLink = getYtPlaylistLink(historyList.map((song) => song.link))
     const [searchStr, setSearchStr] = useState('')
     const ref = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        let page = usePageSearchParam({
-            from: history.from,
-            searchParams,
-        })
-        setSearchParams({ page: page.toString() })
-        dispatch(
-            loadStreamerHistorySongs({
-                login: login,
-                limit: SONG_LIMIT,
-                from: (page - 1) * SONG_LIMIT,
-            }),
-        )
-    }, [])
-
     const search = (str: string) => {
+        if (!isSuccess) return
         setSearchStr(str)
         setHistoryList(
             history.list.filter(
@@ -57,13 +47,13 @@ export const History = ({ streamerName }: HistoryProps) => {
     }
 
     useEffect(() => {
+        if (!isSuccess) return
         setHistoryList(history.list)
         search(searchStr)
     }, [history])
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        dispatch(loadStreamerHistorySongs({ login, limit: SONG_LIMIT, from: SONG_LIMIT * (page - 1) }))
         setSearchParams({ page: page.toString() })
     }
 
@@ -82,9 +72,9 @@ export const History = ({ streamerName }: HistoryProps) => {
                 }
                 searchFun={search}
             >
-                {history.status === 'loading' && <Loading />}
-                {history.status === 'rejected' && <ErrorMessage>{history.error}</ErrorMessage>}
-                {history.status === 'received' && history.list.length === 0 && (
+                {isLoading && <Loading />}
+                {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
+                {isSuccess && history.list.length === 0 && (
                     <ListStatusNotification
                         emote={FeelsOkayMan}
                         altEmote="FeelsOkayMan"
@@ -92,7 +82,7 @@ export const History = ({ streamerName }: HistoryProps) => {
                         text={t('streamer-page.list-is-empty.fix')}
                     />
                 )}
-                {history.status === 'received' && (
+                {isSuccess && (
                     <>
                         {historyList.map((song, index) => {
                             const date = new Date(song.date)
@@ -123,7 +113,11 @@ export const History = ({ streamerName }: HistoryProps) => {
                                 />
                             )
                         })}
-                        <Pagination total={total} page={history.from / SONG_LIMIT + 1} changePage={changePage} />
+                        <Pagination
+                            total={Math.ceil(history.total / SONG_LIMIT)}
+                            page={history.from / SONG_LIMIT + 1}
+                            changePage={changePage}
+                        />
                     </>
                 )}
             </SongDataList>

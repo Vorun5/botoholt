@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+
 import styles from './search-field.module.scss'
 
 interface SearchFieldProps {

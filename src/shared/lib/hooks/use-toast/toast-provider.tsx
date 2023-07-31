@@ -1,6 +1,7 @@
-import { nanoid } from 'nanoid'
 import { createContext, ReactNode, useCallback, useState } from 'react'
-import { ToastProps, ToastPosition, ToastStatus } from './ui'
+import { nanoid } from 'nanoid'
+
+import { ToastPosition, ToastProps, ToastStatus } from './ui'
 import { Toasts } from './ui'
 
 interface ToastContextType {

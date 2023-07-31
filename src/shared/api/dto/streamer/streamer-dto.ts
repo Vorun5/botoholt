@@ -1,4 +1,5 @@
 import { StreamerType } from 'shared/types'
+
 import { StreamInfoDto } from './stream-info-dto'
 import { StreamerSocialMediaDto } from './streamer-social-media-dto'
 

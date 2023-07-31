@@ -1,8 +1,9 @@
-import clsx from 'clsx'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { AddIcon, DeleteIcon } from 'shared/assets/icons'
 import { Button, ButtonIcon, ButtonText, InputField } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import styles from './modal-edit.module.scss'
 
 interface CommandsSettingProps {

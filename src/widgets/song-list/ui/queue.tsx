@@ -1,38 +1,42 @@
 import { useMemo, useState } from 'react'
-import { selectStreamerQueue } from 'entities/streamer-song-data'
+import { useStreamerQueueQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { formatTime } from 'shared/lib/helpers'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
 import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
-export const Queue = () => {
+export const Queue = ({ login }: { login: string }) => {
     const { t } = useTranslation()
-    const queue = useSelector(selectStreamerQueue)
-    const [queueList, setQueueList] = useState<StreamerQueueSong[]>(queue.list)
+    const { data: queue, isSuccess, isLoading, isError, fetchStatus } = useStreamerQueueQuery(login)
+    const [queueList, setQueueList] = useState<StreamerQueueSong[]>(isSuccess ? queue.queue : [])
     const [searchStr, setSearchStr] = useState('')
 
     useMemo(() => {
+        if (!isSuccess) return
         setQueueList(
-            queue.list.filter(
+            queue.queue.filter(
                 (song) =>
                     song.name.toLowerCase().includes(searchStr.toLowerCase()) ||
                     song.sender.toLowerCase().includes(searchStr.toLowerCase()),
             ),
         )
-    }, [queue.list, searchStr])
+    }, [queue, searchStr])
 
-    let queueTime = -1
-    if (queue.list.length !== 0) {
-        queueTime = queue.list
-            .map((song) => song.durationInSeconds - song.startFromInSeconds)
-            .reduce((accumulator, songDuration) => accumulator + songDuration)
-    }
+    const time = useMemo(() => {
+        let queueTime = -1
+        if (!isSuccess) return queueTime
+        if (queue.queue.length !== 0) {
+            queueTime = queue.queue
+                .map((song) => song.durationInSeconds - song.startFromInSeconds)
+                .reduce((accumulator, songDuration) => accumulator + songDuration)
+        }
+        return queueTime
+    }, [queue])
 
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
 
@@ -54,14 +58,14 @@ export const Queue = () => {
                         ) : (
                             t('streamer-page.tab-titles.queue')
                         )}
-                        {queueTime !== -1 ? ` ~${formatTime(queueTime, t)}` : ''}
+                        {time !== -1 ? ` ~${formatTime(time, t)}` : ''}
                     </>
                 }
                 searchFun={(str) => setSearchStr(str)}
             >
-                {queue.status === 'loading' && <Loading />}
-                {queue.status === 'rejected' && <ErrorMessage>{queue.error}</ErrorMessage>}
-                {queue.status === 'received' && queue.list.length === 0 && (
+                {isLoading && <Loading />}
+                {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
+                {isSuccess && queue.queue.length === 0 && (
                     <ListStatusNotification
                         emote={FeelsOkayMan}
                         altEmote="FeelsOkayMan"
@@ -69,14 +73,14 @@ export const Queue = () => {
                         text={t('streamer-page.list-is-empty.first')}
                     />
                 )}
-                {queue.status === 'received' &&
+                {isSuccess &&
                     queueList.map((song) => (
                         <SongListItem
                             key={song.id}
                             songName={song.name}
                             songLink={song.link}
                             sender={song.sender}
-                            number={queue.list.findIndex((i) => i === song) + 1}
+                            number={queue.queue.findIndex((i) => i === song) + 1}
                             extraInfo={formatTime(song.durationInSeconds - song.startFromInSeconds, t)}
                         />
                     ))}

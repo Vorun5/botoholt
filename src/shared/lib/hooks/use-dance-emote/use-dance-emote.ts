@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import catRave from './emotes/catRAVE.gif'
 import Dance from './emotes/Dance.gif'
 import PartyKirby from './emotes/PartyKirby.gif'

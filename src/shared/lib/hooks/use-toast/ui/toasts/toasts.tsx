@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import { createPortal } from 'react-dom'
+
 import { Toast, ToastProps } from '../toast/toast'
+
 import styles from './toasts.module.scss'
 
 export const Toasts = ({ toasts }: { toasts: ToastProps[] }) => {

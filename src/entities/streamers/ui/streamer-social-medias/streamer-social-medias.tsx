@@ -1,21 +1,22 @@
-import clsx from 'clsx'
 import { SVGProps, useRef, useState } from 'react'
 import { ArrowLeftIcon, ArrowRightIcon } from 'shared/assets/icons'
 import {
-    OPGGIcon,
     DiscordIcon,
     DonationAlertsIcon,
-    TwitchIcon,
-    VkIcon,
+    FacebookIcon,
     GitHubIcon,
     InstagramIcon,
-    FacebookIcon,
-    TelegramIcon,
-    YouTubeIcon,
     LinkIcon,
+    OPGGIcon,
+    TelegramIcon,
+    TwitchIcon,
+    VkIcon,
+    YouTubeIcon,
 } from 'shared/assets/icons/social'
 import { useElementSize } from 'shared/lib/hooks'
 import { StreamerSocialMedia } from 'shared/types'
+import clsx from 'clsx'
+
 import styles from './streamer-social-medias.module.scss'
 
 const getMediaProperty = (socialMedia: StreamerSocialMedia, props: SVGProps<SVGSVGElement>) => {

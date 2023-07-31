@@ -1,9 +1,11 @@
-import clsx from 'clsx'
 import { ReactNode, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { ArrowRightIcon, CircleLeft, CircleRight } from 'shared/assets/icons'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+
 import { Button, ButtonText } from '../button/button'
 import { InputField } from '../input-field/input-field'
+
 import styles from './pagination.module.scss'
 
 interface PaginationProps {

@@ -1,6 +1,6 @@
 export { Commands } from './commands/commands'
 export { Dashboard } from './dashboard/dashboard'
-export { Support } from './support/support'
-export { Songs } from './songs/songs'
 export { Integrations } from './integrations/integrations'
 export { NotFound } from './not-found/not-found'
+export { Songs } from './songs/songs'
+export { Support } from './support/support'

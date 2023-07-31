@@ -1,11 +1,9 @@
-import clsx from 'clsx'
 import { ReactNode, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from 'features'
 import D from 'shared/assets/emotes/D.png'
 import {
     ApprovalIcon,
+    CloseIcon,
     CommandsIcons,
     CustomerSupportIcon,
     DashboardIcon,
@@ -16,12 +14,15 @@ import {
     LogoutIcon,
     MoonIcon,
     SongQueueIcon,
-    CloseIcon,
     SunIcon,
 } from 'shared/assets/icons'
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
 import { AdminAuth } from 'shared/types'
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router-dom'
+
 import styles from './navigation-bar.module.scss'
 
 interface TabProps {

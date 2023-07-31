@@ -1,7 +1,8 @@
-import clsx from 'clsx'
 import { ReactNode, useRef } from 'react'
 import { getVideoPreview } from 'shared/lib/helpers'
 import { useElementSize } from 'shared/lib/hooks'
+import clsx from 'clsx'
+
 import styles from './list-item.module.scss'
 
 export interface ListItemProps {

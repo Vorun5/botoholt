@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+
 import styles from './list-item-name.module.scss'
 
 interface ListItemNameProps {

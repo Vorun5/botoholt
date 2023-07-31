@@ -1,10 +1,12 @@
-import clsx from 'clsx'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link, useSearchParams } from 'react-router-dom'
+import { StreamerPageTab } from 'widgets/song-list/lib'
 import { useElementSize } from 'shared/lib/hooks'
 import { Period } from 'shared/types'
 import { Button, ButtonText } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+import { Link, useSearchParams } from 'react-router-dom'
+
 import styles from './song-list-navigation.module.scss'
 
 interface LinkButtonProps {
@@ -23,14 +25,14 @@ const LinkButton = ({ children, url, isActive: active }: LinkButtonProps) => {
 }
 
 interface SongListNavigationProps {
-    period?: Period
     login: string
-    tab: 'queue' | 'history' | 'top-songs' | 'top-djs'
     className?: string
     baseUrlForRedirect: string
+    tab: StreamerPageTab
+    period: Period
 }
 
-export const SongListNavigation = ({ period, tab, className, login, baseUrlForRedirect }: SongListNavigationProps) => {
+export const SongListNavigation = ({ className, login, baseUrlForRedirect, tab, period }: SongListNavigationProps) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
     const ref = useRef<HTMLDivElement>(null)
