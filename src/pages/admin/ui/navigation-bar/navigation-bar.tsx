@@ -17,6 +17,7 @@ import {
     SunIcon,
 } from 'shared/assets/icons'
 import { useMediaQuery, useModal, useOnClickOutside } from 'shared/lib/hooks'
+import { MODE } from 'shared/mode'
 import { AdminAuth } from 'shared/types'
 import { Avatar, Button, ButtonIcon, ButtonText, CreatedWithLove, Dropdown, Modal } from 'shared/ui'
 import clsx from 'clsx'
@@ -155,7 +156,7 @@ const SignOut = ({ hideNavigation }: { hideNavigation: () => void }) => {
                             padding="big"
                             onClick={() => {
                                 hideNavigation()
-                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/logout'
+                                window.location.href = `https://${MODE}bho.lt/api/v1/admin/auth/logout`
                             }}
                         >
                             <ButtonText>{t('yes')}</ButtonText>

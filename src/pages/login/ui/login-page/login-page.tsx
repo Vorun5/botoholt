@@ -3,6 +3,7 @@ import { AboutBotoholt } from 'widgets'
 import pepeD from 'shared/assets/emotes/pepeD.gif'
 import { TwitchIcon } from 'shared/assets/icons/social'
 import { useMediaQuery } from 'shared/lib/hooks'
+import { MODE } from 'shared/mode'
 import { CreatedWithLove } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
@@ -35,7 +36,7 @@ export const LoginPage = () => {
                             type="button"
                             className={styles.loginBth}
                             onClick={() => {
-                                window.location.href = 'https://dev.bho.lt/api/v1/admin/auth/twitch'
+                                window.location.href = `https://${MODE}bho.lt/api/v1/admin/auth/twitch`
                             }}
                         >
                             <span className={styles.loginBthText}>
