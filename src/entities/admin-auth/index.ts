@@ -1,1 +1,1 @@
-export { useAuthDataQeury } from './use-auth-data-query'
+export { useAuthDataQeury, useBotLangMutation,useBotoholtServiceMutation } from './hooks'

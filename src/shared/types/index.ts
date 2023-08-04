@@ -1,4 +1,5 @@
 export * from './admin-auth'
+export * from './admin-lang'
 export * from './command/command'
 export * from './command/command-type'
 export * from './command/commands'

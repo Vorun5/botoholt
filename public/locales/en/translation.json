@@ -42,6 +42,10 @@
             "not-connected": "Not connected",
             "page-description": "On this page you can connect various platforms"
         },
+        "lang": {
+            "description": "you cannot change the language of the bot in the future",
+            "title:": "Select bot language"
+        },
         "languages": {
             "bot": "Bot language",
             "bot-label": "Select bot language",
@@ -81,6 +85,9 @@
     "answer": "Answer",
     "bigs-and-pigs": "Bigs and Pigs",
     "bot": {
+        "response": {
+            "sayCommands": "Commands"
+        },
         "songs": {
             "lastSong": "Last song",
             "queueProcess": "Queue duration",
@@ -233,6 +240,7 @@
         "top-emotes": "Top emotes"
     },
     "top-streamers": "Top streamers",
+    "try-again": "Something be wrong. Try again",
     "variables": "Variables",
     "variables-description": "To use just click on the desired variable or write by hand",
     "welcome": "Welcome",

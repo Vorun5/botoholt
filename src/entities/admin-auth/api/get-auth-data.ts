@@ -18,6 +18,7 @@ export const getAuthData = async () => {
                 da_api: true,
                 pubsub: false,
             },
+            lang: 'en'
         }
 
         await new Promise((resolve) => setTimeout(resolve, 200))

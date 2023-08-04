@@ -1,4 +1,4 @@
-import { StreamerType } from 'shared/types'
+import { AdminLang, StreamerType } from 'shared/types'
 
 import { AdminServicesDto } from './admin-services-dto'
 
@@ -11,4 +11,5 @@ export interface AdminAuthDto {
     email: string
     created_at: string
     services: AdminServicesDto
+    lang: AdminLang
 }

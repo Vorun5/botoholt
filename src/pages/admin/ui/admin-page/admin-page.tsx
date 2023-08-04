@@ -1,6 +1,7 @@
-import { useAuthDataQeury } from 'entities/admin-auth'
+import { useAuthDataQeury, useBotLangMutation } from 'entities/admin-auth'
 import { HyperinkIcon } from 'shared/assets/icons'
-import { Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
+import { ALL_ADMIN_LANG } from 'shared/types'
+import { Button, ButtonText, ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
@@ -31,7 +32,9 @@ const NotAuth = ({ error }: { error: string | null }) => {
 }
 
 export const AdminPage = () => {
+    const { t } = useTranslation()
     const { data: auth, isLoading, isError, isSuccess, fetchStatus } = useAuthDataQeury()
+    const { mutate: changeBotLang, isLoading: isBotLangChangeLoading, isError: isBotLangeChangeError } = useBotLangMutation()
 
     if (!isSuccess)
         return (
@@ -45,22 +48,62 @@ export const AdminPage = () => {
             </Page>
         )
 
-    if (isSuccess)
-        return (
-            <ALPageWrapper>
-                <NavigationBar authData={auth} />
-                <ALPage>
-                    <Routes>
-                        <Route path="/" element={<Dashboard streamer={auth} />} />
-                        <Route path="/commands" element={<Commands />} />
-                        <Route path="/integrations" element={<Integrations streamer={auth} />} />
-                        <Route path="/songs/*" element={<Songs streamer={auth} />} />
-                        <Route path="/support" element={<Support />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </ALPage>
-            </ALPageWrapper>
-        )
+    if (isSuccess) {
+        if (!auth.lang) {
+            return (
+                <Page>
+                    <PageContent>
+                        <PageContentExpanded>
+                            <div className={styles.lang}>
+                                {isBotLangChangeLoading ? (
+                                    <Loading />
+                                ) : (
+                                    <>
+                                        <span className={styles.langTitle}>Select bot lang</span>
+                                        <span className={styles.langDescription}>
+                                            {t('admin-page.lang.description')}
+                                        </span>
+                                        <div className={styles.langList}></div>
+                                        {ALL_ADMIN_LANG.map((lang) => (
+                                            <Button
+                                                key={lang.code}
+                                                style="blue"
+                                                width="100%"
+                                                className={styles.langListItem}
+                                                onClick={() => {
+                                                    changeBotLang(lang.code)
+                                                }}
+                                            >
+                                                <ButtonText>{lang.name}</ButtonText>
+                                            </Button>
+                                        ))}
+                                        {isBotLangeChangeError && <ErrorMessage>{t('try-again')}</ErrorMessage>}
+                                    </>
+                                )}
+                                
+                            </div>
+                        </PageContentExpanded>
+                    </PageContent>
+                </Page>
+            )
+        } else {
+            return (
+                <ALPageWrapper>
+                    <NavigationBar authData={auth} />
+                    <ALPage>
+                        <Routes>
+                            <Route path="/" element={<Dashboard streamer={auth} />} />
+                            <Route path="/commands" element={<Commands />} />
+                            <Route path="/integrations" element={<Integrations streamer={auth} />} />
+                            {auth.services.da_api && <Route path="/songs/*" element={<Songs streamer={auth} />} />}
+                            <Route path="/support" element={<Support />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </ALPage>
+                </ALPageWrapper>
+            )
+        }
+    }
 
     return <></>
 }

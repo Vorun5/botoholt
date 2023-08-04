@@ -252,15 +252,17 @@ export const NavigationBar = ({ authData }: { authData: AdminAuth }) => {
                                 {t('admin-page.nav.commands')}
                             </Tab>
                         </Link>
-                        <Link to="/admin/songs">
-                            <Tab
-                                onClick={hideNavigation}
-                                selected={pathname.includes('/admin/songs')}
-                                icon={<SongQueueIcon />}
-                            >
-                                {t('admin-page.nav.song-queue')}
-                            </Tab>
-                        </Link>
+                        {authData.services.da_api && (
+                            <Link to="/admin/songs">
+                                <Tab
+                                    onClick={hideNavigation}
+                                    selected={pathname.includes('/admin/songs')}
+                                    icon={<SongQueueIcon />}
+                                >
+                                    {t('admin-page.nav.song-queue')}
+                                </Tab>
+                            </Link>
+                        )}
                         <Link to="/admin/integrations">
                             <Tab
                                 onClick={hideNavigation}

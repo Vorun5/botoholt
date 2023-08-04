@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import { useBotoholtServiceMutation } from 'entities/admin-auth'
 import { useStreamerQuery } from 'entities/streamer'
 import { useStreamerHistoryQuery, useStreamerQueueQuery } from 'entities/streamer-song-data'
 import { AdminServicesDto } from 'shared/api'
 import { apiUrl } from 'shared/api/api'
+import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import { HyperinkIcon, StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
 import { AdminAuth } from 'shared/types'
 import {
@@ -334,6 +336,12 @@ const Emotes = () => {
 
 const Services = ({ services }: { services: AdminServicesDto }) => {
     const { t } = useTranslation()
+    const { mutate: botoholt, isLoading: isBotoholtLoading } = useBotoholtServiceMutation()
+
+    const toggleBotoholt = () => {
+        if (isBotoholtLoading) return
+        botoholt()
+    }
 
     return (
         <div className={styles.statuses}>
@@ -347,18 +355,29 @@ const Services = ({ services }: { services: AdminServicesDto }) => {
                     </CardTitle>
                 </CardExpanded>
                 <div className={styles.statusButtons}>
-                    <Button padding="big">
+                    <Button padding="big" onClick={toggleBotoholt}>
                         <ButtonText>{t(services.botoholt ? 'disable' : 'connect')!}</ButtonText>
                     </Button>
                     <Button
                         style={services.botoholt ? 'green' : 'red'}
+                        padding="none"
                         borderRadius="50%"
                         width="50px"
                         height="50px"
                         alignment="center"
+                        onClick={toggleBotoholt}
                     >
-                        <ButtonIcon margin="none">
-                            {services.botoholt ? <StatusOkIcon /> : <StatusNotOkIcon />}
+                        <ButtonIcon
+                            margin="none"
+                            style={{
+                                padding: 0,
+                            }}
+                        >
+                            {isBotoholtLoading ? (
+                                <img width={30} height={30} src={LoadingGif} alt="loading" />
+                            ) : (
+                                <>{services.botoholt ? <StatusOkIcon /> : <StatusNotOkIcon />}</>
+                            )}
                         </ButtonIcon>
                     </Button>
                 </div>
@@ -412,7 +431,7 @@ export const Dashboard = ({ streamer }: DashboardProps) => {
                     <StreamInfo login={streamer.login} />
                     <Statistic />
                 </div>
-                <LastOrderSong login={streamer.login} />
+                {streamer.services.da_api && <LastOrderSong login={streamer.login} />}
             </ALPageContent>
         </>
     )

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactNode } from 'react'
+import { CSSProperties, MouseEventHandler, ReactNode } from 'react'
 import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import clsx from 'clsx'
 
@@ -17,9 +17,10 @@ interface ButtonIconProps {
     children?: ReactNode
     margin?: 'left' | 'right' | 'none'
     className?: string
+    style?: CSSProperties
 }
 
-export const ButtonIcon = ({ children, margin = 'right', className }: ButtonIconProps) => {
+export const ButtonIcon = ({ children, margin = 'right', className, style }: ButtonIconProps) => {
     return (
         <span
             className={clsx(
@@ -28,6 +29,7 @@ export const ButtonIcon = ({ children, margin = 'right', className }: ButtonIcon
                 margin === 'left' && styles.bthIconLeft,
                 className,
             )}
+            style={style}
         >
             {children}
         </span>
@@ -42,7 +44,7 @@ interface ButtonProps {
     onClick?: MouseEventHandler<HTMLButtonElement>
     height?: string
     width?: string
-    padding?: 'big' | 'normal' | 'small'
+    padding?: 'big' | 'normal' | 'small' | 'none'
     border?: boolean
     loading?: boolean
     className?: string

@@ -1,6 +1,7 @@
 import { AdminServicesDto } from 'shared/api'
 
 import { StreamerType } from './streamer/streamer-type'
+import { AdminLang } from './admin-lang'
 
 export interface AdminAuth {
     login: string
@@ -11,4 +12,5 @@ export interface AdminAuth {
     email: string
     created: string
     services: AdminServicesDto
+    lang: AdminLang
 }
