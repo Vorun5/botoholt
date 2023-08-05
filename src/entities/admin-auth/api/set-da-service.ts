@@ -1,12 +1,13 @@
-import { AdminAuthDto, api } from 'shared/api'
+import { api } from 'shared/api'
 import { MODE } from 'shared/mode'
+import { AdminDaService } from 'shared/types'
 
-export const setDaService = async () => {
+export const setDaService = async (daService: AdminDaService) => {
     if (MODE === 'dev.') {
         await new Promise((resolve) => setTimeout(resolve, 200))
-        return true
+        return daService
     }
-    const response = await api.get('admin/services/donationalerts').json<AdminAuthDto>()
-
-    return true
+    const response = await api.post('admin/donationalerts', { json: daService }).json<AdminDaService>()
+    
+    return response
 }

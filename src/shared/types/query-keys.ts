@@ -1,6 +1,7 @@
 export const QueryKeys = {
     streamers: 'streamers',
     admin: 'admin',
+    adminDaService: 'admin/donation',
     adminCommands: 'admin/commands',
     streamer: (login: string) => `streamer/${login}`,
     streamerSongQueue: (login: string) => `streamer/${login}/queue`,

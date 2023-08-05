@@ -222,11 +222,13 @@ const LastOrderSong = ({ login }: { login: string }) => {
         isError: isQueueError,
         isLoading: isQueueLodading,
         fetchStatus: queueFetchStatus,
+        refetch: refetchQueue,
     } = useStreamerQueueQuery(login)
     const {
         data: history,
         isSuccess: isHistorySuccess,
         isError: isHistoryError,
+        refetch: refetchHistory,
     } = useStreamerHistoryQuery({
         login,
         from: 0,
@@ -245,7 +247,8 @@ const LastOrderSong = ({ login }: { login: string }) => {
         socket.on('message', (data) => {
             if (data.channel === login) {
                 console.log('UPDATE', data.channel)
-                // refresh
+                refetchQueue()
+                refetchHistory()
             }
         })
 

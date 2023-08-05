@@ -1,4 +1,5 @@
 {
+    "change": "Change",
     "about": {
         "botoholt": "What is Botoholt?",
         "botoholt-text": "Botoholt is a handy bot for streamers that allows viewers to shazam tracks and more",
@@ -33,9 +34,11 @@
         "integrations": {
             "connected": "Connected",
             "da": {
+                "invalid-links": "Invalid links. Links must match examples",
                 "action": "Paste the link to the widget with Donation Alerts",
                 "clue": "To find the link to the widget, go to the DA website - go to",
                 "clue-path": "Widgets > Media sharing.",
+                "insert-da-link": "Paste the link to your DonationAlerts",
                 "message": "Connect Donation Alerts to edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
                 "title": "Connection Donation Alerts"
             },

@@ -64,7 +64,7 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
         socket.on('message', (data) => {
             if (data.channel === login) {
                 console.log('UPDATE', data.channel)
-                // refetch()
+                refetch()
             }
         })
 
