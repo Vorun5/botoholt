@@ -3,6 +3,7 @@ export const QueryKeys = {
     admin: 'admin',
     adminDaService: 'admin/donation',
     adminCommands: 'admin/commands',
+    adminCustomCommands: 'admin/commands/custom',
     streamer: (login: string) => `streamer/${login}`,
     streamerSongQueue: (login: string) => `streamer/${login}/queue`,
     streamerSongHistory: (login: string) => `streamer/${login}/history`,

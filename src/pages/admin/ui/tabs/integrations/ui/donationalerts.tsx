@@ -21,6 +21,7 @@ import {
 } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+import { isEmpty } from 'underscore'
 
 import styles from '../integrations.module.scss'
 
@@ -42,7 +43,11 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
     useEffect(() => {
         if (isSuccess) {
             setDaLink(daService.donationLink)
-            setDaTokenLink(`https://www.donationalerts.com/widget/media?token=${daService.daToken}`)
+            setDaTokenLink(
+                !isEmpty(daService.daToken)
+                    ? `https://www.donationalerts.com/widget/media?token=${daService.daToken}`
+                    : '',
+            )
         }
     }, [isSuccess])
 

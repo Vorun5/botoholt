@@ -1,35 +1,64 @@
-import { useMemo, useState } from 'react';
-import { useAdminCommandsQuery } from 'entities/commands';
-import { AddIcon } from 'shared/assets/icons';
-import { useDocumentTitle } from 'shared/lib/hooks';
-import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
+import { useMemo, useState } from 'react'
+import { useAdminCommandsQuery, useAdminCustomCommandsQuery } from 'entities/commands'
+import { AddIcon } from 'shared/assets/icons'
+import { useDocumentTitle } from 'shared/lib/hooks'
+import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
-import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout';
-import { CustomCommands } from './ui/custom-commands';
-import { DefaultCommands } from './ui/default-commands';
+import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+import { CustomCommands } from './ui/custom-commands'
+import { DefaultCommands } from './ui/default-commands'
 
-import styles from './commands.module.scss';
+import styles from './commands.module.scss'
 
 export const Commands = () => {
     const { t } = useTranslation()
-    const [tab, setTab] = useState<'standard' | 'custom'>('standard')
+    const [tab, setTab] = useState<'default' | 'custom'>('default')
     useDocumentTitle(t('admin-page.nav.commands'))
-    
-    const { data: commands, isError, isSuccess, isLoading, fetchStatus } = useAdminCommandsQuery()
+
+    const {
+        data: defaultCommands,
+        isError: isDefaultError,
+        isSuccess: isDefaultSuccess,
+        isLoading: isDefaultLoading,
+        fetchStatus: defaultfetchStatus,
+    } = useAdminCommandsQuery()
+
+    const {
+        data: customCommands,
+        isError: isCustomError,
+        isSuccess: isCustomSuccess,
+        isLoading: isCustomLoading,
+        fetchStatus: customFetchStatus,
+    } = useAdminCustomCommandsQuery()
+
     const [searchStr, setSearchStr] = useState('')
-    const [filteredCommands, setFilteredCommands] = useState(isSuccess ? commands : [])
+    const [filteredCommands, setFilteredCommands] = useState(isDefaultSuccess ? defaultCommands : [])
+    const [filteredCustomCommands, setFilteredCustomCommands] = useState(isCustomSuccess ? customCommands : [])
+
     useMemo(() => {
-        if (!isSuccess) return
-        if (!searchStr) return setFilteredCommands(commands)
-        setFilteredCommands(
-            commands.filter((command) => {
-                if (command.aliases.includes(searchStr.trim())) return true
-                return false
-            }),
-        )
-    }, [searchStr, commands])
+        if (tab === 'default') {
+            if (!isDefaultSuccess) return
+            if (!searchStr) return setFilteredCommands(defaultCommands)
+            setFilteredCommands(
+                defaultCommands.filter((command) => {
+                    if (command.aliases.includes(searchStr.trim())) return true
+                    return false
+                }),
+            )
+        }
+        if (tab === 'custom') {
+            if (!isCustomSuccess) return
+            if (!searchStr) return setFilteredCustomCommands(customCommands)
+            setFilteredCustomCommands(
+                customCommands.filter((command) => {
+                    if (command.aliases.includes(searchStr.trim())) return true
+                    return false
+                }),
+            )
+        }
+    }, [searchStr, tab, defaultCommands, customCommands])
 
     return (
         <>
@@ -38,8 +67,8 @@ export const Commands = () => {
                 <div className={styles.tabs}>
                     <button
                         type="button"
-                        className={clsx(styles.tab, tab === 'standard' && styles.tabFocus)}
-                        onClick={() => setTab('standard')}
+                        className={clsx(styles.tab, tab === 'default' && styles.tabFocus)}
+                        onClick={() => setTab('default')}
                     >
                         {t('commands.default-coommands')}
                     </button>
@@ -74,12 +103,21 @@ export const Commands = () => {
                             </Button>
                         )}
                     </div>
-                    {isLoading && <Loading />}
-                    {isError && <ErrorMessage title="Error">{`Error status ${fetchStatus}`}</ErrorMessage>}
-                    {isSuccess && (
+                    {isDefaultLoading && <Loading />}
+                    {tab === 'default' && (
                         <>
-                            {tab === 'standard' && <DefaultCommands commands={filteredCommands} />}
-                            {tab === 'custom' && <CustomCommands commands={[]} />}
+                            {isDefaultError && (
+                                <ErrorMessage title="Error">{`Error status ${defaultfetchStatus}`}</ErrorMessage>
+                            )}
+                            {isDefaultSuccess && <DefaultCommands commands={filteredCommands} />}
+                        </>
+                    )}
+                    {tab === 'custom' && (
+                        <>
+                            {isCustomError && (
+                                <ErrorMessage title="Error">{`Error status ${customFetchStatus}`}</ErrorMessage>
+                            )}
+                            {isCustomSuccess && <CustomCommands commands={filteredCustomCommands} />}
                         </>
                     )}
                 </div>

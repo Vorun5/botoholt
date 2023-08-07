@@ -13,7 +13,7 @@ interface CustomCommandsProps {
 
 export const CustomCommands = ({ commands }: CustomCommandsProps) => {
     const { t } = useTranslation()
-
+    
     if (isEmpty(commands))
         return (
             <div className={styles.empty}>
@@ -23,5 +23,5 @@ export const CustomCommands = ({ commands }: CustomCommandsProps) => {
             </div>
         )
 
-    return <CommandTable commands={commands} />
+    return <CommandTable commands={commands} commandsType="custom" />
 }

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { EditIcon, InfoIcon } from 'shared/assets/icons'
+import { EditIcon, InfoIcon, TrashIcon } from 'shared/assets/icons'
 import { Command } from 'shared/types'
 import { Button, ButtonIcon, Toggle } from 'shared/ui'
 import clsx from 'clsx'
@@ -27,16 +27,17 @@ export interface CommandTableItemProps {
     focus: boolean
     command: Command
     onEdit: () => void
-    toggle: () => void
+    onToggle: () => void
+    onDelete?: () => void
 }
 
-export const CommandTableItem = ({ focus, command, onEdit, toggle }: CommandTableItemProps) => {
+export const CommandTableItem = ({ onDelete, focus, command, onEdit, onToggle }: CommandTableItemProps) => {
     const { t } = useTranslation()
 
     return (
         <div className={clsx(styles.command, focus && styles.commandFocus)}>
             <Cell>
-                <Toggle checked={command.enabled} onChange={toggle} />
+                <Toggle checked={command.enabled} onChange={onToggle} />
             </Cell>
             <Cell>{t(command.function)}</Cell>
             <Cell>
@@ -60,11 +61,21 @@ export const CommandTableItem = ({ focus, command, onEdit, toggle }: CommandTabl
                             <EditIcon />
                         </ButtonIcon>
                     </Button>
-                    <Button width="66px" border padding="small">
-                        <ButtonIcon margin="none">
-                            <InfoIcon />
-                        </ButtonIcon>
-                    </Button>
+                    {onDelete ? (
+                        <>
+                            <Button width="66px" border padding="small" style="red" onClick={onDelete}>
+                                <ButtonIcon margin="none">
+                                    <TrashIcon />
+                                </ButtonIcon>
+                            </Button>
+                        </>
+                    ) : (
+                        <Button width="66px" border padding="small">
+                            <ButtonIcon margin="none">
+                                <InfoIcon />
+                            </ButtonIcon>
+                        </Button>
+                    )}
                 </div>
             </Cell>
         </div>

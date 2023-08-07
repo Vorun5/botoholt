@@ -87,6 +87,10 @@
     "answer": "Answer",
     "bigs-and-pigs": "Bigs and Pigs",
     "bot": {
+        "commands": {
+            "custom": "Custom",
+            "repeat": "Repeat"
+        },
         "response": {
             "sayCommands": "Commands"
         },

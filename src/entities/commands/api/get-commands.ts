@@ -112,7 +112,7 @@ export const getCommands = async () => {
         return commands
     }
 
-    const response = await api.get('admin/commands').json<AllPossibleCommandType[]>()
+    const response = await api.get('admin/commands/default').json<AllPossibleCommandType[]>()
 
     return response
 }

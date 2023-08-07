@@ -10,6 +10,6 @@ export const setCommand = async (command: AllPossibleCommandType): Promise<AllPo
         return command
     }
 
-    const response = await api.put('admin/commands', { json: command }).json<AllPossibleCommandType>()
+    const response = await api.put('admin/commands/default', { json: command }).json<AllPossibleCommandType>()
     return response
 }

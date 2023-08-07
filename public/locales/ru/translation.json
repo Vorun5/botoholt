@@ -87,6 +87,10 @@
     "answer": "Ответ",
     "bigs-and-pigs": "Биги и Пиги",
     "bot": {
+        "commands": {
+            "custom": "Кастомная",
+            "repeat": "Повторяющаяся"
+        },
         "response": {
             "sayCommands": "Команды"
         },

@@ -1,9 +1,21 @@
 import { useState } from 'react'
-import { useAdminCommandsMutation } from 'entities/commands'
-import { Command, isLastSongCommand, isQueueCommand, isSongCommand, isWhichCommand } from 'shared/types'
+import {
+    useAdminCommandsMutation,
+    useAdminCustomCommandsDeleteMutation,
+    useAdminCustomCommandsMutation,
+} from 'entities/commands'
+import {
+    Command,
+    isCustomCommand,
+    isLastSongCommand,
+    isQueueCommand,
+    isSongCommand,
+    isWhichCommand,
+} from 'shared/types'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
+import { EditCustomCommand } from '../modal-edit/edit-custom-command'
 import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
 import { EditQueueCommand } from '../modal-edit/edit-queue-command'
 import { EditSongCommand } from '../modal-edit/edit-song-command'
@@ -20,18 +32,29 @@ const CellName = ({ children }: { children: string }) => {
     )
 }
 
-export const CommandTable = ({ commands }: { commands: Command[] }) => {
+export const CommandTable = ({
+    commands,
+    commandsType,
+}: {
+    commands: Command[]
+    commandsType: 'default' | 'custom'
+}) => {
     const { t } = useTranslation()
 
     const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
     const hide = () => setCurrentEditCommand(null)
 
-    const { mutate: toggleCommand, isLoading } = useAdminCommandsMutation()
+    const { mutate: toggleDefaultCommand, isLoading: isDefaultLoading } = useAdminCommandsMutation()
+    const { mutate: toggleCustomCommand, isLoading: isCustomLoading } = useAdminCustomCommandsMutation()
+    const { mutate: deleteCustomCommand, isLoading: isCustomDeleteLoading } = useAdminCustomCommandsDeleteMutation()
+
+    const isLodaing = commandsType === 'custom' ? isCustomLoading || isCustomDeleteLoading : isDefaultLoading
+    const toggleCommand = commandsType === 'custom' ? toggleCustomCommand : toggleDefaultCommand
 
     return (
         <>
             <div className={styles.commands}>
-                <div className={clsx(styles.commandsOverlay, isLoading && styles.commandsOverlayActive)}></div>
+                <div className={clsx(styles.commandsOverlay, isLodaing && styles.commandsOverlayActive)}></div>
                 <div className={styles.commandsHeadlines}>
                     <CellName>{t('commands.status')}</CellName>
                     <CellName>{t('commands.type')}</CellName>
@@ -47,10 +70,17 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                     {commands.map((command, index) => (
                         <CommandTableItem
                             key={command.function}
-                            toggle={() => toggleCommand({ ...command, enabled: !command.enabled })}
+                            onToggle={() => toggleCommand({ ...command, enabled: !command.enabled })}
                             focus={(index + 1) % 2 === 1}
                             command={command}
                             onEdit={() => setCurrentEditCommand(command)}
+                            onDelete={
+                                commandsType !== 'custom'
+                                    ? undefined
+                                    : () => {
+                                          deleteCustomCommand(command)
+                                      }
+                            }
                         />
                     ))}
                 </div>
@@ -67,8 +97,11 @@ export const CommandTable = ({ commands }: { commands: Command[] }) => {
                     {isWhichCommand(currentEditCommand) && (
                         <EditWhichCommand hide={hide} command={currentEditCommand} />
                     )}
+                    {isCustomCommand(currentEditCommand) && (
+                        <EditCustomCommand hide={hide} command={currentEditCommand} />
+                    )}
                 </>
-        )}
+            )}
         </>
     )
 }

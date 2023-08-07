@@ -1,1 +1,7 @@
-export { useAdminCommandsMutation, useAdminCommandsQuery } from './hooks'
+export {
+    useAdminCommandsMutation,
+    useAdminCommandsQuery,
+    useAdminCustomCommandsDeleteMutation,
+    useAdminCustomCommandsMutation,
+    useAdminCustomCommandsQuery,
+} from './hooks'

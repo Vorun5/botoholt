@@ -77,12 +77,18 @@ export const Services = ({ services }: { services: AdminServicesDto }) => {
                     <Button
                         style={services.da_api ? 'green' : 'red'}
                         borderRadius="50%"
+                        padding="none"
                         width="50px"
                         height="50px"
                         alignment="center"
                         onClick={toggleDa}
                     >
-                        <ButtonIcon margin="none">
+                        <ButtonIcon
+                            margin="none"
+                            style={{
+                                padding: 0,
+                            }}
+                        >
                             {isDaLoading ? (
                                 <img width={30} height={30} src={LoadingGif} alt="loading" />
                             ) : (

@@ -7,5 +7,5 @@ interface DefaultCommandsProps {
 }
 
 export const DefaultCommands = ({ commands }: DefaultCommandsProps) => {
-    return <CommandTable commands={commands} />
+    return <CommandTable commands={commands} commandsType="default" />
 }
