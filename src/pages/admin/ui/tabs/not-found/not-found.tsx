@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useDocumentTitle } from 'shared/lib/hooks'
 import { useTranslation } from 'react-i18next'
 
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
@@ -7,10 +7,7 @@ import styles from './not-found.module.scss'
 
 export const NotFound = () => {
     const { t } = useTranslation()
-
-    useEffect(() => {
-        window.document.title = t('page-not-found')
-    }, [])
+    useDocumentTitle(t('page-not-found'))
 
     return (
         <>

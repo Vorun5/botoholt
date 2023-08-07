@@ -1,24 +1,22 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useAdminCommandsQuery } from 'entities/commands'
-import { AddIcon } from 'shared/assets/icons'
-import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui'
-import clsx from 'clsx'
-import { useTranslation } from 'react-i18next'
+import { useMemo, useState } from 'react';
+import { useAdminCommandsQuery } from 'entities/commands';
+import { AddIcon } from 'shared/assets/icons';
+import { useDocumentTitle } from 'shared/lib/hooks';
+import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
-import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
-import { CustomCommands } from './custom-commands'
-import { DefaultCommands } from './default-commands'
+import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout';
+import { CustomCommands } from './ui/custom-commands';
+import { DefaultCommands } from './ui/default-commands';
 
-import styles from './commands.module.scss'
+import styles from './commands.module.scss';
 
 export const Commands = () => {
     const { t } = useTranslation()
     const [tab, setTab] = useState<'standard' | 'custom'>('standard')
-
-    useEffect(() => {
-        window.document.title = t('admin-page.nav.commands')
-    }, [])
-
+    useDocumentTitle(t('admin-page.nav.commands'))
+    
     const { data: commands, isError, isSuccess, isLoading, fetchStatus } = useAdminCommandsQuery()
     const [searchStr, setSearchStr] = useState('')
     const [filteredCommands, setFilteredCommands] = useState(isSuccess ? commands : [])

@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { SongList, SongListNavigation, useSongListNav } from 'widgets/song-list'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { PauseIcon, SkipIcon } from 'shared/assets/icons'
+import { useDocumentTitle } from 'shared/lib/hooks'
 import { AdminAuth } from 'shared/types'
 import { Button, ButtonIcon, ButtonText } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
@@ -16,11 +16,9 @@ interface SongsProps {
 
 export const Songs = ({ streamer }: SongsProps) => {
     const { t } = useTranslation()
+    useDocumentTitle(t('admin-page.nav.song-queue'))
 
-    useEffect(() => {
-        window.document.title = t('admin-page.nav.song-queue')
-    }, [])
-    const { tab, period, page, from } = useSongListNav(streamer.login, 'admin/songs')
+    const { tab, period, from } = useSongListNav(streamer.login, 'admin/songs')
 
     return (
         <>

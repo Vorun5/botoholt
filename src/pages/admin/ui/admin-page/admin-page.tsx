@@ -94,7 +94,7 @@ export const AdminPage = () => {
                         <Routes>
                             <Route path="/" element={<Dashboard streamer={auth} />} />
                             <Route path="/commands" element={<Commands />} />
-                            <Route path="/integrations" element={<Integrations streamer={auth} />} />
+                            <Route path="/integrations" element={<Integrations authData={auth} />} />
                             {auth.services.da_api && <Route path="/songs/*" element={<Songs streamer={auth} />} />}
                             <Route path="/support" element={<Support />} />
                             <Route path="*" element={<NotFound />} />

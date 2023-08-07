@@ -1,5 +1,4 @@
 {
-    "change": "Change",
     "about": {
         "botoholt": "What is Botoholt?",
         "botoholt-text": "Botoholt is a handy bot for streamers that allows viewers to shazam tracks and more",
@@ -34,11 +33,11 @@
         "integrations": {
             "connected": "Connected",
             "da": {
-                "invalid-links": "Invalid links. Links must match examples",
                 "action": "Paste the link to the widget with Donation Alerts",
                 "clue": "To find the link to the widget, go to the DA website - go to",
                 "clue-path": "Widgets > Media sharing.",
                 "insert-da-link": "Paste the link to your DonationAlerts",
+                "invalid-links": "Invalid links. Links must match examples",
                 "message": "Connect Donation Alerts to edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
                 "title": "Connection Donation Alerts"
             },
@@ -100,6 +99,7 @@
     },
     "bot-answer": "Bot answer...",
     "cancel": "Cancel",
+    "change": "Change",
     "commands": {
         "access": "Access",
         "actions": "Actions",
@@ -182,6 +182,12 @@
         "welcome": "Welcome"
     },
     "minutes": "m",
+    "new-updates": {
+        "bth-text": "Go to registration",
+        "text-1": "Release of the admin panel for streamers",
+        "text-2": "Now everyone can independently connect Botoholt",
+        "version": "v0.1"
+    },
     "no": "No",
     "no-change": "No change",
     "page-not-found": "Page not found",
@@ -196,6 +202,7 @@
         "not-playing": "Songs on pause. Last song:",
         "playing": "Now playing:"
     },
+    "soon": "Soon...",
     "special-thanks": "Special thanks",
     "streamer-card": {
         "followers": " followers",

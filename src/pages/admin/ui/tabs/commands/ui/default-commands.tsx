@@ -1,6 +1,6 @@
 import { Command } from 'shared/types'
 
-import { CommandTable } from '../../command-table/command-table'
+import { CommandTable } from '../../../command-table/command-table'
 
 interface DefaultCommandsProps {
     commands: Command[]

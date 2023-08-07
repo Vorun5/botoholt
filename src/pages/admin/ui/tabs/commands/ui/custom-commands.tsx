@@ -3,9 +3,9 @@ import { Command } from 'shared/types'
 import { useTranslation } from 'react-i18next'
 import { isEmpty } from 'underscore'
 
-import { CommandTable } from '../../command-table/command-table'
+import { CommandTable } from '../../../command-table/command-table'
 
-import styles from './commands.module.scss'
+import styles from '../commands.module.scss'
 
 interface CustomCommandsProps {
     commands: Command[]

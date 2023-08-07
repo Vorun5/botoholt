@@ -1,5 +1,6 @@
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import { DiscordIcon } from 'shared/assets/icons'
+import { useDocumentTitle } from 'shared/lib/hooks'
 import { Avatar, Button, ButtonIcon, ButtonText, Card, CardDescription, CardProps, CardTitle } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
@@ -25,10 +26,7 @@ const Question = ({ question, children, style }: QuestionProps) => {
 
 export const Support = () => {
     const { t } = useTranslation()
-
-    useEffect(() => {
-        window.document.title = t('admin-page.nav.support')
-    }, [])
+    useDocumentTitle(t('admin-page.nav.support'))
 
     return (
         <>
@@ -38,9 +36,7 @@ export const Support = () => {
             <ALPageContent className={styles.pageContent}>
                 <Card className={styles.support}>
                     <CardTitle>{t('admin-page.support.discord.title')}</CardTitle>
-                    <span className={styles.supportAction}>
-                        {t('admin-page.support.discord.description')}
-                    </span>
+                    <span className={styles.supportAction}>{t('admin-page.support.discord.description')}</span>
                     <div className={styles.supportFooter}>
                         <Avatar
                             alt="Urbinholt"
