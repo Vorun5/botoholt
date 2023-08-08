@@ -1,13 +1,13 @@
 {
     "about": {
         "botoholt": "What is Botoholt?",
-        "botoholt-text": "Botoholt is a handy bot for streamers that allows viewers to shazam tracks and more",
+        "botoholt-text": "Botoholt is a bot that allows viewers to find song titles(and more) on your stream.",
         "connect": "How to connect a bot?",
-        "connect-text": "To connect and use our bot in the future, you just need to log in through Twitch",
+        "connect-text": "To connect and use our bot in the future, you just need to log in using Twitch",
         "connect-text-2": "To connect and use our bot, you must write ",
         "support": "Support the project",
-        "support-link-text": "it at this link",
-        "support-text": "If you want to support the authors of the project with a coin, then you can do "
+        "support-link-text": "at this link",
+        "support-text": "If you would like to support the authors of the project with a coin, you are welcome to do so "
     },
     "about-botoholt": "About Botoholt",
     "add-answer": "Add answer",
@@ -16,10 +16,10 @@
         "dashboard": {
             "bot-status": "Bot status",
             "bot-status-connected": "Bot is working properly",
-            "bot-status-not-connected": "Bot not connected",
-            "da-status": "Donation Alerts status",
-            "da-status-connected": "Donation Alerts connected",
-            "da-status-not-connected": "Donation Alerts not connected",
+            "bot-status-not-connected": "Bot is not connected",
+            "da-status": "DonationAlerts integration status",
+            "da-status-connected": "DonationAlerts is connected",
+            "da-status-not-connected": "DonationAlerts is not connected",
             "statistic": {
                 "number-of-messages": "Number of messages",
                 "number-of-ordered-songs": "Number of ordered songs",
@@ -33,19 +33,19 @@
         "integrations": {
             "connected": "Connected",
             "da": {
-                "action": "Paste the link to the widget with Donation Alerts",
-                "clue": "To find the link to the widget, go to the DA website - go to",
+                "action": "Paste the link to DonationAlerts widget",
+                "clue": "To find the link to the widget, go to the DA website and navigate to",
                 "clue-path": "Widgets > Media sharing.",
                 "insert-da-link": "Paste the link to your DonationAlerts",
                 "invalid-links": "Invalid links. Links must match examples",
-                "message": "Connect Donation Alerts to edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
-                "title": "Connection Donation Alerts"
+                "message": "Connect DonationAlerts to take song titles directly from there, edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
+                "title": "DonationAlerts connection"
             },
             "not-connected": "Not connected",
             "page-description": "On this page you can connect various platforms"
         },
         "lang": {
-            "description": "you cannot change the language of the bot in the future",
+            "description": "you will only be able to change the language of the bot manually in the future",
             "title:": "Select bot language"
         },
         "languages": {
@@ -63,20 +63,20 @@
             "menu": "Menu",
             "setting": "Settings",
             "sign-out": "Sign out",
-            "song-queue": "Song queue",
+            "song-queue": "Songs queue",
             "support": "Customer support"
         },
-        "sing-out": "Are you sure to sing out?",
+        "sing-out": "Are you sure you want to sign out?",
         "songs": {
-            "description": "On this page you can see the queue and history of custom songs, as well as top DJs and top songs",
+            "description": "On this page you can view the queue and history of songs, as well as DJs and songs tops",
             "pause": "Pause",
             "skip": "Skip"
         },
         "support": {
-            "description": "If you have any problems while using Botoholt, you can find the answer to your question or describe your problem in the discord",
+            "description": "If you have any problems while using Botoholt, you can find the answer to your question here or describe your problem in discord",
             "discord": {
-                "description": "If the list does not answer your question, then write to Urbinholt in discord",
-                "title": "The list does not answer my question, who should I contact?"
+                "description": "If your question is not answered in the list, please write to Urbinholt in discord",
+                "title": "There is no answer to my question in the list, who should I contact?"
             },
             "faq": {
                 "description": "Frequently asked questions"
@@ -98,17 +98,17 @@
             "lastSong": "Last song",
             "queueProcess": "Queue duration",
             "songProcess": "Current song",
-            "whichProcess": "Place in line"
+            "whichProcess": "Place in queue"
         }
     },
-    "bot-answer": "Bot answer...",
+    "bot-answer": "Bot response...",
     "cancel": "Cancel",
     "change": "Change",
     "commands": {
         "access": "Access",
         "actions": "Actions",
         "add": "Add command",
-        "answer": "Answer",
+        "answer": "Response",
         "commands": "Commands",
         "custom-coomands": "Custom commands",
         "default-coommands": "Default commands",
@@ -120,7 +120,7 @@
         "status": "Enabled",
         "type": "Type"
     },
-    "connect": "To plug",
+    "connect": "Connect",
     "connect-bot": "Want to add a bot to your stream?",
     "connect-bot-bth": "Connect the bot",
     "connect-bot-text-1": "If you want to connect Botoholt, then just write to ",
@@ -129,39 +129,39 @@
     "creators": {
         "create-with-love-by": "Created with love by "
     },
-    "delete-answer": "Delete answer",
+    "delete-answer": "Delete response",
     "disable": "Disable",
     "dont-show-link": "Don't show the link to anyone",
     "edit-commands": {
         "command-cahnged": "<{{commandName}}> command changed successfully",
         "commands": {
             "add": "Add command",
-            "description": "Add key names for the team (minimum 1, maximum 10)",
+            "description": "Add key names for the command (minimum 1, maximum 10)",
             "placeholder": "!EnterCommand"
         },
         "failed-command-changed": "Failed to change command <{{commandName}}> (Error: {{error}})",
         "scenarios": {
-            "text-1": "Answer variations will be activated randomly.",
+            "text-1": "One of the responses will be chosen randomly.",
             "text-2": "Be aware that the variables you use may have different lengths.",
-            "text-3": "Therefore, we do not recommend using more than one copy of a variable in one response, otherwise the message may be cut off (the maximum length of a message in twitch chat is 500 characters)",
+            "text-3": "Therefore, we do not recommend using multiple identical variables in the same reply, otherwise the message may be cut off (maximum length of a message in twitch chat is 500 characters)",
             "title": "Response Scenarios"
         },
         "title": "Editing",
         "titles": {
-            "failure-shazam": "Answers when a song fails shazam",
-            "last-faliure": "Answer for failing to determine the last song played",
-            "last-success-da": "Answer for the last song played if it was played in DonationAlerts",
-            "last-success-shazam": "Answer for last playing song if it was shazamed",
-            "queue-faliure": "Answer if the queue is empty and the songs are paused",
-            "queue-success": "Answer if the song queue is not empty",
-            "success-da-song": "Answers if the song plays in DonationAlerts",
-            "success-shazam": "Answers when the song is successfully shazam",
-            "which-faliure": "Answer when determining the place in the queue of songs is unsuccessful",
-            "which-success": "Answer upon successful determination of the place in the queue of songs"
+            "failure-shazam": "Responses for unsuccessful song title search",
+            "last-faliure": "Responses for unsuccessful search of last played song title",
+            "last-success-da": "Responses for the last played song title if it was played in DonationAlerts",
+            "last-success-shazam": "Responses for the last played song title if it was found",
+            "queue-faliure": "Responses if the queue is empty and the songs are paused",
+            "queue-success": "Responses if the song queue is not empty",
+            "success-da-song": "Responses for a song playing in DonationAlerts",
+            "success-shazam": "Responses for a successful song title search",
+            "which-faliure": "Responses when determining the place in songs queue is unsuccessful",
+            "which-success": "Responses for successfully locating a place in songs queue"
         },
         "warning": {
             "text": "Are you sure you want to exit without saving your changes?",
-            "title": "You have not saved your changes!"
+            "title": "You didn't save your changes!"
         }
     },
     "exit": "Exit",
@@ -182,7 +182,7 @@
         },
         "need-auth-text-1": "To log in go to",
         "need-auth-text-2": "the login page",
-        "not-auth": "You are not logged in Botoholt😪",
+        "not-auth": "You are not authorized at Botoholt😪",
         "welcome": "Welcome"
     },
     "minutes": "m",
