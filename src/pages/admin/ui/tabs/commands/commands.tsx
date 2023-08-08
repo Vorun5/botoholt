@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
+import { AddNewCustomCommand } from './ui/add-new-custom-coomand'
 import { CustomCommands } from './ui/custom-commands'
 import { DefaultCommands } from './ui/default-commands'
 
@@ -60,6 +61,8 @@ export const Commands = () => {
         }
     }, [searchStr, tab, defaultCommands, customCommands])
 
+    const [showAddNewCommand, setShowNewCommand] = useState(false)
+
     return (
         <>
             <ALPageHeader>{t('admin-page.nav.commands')}</ALPageHeader>
@@ -90,17 +93,29 @@ export const Commands = () => {
                             />
                         </div>
                         {tab === 'custom' && (
-                            <Button className={styles.addCommand} height="50px" style="green" border>
-                                <ButtonText>{t('commands.add')}</ButtonText>
-                                <ButtonIcon margin="left">
-                                    <AddIcon
-                                        style={{
-                                            position: 'relative',
-                                            top: '2px',
-                                        }}
-                                    />
-                                </ButtonIcon>
-                            </Button>
+                            <>
+                                <AddNewCustomCommand
+                                    isShown={showAddNewCommand}
+                                    hide={() => setShowNewCommand(false)}
+                                />
+                                <Button
+                                    className={styles.addCommand}
+                                    height="50px"
+                                    style="green"
+                                    border
+                                    onClick={() => setShowNewCommand(true)}
+                                >
+                                    <ButtonText>{t('commands.add')}</ButtonText>
+                                    <ButtonIcon margin="left">
+                                        <AddIcon
+                                            style={{
+                                                position: 'relative',
+                                                top: '2px',
+                                            }}
+                                        />
+                                    </ButtonIcon>
+                                </Button>
+                            </>
                         )}
                     </div>
                     {isDefaultLoading && <Loading />}

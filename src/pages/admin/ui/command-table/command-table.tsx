@@ -9,6 +9,7 @@ import {
     isCustomCommand,
     isLastSongCommand,
     isQueueCommand,
+    isRepeatCommand,
     isSongCommand,
     isWhichCommand,
 } from 'shared/types'
@@ -18,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 import { EditCustomCommand } from '../modal-edit/edit-custom-command'
 import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
 import { EditQueueCommand } from '../modal-edit/edit-queue-command'
+import { EditRepeatCommand } from '../modal-edit/edit-repeat-command'
 import { EditSongCommand } from '../modal-edit/edit-song-command'
 import { EditWhichCommand } from '../modal-edit/edit-which-command'
 import { CommandTableItem } from './command-table-item'
@@ -99,6 +101,9 @@ export const CommandTable = ({
                     )}
                     {isCustomCommand(currentEditCommand) && (
                         <EditCustomCommand hide={hide} command={currentEditCommand} />
+                    )}
+                    {isRepeatCommand(currentEditCommand) && (
+                        <EditRepeatCommand hide={hide} command={currentEditCommand} />
                     )}
                 </>
             )}

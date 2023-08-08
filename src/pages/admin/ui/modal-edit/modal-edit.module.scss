@@ -179,6 +179,10 @@
         &Field {
             &Container {
                 width: calc(100% - 400px - 16px);
+                
+                &NoVariables {
+                    width: 100%;
+                }
             }
         }
     }

@@ -1,24 +1,26 @@
 import { useState } from 'react'
-import { CustomCommand } from 'shared/types'
+import { CustomCommand, RepeatCommand } from 'shared/types'
+import { InputField } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 import { isEqual } from 'underscore'
 
 import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
 import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
-import { CommandsSetting } from './commands-setting'
 import { GeneralSettings } from './general-settings'
 import { ResponseScripts } from './response-scripts'
 
-interface EditCustomCommandProps {
+import styles from './modal-edit.module.scss'
+
+interface EditRepeatCommandProps {
     hide: () => void
-    command: CustomCommand
+    command: RepeatCommand
 }
 
-export const EditCustomCommand = ({ command, hide }: EditCustomCommandProps) => {
+export const EditRepeatCommand = ({ command, hide }: EditRepeatCommandProps) => {
     const { t } = useTranslation()
     const [cooldown, setCooldown] = useState(command.cooldown)
     const [enabled, setEnabled] = useState(command.enabled)
-    const [commands, setCommands] = useState(command.aliases)
+    const [name, setName] = useState(command.aliases[0])
     const [answers, setAnswers] = useState(getAnswersWithId(command.answers))
 
     const getNewCommand = () => {
@@ -26,8 +28,8 @@ export const EditCustomCommand = ({ command, hide }: EditCustomCommandProps) => 
             ...command,
             enabled,
             cooldown,
-            aliases: commands,
-            answers: getAnswers(answers, 'defaultCustom'),
+            aliases: [name],
+            answers: getAnswers(answers, 'defaultRepeat'),
         }
         if (isEqual(newCommand, command)) return null
         return newCommand
@@ -46,13 +48,25 @@ export const EditCustomCommand = ({ command, hide }: EditCustomCommandProps) => 
                 setCooldown={(newCd) => setCooldown(newCd)}
                 setEnabled={() => setEnabled(!enabled)}
             />
-            <CommandsSetting commands={commands} setCommands={(newCommands) => setCommands(newCommands)} />
+            <div className={styles.commands}>
+                <span className={styles.title}>Command Name</span>
+                <InputField
+                    placeholder="Command name"
+                    value={name}
+                    className={styles.commandsAddField}
+                    width="300px"
+                    onChange={(event) => {
+                        setName(event.target.value)
+                    }}
+                />
+            </div>
+            <div className={styles.divider} />
             <ResponseScripts />
             <AnswersSetting
                 title={'Ответы'}
                 titleStyle="green"
                 answers={answers}
-                variables={['_userName']}
+                variables={[]}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
         </CommandEditModalWrapper>

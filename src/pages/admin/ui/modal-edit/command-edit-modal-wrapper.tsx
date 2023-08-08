@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { useAdminCommandsMutation } from 'entities/commands'
+import { useAdminCommandsMutation, useAdminCustomCommandsMutation } from 'entities/commands'
 import D from 'shared/assets/emotes/D.png'
 import { useToast } from 'shared/lib/hooks'
 import { AllPossibleCommandType } from 'shared/types'
@@ -12,6 +12,7 @@ interface CommandEditModalWrapperProps {
     getNewCommand: () => null | AllPossibleCommandType
     children?: ReactNode
     commandName: string
+    commandsType: 'default' | 'custom'
 }
 
 export const CommandEditModalWrapper = ({
@@ -19,10 +20,29 @@ export const CommandEditModalWrapper = ({
     getNewCommand,
     children,
     commandName,
+    commandsType,
 }: CommandEditModalWrapperProps) => {
     const { t } = useTranslation()
     const toast = useToast()
-    const { mutate: changeCommand, isLoading, isSuccess, isError, error } = useAdminCommandsMutation()
+    const {
+        mutate: changeDefaultCommand,
+        isLoading: isDefaultLoading,
+        isSuccess: isDefaultSuccess,
+        isError: isDefaultError,
+        error: defaultError,
+    } = useAdminCommandsMutation()
+    const {
+        mutate: changeCustomCommand,
+        isLoading: isCustomLoading,
+        isSuccess: isCustomSuccess,
+        isError: isCustomError,
+        error: customError,
+    } = useAdminCustomCommandsMutation()
+
+    const isLodaing = commandsType === 'custom' ? isCustomLoading : isDefaultLoading
+    const isError = commandsType === 'custom' ? isCustomError : isDefaultError
+    const isSuccess = commandsType === 'custom' ? isCustomSuccess : isDefaultSuccess
+    const error = commandsType === 'custom' ? customError : defaultError
 
     const changesSavedToast = () => {
         if (toast)
@@ -51,7 +71,12 @@ export const CommandEditModalWrapper = ({
                 toast.addToast({ text: t('no-change') ?? 'No change' }, { position: 'top-right', delayInSeconds: 3 })
             return
         }
-        changeCommand(newCommand)
+        if (commandsType === 'default') {
+            changeDefaultCommand(newCommand)
+        }
+        if (commandsType === 'custom') {
+            changeCustomCommand(newCommand)
+        }
     }
 
     const localHide = () => {
@@ -99,7 +124,7 @@ export const CommandEditModalWrapper = ({
             </Modal>
             <Modal
                 isShown
-                dontHide={isLoading || showWarning}
+                dontHide={isLodaing || showWarning}
                 hide={() => {
                     const newCommand = getNewCommand()
                     if (newCommand) {
@@ -112,7 +137,7 @@ export const CommandEditModalWrapper = ({
                 footerDivider
                 footerContent={
                     <Button
-                        loading={isLoading}
+                        loading={isDefaultLoading}
                         className={styles.footerBth}
                         onClick={onClick}
                         padding="big"

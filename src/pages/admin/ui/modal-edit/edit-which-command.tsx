@@ -46,7 +46,12 @@ export const EditWhichCommand = ({ command, hide }: EditWhichCommandProps) => {
     }
 
     return (
-        <CommandEditModalWrapper commandName={t(command.function)} getNewCommand={getNewCommand} hide={hide}>
+        <CommandEditModalWrapper
+            commandsType="default"
+            commandName={t(command.function)}
+            getNewCommand={getNewCommand}
+            hide={hide}
+        >
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}

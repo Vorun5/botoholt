@@ -81,7 +81,12 @@ export const AnswersSetting = ({ titleStyle, title, answers, variables, setAnswe
             </div>
 
             <div className={styles.answers}>
-                <div className={styles.answersFieldContainer}>
+                <div
+                    className={clsx(
+                        styles.answersFieldContainer,
+                        variables.length === 0 && styles.answersFieldContainerNoVariables,
+                    )}
+                >
                     <textarea
                         className={styles.answersField}
                         ref={textAreaRef}
@@ -95,60 +100,62 @@ export const AnswersSetting = ({ titleStyle, title, answers, variables, setAnswe
                         {answers[selectedAnswer].value.length}/{MAX_LENGTH}
                     </span>
                 </div>
-                <div className={styles.variables}>
-                    <span className={styles.variablesTitle}>{t('variables')}</span>
-                    <span className={clsx(styles.variablesDescription, styles.description)}>
-                        {t('variables-description')}
-                    </span>
-                    <div className={styles.variablesList}>
-                        {variables.map((variable) => (
-                            <Button
-                                key={variable}
-                                style="orange"
-                                padding="small"
-                                border
-                                onClick={(event) => {
-                                    event.preventDefault()
-                                    const value = answers[selectedAnswer].value
-                                    const possible = MAX_LENGTH - value.length >= variable.length + 2
-                                    const textarea = textAreaRef.current
-                                    if (possible && textarea) {
-                                        const startPos = textarea.selectionStart
-                                        const endPos = textarea.selectionEnd
-                                        if ((startPos && endPos) || startPos === 0) {
-                                            setAnswers(
-                                                getChangedAnswers(
-                                                    answers,
-                                                    selectedAnswer,
-                                                    `${value.substring(0, startPos)} ${variable} ${value.substring(
-                                                        endPos,
-                                                        value.length,
-                                                    )}`.trim(),
-                                                ),
-                                            )
-                                            setTimeout(() => {
-                                                const newPos = startPos + variable.length + 1
+                {variables.length > 0 && (
+                    <div className={styles.variables}>
+                        <span className={styles.variablesTitle}>{t('variables')}</span>
+                        <span className={clsx(styles.variablesDescription, styles.description)}>
+                            {t('variables-description')}
+                        </span>
+                        <div className={styles.variablesList}>
+                            {variables.map((variable) => (
+                                <Button
+                                    key={variable}
+                                    style="orange"
+                                    padding="small"
+                                    border
+                                    onClick={(event) => {
+                                        event.preventDefault()
+                                        const value = answers[selectedAnswer].value
+                                        const possible = MAX_LENGTH - value.length >= variable.length + 2
+                                        const textarea = textAreaRef.current
+                                        if (possible && textarea) {
+                                            const startPos = textarea.selectionStart
+                                            const endPos = textarea.selectionEnd
+                                            if ((startPos && endPos) || startPos === 0) {
+                                                setAnswers(
+                                                    getChangedAnswers(
+                                                        answers,
+                                                        selectedAnswer,
+                                                        `${value.substring(0, startPos)} ${variable} ${value.substring(
+                                                            endPos,
+                                                            value.length,
+                                                        )}`.trim(),
+                                                    ),
+                                                )
+                                                setTimeout(() => {
+                                                    const newPos = startPos + variable.length + 1
+                                                    textarea.focus()
+                                                    textarea.setSelectionRange(newPos, newPos)
+                                                }, 0)
+                                            } else {
+                                                setAnswers(
+                                                    getChangedAnswers(
+                                                        answers,
+                                                        selectedAnswer,
+                                                        `${value} ${variable}`.trim(),
+                                                    ),
+                                                )
                                                 textarea.focus()
-                                                textarea.setSelectionRange(newPos, newPos)
-                                            }, 0)
-                                        } else {
-                                            setAnswers(
-                                                getChangedAnswers(
-                                                    answers,
-                                                    selectedAnswer,
-                                                    `${value} ${variable}`.trim(),
-                                                ),
-                                            )
-                                            textarea.focus()
+                                            }
                                         }
-                                    }
-                                }}
-                            >
-                                <ButtonText>{variable}</ButtonText>
-                            </Button>
-                        ))}
+                                    }}
+                                >
+                                    <ButtonText>{variable}</ButtonText>
+                                </Button>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
             <div className={styles.answersActions}>
