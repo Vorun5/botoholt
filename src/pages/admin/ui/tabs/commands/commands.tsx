@@ -33,6 +33,7 @@ export const Commands = () => {
         isLoading: isCustomLoading,
         fetchStatus: customFetchStatus,
     } = useAdminCustomCommandsQuery()
+    const isLoding = tab === 'custom' ? isCustomLoading : isDefaultLoading
 
     const [searchStr, setSearchStr] = useState('')
     const [filteredCommands, setFilteredCommands] = useState(isDefaultSuccess ? defaultCommands : [])
@@ -118,7 +119,7 @@ export const Commands = () => {
                             </>
                         )}
                     </div>
-                    {isDefaultLoading && <Loading />}
+                    {isLoding && <Loading />}
                     {tab === 'default' && (
                         <>
                             {isDefaultError && (

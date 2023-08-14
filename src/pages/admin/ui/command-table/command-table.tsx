@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     useAdminCommandsMutation,
     useAdminCustomCommandsDeleteMutation,
@@ -44,6 +44,16 @@ export const CommandTable = ({
     const { t } = useTranslation()
 
     const [currentEditCommand, setCurrentEditCommand] = useState<Command | null>(null)
+    useEffect(() => {
+        if (currentEditCommand) {
+            for (const command of commands) {
+                if (command._id === currentEditCommand._id) {
+                    setCurrentEditCommand(command)
+                }
+            }
+        }
+    }, [commands])
+    
     const hide = () => setCurrentEditCommand(null)
 
     const { mutate: toggleDefaultCommand, isLoading: isDefaultLoading } = useAdminCommandsMutation()

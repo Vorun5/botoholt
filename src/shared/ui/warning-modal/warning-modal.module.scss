@@ -1,0 +1,17 @@
+.warning {
+    text-align: center;
+
+    &Actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    &Text {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: var(--bh-color);
+    }
+}

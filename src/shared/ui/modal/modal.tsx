@@ -1,6 +1,5 @@
-import { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode } from 'react'
 import { CloseIcon } from 'shared/assets/icons'
-import { useOnClickOutside } from 'shared/lib/hooks'
 import { Button, ButtonIcon } from 'shared/ui'
 import clsx from 'clsx'
 
@@ -20,6 +19,7 @@ interface ModalProps {
     expandedWidth?: boolean
     dontHide?: boolean
     children?: ReactNode
+    contentWithoutPadding?: boolean
 }
 
 export const Modal = ({
@@ -34,23 +34,12 @@ export const Modal = ({
     hideScroll = false,
     expandedWidth = false,
     dontHide = false,
+    contentWithoutPadding = false,
 }: ModalProps) => {
-    const ref = useRef(null)
     const onHide = () => {
         if (dontHide) return
-        document.body.classList.remove('modal-show')
         hide()
     }
-
-    useOnClickOutside(ref, onHide)
-
-    useEffect(() => {
-        if (isShown) {
-            document.body.classList.add('modal-show')
-        } else {
-            document.body.classList.remove('modal-show')
-        }
-    }, [isShown])
 
     const contentHeight = `calc(100vh - 40px - 20px - 72px - ${title ? '100px' : '0px'} - ${
         footerContent ? '80px' : '0px'
@@ -60,14 +49,16 @@ export const Modal = ({
 
     return (
         <Portal>
-            <div
-                className={clsx(styles.background, !open && styles.close)}
-                style={{
-                    position: 'absolute',
-                    top: `${window.scrollY}px`,
-                }}
-            >
-                <div ref={ref} className={clsx(styles.wrapper, expandedWidth && styles.wrapperExpandedWidth)}>
+            <div className={styles.container}>
+                <div className={clsx(styles.background, !open && styles.close)} onClick={onHide} />
+                <div
+                    className={clsx(styles.modal, expandedWidth && styles.modalExpandedWidth)}
+                    style={{
+                        padding: contentWithoutPadding
+                            ? '0 0 var(--bh-container-modal-padding) 0'
+                            : 'var(--bh-container-modal-padding) 0',
+                    }}
+                >
                     {title && (
                         <>
                             <div className={styles.header}>
@@ -85,6 +76,7 @@ export const Modal = ({
                         className={clsx(styles.content, hideScroll && styles.contentHideScroll, className)}
                         style={{
                             maxHeight: contentHeight,
+                            padding: contentWithoutPadding ? '0' : '0 var(--bh-container-modal-padding)',
                         }}
                     >
                         {children}

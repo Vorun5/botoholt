@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { useAdminCommandsMutation, useAdminCustomCommandsMutation } from 'entities/commands'
 import D from 'shared/assets/emotes/D.png'
-import { useToast } from 'shared/lib/hooks'
+import { useModal, useToast } from 'shared/lib/hooks'
 import { AllPossibleCommandType } from 'shared/types'
-import { Button, ButtonText, Modal } from 'shared/ui'
+import { Button, ButtonText, Modal, WarningModal } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
 import styles from './modal-edit.module.scss'
@@ -23,6 +23,14 @@ export const CommandEditModalWrapper = ({
     commandsType,
 }: CommandEditModalWrapperProps) => {
     const { t } = useTranslation()
+    const [_, toggleModal, setModal] = useModal()
+    useEffect(() => {
+        setModal(true)
+
+        return () => {
+            setModal(false)
+        }
+    }, [])
     const toast = useToast()
     const {
         mutate: changeDefaultCommand,
@@ -64,7 +72,7 @@ export const CommandEditModalWrapper = ({
             )
     }
 
-    const onClick = () => {
+    const saveChanges = () => {
         const newCommand = getNewCommand()
         if (!newCommand) {
             if (toast)
@@ -79,56 +87,47 @@ export const CommandEditModalWrapper = ({
         }
     }
 
-    const localHide = () => {
-        hide()
-        document.body.classList.remove('modal-show')
-    }
-
     const [isMounted, setIsMounted] = useState(false)
     useEffect(() => {
         if (isMounted) {
-            if (isError) changesNotSavedToast(error instanceof Error ? error.message : 'Unknown error')
+            if (isError) {
+                changesNotSavedToast(error instanceof Error ? error.message : 'Unknown error')
+            }
             if (isSuccess) {
                 changesSavedToast()
-                localHide()
             }
         } else {
             setIsMounted(true)
         }
     }, [isSuccess, isError])
 
-    const [showWarning, setShowWarning] = useState(false)
+    const [showWarning, toggleShowWarning] = useModal()
 
     return (
         <>
-            <Modal
+            <WarningModal
+                hide={toggleShowWarning}
                 isShown={showWarning}
+                emote={D}
+                dontSaveCallback={() => {
+                    toggleShowWarning()
+                    toggleModal()
+                    hide()
+                }}
+                saveCallback={() => {
+                    toggleShowWarning()
+                    saveChanges()
+                }}
+                text={t('edit-commands.warning.text')!}
                 title={t('edit-commands.warning.title') ?? 'Exit?'}
-                hide={() => setShowWarning(false)}
-                footerDivider
-                footerContent={
-                    <div className={styles.warningActions}>
-                        <Button style="green" height="50px" onClick={() => setShowWarning(false)}>
-                            <ButtonText>{t('cancel')}</ButtonText>
-                        </Button>
-                        <Button style="red" onClick={localHide}>
-                            <ButtonText>{t('exit')}</ButtonText>
-                        </Button>
-                    </div>
-                }
-            >
-                <div className={styles.warning}>
-                    <img src={D} alt="" width={112} height={112} className={styles.warningEmote} />
-                    <span className={styles.warningText}>{t('edit-commands.warning.text')}</span>
-                </div>
-            </Modal>
+            />
             <Modal
                 isShown
                 dontHide={isLodaing || showWarning}
                 hide={() => {
                     const newCommand = getNewCommand()
                     if (newCommand) {
-                        setShowWarning(true)
+                        toggleShowWarning()
                         return
                     }
                     hide()
@@ -139,7 +138,7 @@ export const CommandEditModalWrapper = ({
                     <Button
                         loading={isDefaultLoading}
                         className={styles.footerBth}
-                        onClick={onClick}
+                        onClick={saveChanges}
                         padding="big"
                         style="fill-blue"
                     >

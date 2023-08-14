@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useDaServiceQeury, useToggleDaServiceMutation } from 'entities/admin-auth'
 import { useDaServiceMutation } from 'entities/admin-auth/hooks/use-da-service-mutation'
+import D from 'shared/assets/emotes/D.png'
 import { DangerIcon } from 'shared/assets/icons'
 import { DonationAlertsIcon } from 'shared/assets/icons/social'
-import { useDocumentTitle, useToast } from 'shared/lib/hooks'
+import { useDocumentTitle, useModal, useToast } from 'shared/lib/hooks'
 import { AdminAuth } from 'shared/types'
 import {
     Button,
@@ -18,6 +19,7 @@ import {
     Loading,
     Modal,
     PasswordFiled,
+    WarningModal,
 } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
@@ -32,6 +34,7 @@ interface DaModalProps {
 
 const DaModal = ({ isShown, hide }: DaModalProps) => {
     const { mutate: changeDaService, isLoading: isChangeDaLoading, isError: isDaChangeDaError } = useDaServiceMutation()
+    const [showWarning, toggleShowWarning] = useModal()
     const { data: daService, isLoading, isError, isSuccess } = useDaServiceQeury()
     const toast = useToast()
     const { t } = useTranslation()
@@ -54,6 +57,7 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
     const onSave = () => {
         const link = daLink.replace(/\s+/g, '')
         const tokenLink = daTokenLink.replace(/\s+/g, '')
+        console.log(link, tokenLink)
 
         if (link.length === 0 || tokenLink.length === 0) {
             if (toast)
@@ -82,10 +86,38 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
         })
     }
 
-    return (
+    return <>
+        <WarningModal
+            hide={toggleShowWarning}
+            isShown={showWarning}
+            emote={D}
+            dontSaveCallback={() => {
+                toggleShowWarning()
+                hide()
+            }}
+            saveCallback={() => {
+                toggleShowWarning()
+                onSave()
+            }}
+            text={t('edit-commands.warning.text')!}
+            title={t('edit-commands.warning.title') ?? 'Exit?'}
+        />
         <Modal
             isShown={isShown}
-            hide={hide}
+            hide={() => {
+                if (isSuccess) {
+                    const link = daLink.replace(/\s+/g, '')
+                    const tokenLink = daTokenLink.replace(/\s+/g, '')
+                    if (
+                        tokenLink !== `https://www.donationalerts.com/widget/media?token=${daService.daToken}` ||
+                        link !== daService.donationLink
+                    ) {
+                        toggleShowWarning()
+                        return
+                    }
+                }
+                hide()
+            }}
             dontHide={isChangeDaLoading}
             headerDivider
             expandedWidth
@@ -144,7 +176,7 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
                 </>
             )}
         </Modal>
-    )
+    </>;
 }
 
 export const Donationalerts = ({ authData }: { authData: AdminAuth }) => {
@@ -152,12 +184,11 @@ export const Donationalerts = ({ authData }: { authData: AdminAuth }) => {
     const { t } = useTranslation()
     useDocumentTitle(t('admin-page.nav.integrations'))
 
-    const [daModalIsShown, setDaModalIsShow] = useState(false)
-    const hideDaModal = () => setDaModalIsShow(false)
+    const [daModalIsShown, toggleDaModalIsShow] = useModal()
 
     return (
         <>
-            <DaModal hide={hideDaModal} isShown={daModalIsShown} />
+            <DaModal hide={toggleDaModalIsShow} isShown={daModalIsShown} />
             <Card className={styles.card} padding="big">
                 <CardDescription style={authData.services.da_api ? 'green' : 'red'}>
                     {t(
@@ -182,7 +213,7 @@ export const Donationalerts = ({ authData }: { authData: AdminAuth }) => {
                         >
                             <ButtonText>{t(authData.services.da_api ? 'disable' : 'connect')}</ButtonText>
                         </Button>
-                        <Button style="blue" onClick={() => (isToggleLoading ? undefined : setDaModalIsShow(true))}>
+                        <Button style="blue" onClick={() => (isToggleLoading ? undefined : toggleDaModalIsShow())}>
                             <ButtonText>{t('change')}</ButtonText>
                         </Button>
                     </div>
