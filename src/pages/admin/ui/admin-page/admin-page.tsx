@@ -34,7 +34,11 @@ const NotAuth = ({ error }: { error: string | null }) => {
 export const AdminPage = () => {
     const { t } = useTranslation()
     const { data: auth, isLoading, isError, isSuccess, fetchStatus } = useAuthDataQeury()
-    const { mutate: changeBotLang, isLoading: isBotLangChangeLoading, isError: isBotLangeChangeError } = useBotLangMutation()
+    const {
+        mutate: changeBotLang,
+        isLoading: isBotLangChangeLoading,
+        isError: isBotLangeChangeError,
+    } = useBotLangMutation()
 
     if (!isSuccess)
         return (
@@ -80,7 +84,6 @@ export const AdminPage = () => {
                                         {isBotLangeChangeError && <ErrorMessage>{t('try-again')}</ErrorMessage>}
                                     </>
                                 )}
-                                
                             </div>
                         </PageContentExpanded>
                     </PageContent>
@@ -93,7 +96,7 @@ export const AdminPage = () => {
                     <ALPage>
                         <Routes>
                             <Route path="/" element={<Dashboard streamer={auth} />} />
-                            <Route path="/commands" element={<Commands />} />
+                            <Route path="/commands" element={<Commands services={auth.services} />} />
                             <Route path="/integrations" element={<Integrations authData={auth} />} />
                             {auth.services.da_api && <Route path="/songs/*" element={<Songs streamer={auth} />} />}
                             <Route path="/support" element={<Support />} />

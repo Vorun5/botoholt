@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
 import { Emotes } from './ui/emotes'
 import { LastOrderSong } from './ui/last-order-song'
+import { ModBotoholt } from './ui/mod-botoholt'
 import { Services } from './ui/services'
 import { Statistic } from './ui/statistic'
 import { StreamInfo } from './ui/stream-info'
@@ -24,6 +25,7 @@ export const Dashboard = ({ streamer }: DashboardProps) => {
             <ALPageHeader>
                 <span>{t('welcome')},</span> {streamer.name}
             </ALPageHeader>
+            <ModBotoholt />
             <ALPageContent className={styles.pageContent}>
                 <Services services={streamer.services} />
                 <Emotes />

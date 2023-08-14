@@ -178,3 +178,27 @@
         font-size: 3rem;
     }
 }
+
+.modBotoholt {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &Emote {
+        width: 112px;
+        height: 112px;
+    }
+
+    &Text {
+        font-size: var(--bh-large-text-size);
+
+        &Container {
+            display: block;
+            margin-left: 1rem;
+            max-width: 800px;
+        }
+    }
+}

@@ -15,7 +15,7 @@ export const getAuthData = async () => {
             created_at: '2020-10-03T18:45:02Z',
             services: {
                 botoholt: true,
-                da_api: true,
+                da_api: false,
                 pubsub: false,
             },
             lang: 'en'

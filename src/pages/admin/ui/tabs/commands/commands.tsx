@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useAdminCommandsQuery, useAdminCustomCommandsQuery } from 'entities/commands'
+import { AdminServicesDto } from 'shared/api'
 import { AddIcon } from 'shared/assets/icons'
-import { useDocumentTitle } from 'shared/lib/hooks'
+import { useDocumentTitle, useModal } from 'shared/lib/hooks'
 import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +14,7 @@ import { DefaultCommands } from './ui/default-commands'
 
 import styles from './commands.module.scss'
 
-export const Commands = () => {
+export const Commands = ({ services }: { services: AdminServicesDto }) => {
     const { t } = useTranslation()
     const [tab, setTab] = useState<'default' | 'custom'>('default')
     useDocumentTitle(t('admin-page.nav.commands'))
@@ -62,7 +63,7 @@ export const Commands = () => {
         }
     }, [searchStr, tab, defaultCommands, customCommands])
 
-    const [showAddNewCommand, setShowNewCommand] = useState(false)
+    const [showAddNewCommand, toggleShowNewCommand] = useModal()
 
     return (
         <>
@@ -95,16 +96,13 @@ export const Commands = () => {
                         </div>
                         {tab === 'custom' && (
                             <>
-                                <AddNewCustomCommand
-                                    isShown={showAddNewCommand}
-                                    hide={() => setShowNewCommand(false)}
-                                />
+                                <AddNewCustomCommand isShown={showAddNewCommand} hide={toggleShowNewCommand} />
                                 <Button
                                     className={styles.addCommand}
                                     height="50px"
                                     style="green"
                                     border
-                                    onClick={() => setShowNewCommand(true)}
+                                    onClick={toggleShowNewCommand}
                                 >
                                     <ButtonText>{t('commands.add')}</ButtonText>
                                     <ButtonIcon margin="left">
@@ -125,7 +123,7 @@ export const Commands = () => {
                             {isDefaultError && (
                                 <ErrorMessage title="Error">{`Error status ${defaultfetchStatus}`}</ErrorMessage>
                             )}
-                            {isDefaultSuccess && <DefaultCommands commands={filteredCommands} />}
+                            {isDefaultSuccess && <DefaultCommands services={services} commands={filteredCommands} />}
                         </>
                     )}
                     {tab === 'custom' && (
@@ -133,7 +131,9 @@ export const Commands = () => {
                             {isCustomError && (
                                 <ErrorMessage title="Error">{`Error status ${customFetchStatus}`}</ErrorMessage>
                             )}
-                            {isCustomSuccess && <CustomCommands commands={filteredCustomCommands} />}
+                            {isCustomSuccess && (
+                                <CustomCommands services={services} commands={filteredCustomCommands} />
+                            )}
                         </>
                     )}
                 </div>

@@ -103,6 +103,7 @@
     },
     "bot-answer": "Bot response...",
     "cancel": "Cancel",
+    "cancel-2": "Cancel",
     "change": "Change",
     "commands": {
         "access": "Access",
@@ -129,7 +130,12 @@
     "creators": {
         "create-with-love-by": "Created with love by "
     },
+    "delete": "Удалить",
     "delete-answer": "Delete response",
+    "delete-command": {
+        "text": "Are you sure you want to remove the {{command}} command?",
+        "title": "Deleting command"
+    },
     "disable": "Disable",
     "dont-show-link": "Don't show the link to anyone",
     "edit-commands": {
@@ -186,6 +192,14 @@
         "welcome": "Welcome"
     },
     "minutes": "m",
+    "mod-botoholt": {
+        "causes": "This is necessary for the correct work of the bot. It is also necessary if you have follow or subscribe chatroom, otherwise the bot will simply not be able to send messages to your chatroom",
+        "plea": "Please make Botoholt a moderator in your chatroom with the command "
+    },
+    "need-da": {
+        "bth-text": "Connect DonationAlerts",
+        "text": "To activate this command you need to connect DonationAlerts!"
+    },
     "new-updates": {
         "bth-text": "Go to registration",
         "text-1": "Release of the admin panel for streamers",
@@ -194,6 +208,7 @@
     },
     "no": "No",
     "no-change": "No change",
+    "not-delete": "Do not delete",
     "page-not-found": "Page not found",
     "save-changes": "Save changes",
     "search": "Search",

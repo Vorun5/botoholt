@@ -63,7 +63,7 @@ export const WarningModal = ({
         >
             <div className={styles.warning}>
                 {emote && <img src={emote} alt="" width={110} height={110} className={styles.warningEmote} />}
-                {text && <span className={styles.warningText}>{t('edit-commands.warning.text')}</span>}
+                {text && <span className={styles.warningText}>{text}</span>}
             </div>
         </Modal>
     )

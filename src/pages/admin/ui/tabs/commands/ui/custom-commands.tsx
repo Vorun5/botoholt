@@ -1,3 +1,4 @@
+import { AdminServicesDto } from 'shared/api'
 import Sadge from 'shared/assets/emotes/Sadge.gif'
 import { Command } from 'shared/types'
 import { useTranslation } from 'react-i18next'
@@ -9,11 +10,12 @@ import styles from '../commands.module.scss'
 
 interface CustomCommandsProps {
     commands: Command[]
+    services: AdminServicesDto
 }
 
-export const CustomCommands = ({ commands }: CustomCommandsProps) => {
+export const CustomCommands = ({ commands, services }: CustomCommandsProps) => {
     const { t } = useTranslation()
-    
+
     if (isEmpty(commands))
         return (
             <div className={styles.empty}>
@@ -23,5 +25,5 @@ export const CustomCommands = ({ commands }: CustomCommandsProps) => {
             </div>
         )
 
-    return <CommandTable commands={commands} commandsType="custom" />
+    return <CommandTable services={services} commands={commands} commandsType="custom" />
 }

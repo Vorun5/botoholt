@@ -4,6 +4,9 @@ import {
     useAdminCustomCommandsDeleteMutation,
     useAdminCustomCommandsMutation,
 } from 'entities/commands'
+import { AdminServicesDto } from 'shared/api'
+import { DAIcon } from 'shared/assets/icons'
+import { useModal } from 'shared/lib/hooks'
 import {
     Command,
     isCustomCommand,
@@ -13,8 +16,10 @@ import {
     isSongCommand,
     isWhichCommand,
 } from 'shared/types'
+import { Button, ButtonText, Modal } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import { EditCustomCommand } from '../modal-edit/edit-custom-command'
 import { EditLastSongCommand } from '../modal-edit/edit-last-song-command'
@@ -37,9 +42,11 @@ const CellName = ({ children }: { children: string }) => {
 export const CommandTable = ({
     commands,
     commandsType,
+    services,
 }: {
     commands: Command[]
     commandsType: 'default' | 'custom'
+    services: AdminServicesDto
 }) => {
     const { t } = useTranslation()
 
@@ -53,7 +60,7 @@ export const CommandTable = ({
             }
         }
     }, [commands])
-    
+
     const hide = () => setCurrentEditCommand(null)
 
     const { mutate: toggleDefaultCommand, isLoading: isDefaultLoading } = useAdminCommandsMutation()
@@ -62,9 +69,42 @@ export const CommandTable = ({
 
     const isLodaing = commandsType === 'custom' ? isCustomLoading || isCustomDeleteLoading : isDefaultLoading
     const toggleCommand = commandsType === 'custom' ? toggleCustomCommand : toggleDefaultCommand
+    const [showDaWarning, toggleShowDaWarning] = useModal()
+
+    const checkDaWarning = (command: Command) => {
+        return (
+            !services.da_api &&
+            !command.enabled &&
+            (command.function === 'bot.songs.queueProcess' || command.function === 'bot.songs.whichProcess')
+        )
+    }
 
     return (
         <>
+            <Modal
+                hide={toggleShowDaWarning}
+                isShown={showDaWarning}
+                contentWithoutPadding
+                hideScroll
+                footerDivider
+                footerContent={
+                    <div className={styles.daNeedButtons}>
+                        <Link to={'/admin/integrations'}>
+                            <Button height="50px" style="fill-blue" onClick={toggleShowDaWarning}>
+                                <ButtonText>{t('need-da.bth-text')}</ButtonText>
+                            </Button>
+                        </Link>
+                        <Button height="50px" style="fill-red" onClick={toggleShowDaWarning}>
+                            <ButtonText>{t('cancel-2')}</ButtonText>
+                        </Button>
+                    </div>
+                }
+            >
+                <div className={styles.daNeedCover}>
+                    <DAIcon color="white" width={155} height={179} />
+                </div>
+                <span className={styles.daNeedText}>{t('need-da.text')}</span>
+            </Modal>
             <div className={styles.commands}>
                 <div className={clsx(styles.commandsOverlay, isLodaing && styles.commandsOverlayActive)}></div>
                 <div className={styles.commandsHeadlines}>
@@ -82,10 +122,22 @@ export const CommandTable = ({
                     {commands.map((command, index) => (
                         <CommandTableItem
                             key={command.function}
-                            onToggle={() => toggleCommand({ ...command, enabled: !command.enabled })}
+                            onToggle={() => {
+                                if (checkDaWarning(command)) {
+                                    toggleShowDaWarning()
+                                    return
+                                }
+                                toggleCommand({ ...command, enabled: !command.enabled })
+                            }}
                             focus={(index + 1) % 2 === 1}
                             command={command}
-                            onEdit={() => setCurrentEditCommand(command)}
+                            onEdit={() => {
+                                if (checkDaWarning(command)) {
+                                    toggleShowDaWarning()
+                                    return
+                                }
+                                setCurrentEditCommand(command)
+                            }}
                             onDelete={
                                 commandsType !== 'custom'
                                     ? undefined
