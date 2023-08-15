@@ -208,3 +208,28 @@
         color: var(--bh-color);
     }
 }
+
+.newCommand {
+    &Text {
+        font-size: var(--bh-large-text-size);
+        font-weight: bold;
+        display: block;
+        text-align: center;
+        margin: 1rem auto;
+    }
+
+    &Emote {
+        display: block;
+        width: 112px;
+        height: 112px;
+        margin: 0 auto;
+    }
+
+    &Types { 
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+    }
+}

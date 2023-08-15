@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { AddIcon, DeleteIcon } from 'shared/assets/icons'
-import { Button, ButtonIcon, ButtonText, InputField } from 'shared/ui'
+import { AddIcon, DangerIcon, DeleteIcon } from 'shared/assets/icons'
+import { Button, ButtonIcon, ButtonText, Card, CardExpanded, InputField } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
@@ -36,6 +36,20 @@ export const CommandsSetting = ({ commands, setCommands }: CommandsSettingProps)
                 <span className={styles.title}>{t('commands.commands')}</span>
                 <span className={styles.description}>{t('edit-commands.commands.description')}</span>
                 <div className={clsx(styles.commandsList, styles.list)}>
+                    {commands.length === 0 && (
+                        <Card style="red" padding="small" borderRadius="9px">
+                            <CardExpanded>
+                                <DangerIcon
+                                    style={{
+                                        margin: '0px 10px 0 0',
+                                        position: 'relative',
+                                        top: '3px',
+                                    }}
+                                />
+                                <span>{t('edit-commands.empty-command-list')}</span>
+                            </CardExpanded>
+                        </Card>
+                    )}
                     {commands.map((command) => (
                         <Button
                             key={command}

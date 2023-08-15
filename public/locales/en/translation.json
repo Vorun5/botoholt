@@ -11,6 +11,20 @@
     },
     "about-botoholt": "About Botoholt",
     "add-answer": "Add answer",
+    "add-command": {
+        "command-saved": "New <{{commandName}}> command saved successfully",
+        "failed-command-saved": "Failed to save new command <{{commandName}}> (Error: {{error}})",
+        "modal": {
+            "select-command-type": "Select a new command type",
+            "title": "Adding a new command"
+        },
+        "save-command": "Save command",
+        "title": "Adding <{{commandName}}> command",
+        "warning": {
+            "text": "Are you sure you want to exit without saving the new <{{commandName}}> command?",
+            "title": "You didn't save the new command!"
+        }
+    },
     "admin-page": {
         "commands": {},
         "dashboard": {
@@ -130,7 +144,7 @@
     "creators": {
         "create-with-love-by": "Created with love by "
     },
-    "delete": "Удалить",
+    "delete": "Delete",
     "delete-answer": "Delete response",
     "delete-command": {
         "text": "Are you sure you want to remove the {{command}} command?",
@@ -140,11 +154,13 @@
     "dont-show-link": "Don't show the link to anyone",
     "edit-commands": {
         "command-cahnged": "<{{commandName}}> command changed successfully",
+        "command-name": "Название команды",
         "commands": {
             "add": "Add command",
             "description": "Add key names for the command (minimum 1, maximum 10)",
             "placeholder": "!EnterCommand"
         },
+        "empty-command-list": "The command list cannot be empty!",
         "failed-command-changed": "Failed to change command <{{commandName}}> (Error: {{error}})",
         "scenarios": {
             "text-1": "One of the responses will be chosen randomly.",
@@ -154,6 +170,7 @@
         },
         "title": "Editing",
         "titles": {
+            "answers": "Answers",
             "failure-shazam": "Responses for unsuccessful song title search",
             "last-faliure": "Responses for unsuccessful search of last played song title",
             "last-success-da": "Responses for the last played song title if it was played in DonationAlerts",

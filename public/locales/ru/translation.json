@@ -11,6 +11,20 @@
     },
     "about-botoholt": "О Ботохольте",
     "add-answer": "Добавить ответ",
+    "add-command": {
+        "command-saved": "Новая команда <{{commandName}}> успешно сохранена!",
+        "failed-command-saved": "Не удалось сохранить новую <{{commandName}}> команду (Error: {{error}})",
+        "modal": {
+            "select-command-type": "Выберите тип новой команды",
+            "title": "Добавление новой команды"
+        },
+        "save-command": "Сохранить команду",
+        "title": "Добавление <{{commandName}}> команды",
+        "warning": {
+            "text": "Вы точно хотите выйти не сохранив новую <{{commandName}}> команду?",
+            "title": "Вы не сохранили новую команду!"
+        }
+    },
     "admin-page": {
         "commands": {},
         "dashboard": {
@@ -140,11 +154,13 @@
     "dont-show-link": "Никому не показывайте ссылку",
     "edit-commands": {
         "command-cahnged": "Команда <{{commandName}}> успешно изменена",
+        "command-name": "Command name",
         "commands": {
             "add": "Добавить команду",
             "description": "Добавьте ключевые названия для команды (минимум 1, максимум 10)",
             "placeholder": "!ВведитеКоманду"
         },
+        "empty-command-list": "Cписок команд не может быть пустым!",
         "failed-command-changed": "Не удалось изменить команду <{{commandName}}> (Error: {{error}})",
         "scenarios": {
             "text-1": "Вариант ответа будет выбираться в случайном порядке.",
@@ -154,6 +170,7 @@
         },
         "title": "Редактирование",
         "titles": {
+            "answers": "Ответы",
             "failure-shazam": "Ответы для неуспешного поиска названия песни",
             "last-faliure": "Ответы для неуспешного поиска названия последней игравшей песни",
             "last-success-da": "Ответы для последней игравшей песни, если она играла в DonationAlerts",

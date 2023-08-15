@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
-import { AddNewCustomCommand } from './ui/add-new-custom-coomand'
+import { AddNewCustomCommand } from '../../modal-edit/add-new-custom-coomand'
 import { CustomCommands } from './ui/custom-commands'
 import { DefaultCommands } from './ui/default-commands'
 

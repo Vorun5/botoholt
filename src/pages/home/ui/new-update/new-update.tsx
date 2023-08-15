@@ -1,4 +1,5 @@
 import { ImportantIcon } from 'shared/assets/icons'
+import NewUpdatesImg from 'shared/assets/images/updates.png'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -12,7 +13,7 @@ export const NewUpdate = () => {
             <h2 className={styles.updatesTitle}>
                 <ImportantIcon /> New updates!
             </h2>
-            <img className={styles.updatesImg} src="/src/shared/assets/images/updates.png" alt="updates" />
+            <img className={styles.updatesImg} src={NewUpdatesImg} alt="updates" />
             <span className={styles.updatesDescription}>
                 {t('new-updates.text-1')}{' '}
                 <span className={styles.updatesDescriptionVersion}>{t('new-updates.version')}</span> <br />

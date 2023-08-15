@@ -9,10 +9,11 @@ export const addCustomCommand = async (
         await new Promise((resolve) => setTimeout(resolve, 500))
         if (Math.random() >= 0.9) throw new Error('Unlucky')
 
-        return command
+        return { ...command, _id: new Date().toString() }
     }
     const response = await api
         .post('admin/commands/custom', { json: { ...command, _id: undefined } })
         .json<AllPossibleCustomCommandType>()
+        
     return response
 }

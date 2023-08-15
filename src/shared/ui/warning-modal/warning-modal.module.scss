@@ -14,4 +14,10 @@
         font-size: 1rem;
         color: var(--bh-color);
     }
+
+    @media (min-width: 900px) {
+        &Actions {
+            min-width: 600px;
+        }
+    }
 }
