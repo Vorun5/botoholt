@@ -1,9 +1,7 @@
 import { AboutBotoholt } from 'widgets'
 import pepeD from 'shared/assets/emotes/pepeD.gif'
-import { TwitchIcon } from 'shared/assets/icons/social'
 import { useDocumentTitle, useMediaQuery } from 'shared/lib/hooks'
-import { MODE } from 'shared/mode'
-import { CreatedWithLove } from 'shared/ui'
+import { CreatedWithLove, LoginWithTwitch } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
 import styles from './login-page.module.scss'
@@ -28,18 +26,7 @@ export const LoginPage = () => {
                             {!isDesktop && <Emote />}
                         </h1>
                         <span className={styles.loginDescription}>{t('login-page.login.description')}</span>
-                        <button
-                            type="button"
-                            className={styles.loginBth}
-                            onClick={() => {
-                                window.location.href = `https://${MODE}bho.lt/api/v1/admin/auth/twitch`
-                            }}
-                        >
-                            <span className={styles.loginBthText}>
-                                <TwitchIcon className={styles.loginBthIcon} />
-                            </span>
-                            <span className={styles.loginBthText}>{t('login-page.login.bth')}</span>
-                        </button>
+                        <LoginWithTwitch />
                     </div>
                 </div>
                 <div className={styles.pageAbout}>

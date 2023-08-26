@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 let modals = 0
 
-export const useModal = (): [boolean, () => void, (value: boolean) => void] => {
-    const [isShown, setIsShown] = useState(false)
+export const useModal = (value?: boolean): [boolean, () => void, (value: boolean) => void] => {
+    const [isShown, setIsShown] = useState(value ?? false)
+    useEffect(() => {
+        if (value) {
+            document.body.classList.add('modal-show')
+        }
+    }, [])
 
     const setModal = (value: boolean) => {
         const newValue = value
@@ -17,6 +22,7 @@ export const useModal = (): [boolean, () => void, (value: boolean) => void] => {
         if (modals < 0) modals = 0
         if (modals > 0) document.body.classList.add('modal-show')
         if (modals === 0) document.body.classList.remove('modal-show')
+        console.log(modals)
     }
 
     const toggle = () => {

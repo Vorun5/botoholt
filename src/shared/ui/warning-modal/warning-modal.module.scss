@@ -2,6 +2,7 @@
     text-align: center;
 
     &Actions {
+        min-width: 300px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;

@@ -1,0 +1,33 @@
+.login {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid var(--bh-background-color);
+    border-radius: var(--bh-bth-border-radius);
+    transition: background-color 0.3s;
+    width: 100%;
+
+    &Icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    &Text {
+        font-size: var(--bh-big-text-size);
+        color: #673ab7;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    &:hover {
+        background-color: #673ab7;
+
+        .loginText {
+            color: white;
+        }
+    }
+}

@@ -91,41 +91,10 @@
 
     &Description {
         display: block;
-        padding: 20px 0;
+        padding-top: 20px;
         color: var(--bh-description-text-color);
         font-size: var(--bh-large-text-size);
         line-height: 140%;
-    }
-
-    &Bth {
-        display: flex;
-        align-items: center;
-        padding: 24px;
-        background-color: white;
-        border: 1px solid var(--bh-background-color);
-        border-radius: var(--bh-bth-border-radius);
-        transition: background-color 0.3s;
-
-        &Icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-        }
-
-        &Text {
-            font-size: var(--bh-big-text-size);
-            color: #673ab7;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        &:hover {
-            background-color: #673ab7;
-
-            .loginBthText {
-                color: white;
-            }
-        }
     }
 
     @media (min-width: 420px) {

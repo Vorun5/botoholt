@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { ConnectIcon, NoteIcon, SupportIcon } from 'shared/assets/icons'
 import { useElementSize, useMediaQuery } from 'shared/lib/hooks'
-import { CopiedText } from 'shared/ui'
+import { LoginWithTwitch } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
@@ -21,9 +21,8 @@ export const AboutBotoholt = () => {
                 {t('about.botoholt-text')}
             </InfoCard>
             <InfoCard mobile={isMobile} icon={<ConnectIcon />} title={t('about.connect')}>
-                {t('about.connect-text-2')}
-                <CopiedText>Urbinholt</CopiedText>
-                {t('in-discord')}
+                {t('connect-bot-text')}
+                <LoginWithTwitch />
             </InfoCard>
             <InfoCard mobile={isMobile} icon={<SupportIcon />} title={t('about.support')}>
                 {t('about.support-text')}

@@ -1,9 +1,10 @@
-import { useBotoholtServiceMutation, useToggleDaServiceMutation } from 'entities/admin-auth'
+import { useBotoholtServiceMutation, useDaServiceQeury, useToggleDaServiceMutation } from 'entities/admin-auth'
 import { AdminServicesDto } from 'shared/api'
 import LoadingGif from 'shared/assets/emotes/FeelsLoadingMan.gif'
 import { StatusNotOkIcon, StatusOkIcon } from 'shared/assets/icons'
 import { Button, ButtonIcon, ButtonText, Card, CardDescription, CardExpanded, CardTitle } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
+import { isEmpty } from 'underscore'
 
 import styles from '../dashboard.module.scss'
 
@@ -11,6 +12,7 @@ export const Services = ({ services }: { services: AdminServicesDto }) => {
     const { t } = useTranslation()
     const { mutate: toggleBotoholtService, isLoading: isBotoholtLoading } = useBotoholtServiceMutation()
     const { mutate: toggleDaService, isLoading: isDaLoading } = useToggleDaServiceMutation()
+    const { data: daService, isLoading, isError, isSuccess } = useDaServiceQeury()
 
     const toggleBotoholt = () => {
         if (isBotoholtLoading) return
@@ -18,6 +20,10 @@ export const Services = ({ services }: { services: AdminServicesDto }) => {
     }
 
     const toggleDa = () => {
+        if (isSuccess && isEmpty(daService.daToken)) {
+            window.location.href = '/admin/integrations?open=donationalerts'
+            return
+        }
         if (isDaLoading) return
         toggleDaService()
     }

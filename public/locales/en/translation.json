@@ -50,10 +50,14 @@
                 "action": "Paste the link to DonationAlerts widget",
                 "clue": "To find the link to the widget, go to the DA website and navigate to",
                 "clue-path": "Widgets > Media sharing.",
+                "enable-failed": "Failed to enable Donationalerts",
+                "enable-success": "Donationalerts was enabled successfully",
                 "insert-da-link": "Paste the link to your DonationAlerts",
                 "invalid-links": "Invalid links. Links must match examples",
                 "message": "Connect DonationAlerts to take song titles directly from there, edit and customize related commands and unlock cool features like top songs, top DJs, and more!",
-                "title": "DonationAlerts connection"
+                "title": "DonationAlerts connection",
+                "unenable-failed": "Failed to turn off Donationalerts",
+                "unenable-success": "Donationalerts was successfully turned off"
             },
             "not-connected": "Not connected",
             "page-description": "On this page you can connect various platforms"
@@ -138,8 +142,7 @@
     "connect": "Connect",
     "connect-bot": "Want to add a bot to your stream?",
     "connect-bot-bth": "Connect the bot",
-    "connect-bot-text-1": "If you want to connect Botoholt, then just write to ",
-    "connect-bot-text-2": " in the discord!",
+    "connect-bot-text": "If you want to connect Botoholt, then just login with Twitch!",
     "copied-to-clipboard": "Copied to clipboard",
     "creators": {
         "create-with-love-by": "Created with love by "
@@ -208,6 +211,7 @@
         "not-auth": "You are not authorized at Botoholt😪",
         "welcome": "Welcome"
     },
+    "login-with-twitch": "Login with Twitch",
     "minutes": "m",
     "mod-botoholt": {
         "causes": "This is necessary for the correct work of the bot. It is also necessary if you have follow or subscribe chatroom, otherwise the bot will simply not be able to send messages to your chatroom",

@@ -4,7 +4,7 @@ import Money from 'shared/assets/emotes/money.gif'
 import { DAIcon, StarIcon } from 'shared/assets/icons'
 import { useElementSize } from 'shared/lib/hooks'
 import { useToast } from 'shared/lib/hooks'
-import { Banner, Button, ButtonIcon, ButtonText, CopiedText } from 'shared/ui'
+import { Banner, Button, ButtonIcon, ButtonText, LoginWithTwitch } from 'shared/ui'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
@@ -53,9 +53,8 @@ export const Ads = ({ donationAlertsLink, className }: AdsProps) => {
                                     title: t('connect-bot-bth') ?? '',
                                     children: (
                                         <span className={styles.toastText}>
-                                            {t('connect-bot-text-1')}
-                                            <CopiedText>Urbinholt</CopiedText>
-                                            {t('connect-bot-text-2')}
+                                            {t('connect-bot-text')}
+                                            <LoginWithTwitch />
                                         </span>
                                     ),
                                 },

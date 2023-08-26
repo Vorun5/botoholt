@@ -79,6 +79,8 @@ export const CommandTable = ({
         )
     }
 
+    const sortCommands = commands.sort((a, b) => (a.aliases[0] < b.aliases[0] ? 1 : -1))
+
     return (
         <>
             <Modal
@@ -119,7 +121,7 @@ export const CommandTable = ({
                     <CellName>{t('commands.actions')}</CellName>
                 </div>
                 <div className={styles.commandsItems}>
-                    {commands.map((command, index) => (
+                    {sortCommands.map((command, index) => (
                         <CommandTableItem
                             key={command.function}
                             onToggle={() => {

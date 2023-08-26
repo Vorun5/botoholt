@@ -57,7 +57,6 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
     const onSave = () => {
         const link = daLink.replace(/\s+/g, '')
         const tokenLink = daTokenLink.replace(/\s+/g, '')
-        console.log(link, tokenLink)
 
         if (link.length === 0 || tokenLink.length === 0) {
             if (toast)
@@ -112,6 +111,10 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
                         tokenLink !== `https://www.donationalerts.com/widget/media?token=${daService.daToken}` ||
                         link !== daService.donationLink
                     ) {
+                        if (daService.daToken === '' && tokenLink === '') {
+                            hide()
+                            return
+                        }
                         toggleShowWarning()
                         return
                     }
@@ -179,12 +182,12 @@ const DaModal = ({ isShown, hide }: DaModalProps) => {
     </>;
 }
 
-export const Donationalerts = ({ authData }: { authData: AdminAuth }) => {
+export const Donationalerts = ({ authData, isOpen }: { authData: AdminAuth; isOpen?: boolean }) => {
     const { mutate: toggleDaService, isLoading: isToggleLoading } = useToggleDaServiceMutation()
     const { t } = useTranslation()
     useDocumentTitle(t('admin-page.nav.integrations'))
 
-    const [daModalIsShown, toggleDaModalIsShow] = useModal()
+    const [daModalIsShown, toggleDaModalIsShow] = useModal(isOpen)
 
     return (
         <>
