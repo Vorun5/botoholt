@@ -13,4 +13,5 @@ export interface AdminAuth {
     created: string
     services: AdminServicesDto
     lang: AdminLang
+    isTwitchMod: boolean
 }

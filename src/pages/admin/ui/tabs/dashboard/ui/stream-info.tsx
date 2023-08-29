@@ -27,7 +27,7 @@ export const StreamInfo = ({ login }: { login: string }) => {
                         </CardTitle>
                     </CardExpanded>
                     <CardDescription>{t('admin-page.dashboard.stream.title')}</CardDescription>
-                    <span className={styles.streamInfoCardStreamTitle}>{streamer.channelInfo?.title}</span>
+                    <span className={styles.streamInfoCardStreamTitle}>{streamer.channelInfo.title}</span>
                 </>
             )}
         </Card>

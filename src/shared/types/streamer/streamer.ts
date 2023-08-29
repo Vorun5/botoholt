@@ -8,8 +8,8 @@ export interface Streamer {
     type: StreamerType
     image: string
     backgroundImage: string
-    streamInfo: StreamInfo | null
-    channelInfo: StreamInfo | null
+    channelInfo: StreamInfo
+    online: boolean
     description: string
     donationAlerts: string
     followers: number

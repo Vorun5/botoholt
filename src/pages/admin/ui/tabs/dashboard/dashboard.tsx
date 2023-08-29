@@ -25,7 +25,7 @@ export const Dashboard = ({ streamer }: DashboardProps) => {
             <ALPageHeader>
                 <span>{t('welcome')},</span> {streamer.name}
             </ALPageHeader>
-            <ModBotoholt />
+            {!streamer.isTwitchMod && <ModBotoholt />}
             <ALPageContent className={styles.pageContent}>
                 <Services services={streamer.services} />
                 <Emotes />

@@ -11,5 +11,6 @@ export const extractAdminAuth = (adminAuth: AdminAuthDto): AdminAuth => ({
     name: adminAuth.display_name,
     services: adminAuth.services,
     type: adminAuth.broadcaster_type,
-    lang: adminAuth.lang
+    lang: adminAuth.lang,
+    isTwitchMod: adminAuth.isTwitchMod,
 })

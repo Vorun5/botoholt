@@ -18,7 +18,8 @@ export const getAuthData = async () => {
                 da_api: false,
                 pubsub: false,
             },
-            lang: 'en'
+            lang: 'en',
+            isTwitchMod: false,
         }
 
         await new Promise((resolve) => setTimeout(resolve, 200))

@@ -9,8 +9,8 @@ export interface StreamerDto {
     broadcaster_type: StreamerType
     profile_image_url: string
     offline_image_url: string
-    streamInfo?: StreamInfoDto
-    channelInfo?: StreamInfoDto
+    channelInfo: StreamInfoDto
+    online: boolean
     description: string
     daLink: string
     followersCount: number

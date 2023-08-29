@@ -22,7 +22,7 @@ export const Streamers = () => {
                     <Avatar
                         image={streamer.image}
                         alt={streamer.name}
-                        isOnline={streamer.streamInfo !== null}
+                        isOnline={streamer.online}
                         size="60px"
                     />
                 </Link>

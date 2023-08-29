@@ -49,8 +49,6 @@ export const StreamerCard = ({
     const { t } = useTranslation()
     const [followers, degree] = getNumberFollowersAndDegree(streamer.followers)
 
-    const isOnline = streamer.streamInfo !== null
-
     const twitchUrl = `https://twitch.tv/${streamer.login}`
 
     let socialMedias: StreamerSocialMedia[] = [
@@ -84,7 +82,7 @@ export const StreamerCard = ({
                                         size="100%"
                                         image={streamer.image}
                                         alt={streamer.name}
-                                        isOnline={isOnline}
+                                        isOnline={streamer.online}
                                     />
                                 </div>
                                 <div className={styles.infoMain}>
@@ -114,14 +112,14 @@ export const StreamerCard = ({
                             <span className={styles.description}>{streamer.description}</span>
                         </div>
                         <div className={styles.status}>
-                            <span className={clsx(isOnline ? styles.statusOnline : styles.statusOffline)}>
-                                {isOnline ? t('streamer-card.online') : t('streamer-card.offline')}
+                            <span className={clsx(streamer.online ? styles.statusOnline : styles.statusOffline)}>
+                                {streamer.online ? t('streamer-card.online') : t('streamer-card.offline')}
                             </span>
                         </div>
-                        {!short && isOnline && (
+                        {!short && streamer.online && (
                             <>
-                                <span className={clsx(styles.streamTitle)}>{streamer.streamInfo?.title}</span>
-                                <span className={styles.category}>{streamer.streamInfo?.category}</span>
+                                <span className={clsx(styles.streamTitle)}>{streamer.channelInfo.title}</span>
+                                <span className={styles.category}>{streamer.channelInfo.category}</span>
                             </>
                         )}
                     </div>

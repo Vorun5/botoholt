@@ -22,7 +22,6 @@ export const useModal = (value?: boolean): [boolean, () => void, (value: boolean
         if (modals < 0) modals = 0
         if (modals > 0) document.body.classList.add('modal-show')
         if (modals === 0) document.body.classList.remove('modal-show')
-        console.log(modals)
     }
 
     const toggle = () => {

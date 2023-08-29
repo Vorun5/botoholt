@@ -3,8 +3,6 @@ import { MODE } from 'shared/mode'
 import { AdminLang } from 'shared/types'
 
 export const setBotLang = async (lang: AdminLang) => {
-    console.log(lang)
-
     if (MODE === 'dev.') {
         await new Promise((resolve) => setTimeout(resolve, 2000))
         return lang

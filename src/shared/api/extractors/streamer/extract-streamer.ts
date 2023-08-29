@@ -17,6 +17,6 @@ export const extractStreamer = (streamer: StreamerDto): Streamer => ({
         streamer.socialMedias && streamer.socialMedias.length
             ? extractStreamerSocialMedias(streamer.socialMedias)
             : null,
-    streamInfo: streamer.streamInfo ? extractStreamInfo(streamer.streamInfo) : null,
-    channelInfo: streamer.channelInfo ? extractStreamInfo(streamer.channelInfo) : null,
+    online: streamer.online,
+    channelInfo: extractStreamInfo(streamer.channelInfo),
 })
