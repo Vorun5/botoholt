@@ -1,6 +1,7 @@
 import { SVGProps, useRef, useState } from 'react'
 import { ArrowLeftIcon, ArrowRightIcon } from 'shared/assets/icons'
 import {
+    BoostyIcon,
     DiscordIcon,
     DonationAlertsIcon,
     FacebookIcon,
@@ -8,9 +9,12 @@ import {
     InstagramIcon,
     LinkIcon,
     OPGGIcon,
+    SoundcloudIcon,
+    SpotifyIcon,
     TelegramIcon,
     TwitchIcon,
     VkIcon,
+    XIcon,
     YouTubeIcon,
 } from 'shared/assets/icons/social'
 import { useElementSize } from 'shared/lib/hooks'
@@ -43,6 +47,16 @@ const getMediaProperty = (socialMedia: StreamerSocialMedia, props: SVGProps<SVGS
             return [styles.blue, <TelegramIcon title="Telegram" {...props} />]
         case 't':
             return [styles.blue, <TelegramIcon title="Telegram" {...props} />]
+        case 'x':
+            return [styles.black, <XIcon title="X" {...props} />]
+        case 'twitter':
+            return [styles.black, <XIcon title="X" {...props} />]
+        case 'boosty':
+            return [styles.orange, <BoostyIcon title="Boosty" {...props} />]
+        case 'soundcloud':
+            return [styles.orange, <SoundcloudIcon title="Soundcloud" {...props} />]
+        case 'spotify':
+            return [styles.black, <SpotifyIcon title="Spotify" {...props} />]
         default:
             return [styles.blue, <LinkIcon title="Link" {...props} />]
     }
