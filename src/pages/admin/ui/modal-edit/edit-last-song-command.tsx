@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { isEqual } from 'underscore'
 
 import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
-import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
+import { EditCommandWrapper } from './edit-command-wrapper'
 import { GeneralSettings } from './general-settings'
 import { ResponseScripts } from './response-scripts'
 
@@ -33,7 +33,7 @@ export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps)
                 shazamAnswers: {
                     success: {
                         ...command.answers.shazamAnswers.success,
-                        answers: getAnswers(daSuccess, 'daSuccess'),
+                        answers: getAnswers(shazamSuccess, 'daSuccess'),
                     },
                     failure: {
                         ...command.answers.shazamAnswers.failure,
@@ -53,7 +53,7 @@ export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps)
     }
 
     return (
-        <CommandEditModalWrapper
+        <EditCommandWrapper
             commandsType="default"
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
@@ -94,6 +94,6 @@ export const EditLastSongCommand = ({ command, hide }: EditLastSongCommandProps)
                 variables={command.answers.shazamAnswers.failure.variables}
                 setAnswers={(newAnswers) => setShazamFailure(newAnswers)}
             />
-        </CommandEditModalWrapper>
+        </EditCommandWrapper>
     )
 }

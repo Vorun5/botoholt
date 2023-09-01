@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { isEqual } from 'underscore'
 
 import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
-import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandNameSetting, getCommandName } from './command-name-setting'
+import { EditCommandWrapper } from './edit-command-wrapper'
 import { GeneralSettings } from './general-settings'
 import { ResponseScripts } from './response-scripts'
 
@@ -36,7 +36,7 @@ export const EditRepeatCommand = ({ command, hide }: EditRepeatCommandProps) => 
     const variables: string[] = []
 
     return (
-        <CommandEditModalWrapper
+        <EditCommandWrapper
             commandsType="custom"
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
@@ -52,12 +52,12 @@ export const EditRepeatCommand = ({ command, hide }: EditRepeatCommandProps) => 
             <CommandNameSetting commands={commands} setCommands={(newCommands) => setCommands(newCommands)} />
             <ResponseScripts />
             <AnswersSetting
-                title={'Ответы'}
+                title={t('edit-commands.titles.answers')}
                 titleStyle="green"
                 answers={answers}
                 variables={variables}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
-        </CommandEditModalWrapper>
+        </EditCommandWrapper>
     )
 }

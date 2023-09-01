@@ -241,7 +241,7 @@
 
     &Variables {
         overflow-x: scroll;
-
+        padding-bottom: 1rem;
 
         &Header {
             min-width: 600px;
@@ -262,7 +262,7 @@
     &Variable {
         display: flex;
         min-width: 600px;
-        
+
         &Description {
             flex: 1;
             padding: 16px;

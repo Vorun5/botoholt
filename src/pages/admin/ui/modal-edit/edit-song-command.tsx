@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { isEqual } from 'underscore'
 
 import { AnswersSetting, getAnswers, getAnswersWithId } from './answers-setting'
-import { CommandEditModalWrapper } from './command-edit-modal-wrapper'
 import { CommandsSetting } from './commands-setting'
+import { EditCommandWrapper } from './edit-command-wrapper'
 import { GeneralSettings } from './general-settings'
 import { ResponseScripts } from './response-scripts'
 
@@ -53,7 +53,7 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
     }
 
     return (
-        <CommandEditModalWrapper
+        <EditCommandWrapper
             commandsType="default"
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
@@ -93,6 +93,6 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
                 variables={command.answers.daAnswers.success.variables}
                 setAnswers={(newAnswers) => setDaSuccess(newAnswers)}
             />
-        </CommandEditModalWrapper>
+        </EditCommandWrapper>
     )
 }

@@ -6,15 +6,18 @@ import { AllPossibleCustomCommandType } from 'shared/types'
 import { Button, ButtonText, Modal, WarningModal } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
+import { CommandContentWrapper } from './command-content-wrapper'
+
 import styles from './modal-edit.module.scss'
 interface AddCommandWrapper {
     hide: () => void
     getNewCommand: () => null | AllPossibleCustomCommandType
     children?: ReactNode
     commandName: string
+    variables: string[]
 }
 
-export const AddCommandWrapper = ({ hide, getNewCommand, children, commandName }: AddCommandWrapper) => {
+export const AddCommandWrapper = ({ hide, getNewCommand, children, commandName, variables }: AddCommandWrapper) => {
     const { t } = useTranslation()
     const [_, toggleModal, setModal] = useModal()
     useEffect(() => {
@@ -131,10 +134,10 @@ export const AddCommandWrapper = ({ hide, getNewCommand, children, commandName }
                         <ButtonText>{t('add-command.save-command')}</ButtonText>
                     </Button>
                 }
-                headerDivider
+                headerDivider={variables.length === 0}
                 expandedWidth
             >
-                {children}
+                <CommandContentWrapper variables={variables}>{children}</CommandContentWrapper>
             </Modal>
         </>
     )

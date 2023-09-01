@@ -31,9 +31,15 @@ export const AddCustomCommand = ({ hide }: AddCustomCommadProps) => {
 
         return newCustomCommand
     }
+    const variables = ['_userName']
 
     return (
-        <AddCommandWrapper hide={hide} getNewCommand={getNewCommand} commandName={t('bot.commands.custom')}>
+        <AddCommandWrapper
+            hide={hide}
+            getNewCommand={getNewCommand}
+            commandName={t('bot.commands.custom')}
+            variables={variables}
+        >
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}
@@ -46,7 +52,7 @@ export const AddCustomCommand = ({ hide }: AddCustomCommadProps) => {
                 title={t('edit-commands.titles.answers')}
                 titleStyle="green"
                 answers={answers}
-                variables={['_userName']}
+                variables={variables}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
         </AddCommandWrapper>

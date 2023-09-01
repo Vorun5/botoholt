@@ -31,9 +31,15 @@ export const AddRepeatCommand = ({ hide }: AddRepeatCommadProps) => {
 
         return newCustomCommand
     }
+    const variables: string[] = []
 
     return (
-        <AddCommandWrapper hide={hide} getNewCommand={getNewCommand} commandName={t('bot.commands.repeat')}>
+        <AddCommandWrapper
+            hide={hide}
+            getNewCommand={getNewCommand}
+            commandName={t('bot.commands.repeat')}
+            variables={variables}
+        >
             <GeneralSettings
                 enabled={enabled}
                 cooldown={cooldown}
@@ -46,7 +52,7 @@ export const AddRepeatCommand = ({ hide }: AddRepeatCommadProps) => {
                 title={t('edit-commands.titles.answers')}
                 titleStyle="green"
                 answers={answers}
-                variables={['_userName']}
+                variables={variables}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
         </AddCommandWrapper>
