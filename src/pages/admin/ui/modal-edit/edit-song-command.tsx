@@ -58,6 +58,11 @@ export const EditSongCommand = ({ command, hide }: EditSongCommandProps) => {
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
             hide={hide}
+            variables={[
+                ...command.answers.shazamAnswers.success.variables,
+                ...command.answers.shazamAnswers.failure.variables,
+                ...command.answers.daAnswers.success.variables,
+            ]}
         >
             <GeneralSettings
                 enabled={enabled}

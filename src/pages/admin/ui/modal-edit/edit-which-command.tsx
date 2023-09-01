@@ -51,6 +51,7 @@ export const EditWhichCommand = ({ command, hide }: EditWhichCommandProps) => {
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
             hide={hide}
+            variables={[...command.answers.daAnswers.success.variables, ...command.answers.daAnswers.failure.variables]}
         >
             <GeneralSettings
                 enabled={enabled}

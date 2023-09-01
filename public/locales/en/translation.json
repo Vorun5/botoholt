@@ -171,6 +171,7 @@
             "text-3": "Therefore, we do not recommend using multiple identical variables in the same reply, otherwise the message may be cut off (maximum length of a message in twitch chat is 500 characters)",
             "title": "Response Scenarios"
         },
+        "settings": "Settings",
         "title": "Editing",
         "titles": {
             "answers": "Answers",
@@ -185,6 +186,7 @@
             "which-faliure": "Responses when determining the place in songs queue is unsuccessful",
             "which-success": "Responses for successfully locating a place in songs queue"
         },
+        "variables": "Variables",
         "warning": {
             "text": "Are you sure you want to exit without saving your changes?",
             "title": "You didn't save your changes!"
@@ -293,6 +295,51 @@
     "try-again": "Something be wrong. Try again",
     "variables": "Variables",
     "variables-description": "To use just click on the desired variable or write by hand",
+    "variables-list": {
+        "_bholtLink": {
+            "description": "URL link to Botoholt",
+            "result": "bho.lt/urbinholt"
+        },
+        "_lastSong": {
+            "description": "Last song name",
+            "result": "Crystal Castles – Baptism"
+        },
+        "_mediaLink": {
+            "description": "Song URL",
+            "result": "youtu.be/ru1LC9lW20Q"
+        },
+        "_queueDuration": {
+            "description": "Song queue duration (hours:minutes:seconds)",
+            "result": "01:30:22"
+        },
+        "_queueLength": {
+            "description": "Number of songs in the queue",
+            "result": "27"
+        },
+        "_requestedBy": {
+            "description": "The username of who ordered the song",
+            "result": "montagerr_"
+        },
+        "_songName": {
+            "description": "Name of the song",
+            "result": "The Legendary Pink Dots - Just a Lifetime"
+        },
+        "_songsInQueue": {
+            "description": "Places in the song queue",
+            "result": "2, 3, 5, 9"
+        },
+        "_timeToNearestSong": {
+            "description": "Time to nearest song (~hours:minutes:seconds)",
+            "result": "00:09:32"
+        },
+        "_userName": {
+            "description": "Username",
+            "result": "Botoholt"
+        },
+        "description": "Description",
+        "name": "Name",
+        "result": "Example"
+    },
     "welcome": "Welcome",
     "yes": "Yes"
 }

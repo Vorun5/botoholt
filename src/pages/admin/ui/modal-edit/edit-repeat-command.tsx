@@ -33,12 +33,15 @@ export const EditRepeatCommand = ({ command, hide }: EditRepeatCommandProps) => 
         return newCommand
     }
 
+    const variables: string[] = []
+
     return (
         <CommandEditModalWrapper
             commandsType="custom"
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
             hide={hide}
+            variables={variables}
         >
             <GeneralSettings
                 enabled={enabled}
@@ -52,7 +55,7 @@ export const EditRepeatCommand = ({ command, hide }: EditRepeatCommandProps) => 
                 title={'Ответы'}
                 titleStyle="green"
                 answers={answers}
-                variables={[]}
+                variables={variables}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
         </CommandEditModalWrapper>

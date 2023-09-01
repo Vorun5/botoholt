@@ -179,7 +179,7 @@
         &Field {
             &Container {
                 width: calc(100% - 400px - 16px);
-                
+
                 &NoVariables {
                     width: 100%;
                 }
@@ -225,11 +225,63 @@
         margin: 0 auto;
     }
 
-    &Types { 
+    &Types {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         gap: 1rem;
         justify-content: center;
+    }
+}
+
+.editCommand {
+    &Nav {
+        margin: 1rem 0 2.5rem 0;
+    }
+
+    &Variables {
+        overflow-x: scroll;
+
+
+        &Header {
+            min-width: 600px;
+            display: flex;
+            background-color: var(--bh-primary-background-color);
+            border-radius: 5px;
+
+            & span {
+                flex: 1;
+                padding: 16px;
+                color: var(--bh-text-color);
+                font-size: var(--bh-text-size);
+                font-weight: bold;
+            }
+        }
+    }
+
+    &Variable {
+        display: flex;
+        min-width: 600px;
+        
+        &Description {
+            flex: 1;
+            padding: 16px;
+            color: var(--bh-text-color);
+            font-size: var(--bh-small-text-size);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        &Name {
+            color: var(--bh-orange);
+        }
+    }
+
+    @media (min-width: 800px) {
+        &Variable {
+            &Description {
+                font-size: var(--bh-text-size);
+            }
+        }
     }
 }

@@ -33,12 +33,15 @@ export const EditCustomCommand = ({ command, hide }: EditCustomCommandProps) => 
         return newCommand
     }
 
+    const variables = ['_userName']
+
     return (
         <CommandEditModalWrapper
             commandsType="custom"
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
             hide={hide}
+            variables={variables}
         >
             <GeneralSettings
                 enabled={enabled}
@@ -52,7 +55,7 @@ export const EditCustomCommand = ({ command, hide }: EditCustomCommandProps) => 
                 title={'Ответы'}
                 titleStyle="green"
                 answers={answers}
-                variables={['_userName']}
+                variables={variables}
                 setAnswers={(newAnswers) => setAnswers(newAnswers)}
             />
         </CommandEditModalWrapper>

@@ -51,6 +51,7 @@ export const EditQueueCommand = ({ command, hide }: EditQueueCommandProps) => {
             commandName={t(command.function)}
             getNewCommand={getNewCommand}
             hide={hide}
+            variables={[...command.answers.daAnswers.success.variables, ...command.answers.daAnswers.failure.variables]}
         >
             <GeneralSettings
                 enabled={enabled}

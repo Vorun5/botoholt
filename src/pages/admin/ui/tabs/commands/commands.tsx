@@ -3,8 +3,7 @@ import { useAdminCommandsQuery, useAdminCustomCommandsQuery } from 'entities/com
 import { AdminServicesDto } from 'shared/api'
 import { AddIcon } from 'shared/assets/icons'
 import { useDocumentTitle, useModal } from 'shared/lib/hooks'
-import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField } from 'shared/ui'
-import clsx from 'clsx'
+import { Button, ButtonIcon, ButtonText, ErrorMessage, Loading, SearchField, Tab, Tabs } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
 import { ALPageContent, ALPageHeader } from '../../admin-layout/admin-layout'
@@ -69,22 +68,14 @@ export const Commands = ({ services }: { services: AdminServicesDto }) => {
         <>
             <ALPageHeader>{t('admin-page.nav.commands')}</ALPageHeader>
             <ALPageContent className={styles.pageContent}>
-                <div className={styles.tabs}>
-                    <button
-                        type="button"
-                        className={clsx(styles.tab, tab === 'default' && styles.tabFocus)}
-                        onClick={() => setTab('default')}
-                    >
+                <Tabs>
+                    <Tab isFocus={tab === 'default'} onClick={() => setTab('default')}>
                         {t('commands.default-coommands')}
-                    </button>
-                    <button
-                        type="button"
-                        className={clsx(styles.tab, tab === 'custom' && styles.tabFocus)}
-                        onClick={() => setTab('custom')}
-                    >
+                    </Tab>
+                    <Tab isFocus={tab === 'custom'} onClick={() => setTab('custom')}>
                         {t('commands.custom-coomands')}
-                    </button>
-                </div>
+                    </Tab>
+                </Tabs>
                 <div className={styles.commands}>
                     <div className={styles.commandsHeader}>
                         <div className={styles.field}>

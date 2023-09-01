@@ -3,7 +3,8 @@ import { useAdminCommandsMutation, useAdminCustomCommandsMutation } from 'entiti
 import D from 'shared/assets/emotes/D.png'
 import { useModal, useToast } from 'shared/lib/hooks'
 import { AllPossibleCommandType } from 'shared/types'
-import { Button, ButtonText, Modal, WarningModal } from 'shared/ui'
+import { Button, ButtonText, Modal, Tab, Tabs, WarningModal } from 'shared/ui'
+import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 
 import styles from './modal-edit.module.scss'
@@ -13,6 +14,7 @@ interface CommandEditModalWrapperProps {
     children?: ReactNode
     commandName: string
     commandsType: 'default' | 'custom'
+    variables: string[]
 }
 
 export const CommandEditModalWrapper = ({
@@ -21,6 +23,7 @@ export const CommandEditModalWrapper = ({
     children,
     commandName,
     commandsType,
+    variables,
 }: CommandEditModalWrapperProps) => {
     const { t } = useTranslation()
     const [_, toggleModal, setModal] = useModal()
@@ -101,7 +104,11 @@ export const CommandEditModalWrapper = ({
         }
     }, [isSuccess, isError])
 
+    const [tab, setTab] = useState<'settings' | 'variables'>('settings')
     const [showWarning, toggleShowWarning] = useModal()
+
+    const uniqueVariables = [...new Set([...variables])]
+    const variableListIsNotEmpty = variables.length !== 0
 
     return (
         <>
@@ -145,10 +152,50 @@ export const CommandEditModalWrapper = ({
                         <ButtonText>{t('save-changes')}</ButtonText>
                     </Button>
                 }
-                headerDivider
+                headerDivider={!variableListIsNotEmpty}
                 expandedWidth
             >
-                {children}
+                {variableListIsNotEmpty && (
+                    <div className={styles.editCommandNav}>
+                        <Tabs line>
+                            <Tab isFocus={tab === 'settings'} onClick={() => setTab('settings')}>
+                                {t('edit-commands.settings')}
+                            </Tab>
+                            <Tab isFocus={tab === 'variables'} onClick={() => setTab('variables')}>
+                                {t('edit-commands.variables')}
+                            </Tab>
+                        </Tabs>
+                    </div>
+                )}
+                {tab === 'settings' ? (
+                    children
+                ) : (
+                    <div className={styles.editCommandVariables}>
+                        <div className={styles.editCommandVariablesHeader}>
+                            <span>{t('variables-list.name')}</span>
+                            <span>{t('variables-list.description')}</span>
+                            <span>{t('variables-list.result')}</span>
+                        </div>
+                        {uniqueVariables.map((variable) => (
+                            <div key={variable} className={styles.editCommandVariable}>
+                                <span
+                                    className={clsx(
+                                        styles.editCommandVariableDescription,
+                                        styles.editCommandVariableName,
+                                    )}
+                                >
+                                    {variable}
+                                </span>
+                                <span className={styles.editCommandVariableDescription}>
+                                    {t(`variables-list.${variable}.description`)}
+                                </span>
+                                <span className={styles.editCommandVariableDescription}>
+                                    {t(`variables-list.${variable}.result`)}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </Modal>
         </>
     )

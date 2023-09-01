@@ -171,6 +171,7 @@
             "text-3": "Поэтому мы не рекомендуем использовать несколько одинаковых переменных в одном ответе, иначе сообщение может обрезаться (максимальнная длина сообщения в twitch чате - 500 символов)",
             "title": "Сценарии ответов"
         },
+        "settings": "Настройки",
         "title": "Редактирование",
         "titles": {
             "answers": "Ответы",
@@ -185,6 +186,7 @@
             "which-faliure": "Ответы для неуспешного определения места в очереди песен",
             "which-success": "Ответы для успешного определения места в очереди песен"
         },
+        "variables": "Переменные",
         "warning": {
             "text": "Вы точно хотите выйти не сохранив изменения?",
             "title": "Вы не сохранили изменения!"
@@ -293,22 +295,22 @@
     "try-again": "Что-то не так. Попробуйте еще раз",
     "variables": "Переменные",
     "variables-description": "Чтобы использовать просто нажмите на нужную переменную или впишите её руками",
-    "varubales-list": {
+    "variables-list": {
         "_bholtLink": {
             "description": "URL ссылка на Botoholt",
-            "result": "bho.lt/{{streamerName}}"
+            "result": "bho.lt/urbinholt"
         },
         "_lastSong": {
             "description": "Название последней песни",
-            "result": "1:30:22"
+            "result": "Crystal Castles – Baptism"
         },
         "_mediaLink": {
             "description": "URL ссылка на песню",
-            "result": "youtu.be/dQw4w9WgXcQ"
+            "result": "youtu.be/ru1LC9lW20Q"
         },
         "_queueDuration": {
             "description": "Длительность очереди песен (часы:минуты:секунды)",
-            "result": "1:30:22"
+            "result": "01:30:22"
         },
         "_queueLength": {
             "description": "Количество песен в очереди",
@@ -327,12 +329,12 @@
             "result": "2, 3, 5, 9"
         },
         "_timeToNearestSong": {
-            "description": "Время до ближайшей песни",
-            "result": "31 мин"
+            "description": "Время до ближайшей песни (~часы:минуты:секунды)",
+            "result": "00:09:32"
         },
         "_userName": {
             "description": "Имя пользователя",
-            "result": "Enderman"
+            "result": "Botoholt"
         },
         "description": "Описание",
         "name": "Название",
