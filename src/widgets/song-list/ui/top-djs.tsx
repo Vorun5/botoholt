@@ -2,37 +2,44 @@ import { useEffect, useRef, useState } from 'react'
 import { SONG_LIMIT, useStreamerTopDjsQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { Period } from 'shared/types'
-import { ErrorMessage, Loading, Pagination, SongDataList, TopListItem } from 'shared/ui'
+import { ErrorMessage, Loading, Pagination, SearchField, SongDataList, TopListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
+import { debounce } from 'underscore'
 
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 
 export const TopDjs = ({ period, from, login }: { period: Period; login: string; from: number }) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
+    const [searchStr, setSearchStr] = useState('')
+
+    useEffect(() => {
+        setSearchParams({ page: '1' })
+    }, [searchStr])
+
     const {
         data: topDjs,
         isLoading,
         isError,
         isSuccess,
         fetchStatus,
-    } = useStreamerTopDjsQuery({ login, period, from, total: SONG_LIMIT })
+    } = useStreamerTopDjsQuery({ login, period, from, limit: SONG_LIMIT, by: searchStr })
 
-    const [topDjsList, setTopDjsList] = useState(isSuccess ? topDjs.list : [])
-    const [searchStr, setSearchStr] = useState('')
     const ref = useRef<HTMLDivElement>(null)
 
-    const search = (str: string) => {
+    const searchBySender = (sender: string) => {
         if (!isSuccess) return
-        setSearchStr(str)
-        setTopDjsList(topDjs.list.filter((dj) => dj.name.toLowerCase().includes(str.toLowerCase())))
+        setSearchStr(sender)
     }
+
+    const handlerSearchBySender = debounce((sender: string) => {
+        setSearchStr(sender)
+    }, 1000)
 
     useEffect(() => {
         if (!isSuccess) return
-        setTopDjsList(topDjs.list)
-        search(searchStr)
+        searchBySender(searchStr)
     }, [topDjs])
 
     const changePage = (page: number) => {
@@ -43,7 +50,8 @@ export const TopDjs = ({ period, from, login }: { period: Period; login: string;
     return (
         <>
             <div ref={ref} />
-            <SongDataList title={t('streamer-page.tab-titles.top-djs')} searchFun={search}>
+            <SongDataList title={t('streamer-page.tab-titles.top-djs')}>
+                <SearchField onChange={handlerSearchBySender} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && topDjs.list.length === 0 && (
@@ -56,9 +64,9 @@ export const TopDjs = ({ period, from, login }: { period: Period; login: string;
                 )}
                 {isSuccess && (
                     <>
-                        {topDjsList.map((dj, index) => (
+                        {topDjs.list.map((dj, index) => (
                             <TopListItem
-                                key={index + 1 + topDjs.from}
+                                key={dj.name}
                                 extraInfo={dj.amount.toString()}
                                 text={dj.name}
                                 number={topDjs.list.findIndex((i) => i === dj) + 1 + topDjs.from}

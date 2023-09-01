@@ -16,13 +16,19 @@ const StreamerPageLogic = () => {
 
     const isDesktop = useMediaQuery('(min-width: 900px)')
     const isMobile = !isDesktop
-    
+
     return (
         <>
-            <PageContentExpanded>
-                {isLoading && <Loading />}
-                {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
-            </PageContentExpanded>
+            {isLoading && (
+                <PageContentExpanded>
+                    <Loading />
+                </PageContentExpanded>
+            )}
+            {isError && (
+                <PageContentExpanded>
+                    <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>
+                </PageContentExpanded>
+            )}
             {isSuccess && (
                 <>
                     {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} from={from} />}

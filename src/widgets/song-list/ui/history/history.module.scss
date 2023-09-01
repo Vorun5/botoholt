@@ -1,0 +1,12 @@
+.search {
+    position: relative;
+    top: 2px;
+
+    &Container {
+        display: flex;
+        row-gap: 1rem;
+        column-gap: 0.5rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}

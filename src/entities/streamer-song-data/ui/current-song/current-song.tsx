@@ -78,7 +78,8 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
     }, [streamerName])
 
     if (!isSuccess) return <></>
-    const preview = getVideoPreview(queue.link ?? '')
+
+    const preview = getVideoPreview(queue.link!)
 
     return (
         <>
@@ -96,7 +97,7 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
                     className,
                 )}
             >
-                {preview && (
+                {preview !== null && (
                     <a className={styles.songPreview} href={queue.link ?? ''} target="_blank">
                         <img src={preview} alt="" />
                     </a>

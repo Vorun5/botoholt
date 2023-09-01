@@ -55,7 +55,9 @@ export const LastOrderSong = ({ login }: { login: string }) => {
     } = useStreamerHistoryQuery({
         login,
         from: 0,
-        total: 1,
+        limit: 1,
+        by: '',
+        name: '',
     })
 
     useEffect(() => {

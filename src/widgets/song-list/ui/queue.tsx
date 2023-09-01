@@ -4,7 +4,7 @@ import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { formatTime } from 'shared/lib/helpers'
 import { StreamerQueueSong } from 'shared/types'
-import { ErrorMessage, Loading, SongDataList, SongListItem } from 'shared/ui'
+import { ErrorMessage, Loading, SearchField, SongDataList, SongListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 
 import { getYtPlaylistLink } from '../lib'
@@ -61,8 +61,8 @@ export const Queue = ({ login }: { login: string }) => {
                         {time !== -1 ? ` ~${formatTime(time, t)}` : ''}
                     </>
                 }
-                searchFun={(str) => setSearchStr(str)}
             >
+                <SearchField value={searchStr} onChange={(str) => setSearchStr(str)} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && queue.queue.length === 0 && (

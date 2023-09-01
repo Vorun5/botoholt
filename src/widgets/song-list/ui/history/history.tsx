@@ -4,19 +4,28 @@ import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { capitalize } from 'shared/lib/helpers'
 import i18n from 'shared/lib/i18n/i18n'
-import { StreamerHistorySong } from 'shared/types'
-import { ErrorMessage, Loading, Pagination } from 'shared/ui'
+import { Dropdown, ErrorMessage, Loading, Pagination, SearchField } from 'shared/ui'
 import { SongDataList, SongListItem } from 'shared/ui/song-data-list'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
+import { debounce } from 'underscore'
 
-import { getYtPlaylistLink } from '../lib'
-import { ListStatusNotification } from './list-status-notification/list-status-notification'
+import { getYtPlaylistLink } from '../../lib'
+import { ListStatusNotification } from '../list-status-notification/list-status-notification'
+
+import styles from './history.module.scss'
 
 export const History = ({ login: streamerName, from }: { login: string; from: number }) => {
     const login = streamerName.toLocaleLowerCase()
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
+    const [searchStr, setSearchStr] = useState('')
+    const [searchType, setSearchType] = useState<'by-name' | 'by-sender'>('by-name')
+
+    useEffect(() => {
+        setSearchParams({ page: '1' })
+    }, [searchType, searchStr])
+
     const {
         data: history,
         isSuccess,
@@ -26,30 +35,27 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
     } = useStreamerHistoryQuery({
         login,
         from: from,
-        total: SONG_LIMIT,
+        limit: SONG_LIMIT,
+        name: searchType === 'by-name' ? searchStr : '',
+        by: searchType === 'by-sender' ? searchStr : '',
     })
 
-    const [historyList, setHistoryList] = useState<StreamerHistorySong[]>(isSuccess ? history.list : [])
-    const ytPlaylistLink = getYtPlaylistLink(historyList.map((song) => song.link))
-    const [searchStr, setSearchStr] = useState('')
+    const ytPlaylistLink = getYtPlaylistLink(isSuccess ? history.list.map((song) => song.link) : [])
+
     const ref = useRef<HTMLDivElement>(null)
 
-    const search = (str: string) => {
+    const searchByNameOrSender = (str: string) => {
         if (!isSuccess) return
         setSearchStr(str)
-        setHistoryList(
-            history.list.filter(
-                (song) =>
-                    song.name.toLowerCase().includes(str.toLowerCase()) ||
-                    song.sender.toLowerCase().includes(str.toLowerCase()),
-            ),
-        )
     }
+
+    const handlerSearchByNameOrSender = debounce((searchStr: string) => {
+        setSearchStr(searchStr)
+    }, 1000)
 
     useEffect(() => {
         if (!isSuccess) return
-        setHistoryList(history.list)
-        search(searchStr)
+        searchByNameOrSender(searchStr)
     }, [history])
 
     const changePage = (page: number) => {
@@ -70,8 +76,19 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
                         t('streamer-page.tab-titles.history')
                     )
                 }
-                searchFun={search}
             >
+                <div className={styles.searchContainer}>
+                    <div className={styles.search}>
+                        <SearchField onChange={handlerSearchByNameOrSender} />
+                    </div>
+                    <Dropdown
+                        items={['Search by name', 'Search by sender']}
+                        selectedItem={searchType === 'by-name' ? 'Search by name' : 'Search by sender'}
+                        onSelect={(type) => {
+                            setSearchType(type === 'Search by name' ? 'by-name' : 'by-sender')
+                        }}
+                    />
+                </div>
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && history.list.length === 0 && (
@@ -84,7 +101,7 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
                 )}
                 {isSuccess && (
                     <>
-                        {historyList.map((song, index) => {
+                        {history.list.map((song, index) => {
                             const date = new Date(song.date)
                             const formatDateWeek = new Intl.DateTimeFormat(i18n.language, {
                                 weekday: 'short',
@@ -98,7 +115,7 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
 
                             return (
                                 <SongListItem
-                                    key={index + 1 + history.from}
+                                    key={song.id}
                                     songName={song.name}
                                     songLink={song.link}
                                     sender={song.sender}
