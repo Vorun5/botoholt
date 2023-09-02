@@ -5,6 +5,24 @@ import { useLocation, useSearchParams } from 'react-router-dom'
 
 export type StreamerPageTab = 'queue' | 'history' | 'top-songs' | 'top-djs'
 
+const getNumberFromSearchParam = (searchParam: string | null) => {
+    let num = -1
+
+    if (searchParam !== null) {
+        try {
+            num = Number.parseInt(searchParam)
+            if (Number.isNaN(num) || num < 1) {
+                return -1
+            }
+        } catch {
+            console.log('Failed to parse number')
+            return -1
+        }
+    }
+
+    return num
+}
+
 export const useSongListNav = (
     login: string,
     baseUrl?: string,
@@ -13,6 +31,7 @@ export const useSongListNav = (
     const [tab, setTab] = useState<StreamerPageTab>('queue')
     const [period, setPeriod] = useState<Period>('week')
     const [page, setPage] = useState(-1)
+    const [limit, setLimit] = useState(-1)
     const [searchParams, _] = useSearchParams()
 
     const getStreamerPageTab = useCallback(() => {
@@ -38,22 +57,11 @@ export const useSongListNav = (
     }, [searchParams])
 
     const getPageFromSearchParams = useCallback(() => {
-        const pageParam = searchParams.get('page')
-        let pageValue = -1
+        return getNumberFromSearchParam(searchParams.get('page'))
+    }, [searchParams])
 
-        if (pageParam !== null) {
-            try {
-                pageValue = Number.parseInt(pageParam)
-                if (Number.isNaN(pageValue) || pageValue < 1) {
-                    return -1
-                }
-            } catch {
-                console.log('Failed to parse page number')
-                return -1
-            }
-        }
-
-        return pageValue
+    const getLimitFromSearchParams = useCallback(() => {
+        return getNumberFromSearchParam(searchParams.get('limit'))
     }, [searchParams])
 
     useEffect(() => {
@@ -67,6 +75,10 @@ export const useSongListNav = (
     useEffect(() => {
         setPage(getPageFromSearchParams())
     }, [getPageFromSearchParams, searchParams])
+
+    useEffect(() => {
+        setLimit(getLimitFromSearchParams())
+    }, [getLimitFromSearchParams, searchParams])
 
     return {
         tab,

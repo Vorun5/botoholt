@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { SONG_LIMIT, useStreamerTopSongQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { HyperinkIcon } from 'shared/assets/icons'
@@ -17,10 +17,6 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
     const [searchStr, setSearchStr] = useState('')
-    
-    useEffect(() => {
-        setSearchParams({ page: '1' })
-    }, [searchStr])
 
     const {
         data: topSongs,
@@ -39,19 +35,12 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const searchByName = (name: string) => {
-        if (!isSuccess) return
-        setSearchStr(name)
-    }
-
     const handlerSearchByName = debounce((name: string) => {
+        if (from !== 0) {
+            setSearchParams({ page: '1' })
+        }
         setSearchStr(name)
     }, 1000)
-
-    useEffect(() => {
-        if (!isSuccess) return
-        searchByName(searchStr)
-    }, [topSongs])
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)

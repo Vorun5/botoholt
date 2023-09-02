@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
@@ -22,10 +22,6 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
     const [searchStr, setSearchStr] = useState('')
     const [searchType, setSearchType] = useState<'by-name' | 'by-sender'>('by-name')
 
-    useEffect(() => {
-        setSearchParams({ page: '1' })
-    }, [searchType, searchStr])
-
     const {
         data: history,
         isSuccess,
@@ -44,19 +40,12 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const searchByNameOrSender = (str: string) => {
-        if (!isSuccess) return
-        setSearchStr(str)
-    }
-
     const handlerSearchByNameOrSender = debounce((searchStr: string) => {
+        if (from !== 0) {
+            setSearchParams({ page: '1' })
+        }
         setSearchStr(searchStr)
     }, 1000)
-
-    useEffect(() => {
-        if (!isSuccess) return
-        searchByNameOrSender(searchStr)
-    }, [history])
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)

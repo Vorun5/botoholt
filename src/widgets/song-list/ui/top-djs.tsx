@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { SONG_LIMIT, useStreamerTopDjsQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { Period } from 'shared/types'
@@ -14,10 +14,6 @@ export const TopDjs = ({ period, from, login }: { period: Period; login: string;
     const [_, setSearchParams] = useSearchParams()
     const [searchStr, setSearchStr] = useState('')
 
-    useEffect(() => {
-        setSearchParams({ page: '1' })
-    }, [searchStr])
-
     const {
         data: topDjs,
         isLoading,
@@ -28,19 +24,12 @@ export const TopDjs = ({ period, from, login }: { period: Period; login: string;
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const searchBySender = (sender: string) => {
-        if (!isSuccess) return
-        setSearchStr(sender)
-    }
-
     const handlerSearchBySender = debounce((sender: string) => {
+        if (from !== 0) {
+            setSearchParams({ page: '1' })
+        }
         setSearchStr(sender)
     }, 1000)
-
-    useEffect(() => {
-        if (!isSuccess) return
-        searchBySender(searchStr)
-    }, [topDjs])
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
