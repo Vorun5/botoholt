@@ -35,6 +35,20 @@ interface CurrentSongProps {
     center?: boolean
 }
 
+const CurrentSongImg = ({ ytLink }: { ytLink: string }) => {
+    const preview = getVideoPreview(ytLink)
+
+    return (
+        <>
+            {preview && (
+                <a className={styles.songPreview} href={preview} target="_blank">
+                    <img src={preview} alt="" />
+                </a>
+            )}
+        </>
+    )
+}
+
 export const CurrentSong = ({ center = true, className, streamerName }: CurrentSongProps) => {
     const { t } = useTranslation()
     const login = streamerName.toLocaleLowerCase()
@@ -77,15 +91,13 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
         }
     }, [streamerName])
 
-    if (!isSuccess) return <></>
-
-    const preview = getVideoPreview(queue.link!)
-
     return (
         <>
-            <span className={styles.songStatus}>
-                {queue.isPlaying ? t('song-card.playing') : t('song-card.not-playing')}
-            </span>
+            {isSuccess && (
+                <span className={styles.songStatus}>
+                    {queue.isPlaying ? t('song-card.playing') : t('song-card.not-playing')}
+                </span>
+            )}
             <div
                 ref={songRef}
                 className={clsx(
@@ -97,44 +109,44 @@ export const CurrentSong = ({ center = true, className, streamerName }: CurrentS
                     className,
                 )}
             >
-                {preview !== null && (
-                    <a className={styles.songPreview} href={queue.link ?? ''} target="_blank">
-                        <img src={preview} alt="" />
-                    </a>
-                )}
-                <div className={styles.songInfo}>
-                    {queue.name === null ? (
-                        <span className={styles.songEmpty}>
-                            <img src={PoroSad} alt={'PoroSad'} className={styles.songEmptyEmote} />
-                            {t('song-card.empty')}
-                        </span>
-                    ) : (
-                        <div style={{ width: '100%' }}>
-                            <div className={styles.songNameContainer}>
-                                <img
-                                    src={queue.isPlaying ? danceEmote : PoroSad}
-                                    alt={queue.isPlaying ? 'Dance emote' : 'PoroSad'}
-                                    className={styles.songEmote}
-                                />
-                                <p>
-                                    <a
-                                        className={styles.songName}
-                                        href={
-                                            queue.link != null
-                                                ? queue!.link
-                                                : 'https://www.youtube.com/watch?v=UhvaUwtGyH4'
-                                        }
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        {queue.name}
-                                    </a>
-                                </p>
-                            </div>
-                            <CurrentSongExtraInfo song={queue} />
+                {isSuccess && (
+                    <>
+                        <CurrentSongImg ytLink={queue.link ?? ''}></CurrentSongImg>
+                        <div className={styles.songInfo}>
+                            {queue.name === null ? (
+                                <span className={styles.songEmpty}>
+                                    <img src={PoroSad} alt={'PoroSad'} className={styles.songEmptyEmote} />
+                                    {t('song-card.empty')}
+                                </span>
+                            ) : (
+                                <div style={{ width: '100%' }}>
+                                    <div className={styles.songNameContainer}>
+                                        <img
+                                            src={queue.isPlaying ? danceEmote : PoroSad}
+                                            alt={queue.isPlaying ? 'Dance emote' : 'PoroSad'}
+                                            className={styles.songEmote}
+                                        />
+                                        <p>
+                                            <a
+                                                className={styles.songName}
+                                                href={
+                                                    queue.link != null
+                                                        ? queue!.link
+                                                        : 'https://www.youtube.com/watch?v=UhvaUwtGyH4'
+                                                }
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                {queue.name}
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <CurrentSongExtraInfo song={queue} />
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
+                    </>
+                )}
             </div>
         </>
     )

@@ -6,22 +6,21 @@ export const useElementSize = <T extends HTMLElement>(elementRef?: RefObject<T>)
         height: 0,
     })
 
-    const listener = useCallback(
-        () =>
-            elementRef?.current &&
+    const listener = useCallback(() => {
+        if (elementRef?.current) {
             setElementSize({
                 width: elementRef.current.offsetWidth,
                 height: elementRef.current.offsetHeight,
-            }),
-        [elementRef],
-    )
-    
+            })
+        }
+    }, [elementRef])
+
     useEffect(() => {
         listener()
         window.addEventListener('resize', listener)
-        
+
         return () => window.removeEventListener('resize', listener)
     }, [])
-    
+
     return elementSize
 }
