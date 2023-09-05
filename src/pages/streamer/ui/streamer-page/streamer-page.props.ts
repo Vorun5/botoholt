@@ -6,4 +6,6 @@ export interface StreamerPageProps {
     from: number
     period: Period
     streamer: Streamer
+    name: string
+    by: string
 }

@@ -12,15 +12,17 @@ interface SongListProps {
     tab: StreamerPageTab
     period: Period
     from: number
+    by: string
+    name: string
 }
 
-export const SongList = ({ period, streamerName, from }: SongListProps) => {
+export const SongList = ({ period, streamerName, from, name, by }: SongListProps) => {
     const login = streamerName.toLocaleLowerCase()
-    
+
     return (
         <Routes>
             <Route path="/" element={<Queue login={login} />} />
-            <Route path="/h" element={<History login={streamerName} from={from} />} />
+            <Route path="/h" element={<History login={streamerName} from={from} name={name} by={by} />} />
             <Route path="/top/djs" element={<TopDjs period={period} from={from} login={login} />} />
             <Route path="/top/songs" element={<TopSongs period={period} from={from} login={login} />} />
         </Routes>

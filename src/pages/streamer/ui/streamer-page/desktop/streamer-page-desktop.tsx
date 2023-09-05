@@ -8,7 +8,7 @@ import { StreamerPageProps } from '../streamer-page.props'
 
 import styles from './streamer-page-desktop.module.scss'
 
-export const StreamerPageDesktop = ({ streamer, tab, period, from }: StreamerPageProps) => {
+export const StreamerPageDesktop = ({ streamer, tab, period, from, name, by }: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -28,7 +28,14 @@ export const StreamerPageDesktop = ({ streamer, tab, period, from }: StreamerPag
                     />
                     <div className={styles.content}>
                         <div className={styles.list}>
-                            <SongList tab={tab} period={period} streamerName={streamer.name} from={from} />
+                            <SongList
+                                tab={tab}
+                                period={period}
+                                streamerName={streamer.name}
+                                from={from}
+                                name={name}
+                                by={by}
+                            />
                         </div>
                     </div>
                 </div>

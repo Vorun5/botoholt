@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
@@ -15,12 +15,29 @@ import { ListStatusNotification } from '../list-status-notification/list-status-
 
 import styles from './history.module.scss'
 
-export const History = ({ login: streamerName, from }: { login: string; from: number }) => {
+export const History = ({
+    login: streamerName,
+    from,
+    by,
+    name,
+}: {
+    login: string
+    from: number
+    by: string
+    name: string
+}) => {
     const login = streamerName.toLocaleLowerCase()
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState('')
+    const [searchStr, setSearchStr] = useState(name)
     const [searchType, setSearchType] = useState<'by-name' | 'by-sender'>('by-name')
+
+    useEffect(() => {
+        if (!name && by) {
+            setSearchStr(by)
+            setSearchType('by-sender')
+        }
+    }, [])
 
     const {
         data: history,
@@ -32,8 +49,8 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
         login,
         from: from,
         limit: SONG_LIMIT,
-        name: searchType === 'by-name' ? searchStr : '',
-        by: searchType === 'by-sender' ? searchStr : '',
+        name: name,
+        by: by,
     })
 
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? history.list.map((song) => song.link) : [])
@@ -41,16 +58,33 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
     const ref = useRef<HTMLDivElement>(null)
 
     const handlerSearchByNameOrSender = debounce((searchStr: string) => {
-        if (from !== 0) {
-            setSearchParams({ page: '1' })
-        }
         setSearchStr(searchStr)
+        setSearchParams({ page: '1', ...getNewNameAndBySearchParams() })
     }, 1000)
+
+    const getNewNameAndBySearchParams = (): { name: string } | { by: string } | {} => {
+        if (!searchStr) return {}
+        return searchType === 'by-name' ? { name: searchStr } : { by: searchStr }
+    }
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams({ page: page.toString() })
+        setSearchParams({
+            page: page.toString(),
+            ...getNewNameAndBySearchParams(),
+        })
     }
+
+    // TODO: допилить после того как добавлю возможно менять limit
+    useEffect(() => {
+        if (!isSuccess) return
+        if (history.total - 1 < from) {
+            setSearchParams({
+                page: '1',
+                ...getNewNameAndBySearchParams(),
+            })
+        }
+    }, [history])
 
     return (
         <>
@@ -68,7 +102,7 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
             >
                 <div className={styles.searchContainer}>
                     <div className={styles.search}>
-                        <SearchField onChange={handlerSearchByNameOrSender} />
+                        <SearchField defaultValue={name ? name : by} onChange={handlerSearchByNameOrSender} />
                     </div>
                     <Dropdown
                         items={['Search by name', 'Search by sender']}

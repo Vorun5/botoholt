@@ -12,7 +12,7 @@ const StreamerPageLogic = () => {
     const { streamerName } = useParams()
     const login = (streamerName || '').toLocaleLowerCase()
     const { data: streamer, isLoading, isError, fetchStatus, isSuccess } = useStreamerQuery(login)
-    const { tab, period, from } = useSongListNav(login, `/${login}`)
+    const { tab, period, from, name, by } = useSongListNav(login, `/${login}`)
 
     const isDesktop = useMediaQuery('(min-width: 900px)')
     const isMobile = !isDesktop
@@ -31,8 +31,26 @@ const StreamerPageLogic = () => {
             )}
             {isSuccess && (
                 <>
-                    {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} from={from} />}
-                    {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} from={from} />}
+                    {isDesktop && (
+                        <StreamerPageDesktop
+                            tab={tab}
+                            period={period}
+                            streamer={streamer}
+                            from={from}
+                            name={name}
+                            by={by}
+                        />
+                    )}
+                    {isMobile && (
+                        <StreamerPageMobile
+                            tab={tab}
+                            period={period}
+                            streamer={streamer}
+                            from={from}
+                            name={name}
+                            by={by}
+                        />
+                    )}
                 </>
             )}
         </>

@@ -8,7 +8,7 @@ import { StreamerPageProps } from '../streamer-page.props'
 
 import styles from './streamer-page-mobile.module.scss'
 
-export const StreamerPageMobile = ({ streamer, tab, period, from }: StreamerPageProps) => {
+export const StreamerPageMobile = ({ streamer, tab, period, from, name, by }: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -25,7 +25,7 @@ export const StreamerPageMobile = ({ streamer, tab, period, from }: StreamerPage
                 login={streamer.login}
                 baseUrlForRedirect={`/${streamer.login}`}
             />
-            <SongList period={period} tab={tab} streamerName={streamer.name} from={from} />
+            <SongList period={period} tab={tab} streamerName={streamer.name} from={from} name={name} by={by} />
             <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
         </>
     )

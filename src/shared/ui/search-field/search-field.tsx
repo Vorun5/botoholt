@@ -8,10 +8,11 @@ interface SearchFieldProps {
     plasholder?: string
     name?: string
     value?: string
+    defaultValue?: string
     onChange: (searchString: string) => void
 }
 
-export const SearchField = ({ value, onChange, className, plasholder, name }: SearchFieldProps) => {
+export const SearchField = ({ value, onChange, className, plasholder, name, defaultValue }: SearchFieldProps) => {
     const { t } = useTranslation()
 
     return (
@@ -20,6 +21,7 @@ export const SearchField = ({ value, onChange, className, plasholder, name }: Se
                 className={clsx(className, styles.searchField)}
                 type="search"
                 name={name ?? 'search'}
+                defaultValue={defaultValue}
                 value={value}
                 placeholder={plasholder ?? t('search')!}
                 onChange={(event) => onChange(event.target.value)}

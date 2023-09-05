@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { SONG_LIMIT } from 'entities/streamer-song-data'
+import { clearStringFromSpaces } from 'shared/lib/helpers'
 import { ALL_AVAILABLE_PERIODS, Period } from 'shared/types'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
@@ -26,12 +27,14 @@ const getNumberFromSearchParam = (searchParam: string | null) => {
 export const useSongListNav = (
     login: string,
     baseUrl?: string,
-): { tab: StreamerPageTab; period: Period; page: number; from: number } => {
+): { tab: StreamerPageTab; period: Period; page: number; from: number; limit: number; by: string; name: string } => {
     const location = useLocation()
     const [tab, setTab] = useState<StreamerPageTab>('queue')
     const [period, setPeriod] = useState<Period>('week')
     const [page, setPage] = useState(-1)
     const [limit, setLimit] = useState(-1)
+    const [by, setBy] = useState('')
+    const [name, setName] = useState('')
     const [searchParams, _] = useSearchParams()
 
     const getStreamerPageTab = useCallback(() => {
@@ -64,6 +67,14 @@ export const useSongListNav = (
         return getNumberFromSearchParam(searchParams.get('limit'))
     }, [searchParams])
 
+    const getByFromSearchParams = useCallback(() => {
+        return clearStringFromSpaces(searchParams.get('by'))
+    }, [searchParams])
+
+    const getNameFromSearchParams = useCallback(() => {
+        return clearStringFromSpaces(searchParams.get('name'))
+    }, [searchParams])
+
     useEffect(() => {
         getStreamerPageTab()
     }, [location])
@@ -80,10 +91,21 @@ export const useSongListNav = (
         setLimit(getLimitFromSearchParams())
     }, [getLimitFromSearchParams, searchParams])
 
+    useEffect(() => {
+        setBy(getByFromSearchParams())
+    }, [getByFromSearchParams, searchParams])
+
+    useEffect(() => {
+        setName(getNameFromSearchParams())
+    }, [getNameFromSearchParams, searchParams])
+
     return {
         tab,
         period,
         page,
         from: page === -1 ? 0 : (page - 1) * SONG_LIMIT,
+        limit,
+        by,
+        name,
     }
 }
