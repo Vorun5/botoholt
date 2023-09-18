@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { SONG_LIMIT, useStreamerTopSongQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { HyperinkIcon } from 'shared/assets/icons'
-import { Period } from 'shared/types'
 import { ErrorMessage, Loading, Pagination, SearchField, SongDataList } from 'shared/ui'
 import { TopListItem } from 'shared/ui'
 import { nanoid } from 'nanoid'
@@ -12,11 +11,17 @@ import { debounce } from 'underscore'
 
 import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
+import { SongListProps } from './song-list'
 
-export const TopSongs = ({ period, from, login }: { period: Period; login: string; from: number }) => {
+export const TopSongs = ({
+    login,
+    period,
+    page,
+    limit,
+    searchStr,
+}: Pick<SongListProps, 'period' | 'login' | 'page' | 'limit' | 'searchStr'>) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState('')
 
     const {
         data: topSongs,
@@ -26,21 +31,16 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
         fetchStatus,
     } = useStreamerTopSongQuery({
         login,
-        from,
+        from: page * limit,
         period,
-        limit: SONG_LIMIT,
+        limit: limit,
         name: searchStr,
     })
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? topSongs.list.map((song) => song.link) : [])
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchByName = debounce((name: string) => {
-        if (from !== 0) {
-            setSearchParams({ page: '1' })
-        }
-        setSearchStr(name)
-    }, 1000)
+    const handlerSearchByName = debounce((name: string) => {}, 1000)
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)

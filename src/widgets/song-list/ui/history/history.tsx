@@ -1,43 +1,29 @@
-import { useEffect, useRef, useState } from 'react'
-import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data'
-import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
-import { HyperinkIcon } from 'shared/assets/icons'
-import { capitalize } from 'shared/lib/helpers'
-import i18n from 'shared/lib/i18n/i18n'
-import { Dropdown, ErrorMessage, Loading, Pagination, SearchField } from 'shared/ui'
-import { SongDataList, SongListItem } from 'shared/ui/song-data-list'
-import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
-import { debounce } from 'underscore'
+import { useRef } from 'react';
+import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data';
+import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png';
+import { HyperinkIcon } from 'shared/assets/icons';
+import { capitalize } from 'shared/lib/helpers';
+import i18n from 'shared/lib/i18n/i18n';
+import { Dropdown, ErrorMessage, Loading, Pagination, SearchField } from 'shared/ui';
+import { SongDataList, SongListItem } from 'shared/ui/song-data-list';
+import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
-import { getYtPlaylistLink } from '../../lib'
-import { ListStatusNotification } from '../list-status-notification/list-status-notification'
+import { getYtPlaylistLink } from '../../lib';
+import { ListStatusNotification } from '../list-status-notification/list-status-notification';
+import { SongListProps } from '../song-list';
 
-import styles from './history.module.scss'
+import styles from './history.module.scss';
 
 export const History = ({
-    login: streamerName,
-    from,
-    by,
-    name,
-}: {
-    login: string
-    from: number
-    by: string
-    name: string
-}) => {
-    const login = streamerName.toLocaleLowerCase()
+    login,
+    page,
+    limit,
+    searchStr,
+    searchType,
+}: Pick<SongListProps, 'login' | 'page' | 'limit' | 'searchStr' | 'searchType'>) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState(name)
-    const [searchType, setSearchType] = useState<'by-name' | 'by-sender'>('by-name')
-
-    useEffect(() => {
-        if (!name && by) {
-            setSearchStr(by)
-            setSearchType('by-sender')
-        }
-    }, [])
 
     const {
         data: history,
@@ -47,44 +33,22 @@ export const History = ({
         fetchStatus,
     } = useStreamerHistoryQuery({
         login,
-        from: from,
+        from: page * limit,
         limit: SONG_LIMIT,
-        name: name,
-        by: by,
+        name: searchStr === 'tite' ? searchStr : undefined,
+        by: searchStr === 'sender' ? searchStr : undefined,
     })
 
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? history.list.map((song) => song.link) : [])
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchByNameOrSender = debounce((searchStr: string) => {
-        setSearchStr(searchStr)
-        setSearchParams({ page: '1', ...getNewNameAndBySearchParams() })
-    }, 1000)
-
-    const getNewNameAndBySearchParams = (): { name: string } | { by: string } | {} => {
-        if (!searchStr) return {}
-        return searchType === 'by-name' ? { name: searchStr } : { by: searchStr }
-    }
-
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
         setSearchParams({
             page: page.toString(),
-            ...getNewNameAndBySearchParams(),
         })
     }
-
-    // TODO: допилить после того как добавлю возможно менять limit
-    useEffect(() => {
-        if (!isSuccess) return
-        if (history.total - 1 < from) {
-            setSearchParams({
-                page: '1',
-                ...getNewNameAndBySearchParams(),
-            })
-        }
-    }, [history])
 
     return (
         <>
@@ -102,14 +66,12 @@ export const History = ({
             >
                 <div className={styles.searchContainer}>
                     <div className={styles.search}>
-                        <SearchField defaultValue={name ? name : by} onChange={handlerSearchByNameOrSender} />
+                        <SearchField defaultValue={searchStr} onChange={() => {}} />
                     </div>
                     <Dropdown
                         items={['Search by name', 'Search by sender']}
-                        selectedItem={searchType === 'by-name' ? 'Search by name' : 'Search by sender'}
-                        onSelect={(type) => {
-                            setSearchType(type === 'Search by name' ? 'by-name' : 'by-sender')
-                        }}
+                        selectedItem={searchType === 'name' ? 'Search by name' : 'Search by sender'}
+                        onSelect={(type) => {}}
                     />
                 </div>
                 {isLoading && <Loading />}

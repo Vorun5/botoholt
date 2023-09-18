@@ -6,15 +6,18 @@ import { formatTime } from 'shared/lib/helpers'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SearchField, SongDataList, SongListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
+import { debounce } from 'underscore'
 
 import { getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
+import { SongListProps } from './song-list'
 
-export const Queue = ({ login }: { login: string }) => {
+export const Queue = ({ login, searchStr }: Pick<SongListProps, 'login' | 'searchStr'>) => {
     const { t } = useTranslation()
-    const { data: queue, isSuccess, isLoading, isError, fetchStatus } = useStreamerQueueQuery(login)
+    const [_, setSearchParams] = useSearchParams()
+    const { data: queue, isSuccess, isLoading, isError, fetchStatus } = useStreamerQueueQuery(login.toLowerCase())
     const [queueList, setQueueList] = useState<StreamerQueueSong[]>(isSuccess ? queue.queue : [])
-    const [searchStr, setSearchStr] = useState('')
 
     useMemo(() => {
         if (!isSuccess) return
@@ -40,6 +43,10 @@ export const Queue = ({ login }: { login: string }) => {
 
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
 
+    const onChangeSearchStr = debounce((str: string) => {
+        setSearchParams(new URLSearchParams({ search_str: str }))
+    }, 1000)
+
     return (
         <>
             <SongDataList
@@ -62,7 +69,7 @@ export const Queue = ({ login }: { login: string }) => {
                     </>
                 }
             >
-                <SearchField value={searchStr} onChange={(str) => setSearchStr(str)} />
+                <SearchField defaultValue={searchStr} onChange={onChangeSearchStr} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && queue.queue.length === 0 && (

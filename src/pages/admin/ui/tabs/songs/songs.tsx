@@ -57,7 +57,7 @@ export const Songs = ({ streamer }: SongsProps) => {
                     login={streamer.login}
                     baseUrlForRedirect={`/admin/songs`}
                 />
-                <SongList period={period} streamerName={streamer.name} from={from} tab={tab} />
+                <SongList period={period} login={streamer.name} from={from} tab={tab} />
             </ALPageContent>
         </>
     )

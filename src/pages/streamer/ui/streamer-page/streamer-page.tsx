@@ -3,12 +3,14 @@ import { useSongListNav } from 'widgets/song-list'
 import { useStreamerQuery } from 'entities/streamer'
 import { useMediaQuery } from 'shared/lib/hooks'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 import { StreamerPageDesktop } from './desktop/streamer-page-desktop'
 import { StreamerPageMobile } from './mobile/streamer-page-mobile'
 
 const StreamerPageLogic = () => {
+    const searchParams = useSearchParams()
+    // const 
     const { streamerName } = useParams()
     const login = (streamerName || '').toLocaleLowerCase()
     const { data: streamer, isLoading, isError, fetchStatus, isSuccess } = useStreamerQuery(login)
@@ -37,8 +39,8 @@ const StreamerPageLogic = () => {
                             period={period}
                             streamer={streamer}
                             from={from}
-                            name={name}
-                            by={by}
+                            searchStr=""
+                            searchType="name"
                         />
                     )}
                     {isMobile && (
@@ -47,8 +49,8 @@ const StreamerPageLogic = () => {
                             period={period}
                             streamer={streamer}
                             from={from}
-                            name={name}
-                            by={by}
+                            searchStr=""
+                            searchType="name"
                         />
                     )}
                 </>

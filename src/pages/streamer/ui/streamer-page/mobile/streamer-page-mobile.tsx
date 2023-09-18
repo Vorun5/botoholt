@@ -4,18 +4,18 @@ import { StreamerCard } from 'entities/streamers'
 import { useTranslation } from 'react-i18next'
 
 import { Ads } from '../../ads/ads'
-import { StreamerPageProps } from '../streamer-page.props'
+import { StreamerPageProps } from '../streamer-page-props'
 
 import styles from './streamer-page-mobile.module.scss'
 
-export const StreamerPageMobile = ({ streamer, tab, period, from, name, by }: StreamerPageProps) => {
+export const StreamerPageMobile = ({ streamer, tab, period, from, searchStr, searchType }: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
         <>
             <StreamerCard
                 className={styles.card}
-                title={t('streamer-card.title') ?? 'Информация о канале'}
+                title={t('streamer-card.title') ?? 'Channel info'}
                 streamer={streamer}
             />
             <CurrentSong className={styles.song} streamerName={streamer.name} />
@@ -25,7 +25,14 @@ export const StreamerPageMobile = ({ streamer, tab, period, from, name, by }: St
                 login={streamer.login}
                 baseUrlForRedirect={`/${streamer.login}`}
             />
-            <SongList period={period} tab={tab} streamerName={streamer.name} from={from} name={name} by={by} />
+            <SongList
+                period={period}
+                tab={tab}
+                login={streamer.name}
+                from={from}
+                searchStr={searchStr}
+                searchType={searchType}
+            />
             <Ads className={styles.ads} donationAlertsLink={streamer.donationAlerts} />
         </>
     )

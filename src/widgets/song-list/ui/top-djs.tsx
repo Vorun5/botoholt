@@ -1,18 +1,23 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { SONG_LIMIT, useStreamerTopDjsQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
-import { Period } from 'shared/types'
 import { ErrorMessage, Loading, Pagination, SearchField, SongDataList, TopListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'underscore'
 
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
+import { SongListProps } from './song-list'
 
-export const TopDjs = ({ period, from, login }: { period: Period; login: string; from: number }) => {
+export const TopDjs = ({
+    login,
+    period,
+    page,
+    limit,
+    searchStr,
+}: Pick<SongListProps, 'period' | 'login' | 'page' | 'limit' | 'searchStr'>) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState('')
 
     const {
         data: topDjs,
@@ -20,16 +25,11 @@ export const TopDjs = ({ period, from, login }: { period: Period; login: string;
         isError,
         isSuccess,
         fetchStatus,
-    } = useStreamerTopDjsQuery({ login, period, from, limit: SONG_LIMIT, by: searchStr })
+    } = useStreamerTopDjsQuery({ login, period, from: page * limit, limit, by: searchStr })
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchBySender = debounce((sender: string) => {
-        if (from !== 0) {
-            setSearchParams({ page: '1' })
-        }
-        setSearchStr(sender)
-    }, 1000)
+    const handlerSearchBySender = debounce((sender: string) => {}, 1000)
 
     const changePage = (page: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
