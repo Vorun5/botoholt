@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { SONG_LIMIT, useStreamerTopDjsQuery } from 'entities/streamer-song-data'
+import { useStreamerTopDjsQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { ErrorMessage, Loading, Pagination, SearchField, SongDataList, TopListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
@@ -25,22 +25,36 @@ export const TopDjs = ({
         isError,
         isSuccess,
         fetchStatus,
-    } = useStreamerTopDjsQuery({ login, period, from: page * limit, limit, by: searchStr })
+    } = useStreamerTopDjsQuery({ login, period, from: page * limit - limit, limit, by: searchStr })
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchBySender = debounce((sender: string) => {}, 1000)
-
-    const changePage = (page: number) => {
+    const onChangePage = (newPage: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams({ period: period, page: page.toString() })
+        setSearchParams(
+            new URLSearchParams({
+                limit: limit.toString(),
+                page: newPage.toString(),
+                search_str: searchStr,
+            }),
+        )
     }
+
+    const onChangeSearchStr = debounce((str: string) => {
+        setSearchParams(
+            new URLSearchParams({
+                limit: limit.toString(),
+                page: page.toString(),
+                search_str: str,
+            }),
+        )
+    }, 1000)
 
     return (
         <>
             <div ref={ref} />
             <SongDataList title={t('streamer-page.tab-titles.top-djs')}>
-                <SearchField onChange={handlerSearchBySender} />
+                <SearchField defaultValue={searchStr} onChange={onChangeSearchStr} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && topDjs.list.length === 0 && (
@@ -62,9 +76,9 @@ export const TopDjs = ({
                             />
                         ))}
                         <Pagination
-                            total={Math.ceil(topDjs.total / SONG_LIMIT)}
-                            page={topDjs.from / SONG_LIMIT + 1}
-                            changePage={changePage}
+                            total={Math.ceil(topDjs.total / limit)}
+                            page={topDjs.from / limit + 1}
+                            changePage={onChangePage}
                         />
                     </>
                 )}

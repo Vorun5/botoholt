@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { SONG_LIMIT, useStreamerTopSongQuery } from 'entities/streamer-song-data'
+import { useStreamerTopSongQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { ErrorMessage, Loading, Pagination, SearchField, SongDataList } from 'shared/ui'
@@ -31,21 +31,35 @@ export const TopSongs = ({
         fetchStatus,
     } = useStreamerTopSongQuery({
         login,
-        from: page * limit,
+        from: page * limit - limit,
         period,
-        limit: limit,
+        limit,
         name: searchStr,
     })
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? topSongs.list.map((song) => song.link) : [])
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchByName = debounce((name: string) => {}, 1000)
-
-    const changePage = (page: number) => {
+    const onChangePage = (newPage: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams({ period: period, page: page.toString() })
+        setSearchParams(
+            new URLSearchParams({
+                limit: limit.toString(),
+                page: newPage.toString(),
+                search_str: searchStr,
+            }),
+        )
     }
+
+    const onChangeSearchStr = debounce((str: string) => {
+        setSearchParams(
+            new URLSearchParams({
+                limit: limit.toString(),
+                page: page.toString(),
+                search_str: str,
+            }),
+        )
+    }, 1000)
 
     return (
         <>
@@ -61,7 +75,7 @@ export const TopSongs = ({
                     )
                 }
             >
-                <SearchField onChange={handlerSearchByName} />
+                <SearchField defaultValue={searchStr} onChange={onChangeSearchStr} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && topSongs.list.length === 0 && (
@@ -84,9 +98,9 @@ export const TopSongs = ({
                             />
                         ))}
                         <Pagination
-                            total={Math.ceil(topSongs.total / SONG_LIMIT)}
-                            page={topSongs.from / SONG_LIMIT + 1}
-                            changePage={changePage}
+                            total={Math.ceil(topSongs.total / limit)}
+                            page={topSongs.from / limit + 1}
+                            changePage={onChangePage}
                         />
                     </>
                 )}

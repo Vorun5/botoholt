@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useStreamerQueueQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
-import { formatTime } from 'shared/lib/helpers'
+import { clearStringFromSpaces, formatTime } from 'shared/lib/helpers'
 import { StreamerQueueSong } from 'shared/types'
 import { ErrorMessage, Loading, SearchField, SongDataList, SongListItem } from 'shared/ui'
 import { useTranslation } from 'react-i18next'
@@ -44,8 +44,8 @@ export const Queue = ({ login, searchStr }: Pick<SongListProps, 'login' | 'searc
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
 
     const onChangeSearchStr = debounce((str: string) => {
-        setSearchParams(new URLSearchParams({ search_str: str }))
-    }, 1000)
+        setSearchParams(clearStringFromSpaces(str) ? new URLSearchParams({ search_str: str }) : {})
+    }, 200)
 
     return (
         <>

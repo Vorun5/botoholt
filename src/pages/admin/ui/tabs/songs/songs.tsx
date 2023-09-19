@@ -1,4 +1,4 @@
-import { SongList, SongListNavigation, useSongListNav } from 'widgets/song-list'
+import { SongList, SongListNavigation, useSongListSearchParams } from 'widgets/song-list'
 import { CurrentSong } from 'entities/streamer-song-data'
 import { PauseIcon, SkipIcon } from 'shared/assets/icons'
 import { useDocumentTitle } from 'shared/lib/hooks'
@@ -18,7 +18,7 @@ export const Songs = ({ streamer }: SongsProps) => {
     const { t } = useTranslation()
     useDocumentTitle(t('admin-page.nav.song-queue'))
 
-    const { tab, period, from } = useSongListNav(streamer.login, 'admin/songs')
+    const { tab, period, page, limit, searchStr, searchType } = useSongListSearchParams('/admin/songs')
 
     return (
         <>
@@ -57,7 +57,15 @@ export const Songs = ({ streamer }: SongsProps) => {
                     login={streamer.login}
                     baseUrlForRedirect={`/admin/songs`}
                 />
-                <SongList period={period} login={streamer.name} from={from} tab={tab} />
+                <SongList
+                    period={period}
+                    login={streamer.name}
+                    page={page}
+                    tab={tab}
+                    limit={limit}
+                    searchStr={searchStr}
+                    searchType={searchType}
+                />
             </ALPageContent>
         </>
     )

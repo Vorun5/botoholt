@@ -8,7 +8,15 @@ import { StreamerPageProps } from '../streamer-page-props'
 
 import styles from './streamer-page-desktop.module.scss'
 
-export const StreamerPageDesktop = ({ streamer, tab, period, from, searchStr, searchType }: StreamerPageProps) => {
+export const StreamerPageDesktop = ({
+    streamer,
+    tab,
+    period,
+    page,
+    limit,
+    searchStr,
+    searchType,
+}: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -31,8 +39,9 @@ export const StreamerPageDesktop = ({ streamer, tab, period, from, searchStr, se
                             <SongList
                                 tab={tab}
                                 period={period}
-                                login={streamer.name}
-                                from={from}
+                                login={streamer.login}
+                                page={page}
+                                limit={limit}
                                 searchStr={searchStr}
                                 searchType={searchType}
                             />

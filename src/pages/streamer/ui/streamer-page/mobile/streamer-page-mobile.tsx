@@ -8,7 +8,15 @@ import { StreamerPageProps } from '../streamer-page-props'
 
 import styles from './streamer-page-mobile.module.scss'
 
-export const StreamerPageMobile = ({ streamer, tab, period, from, searchStr, searchType }: StreamerPageProps) => {
+export const StreamerPageMobile = ({
+    streamer,
+    tab,
+    period,
+    page,
+    limit,
+    searchStr,
+    searchType,
+}: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -28,8 +36,9 @@ export const StreamerPageMobile = ({ streamer, tab, period, from, searchStr, sea
             <SongList
                 period={period}
                 tab={tab}
-                login={streamer.name}
-                from={from}
+                login={streamer.login}
+                page={page}
+                limit={limit}
                 searchStr={searchStr}
                 searchType={searchType}
             />
