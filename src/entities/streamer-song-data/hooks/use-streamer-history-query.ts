@@ -11,7 +11,7 @@ export const useStreamerHistoryQuery = ({
     from,
     name,
     by,
-}: PaginationParams & { name: string; by: string }) => {
+}: PaginationParams & { name?: string; by?: string }) => {
     return useQuery({
         queryFn: () =>
             getStreamerHistory({

@@ -1,5 +1,5 @@
 import { Footer, Header } from 'widgets'
-import { useSongListNav } from 'widgets/song-list'
+import { useSongListSearchParams } from 'widgets/song-list'
 import { useStreamerQuery } from 'entities/streamer'
 import { useMediaQuery } from 'shared/lib/hooks'
 import { ErrorMessage, Loading, Page, PageContent, PageContentExpanded } from 'shared/ui'
@@ -12,7 +12,7 @@ const StreamerPageLogic = () => {
     const { streamerName } = useParams()
     const login = (streamerName || '').toLocaleLowerCase()
     const { data: streamer, isLoading, isError, fetchStatus, isSuccess } = useStreamerQuery(login)
-    const { tab, period, from } = useSongListNav(login, `/${login}`)
+    const { tab, period, limit, page, searchStr, searchType } = useSongListSearchParams(`/${login}`)
 
     const isDesktop = useMediaQuery('(min-width: 900px)')
     const isMobile = !isDesktop
@@ -31,8 +31,28 @@ const StreamerPageLogic = () => {
             )}
             {isSuccess && (
                 <>
-                    {isDesktop && <StreamerPageDesktop tab={tab} period={period} streamer={streamer} from={from} />}
-                    {isMobile && <StreamerPageMobile tab={tab} period={period} streamer={streamer} from={from} />}
+                    {isDesktop && (
+                        <StreamerPageDesktop
+                            tab={tab}
+                            period={period}
+                            streamer={streamer}
+                            page={page}
+                            limit={limit}
+                            searchStr={searchStr}
+                            searchType={searchType}
+                        />
+                    )}
+                    {isMobile && (
+                        <StreamerPageMobile
+                            tab={tab}
+                            period={period}
+                            streamer={streamer}
+                            page={page}
+                            limit={limit}
+                            searchStr={searchStr}
+                            searchType={searchType}
+                        />
+                    )}
                 </>
             )}
         </>

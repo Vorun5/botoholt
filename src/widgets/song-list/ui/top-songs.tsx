@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react'
-import { SONG_LIMIT, useStreamerTopSongQuery } from 'entities/streamer-song-data'
+import { useRef } from 'react'
+import { useStreamerTopSongQuery } from 'entities/streamer-song-data'
 import INSANECAT from 'shared/assets/emotes/INSANECAT.gif'
 import { HyperinkIcon } from 'shared/assets/icons'
-import { Period } from 'shared/types'
 import { ErrorMessage, Loading, Pagination, SearchField, SongDataList } from 'shared/ui'
 import { TopListItem } from 'shared/ui'
 import { nanoid } from 'nanoid'
@@ -10,13 +9,19 @@ import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'underscore'
 
-import { getYtPlaylistLink } from '../lib'
+import { getNewSongListSearchParams, getYtPlaylistLink } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
+import { SongListProps } from './song-list'
 
-export const TopSongs = ({ period, from, login }: { period: Period; login: string; from: number }) => {
+export const TopSongs = ({
+    login,
+    period,
+    page,
+    limit,
+    searchStr,
+}: Pick<SongListProps, 'period' | 'login' | 'page' | 'limit' | 'searchStr'>) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState('')
 
     const {
         data: topSongs,
@@ -26,26 +31,23 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
         fetchStatus,
     } = useStreamerTopSongQuery({
         login,
-        from,
+        from: page * limit - limit,
         period,
-        limit: SONG_LIMIT,
+        limit,
         name: searchStr,
     })
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? topSongs.list.map((song) => song.link) : [])
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchByName = debounce((name: string) => {
-        if (from !== 0) {
-            setSearchParams({ page: '1' })
-        }
-        setSearchStr(name)
-    }, 1000)
-
-    const changePage = (page: number) => {
+    const onChangePage = (newPage: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams({ period: period, page: page.toString() })
+        setSearchParams(getNewSongListSearchParams({ limit, period, searchStr, page: newPage }))
     }
+
+    const onChangeSearchStr = debounce((str: string) => {
+        setSearchParams(getNewSongListSearchParams({ limit, period, page, searchStr: str }))
+    }, 1000)
 
     return (
         <>
@@ -61,7 +63,7 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
                     )
                 }
             >
-                <SearchField onChange={handlerSearchByName} />
+                <SearchField defaultValue={searchStr} onChange={onChangeSearchStr} />
                 {isLoading && <Loading />}
                 {isError && <ErrorMessage>{`Error status: ${fetchStatus}`}</ErrorMessage>}
                 {isSuccess && topSongs.list.length === 0 && (
@@ -84,9 +86,9 @@ export const TopSongs = ({ period, from, login }: { period: Period; login: strin
                             />
                         ))}
                         <Pagination
-                            total={Math.ceil(topSongs.total / SONG_LIMIT)}
-                            page={topSongs.from / SONG_LIMIT + 1}
-                            changePage={changePage}
+                            total={Math.ceil(topSongs.total / limit)}
+                            page={topSongs.from / limit + 1}
+                            changePage={onChangePage}
                         />
                     </>
                 )}

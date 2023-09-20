@@ -4,11 +4,19 @@ import { StreamerCard } from 'entities/streamers'
 import { useTranslation } from 'react-i18next'
 
 import { Ads } from '../../ads/ads'
-import { StreamerPageProps } from '../streamer-page.props'
+import { StreamerPageProps } from '../streamer-page-props'
 
 import styles from './streamer-page-desktop.module.scss'
 
-export const StreamerPageDesktop = ({ streamer, tab, period, from }: StreamerPageProps) => {
+export const StreamerPageDesktop = ({
+    streamer,
+    tab,
+    period,
+    page,
+    limit,
+    searchStr,
+    searchType,
+}: StreamerPageProps) => {
     const { t } = useTranslation()
 
     return (
@@ -28,7 +36,15 @@ export const StreamerPageDesktop = ({ streamer, tab, period, from }: StreamerPag
                     />
                     <div className={styles.content}>
                         <div className={styles.list}>
-                            <SongList tab={tab} period={period} streamerName={streamer.name} from={from} />
+                            <SongList
+                                tab={tab}
+                                period={period}
+                                login={streamer.login}
+                                page={page}
+                                limit={limit}
+                                searchStr={searchStr}
+                                searchType={searchType}
+                            />
                         </div>
                     </div>
                 </div>

@@ -31,6 +31,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 </React.Suspense>
             </ToastProvider>
         </QueryClientProvider>
-        ,
     </React.StrictMode>,
 )

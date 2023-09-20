@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { StreamerPageTab } from 'widgets/song-list/lib'
 import { useElementSize } from 'shared/lib/hooks'
 import { Period } from 'shared/types'
 import { Button, ButtonText } from 'shared/ui'
@@ -8,6 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { Link, useSearchParams } from 'react-router-dom'
 
 import styles from './song-list-navigation.module.scss'
+
+export type StreamerPageTab = 'queue' | 'history' | 'top-songs' | 'top-djs'
 
 interface LinkButtonProps {
     url: string

@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { SONG_LIMIT, useStreamerHistoryQuery } from 'entities/streamer-song-data'
+import { useRef } from 'react'
+import { useStreamerHistoryQuery } from 'entities/streamer-song-data'
 import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
 import { HyperinkIcon } from 'shared/assets/icons'
 import { capitalize } from 'shared/lib/helpers'
@@ -10,17 +10,21 @@ import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'underscore'
 
-import { getYtPlaylistLink } from '../../lib'
+import { getNewSongListSearchParams, getYtPlaylistLink } from '../../lib'
 import { ListStatusNotification } from '../list-status-notification/list-status-notification'
+import { SongListProps } from '../song-list'
 
 import styles from './history.module.scss'
 
-export const History = ({ login: streamerName, from }: { login: string; from: number }) => {
-    const login = streamerName.toLocaleLowerCase()
+export const History = ({
+    login,
+    page,
+    limit,
+    searchStr,
+    searchType,
+}: Pick<SongListProps, 'login' | 'page' | 'limit' | 'searchStr' | 'searchType'>) => {
     const { t } = useTranslation()
     const [_, setSearchParams] = useSearchParams()
-    const [searchStr, setSearchStr] = useState('')
-    const [searchType, setSearchType] = useState<'by-name' | 'by-sender'>('by-name')
 
     const {
         data: history,
@@ -30,26 +34,34 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
         fetchStatus,
     } = useStreamerHistoryQuery({
         login,
-        from: from,
-        limit: SONG_LIMIT,
-        name: searchType === 'by-name' ? searchStr : '',
-        by: searchType === 'by-sender' ? searchStr : '',
+        from: page * limit - limit,
+        limit: limit,
+        name: searchType === 'name' ? searchStr : undefined,
+        by: searchType === 'sender' ? searchStr : undefined,
     })
 
     const ytPlaylistLink = getYtPlaylistLink(isSuccess ? history.list.map((song) => song.link) : [])
 
     const ref = useRef<HTMLDivElement>(null)
 
-    const handlerSearchByNameOrSender = debounce((searchStr: string) => {
-        if (from !== 0) {
-            setSearchParams({ page: '1' })
-        }
-        setSearchStr(searchStr)
+    const onChangePage = (newPage: number) => {
+        window.scrollTo(0, ref.current!.offsetTop - 20)
+        setSearchParams(getNewSongListSearchParams({ limit, searchType, searchStr, page: newPage }))
+    }
+
+    const onChangeSearchStr = debounce((str: string) => {
+        setSearchParams(getNewSongListSearchParams({ limit, page, searchType, searchStr: str }))
     }, 1000)
 
-    const changePage = (page: number) => {
-        window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams({ page: page.toString() })
+    const onSelectSearchType = (type: string) => {
+        setSearchParams(
+            getNewSongListSearchParams({
+                limit,
+                page,
+                searchStr,
+                searchType: type === 'Search by name' ? 'name' : 'sender',
+            }),
+        )
     }
 
     return (
@@ -68,14 +80,12 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
             >
                 <div className={styles.searchContainer}>
                     <div className={styles.search}>
-                        <SearchField onChange={handlerSearchByNameOrSender} />
+                        <SearchField defaultValue={searchStr} onChange={onChangeSearchStr} />
                     </div>
                     <Dropdown
                         items={['Search by name', 'Search by sender']}
-                        selectedItem={searchType === 'by-name' ? 'Search by name' : 'Search by sender'}
-                        onSelect={(type) => {
-                            setSearchType(type === 'Search by name' ? 'by-name' : 'by-sender')
-                        }}
+                        selectedItem={searchType === 'name' ? 'Search by name' : 'Search by sender'}
+                        onSelect={onSelectSearchType}
                     />
                 </div>
                 {isLoading && <Loading />}
@@ -120,9 +130,9 @@ export const History = ({ login: streamerName, from }: { login: string; from: nu
                             )
                         })}
                         <Pagination
-                            total={Math.ceil(history.total / SONG_LIMIT)}
-                            page={history.from / SONG_LIMIT + 1}
-                            changePage={changePage}
+                            total={Math.ceil(history.total / limit)}
+                            page={history.from / limit + 1}
+                            changePage={onChangePage}
                         />
                     </>
                 )}
