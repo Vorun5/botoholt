@@ -1,17 +1,17 @@
-import { useMemo, useState } from 'react'
-import { useStreamerQueueQuery } from 'entities/streamer-song-data'
-import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png'
-import { HyperinkIcon } from 'shared/assets/icons'
-import { clearStringFromSpaces, formatTime } from 'shared/lib/helpers'
-import { StreamerQueueSong } from 'shared/types'
-import { ErrorMessage, Loading, SearchField, SongDataList, SongListItem } from 'shared/ui'
-import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
-import { debounce } from 'underscore'
+import { useMemo, useState } from 'react';
+import { useStreamerQueueQuery } from 'entities/streamer-song-data';
+import FeelsOkayMan from 'shared/assets/emotes/FeelsOkayMan.png';
+import { HyperinkIcon } from 'shared/assets/icons';
+import { formatTime } from 'shared/lib/helpers';
+import { StreamerQueueSong } from 'shared/types';
+import { ErrorMessage, Loading, SearchField, SongDataList, SongListItem } from 'shared/ui';
+import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
+import { debounce } from 'underscore';
 
-import { getYtPlaylistLink } from '../lib'
-import { ListStatusNotification } from './list-status-notification/list-status-notification'
-import { SongListProps } from './song-list'
+import { getNewSongListSearchParams, getYtPlaylistLink } from '../lib';
+import { ListStatusNotification } from './list-status-notification/list-status-notification';
+import { SongListProps } from './song-list';
 
 export const Queue = ({ login, searchStr }: Pick<SongListProps, 'login' | 'searchStr'>) => {
     const { t } = useTranslation()
@@ -44,7 +44,7 @@ export const Queue = ({ login, searchStr }: Pick<SongListProps, 'login' | 'searc
     const ytPlaylistLink = getYtPlaylistLink(queueList.map((song) => song.link))
 
     const onChangeSearchStr = debounce((str: string) => {
-        setSearchParams(clearStringFromSpaces(str) ? new URLSearchParams({ search_str: str }) : {})
+        setSearchParams(getNewSongListSearchParams({ searchStr: str }))
     }, 200)
 
     return (

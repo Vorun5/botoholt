@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'underscore'
 
-import { getYtPlaylistLink } from '../../lib'
+import { getNewSongListSearchParams, getYtPlaylistLink } from '../../lib'
 import { ListStatusNotification } from '../list-status-notification/list-status-notification'
 import { SongListProps } from '../song-list'
 
@@ -46,34 +46,20 @@ export const History = ({
 
     const onChangePage = (newPage: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams(
-            new URLSearchParams({
-                limit: limit.toString(),
-                page: newPage.toString(),
-                search_type: searchType,
-                search_str: searchStr,
-            }),
-        )
+        setSearchParams(getNewSongListSearchParams({ limit, searchType, searchStr, page: newPage }))
     }
 
     const onChangeSearchStr = debounce((str: string) => {
-        setSearchParams(
-            new URLSearchParams({
-                limit: limit.toString(),
-                page: page.toString(),
-                search_type: searchType,
-                search_str: str,
-            }),
-        )
+        setSearchParams(getNewSongListSearchParams({ limit, page, searchType, searchStr: str }))
     }, 1000)
 
     const onSelectSearchType = (type: string) => {
         setSearchParams(
-            new URLSearchParams({
-                limit: limit.toString(),
-                page: page.toString(),
-                search_type: type === 'Search by name' ? 'name' : 'sender',
-                search_str: searchStr,
+            getNewSongListSearchParams({
+                limit,
+                page,
+                searchStr,
+                searchType: type === 'Search by name' ? 'name' : 'sender',
             }),
         )
     }

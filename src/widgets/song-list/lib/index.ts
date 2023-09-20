@@ -1,2 +1,2 @@
 export { getYtPlaylistLink } from './get-yt-playlist-link'
-export { useSongListSearchParams } from './use-song-list-search-params'
+export { getNewSongListSearchParams,useSongListSearchParams } from './use-song-list-search-params'

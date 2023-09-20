@@ -19,37 +19,30 @@ const newSearchParam = <T>(defaultValue: T, value: T | undefined) => {
     return String(value)
 }
 
-// const removeUndefinedFields = <T extends Object>(obj: T): Record<keyof T, NonNullable<T[keyof T]>> => {
-//     const cleanedObject: Record<keyof T, NonNullable<T[keyof T]>> = {} as any
+const transformObject = (obj: Record<string, string | undefined>): Record<string, string> => {
+    const result: Record<string, string> = {}
 
-//     for (const key in obj) {
-//         if (obj.hasOwnProperty(key) && obj[key] !== undefined) {
-//             cleanedObject[key] = obj[key] as NonNullable<T[keyof T]>
-//         }
-//     }
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key) && typeof obj[key] === 'string') {
+            result[key] = obj[key]!
+        }
+    }
 
-//     return cleanedObject
-// }
-
-// type SongListSearchParams = {
-//     limit?: string
-//     page?: string
-//     period?: string
-//     searchStr?: string
-//     searchType?: string
-// }
+    return result
+}
 
 export const getNewSongListSearchParams = (searchParams: Partial<Omit<SongListProps, 'login' | 'tab'>>) => {
-    const l = newSearchParam(DEFAULT_SEARCH_PARAMS.limit, searchParams.limit)
-    const a = l ? { limit: l } : {}
+    const newSongListSearchParams = new URLSearchParams(
+        transformObject({
+            limit: newSearchParam(DEFAULT_SEARCH_PARAMS.limit, searchParams.limit),
+            page: newSearchParam(DEFAULT_SEARCH_PARAMS.page, searchParams.page),
+            period: newSearchParam(DEFAULT_SEARCH_PARAMS.period, searchParams.period),
+            search_str: newSearchParam(DEFAULT_SEARCH_PARAMS.searchStr, searchParams.searchStr),
+            search_type: newSearchParam(DEFAULT_SEARCH_PARAMS.searchType, searchParams.searchType),
+        }),
+    )
 
-    return {
-        limit: newSearchParam(DEFAULT_SEARCH_PARAMS.limit, searchParams.limit),
-        page: newSearchParam(DEFAULT_SEARCH_PARAMS.page, searchParams.page),
-        period: newSearchParam(DEFAULT_SEARCH_PARAMS.period, searchParams.period),
-        searchStr: newSearchParam(DEFAULT_SEARCH_PARAMS.searchStr, searchParams.searchStr),
-        searchType: newSearchParam(DEFAULT_SEARCH_PARAMS.searchType, searchParams.searchType),
-    }
+    return newSongListSearchParams
 }
 
 export const useSongListSearchParams = (baseUrl: string): Omit<SongListProps, 'login'> => {

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { debounce } from 'underscore'
 
+import { getNewSongListSearchParams } from '../lib'
 import { ListStatusNotification } from './list-status-notification/list-status-notification'
 import { SongListProps } from './song-list'
 
@@ -31,23 +32,11 @@ export const TopDjs = ({
 
     const onChangePage = (newPage: number) => {
         window.scrollTo(0, ref.current!.offsetTop - 20)
-        setSearchParams(
-            new URLSearchParams({
-                limit: limit.toString(),
-                page: newPage.toString(),
-                search_str: searchStr,
-            }),
-        )
+        setSearchParams(getNewSongListSearchParams({ limit, period, searchStr, page: newPage }))
     }
 
     const onChangeSearchStr = debounce((str: string) => {
-        setSearchParams(
-            new URLSearchParams({
-                limit: limit.toString(),
-                page: page.toString(),
-                search_str: str,
-            }),
-        )
+        setSearchParams(getNewSongListSearchParams({ limit, period, page, searchStr: str }))
     }, 1000)
 
     return (
