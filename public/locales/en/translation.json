@@ -93,10 +93,14 @@
         "support": {
             "description": "If you have any problems while using Botoholt, you can find the answer to your question here or describe your problem in discord",
             "discord": {
-                "description": "If your question is not answered in the list, please write to Urbinholt in discord",
+                "description": "If your question is not answered in the list, write to us on the discord server",
                 "title": "There is no answer to my question in the list, who should I contact?"
             },
             "faq": {
+                "bot-not-work": {
+                    "a": "The bot only works when the broadcast is online. Or a minute after making a change to a command / adding a new command so you can test.",
+                    "q": "Why doesn't the bot work?"
+                },
                 "description": "Frequently asked questions"
             }
         }
@@ -200,6 +204,7 @@
     },
     "in-discord": " in discord",
     "insert-link": "Insert link",
+    "join-server": "Join server",
     "link-saved": "Link saved successfully",
     "loading": "Loading...",
     "login-page": {

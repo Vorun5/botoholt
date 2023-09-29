@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import pepeJAM from 'shared/assets/emotes/pepeJAM.png'
 import { DiscordIcon } from 'shared/assets/icons'
 import { useDocumentTitle } from 'shared/lib/hooks'
 import { Avatar, Button, ButtonIcon, ButtonText, Card, CardDescription, CardProps, CardTitle } from 'shared/ui'
@@ -38,17 +39,13 @@ export const Support = () => {
                     <CardTitle>{t('admin-page.support.discord.title')}</CardTitle>
                     <span className={styles.supportAction}>{t('admin-page.support.discord.description')}</span>
                     <div className={styles.supportFooter}>
-                        <Avatar
-                            alt="Urbinholt"
-                            image="https://cdn.discordapp.com/avatars/127927922643304448/890aea72532b5774c1d0301f1193b58c.webp?size=100"
-                            size="53px"
-                        />
+                        <Avatar alt="Urbinholt" image={pepeJAM} size="53px" />
                         <Button
                             style="fill-blue"
                             height="53px"
-                            onClick={() => window.open('https://discordapp.com/users/127927922643304448/')}
+                            onClick={() => window.open('https://discord.gg/BgAxx46F4e')}
                         >
-                            <ButtonText>Urbinholt</ButtonText>
+                            <ButtonText>{t('join-server')}</ButtonText>
                             <ButtonIcon margin="left">
                                 <DiscordIcon width={33} height={25} fill="white" />
                             </ButtonIcon>
@@ -61,30 +58,8 @@ export const Support = () => {
                         <CardTitle style="green">FAQ</CardTitle>
                     </Card>
 
-                    <Question question="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quia reprehenderit et harum perspiciatis fuga vero repudiandae labore! Placeat est non inventore ea aut quibusdam, ipsam laborum repellendus maxime quidem!">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, iure non ducimus aliquid saepe
-                        magnam repudiandae nemo numquam nisi. Aspernatur dolorem, maxime illo autem similique quo vel
-                        quidem est nobis!
-                    </Question>
-                    <Question question="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quia reprehenderit et harum perspiciatis fuga vero repudiandae labore! Placeat est non inventore ea aut quibusdam, ipsam laborum repellendus maxime quidem!">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, iure non ducimus aliquid saepe
-                        magnam repudiandae nemo numquam nisi. Aspernatur dolorem, maxime illo autem similique quo vel
-                        quidem est nobis!
-                    </Question>
-                    <Question question="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quia reprehenderit et harum perspiciatis fuga vero repudiandae labore! Placeat est non inventore ea aut quibusdam, ipsam laborum repellendus maxime quidem!">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, iure non ducimus aliquid saepe
-                        magnam repudiandae nemo numquam nisi. Aspernatur dolorem, maxime illo autem similique quo vel
-                        quidem est nobis!
-                    </Question>
-                    <Question question="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quia reprehenderit et harum perspiciatis fuga vero repudiandae labore! Placeat est non inventore ea aut quibusdam, ipsam laborum repellendus maxime quidem!">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, iure non ducimus aliquid saepe
-                        magnam repudiandae nemo numquam nisi. Aspernatur dolorem, maxime illo autem similique quo vel
-                        quidem est nobis!
-                    </Question>
-                    <Question question="Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quia reprehenderit et harum perspiciatis fuga vero repudiandae labore! Placeat est non inventore ea aut quibusdam, ipsam laborum repellendus maxime quidem!">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem, iure non ducimus aliquid saepe
-                        magnam repudiandae nemo numquam nisi. Aspernatur dolorem, maxime illo autem similique quo vel
-                        quidem est nobis!
+                    <Question question={t('admin-page.support.faq.bot-not-work.q')}>
+                        {t('admin-page.support.faq.bot-not-work.a')}
                     </Question>
                 </div>
             </ALPageContent>

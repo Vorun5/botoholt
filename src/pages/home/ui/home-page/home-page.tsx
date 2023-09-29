@@ -13,29 +13,27 @@ export const HomePage = () => {
     useDocumentTitle('Botoholt')
 
     return (
-        <>
-            <Page>
-                <Header />
-                <NewUpdate />
-                <PageContent>
-                    <span className={styles.title}>{t('about-botoholt')}</span>
-                    <AboutBotoholt />
-                    <span className={styles.title}>
-                        <TwitchIcon
-                            style={{
-                                position: 'relative',
-                                top: '6px',
-                            }}
-                            width="32px"
-                            height="32px"
-                            color="#673AB7"
-                        />{' '}
-                        {t('top-streamers')}
-                    </span>
-                    <StreamerList />
-                </PageContent>
-                <Footer />
-            </Page>
-        </>
+        <Page>
+            <Header />
+            <NewUpdate />
+            <PageContent>
+                <span className={styles.title}>{t('about-botoholt')}</span>
+                <AboutBotoholt />
+                <span className={styles.title}>
+                    <TwitchIcon
+                        style={{
+                            position: 'relative',
+                            top: '6px',
+                        }}
+                        width="32px"
+                        height="32px"
+                        color="#673AB7"
+                    />{' '}
+                    {t('top-streamers')}
+                </span>
+                <StreamerList />
+            </PageContent>
+            <Footer />
+        </Page>
     )
 }
