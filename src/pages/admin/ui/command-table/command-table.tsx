@@ -123,7 +123,7 @@ export const CommandTable = ({
                 <div className={styles.commandsItems}>
                     {sortCommands.map((command, index) => (
                         <CommandTableItem
-                            key={command.function}
+                            key={command._id}
                             onToggle={() => {
                                 if (checkDaWarning(command)) {
                                     toggleShowDaWarning()
