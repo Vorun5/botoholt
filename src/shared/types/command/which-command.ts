@@ -16,6 +16,5 @@ export interface WhichCommand extends Command {
 }
 
 export function isWhichCommand(command: Command): command is WhichCommand {
-    if (command.function === 'bot.songs.whichProcess') return true
-    return false
+    return command.function === 'bot.songs.whichProcess'
 }

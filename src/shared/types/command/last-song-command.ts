@@ -22,6 +22,5 @@ export interface LastSongCommand extends Command {
 }
 
 export function isLastSongCommand(command: Command): command is LastSongCommand {
-    if (command.function === 'bot.songs.lastSong') return true
-    return false
+    return command.function === 'bot.songs.lastSong'
 }

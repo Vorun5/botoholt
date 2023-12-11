@@ -22,6 +22,5 @@ export interface SongCommand extends Command {
 }
 
 export function isSongCommand(command: Command): command is SongCommand {
-    if (command.function === 'bot.songs.songProcess') return true
-    return false
+    return command.function === 'bot.songs.songProcess'
 }

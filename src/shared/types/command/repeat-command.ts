@@ -5,6 +5,5 @@ export interface RepeatCommand extends Command {
 }
 
 export function isRepeatCommand(command: Command): command is RepeatCommand {
-    if (command.function === 'bot.commands.repeat') return true
-    return false
+    return command.function === 'bot.commands.repeat'
 }
